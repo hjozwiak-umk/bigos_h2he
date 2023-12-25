@@ -8,7 +8,9 @@ module POTENTIAL
    !!--------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
-   use supplementary
+   use utility_functions_mod, only: file_io_status, write_error, write_message,&
+      time_count_summary
+   use supplementary, only: spline
    implicit none
    contains
    !---------------------------------------------------------------------------!

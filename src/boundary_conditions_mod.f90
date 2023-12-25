@@ -13,7 +13,7 @@ module BOUNDARY_CONDITIONS
    use io_mod
    use fwigxjpf, only: fwig3jj
    use supplementary
-   use supplementary_mod, only: write_warning
+   use utility_functions_mod, only: write_warning
    use additional_mod, only: invert_symmetric_matrix, fill_symmetric_matrix
    !------------------------------------------------------------------------------!
    implicit none

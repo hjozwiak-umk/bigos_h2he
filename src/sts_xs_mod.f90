@@ -3,6 +3,7 @@ module statetostateXS
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
+   use utility_functions_mod, only: write_message, time_count_summary
    implicit none
    contains
    !---------------------------------------------------------------------------!
@@ -36,10 +37,10 @@ module statetostateXS
          integer(int32) :: jinit, jfin, njoccur, njpoccur, v1lev, j1lev,       &
             v1plev, j1plev, ltmp, lptmp, iinit, ifin, ioccur1, ioccur2, ii,    &
             il, ilp
-         real(dp) :: waveinit, xssum, telr, teli, telsq, start, finish
+         real(dp) :: waveinit, xssum, telr, teli, telsq, time_start, time_finish, xs_time
          integer(int32), allocatable :: jblockarr(:), jpblockarr(:)
          !---------------------------------------------------------------------!
-         call CPU_TIME(start)
+         call CPU_TIME(time_start)
          xs_array = 0
          !---------------------------------------------------------------------!
          do iinit = 1, number_of_open_basis_levels
@@ -117,13 +118,10 @@ module statetostateXS
             enddo
          enddo
          !---------------------------------------------------------------------!
-         CALL CPU_TIME(finish)
+         CALL CPU_TIME(time_finish)
 
-         if (prntlvl.ge.2) then
-            call write_message("Cross-sections calculations took " //          &
-               trim(adjustl(float_to_character(finish-start, "(E14.8)"))) //   &
-               " seconds")
-         endif
+         if (prntlvl.ge.2) call time_count_summary(time_start, time_finish,    &
+            xs_time, "Cross-sections calculations completed in ")
 
       end
 !------------------------------------------------------------------------------!
@@ -132,12 +130,6 @@ module statetostateXS
          jindoff2, number_of_open_basis_levels, open_basis_levels)
          !! print the largest partial elastic and inelastic state-to-state XS
          !! in given J-block
-         !---------------------------------------------------------------------------!
-         use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
-         use io_mod
-         use supplementary_mod, only: write_message
-         !---------------------------------------------------------------------------!
-         implicit none
          !---------------------------------------------------------------------------!
          integer(int32), intent(in) :: jj
             !! total angular momentum

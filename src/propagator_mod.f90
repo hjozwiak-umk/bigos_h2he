@@ -10,6 +10,7 @@ module PROPAGATORS
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
    use additional_mod, only: invert_symmetric_matrix, fill_symmetric_matrix
+   use supplementary, only: ispline
    use POTENTIAL
    implicit none
    contains

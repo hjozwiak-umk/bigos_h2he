@@ -3,10 +3,10 @@ module PES_COUPLING_MATRIX
    !! entering the coupling matrix (Eq. ...)
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
-   use supplementary_mod, only: write_error, write_message, integer_to_character
+   use utility_functions_mod, only: write_error, write_message, integer_to_character
    use fwigxjpf, only: fwig3jj
    use io_mod
-   use supplementary
+   use supplementary, only: triangle_inequality_holds, is_sum_even
    implicit none
    contains
 !------------------------------------------------------------------------------!

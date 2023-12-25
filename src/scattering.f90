@@ -7,8 +7,8 @@ program SCATTERING
    use PROPAGATORS
    use BOUNDARY_CONDITIONS
    use statetostateXS
-   use supplementary_mod, only: write_header, file_io_status, write_message,   &
-      float_to_character, integer_to_character
+   use utility_functions_mod, only: write_header, file_io_status, write_message,   &
+      float_to_character, integer_to_character, time_count_summary
    use additional_mod, only: append
    !---------------------------------------------------------------------------!
    implicit none
@@ -22,8 +22,9 @@ program SCATTERING
       jindoff1, jindoff2, ij, ilevel, iomega, iopen, iopen2, isize_, isize_2,  &
       icheck, icount, icount2, io_status
    real(dp) :: wavmax, wavvdepth, maxXSdiag, maxXSoff, time_total_start,       &
-      time_total_stop, time_init_stop, time_jtot_start, time_jtot_stop,        &
-      time_init_parity,time_parity_stop, time_coupling_start, time_coupling_stop
+      time_total_stop, time_total, time_init_stop, time_init, time_jtot_start, &
+      time_jtot_stop, time_jtot, time_parity_start,time_parity_stop,           &
+      time_parity, time_coupling_start, time_coupling_stop, time_coupling
    logical :: unitarity_block_check, terminate
    integer, allocatable :: channels_level_indices(:), channels_omega_values(:),&
       channels_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:),&
@@ -36,7 +37,7 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    ! Initizalization: start the time count
    !---------------------------------------------------------------------------!
-   CALL CPU_TIME(time_total_start)
+   call cpu_time(time_total_start)
    !---------------------------------------------------------------------------!
    ! Initialize fwigxjpf library
    !---------------------------------------------------------------------------!
@@ -116,10 +117,9 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    ! Initialization is finished                                                
    !---------------------------------------------------------------------------!
-   CALL CPU_TIME(time_init_stop)
-   if (prntlvl.ge.2)   call write_message("Initialization: "//                 &
-      trim(adjustl(float_to_character(time_init_stop-time_total_start,         &
-      "(E14.8)"))) // " seconds")
+   call cpu_time(time_init_stop)
+   if (prntlvl.ge.2) call time_count_summary(time_total_start, time_init_stop, &
+      time_init, "Initialization completed in ")
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
    ! Prepare J-blocks
@@ -140,14 +140,14 @@ program SCATTERING
       !------------------------------------------------------------------------!
       call write_header("block", opt_integer_ = jtot_)
       !------------------------------------------------------------------------!
-      CALL CPU_TIME(time_jtot_start)
+      call cpu_time(time_jtot_start)
       !------------------------------------------------------------------------!
       xs_jtot = 0
       call set_number_of_channels(jtot_, size_even, size_odd)
       !------------------------------------------------------------------------!
       do parity_index = 0,1
          !---------------------------------------------------------------------!
-         CALL CPU_TIME(time_init_parity)
+         call cpu_time(time_parity_start)
          !---------------------------------------------------------------------!
          select case(parity_index)
             case(0)
@@ -223,7 +223,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Prepare the coupling matrix
          !---------------------------------------------------------------------!
-         CALL CPU_TIME(time_coupling_start)
+         call cpu_time(time_coupling_start)
          call check_nonzero_coupling_matrix_elements(number_of_channels,       &
             channels_level_indices, channels_omega_values,                     &
             number_of_nonzero_coupling_matrix_elements,                        &
@@ -239,7 +239,7 @@ program SCATTERING
          if (prntlvl.ge.2) call print_coupling_matrix_elements_summary(        &
             number_of_channels, number_of_nonzero_coupling_matrix_elements,    &
             number_of_nonzero_coupling_coefficients)
-         CALL CPU_TIME(time_coupling_stop)
+         call cpu_time(time_coupling_stop)
          if (prntlvl.ge.2) call write_message("Calculations of the coupling "//&
             "matrix took " //  trim(adjustl(float_to_character(                &
             time_coupling_stop-time_coupling_start,"(E14.8)"))) // " seconds")
@@ -342,10 +342,9 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Check the time after each parity block:
          !---------------------------------------------------------------------!
-         CALL CPU_TIME(time_parity_stop)
-         if (prntlvl.ge.2) call write_message("Loop over parity took " //      &
-            trim(adjustl(float_to_character(time_parity_stop -               &
-            time_init_parity, "(E14.8)"))) // " seconds")
+         call cpu_time(time_parity_stop)
+         if (prntlvl.ge.2) call time_count_summary(time_parity_start,          &
+            time_parity_stop, time_parity, "Parity block completed in ")
          !---------------------------------------------------------------------!
          ! ... end of the loop over parity                                      
          !---------------------------------------------------------------------!
@@ -395,7 +394,7 @@ program SCATTERING
       !------------------------------------------------------------------------!
       ! Check the time after each JTOT block:                                  
       !------------------------------------------------------------------------!
-      CALL CPU_TIME(time_jtot_stop)
+      call cpu_time(time_jtot_stop)
       !------------------------------------------------------------------------!
       ! Print all the XS after current JTOT block                              
       !------------------------------------------------------------------------!
@@ -420,11 +419,8 @@ program SCATTERING
          enddo
       endif
       !------------------------------------------------------------------------!
-      if (prntlvl.ge.2) then
-         call write_message("Loop over JTOT block took " // trim(adjustl(      &
-            trim(adjustl(float_to_character(time_jtot_stop-time_jtot_start,"(E14.8)")))&
-            // " seconds")))
-      endif
+      if (prntlvl.ge.2) call time_count_summary(time_jtot_start,               &
+         time_jtot_stop, time_jtot, "JTOT block completed in ")
       !------------------------------------------------------------------------!
       ! terminate the loop if dtol/otol condition is satisfied
       !------------------------------------------------------------------------!
@@ -482,9 +478,9 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    ! Stop the time count
    !---------------------------------------------------------------------------!
-   CALL CPU_TIME(time_total_stop)
-   call write_message("Total CPU time: " // float_to_character(                &
-      time_total_stop-time_total_start, "(E14.8)") // " seconds")
+   call cpu_time(time_total_stop)
+   call time_count_summary(time_total_start, time_total_stop, time_total,      &
+      "Total CPU time: ")
    close(11)
    close(12)
    !---------------------------------------------------------------------------!

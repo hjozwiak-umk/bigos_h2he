@@ -12,7 +12,7 @@ module io_mod
    !!    calculations of the state-to-state XS
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
-   use supplementary_mod, only: file_io_status, write_error, write_message,    &
+   use utility_functions_mod, only: file_io_status, write_error, write_message,&
       incorrect_value, integer_to_character, float_to_character
    use additional_mod, only: allocate_1d, allocate_2d, allocate_3d
 !------------------------------------------------------------------------------!

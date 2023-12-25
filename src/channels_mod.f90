@@ -2,7 +2,7 @@ module channels_mod
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
-   use supplementary_mod, only: write_error, write_message, write_warning,     &
+   use utility_functions_mod, only: write_error, write_message, write_warning,     &
       integer_to_character, float_to_character
    !---------------------------------------------------------------------------!
    implicit none

@@ -19,7 +19,7 @@ CMPLFLG = -c -O3 -I${wig_includedir} -I${wig_moduledir}
 Libs = -L${wig_libdir} -l${wig_name}
 ########################################################################
 
-ADD_OBJS = supplementary_mod.o additional_mod.o allocate.o append.o invert_matrix_mod.o fill_symmetric_matrix_mod.o
+ADD_OBJS = utility_functions_mod.o additional_mod.o allocate.o append.o invert_matrix_mod.o fill_symmetric_matrix_mod.o
 OBJS = $(ADD_OBJS)  supplementary_math.o input_reader_mod.o pes_read_mod.o channels_mod.o coupling_matrix_mod.o propagator_mod.o boundary_conditions_mod.o sts_xs_mod.o scattering.o
 .SUFFIXES: .f .f90 .o
 

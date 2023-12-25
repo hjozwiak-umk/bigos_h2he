@@ -1,12 +1,7 @@
-module supplementary_mod
-   !! supplementary_mod contains functions which handle writing 
+module utility_functions_mod
+   !! utility_functions_mod contains functions which handle writing 
    !! messages/errors/warnings on screen, formatting headers, summary of the 
-   !! calculations and a few other supporting functions. Some of the procedures 
-   !! are inspired by "m_errors" module from the coretran library by Leon Foks:
-   !! https://github.com/leonfoks/coretran
-   !---------------------------------------------------------------------------!
-   ! to do:
-   ! -- update write_header so that's appropriate to different parts of the package
+   !! calculations and a few other supporting functions.
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64, &
                                             output_unit
@@ -15,8 +10,7 @@ module supplementary_mod
    private
    public :: write_header, write_message, write_warning, write_error, time_count_summary,    &
              alloc_status, file_io_status, incorrect_value, to_lowercase,      &
-             integer_to_character, float_to_character, get_1D_index_from_2D,   &
-             get_2D_indices_from_1D
+             integer_to_character, float_to_character
    !---------------------------------------------------------------------------!
    character(len=*), parameter :: letters   =                                  &
                           "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -551,59 +545,4 @@ module supplementary_mod
       end function float_to_character
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
-      function get_1D_index_from_2D(i, j) result(k)
-         !! determine the 1D index for the flattened lower triangle of a
-         !! symmetric matrix from the 2D indices
-         !---------------------------------------------------------------------!
-         integer, intent(in) :: i, j
-            !! input indices
-         integer :: k, temp_i, temp_j
-            !! output 1D index
-         !---------------------------------------------------------------------!
-         temp_i = i
-         temp_j = j
-
-         if (temp_i < temp_j) then
-             ! Swap if i is less than j to ensure we're working with the lower triangle
-             temp_i = j
-             temp_j = i
-         end if
-
-         k = temp_i * (temp_i-1) / 2 + temp_j
-
-         !---------------------------------------------------------------------!
-      end function get_1D_index_from_2D
-   !---------------------------------------------------------------------------!
-   !---------------------------------------------------------------------------!
-      function get_2D_indices_from_1D(k, n) result(indices)
-          !! Determine the 2D indices (i, j) for the given 1D index k
-          !! in the flattened lower triangle of a symmetric matrix of size n x n
-          !--------------------------------------------------------------------!
-          integer, intent(in) :: k
-             !! input 1D index (1-based)
-          integer, intent(in) :: n
-             !! size of the symmetric matrix
-          integer :: indices(2)
-             !! output 2D indices (i, j)
-          !--------------------------------------------------------------------!
-          integer :: i, j, k_sup
-          !--------------------------------------------------------------------!
-          ! Start with the first row
-          i = 1
-
-          k_sup = k
-          ! Find the row index by subtracting the size of each row from k
-          do while (k_sup > i)
-              k_sup = k_sup - i
-              i     = i + 1
-          end do
-
-          ! The column index is the adjusted k
-          j = k_sup
-
-          indices = [i, j]
-          !--------------------------------------------------------------------!
-      end function get_2D_indices_from_1D
-   !---------------------------------------------------------------------------!
-   !---------------------------------------------------------------------------!
-end module supplementary_mod
+end module utility_functions_mod

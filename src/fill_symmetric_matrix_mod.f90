@@ -1,6 +1,6 @@
 submodule (additional_mod) fill_symmetric_matrix_mod
    !! a submodule for append subroutines
-   use supplementary_mod, only: to_lowercase
+   use utility_functions_mod, only: to_lowercase
 implicit none
 
    contains
