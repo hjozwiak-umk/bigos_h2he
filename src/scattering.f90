@@ -127,9 +127,10 @@ program SCATTERING
    ! If JTOTMAX=-1 is called, iterate until convergence is achieved:
    ! this is managed by ncacdiag and ncacoff
    !---------------------------------------------------------------------------!
-   ncacdiag = 0
-   ncacoff  = 0
-   iblock   = 0
+   ncacdiag  = 0
+   ncacoff   = 0
+   iblock    = 0
+   terminate = .false.
    !---------------------------------------------------------------------------!
    ! Loop over total angular momentum
    !---------------------------------------------------------------------------!

@@ -364,10 +364,10 @@ module io_mod
       write(*,"(44X,A3)") "***"
 
       if (jtotmax.ne.999999) then
-         call write_message("The equations will be solved" //                  &
+         call write_message("The equations will be solved " //                 &
             "for total angular momentum J from " //                            &
             trim(adjustl(integer_to_character(jtotmin))) // " to "             &
-            // trim(adjustl(integer_to_character(jtotmax))) // "with step" //  &
+            // trim(adjustl(integer_to_character(jtotmax))) // " with step "// &
             trim(adjustl(integer_to_character(jtotstep))))
       else
          call write_message("The loop over JTOT will be performed from " //    &
