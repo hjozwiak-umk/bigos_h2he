@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.00">
+    <meta name="author" content="Hubert Jóźwiak" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>boundary_conditions_mod &ndash; the SCATTERING code</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">the SCATTERING code </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href='../page/index.html'>Program Description</a></li>
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="../lists/files.html">Source Files</a></li>
+            <li><a href="../lists/modules.html">Modules</a></li>
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+                   <li><a href="../program/scattering.html">Program</a></li>
+       
+            </ul>
+        
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../program/scattering.html">Program</a></li>
+          </ul>
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+  <div class="row">
+    <h1>boundary_conditions_mod 
+    <small>Module</small>
+    
+    </h1>
+      <div class="row" id="info-bar">
+    <div class="col-lg-12">
+      <div class="well well-sm">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+          <li id="statements"><i class="fa fa-list-ol"></i>
+            <a data-toggle="tooltip"
+               data-placement="bottom" data-html="true"
+               title=" 8.1% of total for modules and submodules.">193 statements</a>
+          </li>
+
+            <li id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/boundary_conditions_mod.f90"> Source File</a>
+            </li>
+        </ul>
+        <ol class="breadcrumb in-well text-right">
+              <li><a href='../sourcefile/boundary_conditions_mod.f90.html'>boundary_conditions_mod.f90</a></li>
+          <li class="active">boundary_conditions_mod</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#funcs-0">Functions</a>
+        </h3>
+      </div>
+      <div id="funcs-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-p_coeff">p_coeff</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#subs-0">Subroutines</a>
+        </h3>
+      </div>
+      <div id="subs-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-bf_to_sf_transformation">bf_to_sf_transformation</a>
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-calculate_k_matrix">calculate_k_matrix</a>
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-calculate_s_matrix">calculate_s_matrix</a>
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-transform_summation">transform_summation</a>
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-unitarity_check">unitarity_check</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <p>This module contains subroutines that transform the asymptotic
+log-derivative matrix into the scattering S-matrix:
+1. pfunc      - calculates the P coefficients from Eq. (6.19)
+2. transsum   - calculates the sum over \bar{\Omega} in Eq. (6.17-6.18)
+3. bftosfmat  - transforms a given BF-matrix to the SF frame of rerence
+4. calculate_k_matrix - transforms log-derivative matrix into reactance matrix</p>
+<ol>
+<li>kmattosmat - transfroms reactance matrix into scattering S-matrix</li>
+</ol>
+<br>        <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+            <ul class="list-inline">
+                <li>fwigxjpf</li>
+                <li><a href='../module/array_operations_mod.html'>array_operations_mod</a></li>
+                <li><a href='../module/io_mod.html'>io_mod</a></li>
+                <li><a href='../module/math_functions_mod.html'>math_functions_mod</a></li>
+                <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
+                <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~boundary_conditions_mod~~UsesGraph Pages: 1 -->
+<svg id="moduleboundary_conditions_modUsesGraph" width="620pt" height="272pt"
+ viewBox="0.00 0.00 620.00 272.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~boundary_conditions_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 268)">
+<title>module~~boundary_conditions_mod~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-268 616,-268 616,4 -4,4"/>
+<!-- module~boundary_conditions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_node1" class="node">
+<title>module~boundary_conditions_mod</title>
+<polygon fill="none" stroke="black" points="612,-144 459,-144 459,-120 612,-120 612,-144"/>
+<text text-anchor="middle" x="535.5" y="-129.6" font-family="Helvetica,sans-Serif" font-size="10.50">boundary_conditions_mod</text>
+</g>
+<!-- fwigxjpf -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_node2" class="node">
+<title>fwigxjpf</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="388,-264 334,-264 334,-240 388,-240 388,-264"/>
+<text text-anchor="middle" x="361" y="-249.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fwigxjpf</text>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;fwigxjpf -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge1" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;fwigxjpf</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M522.73,-144.02C503.36,-163.29 462.89,-201.45 423,-226 415.09,-230.87 406.11,-235.25 397.52,-238.96"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="395.97,-235.82 388.07,-242.87 398.65,-242.29 395.97,-235.82"/>
+</g>
+<!-- module~array_operations_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_node3" class="node">
+<title>module~array_operations_mod</title>
+<g id="a_module~~boundary_conditions_mod~~UsesGraph_node3"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-184 130,-184 130,-160 263,-160 263,-184"/>
+<text text-anchor="middle" x="196.5" y="-169.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_mod</text>
+</a>
+</g>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge2" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M516.95,-144.23C486.92,-164.19 423,-202.5 362,-212"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M360,-212C337.59,-215.49 282.07,-199.84 242.17,-187.11"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="243.23,-183.77 232.64,-184.03 241.08,-190.43 243.23,-183.77"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_node4" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~boundary_conditions_mod~~UsesGraph_node4"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="94,-144 0,-144 0,-120 94,-120 94,-144"/>
+<text text-anchor="middle" x="47" y="-129.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge4" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M360,-212C258.65,-227.78 225.96,-229.23 130,-193 105.83,-183.87 82.62,-165.39 67.11,-151.15"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="69.4,-148.5 59.73,-144.16 64.58,-153.58 69.4,-148.5"/>
+</g>
+<!-- module~io_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_node5" class="node">
+<title>module~io_mod</title>
+<g id="a_module~~boundary_conditions_mod~~UsesGraph_node5"><a xlink:href=".././module/io_mod.html" xlink:title="io_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="388,-144 334,-144 334,-120 388,-120 388,-144"/>
+<text text-anchor="middle" x="361" y="-129.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io_mod</text>
+</a>
+</g>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~io_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge3" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M458.84,-132C437.85,-132 416.01,-132 398.39,-132"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="398.02,-128.5 388.02,-132 398.02,-135.5 398.02,-128.5"/>
+</g>
+<!-- module~utility_functions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_node6" class="node">
+<title>module~utility_functions_mod</title>
+<g id="a_module~~boundary_conditions_mod~~UsesGraph_node6"><a xlink:href=".././module/utility_functions_mod.html" xlink:title="utility_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="259,-104 134,-104 134,-80 259,-80 259,-104"/>
+<text text-anchor="middle" x="196.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">utility_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge5" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M476.81,-119.97C459.56,-116.69 440.57,-113.39 423,-111 371.89,-104.05 313.91,-99.23 269.53,-96.19"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="269.63,-92.69 259.42,-95.51 269.16,-99.67 269.63,-92.69"/>
+</g>
+<!-- module~math_functions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_node7" class="node">
+<title>module~math_functions_mod</title>
+<g id="a_module~~boundary_conditions_mod~~UsesGraph_node7"><a xlink:href=".././module/math_functions_mod.html" xlink:title="math_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="423,-64 299,-64 299,-40 423,-40 423,-64"/>
+<text text-anchor="middle" x="361" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">math_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~math_functions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge6" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~math_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M510.3,-119.86C487.82,-108.69 453.35,-91.81 423,-78 415.71,-74.68 407.87,-71.25 400.32,-68"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="401.55,-64.72 390.98,-64.02 398.81,-71.16 401.55,-64.72"/>
+</g>
+<!-- module~array_operations_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge7" class="edge">
+<title>module~array_operations_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ffff00" stroke-dasharray="5,2" d="M151.25,-160C135.86,-155.83 118.41,-151.1 102.31,-146.73"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="103.05,-143.3 92.48,-144.06 101.21,-150.06 103.05,-143.3"/>
+</g>
+<!-- module~io_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge9" class="edge">
+<title>module~io_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M333.89,-138.43C313.05,-143.56 283.04,-150.94 256.47,-157.48"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="255.36,-154.15 246.49,-159.94 257.03,-160.95 255.36,-154.15"/>
+</g>
+<!-- module~io_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge10" class="edge">
+<title>module~io_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M333.94,-132C283.65,-132 172.2,-132 104.25,-132"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="104.15,-128.5 94.15,-132 104.15,-135.5 104.15,-128.5"/>
+</g>
+<!-- module~io_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge8" class="edge">
+<title>module~io_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M333.89,-125.57C313.05,-120.44 283.04,-113.06 256.47,-106.52"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="257.03,-103.05 246.49,-104.06 255.36,-109.85 257.03,-103.05"/>
+</g>
+<!-- module~utility_functions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge11" class="edge">
+<title>module~utility_functions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M151.25,-104C135.86,-108.17 118.41,-112.9 102.31,-117.27"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="101.21,-113.94 92.48,-119.94 103.05,-120.7 101.21,-113.94"/>
+</g>
+<!-- module~math_functions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge14" class="edge">
+<title>module~math_functions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M298.92,-48.05C251.38,-47.09 184.54,-50.41 130,-71 105.83,-80.13 82.62,-98.61 67.11,-112.85"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="64.58,-110.42 59.73,-119.84 69.4,-115.5 64.58,-110.42"/>
+</g>
+<!-- module~math_functions_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge12" class="edge">
+<title>module~math_functions_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M311.24,-64C293.97,-68.25 274.35,-73.08 256.33,-77.52"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="255.38,-74.15 246.5,-79.94 257.05,-80.95 255.38,-74.15"/>
+</g>
+<!-- module~special_functions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_node8" class="node">
+<title>module~special_functions_mod</title>
+<g id="a_module~~boundary_conditions_mod~~UsesGraph_node8"><a xlink:href=".././module/special_functions_mod.html" xlink:title="special_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-24 130,-24 130,0 263,0 263,-24"/>
+<text text-anchor="middle" x="196.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">special_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~math_functions_mod&#45;&gt;module~special_functions_mod -->
+<g id="module~~boundary_conditions_mod~~UsesGraph_edge13" class="edge">
+<title>module~math_functions_mod&#45;&gt;module~special_functions_mod</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M311.24,-40C293.97,-35.75 274.35,-30.92 256.33,-26.48"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="257.05,-23.05 246.5,-24.06 255.38,-29.85 257.05,-23.05"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="516pt" height="32pt"
+ viewBox="0.00 0.00 516.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 512,-28 512,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="385.5,-24 328.5,-24 328.5,0 385.5,0 385.5,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="508,-24 404,-24 404,0 508,0 508,-24"/>
+<text text-anchor="middle" x="456" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
+          </li>
+      </ul>
+    </div>
+
+        <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Used by</h3>
+      </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~boundary_conditions_mod~~UsedByGraph Pages: 1 -->
+<svg id="moduleboundary_conditions_modUsedByGraph" width="276pt" height="32pt"
+ viewBox="0.00 0.00 276.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~boundary_conditions_mod~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>module~~boundary_conditions_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 272,-28 272,4 -4,4"/>
+<!-- module~boundary_conditions_mod -->
+<g id="module~~boundary_conditions_mod~~UsedByGraph_node1" class="node">
+<title>module~boundary_conditions_mod</title>
+<polygon fill="none" stroke="black" points="153,-24 0,-24 0,0 153,0 153,-24"/>
+<text text-anchor="middle" x="76.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">boundary_conditions_mod</text>
+</g>
+<!-- program~scattering -->
+<g id="module~~boundary_conditions_mod~~UsedByGraph_node2" class="node">
+<title>program~scattering</title>
+<g id="a_module~~boundary_conditions_mod~~UsedByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="268,-24 189,-24 189,0 268,0 268,-24"/>
+<text text-anchor="middle" x="228.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;module~boundary_conditions_mod -->
+<g id="module~~boundary_conditions_mod~~UsedByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;module~boundary_conditions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M188.87,-12C180.86,-12 172.12,-12 163.17,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="163.01,-8.5 153.01,-12 163.01,-15.5 163.01,-8.5"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="516pt" height="32pt"
+ viewBox="0.00 0.00 516.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 512,-28 512,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="385.5,-24 328.5,-24 328.5,0 385.5,0 385.5,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="508,-24 404,-24 404,0 508,0 508,-24"/>
+<text text-anchor="middle" x="456" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
+          </li>
+      </ul>
+    </div>
+
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+        <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#funcs-1">Functions</a>
+        </h3>
+      </div>
+      <div id="funcs-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-p_coeff">p_coeff</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#subs-1">Subroutines</a>
+        </h3>
+      </div>
+      <div id="subs-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-bf_to_sf_transformation">bf_to_sf_transformation</a>
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-calculate_k_matrix">calculate_k_matrix</a>
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-calculate_s_matrix">calculate_s_matrix</a>
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-transform_summation">transform_summation</a>
+            <a class="list-group-item" href="../module/boundary_conditions_mod.html#proc-unitarity_check">unitarity_check</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+
+    
+    
+
+    
+    
+ 
+    <section>
+    <h2>Functions</h2>
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-p_coeff"></span><h3>public  function <a href='../proc/p_coeff.html'>p_coeff</a>(jtot_, j_, l_, omega_) result(p_coeff_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>calculates the P coefficients from Eq. (6.19)</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>jtot_</strong></td>
+            <td>
+<p>total angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j_</strong></td>
+            <td>
+<p>rotational quantum number</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>l_</strong></td>
+            <td>
+<p>orbital angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_</strong></td>
+            <td>
+<p>projection of j on the BF-Z axis</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    <p>result (...)</p>
+
+    </div>
+  </div>
+
+    </section>
+    <br>
+
+    <section>
+    <h2>Subroutines</h2>
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-bf_to_sf_transformation"></span><h3>public  subroutine <a href='../proc/bf_to_sf_transformation.html'>bf_to_sf_transformation</a>(number_of_channels, jtot_, channels_level_indices, channels_omega_values, channels_l_values, bf_matrix, sf_matrix)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>takes an input matrix in the BF-frame and transforms it to
+the SF-frame; calls transsum and pfunc</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>number_of_channels</strong></td>
+            <td>
+<p>size of the basis</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>jtot_</strong></td>
+            <td>
+<p>total angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_level_indices</strong>(number_of_channels)</td>
+            <td>
+<p>holds the indices pointing to the basis arrays</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td>
+<p>holds all values of \bar{\Omega}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_l_values</strong>(number_of_channels)</td>
+            <td>
+<p>holds all values of l</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bf_matrix</strong>(number_of_channels,number_of_channels)</td>
+            <td>
+<p>matrix in the BF frame</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sf_matrix</strong>(number_of_channels,number_of_channels)</td>
+            <td>
+<p>(output) matrix in the SF frame</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-calculate_k_matrix"></span><h3>public  subroutine <a href='../proc/calculate_k_matrix.html'>calculate_k_matrix</a>(number_of_channels, log_der_matrix, number_of_open_channels, channels_level_indices, channels_l_values, r_, k_matrix)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>implementation of Eq. 6.53</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>number_of_channels</strong></td>
+            <td>
+<p>y-matrix is of number_of_channels x number_of_channels size</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>log_der_matrix</strong>(number_of_channels,number_of_channels)</td>
+            <td>
+<p>asymptotic log-derivative matrix</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>number_of_open_channels</strong></td>
+            <td>
+<p>number of open channels</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_level_indices</strong>(number_of_channels)</td>
+            <td>
+<p>holds the indices pointing to the basis arrays</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_l_values</strong>(number_of_channels)</td>
+            <td>
+<p>holds all values of l</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>r_</strong></td>
+            <td>
+<p>Rmax</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k_matrix</strong>(number_of_open_channels,number_of_open_channels)</td>
+            <td>
+<p>K-matrix</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-calculate_s_matrix"></span><h3>public  subroutine <a href='../proc/calculate_s_matrix.html'>calculate_s_matrix</a>(number_of_open_channels, k_matrix, s_matrix_real, s_matrix_imag)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>implementation of Eq. 6.57</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>number_of_open_channels</strong></td>
+            <td>
+<p>number of open channels</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k_matrix</strong>(number_of_open_channels,number_of_open_channels)</td>
+            <td>
+<p>K-matrix</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>s_matrix_real</strong>(number_of_open_channels,number_of_open_channels)</td>
+            <td>
+<p>(output) real part of the S-matrix</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>s_matrix_imag</strong>(number_of_open_channels,number_of_open_channels)</td>
+            <td>
+<p>(output) imaginary part of the S-matrix</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-transform_summation"></span><h3>public  subroutine <a href='../proc/transform_summation.html'>transform_summation</a>(number_of_channels, jtot_, v_, j_, vp_, jp_, l_, lp_, channels_level_indices, channels_omega_values, bf_matrix, sf_element)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>performs the summation in Eqs. (6.17) and (6.18)</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>number_of_channels</strong></td>
+            <td>
+<p>size of the basis</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>jtot_</strong></td>
+            <td>
+<p>total angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>v_</strong></td>
+            <td>
+<p>vibrational and rotational quantum numbers</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j_</strong></td>
+            <td>
+<p>vibrational and rotational quantum numbers</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>vp_</strong></td>
+            <td>
+<p>vibrational and rotational quantum numbers</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>jp_</strong></td>
+            <td>
+<p>vibrational and rotational quantum numbers</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>l_</strong></td>
+            <td>
+<p>orbital angular momenta</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>lp_</strong></td>
+            <td>
+<p>orbital angular momenta</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_level_indices</strong>(number_of_channels)</td>
+            <td>
+<p>holds the indices pointing to the basis arrays</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td>
+<p>holds all values of \bar{\Omega}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bf_matrix</strong>(number_of_channels,number_of_channels)</td>
+            <td>
+<p>matrix in the BF frame</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sf_element</strong></td>
+            <td>
+<p>(output) matrix element in the SF frame</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-unitarity_check"></span><h3>public  subroutine <a href='../proc/unitarity_check.html'>unitarity_check</a>(number_of_open_channels, s_matrix_real, s_matrix_imag, totalcheck)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>checks the unitarity of the S-matrix (Eq. 6.15)</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>number_of_open_channels</strong></td>
+            <td>
+<p>number of open channels</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>s_matrix_real</strong>(number_of_open_channels,number_of_open_channels)</td>
+            <td>
+<p>real part of the S-matrix</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>s_matrix_imag</strong>(number_of_open_channels,number_of_open_channels)</td>
+            <td>
+<p>imaginary part of the S-matrix</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>totalcheck</strong></td>
+            <td>
+<p>(output) if .true. unitary is fulfilled, .false. otherwise</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+    </section>
+    <br>
+
+
+
+    </div>
+  </div>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2023 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2023-12-28 16:21            </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+  </body>
+</html>
