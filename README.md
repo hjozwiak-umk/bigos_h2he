@@ -8,9 +8,9 @@ Here, we present the SCATTERINC code, the central part of the BIGOS package.
 The purpose of the SCATTERING code is to solve the coupled equations for a given scattering system, provide the
 scattering S-matrix elements and calculate the state-to-state cross-sections.
 
-**Please read the [Program Description](doc/page/index.html).**
+**Please read the documentation in doc/index.html.**
 
-@note
+
 This version of the code is adjusted for diatom - atom collision systems,<br>
 in particular the H<sub>2</sub> - He system. <br>
 **Please, refer to this version of the code by citing the following paper** <br>
