@@ -152,9 +152,11 @@ module statetostateXS
          !---------------------------------------------------------------------------!
          if ((prntlvl.eq.1).or.(prntlvl.eq.2)) then
             call write_message("Largest partial elastic state-to-state for JTOT = " // &
-               integer_to_character(jj) // ": " // float_to_character(maxXSdiag))
+               trim(adjustl(integer_to_character(jj))) // ": " //                    &
+               trim(adjustl(float_to_character(maxXSdiag))))
             call write_message("Largest partial inelastic state-to-state for JTOT = " // &
-               integer_to_character(jj) // ": " // float_to_character(maxXSoff))
+               trim(adjustl(integer_to_character(jj))) // ": " //                    &
+               trim(adjustl(float_to_character(maxXSoff))))
             call write_message(repeat(" ", 43) // "***")
          else if (prntlvl.ge.3) then
             !------------------------------------------------------------------------!
