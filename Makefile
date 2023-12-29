@@ -17,7 +17,7 @@ OBJS = src/utility_functions_mod.o src/array_operations_mod.o src/array_operatio
        src/coupling_matrix_mod.o src/propagator_mod.o src/boundary_conditions_mod.o src/sts_xs_mod.o \
        src/scattering.o
 
-.PHONY: all check_libs wigxjpf scattering
+.PHONY: all check_libs wigxjpf scattering test
 
 all: check_libs scattering
 
@@ -43,6 +43,29 @@ wigxjpf:
 scattering: $(OBJS)
 	$(F90) $(CFLAGS) $(FCFLAGS) $(INCFLAGS) $^ -o scattering.x $(LDFLAGS) $(LDLIBS)
 	rm src/*.o src/*.mod src/*.smod
+
+.PHONY: test
+
+test:
+	@echo "Running test for test-elastic-oH2-He..."
+	@cp scattering.x test/test-elastic-oH2-He/
+	@cp ref/oH2-He-radialterms.zip test/test-elastic-oH2-He/
+	@cd test/test-elastic-oH2-He/ && unzip oH2-He-radialterms.zip
+	@cd test/test-elastic-oH2-He/ && ./scattering.x < input.dat > output.dat
+	@tail -n 2 test/test-elastic-oH2-He/output.dat | head -n 1 > tmp1.txt
+	@tail -n 2 ref/test/test-elastic-oH2-He/output.dat | head -n 1 > tmp2.txt
+	@diff tmp1.txt tmp2.txt && echo "test-elastic-oH2-He passed" || echo "test-elastic-oH2-He failed"
+	@rm tmp1.txt tmp2.txt test/test-elastic-oH2-He/oH2-He-radialterms* test/test-elastic-oH2-He/scattering.x
+
+	@echo "Running test for test-orthoH2-He..."
+	@cp scattering.x test/test-orthoH2-He/
+	@cp ref/oH2-He-radialterms.zip test/test-orthoH2-He/
+	@cd test/test-orthoH2-He/ && unzip oH2-He-radialterms.zip
+	@cd test/test-orthoH2-He/ && ./scattering.x < input.dat > output.dat
+	@tail -n 37 test/test-orthoH2-He/output.dat | head -n 36 > tmp1.txt
+	@tail -n 37 ref/test/test-orthoH2-He/output.dat | head -n 36 > tmp2.txt
+	@diff tmp1.txt tmp2.txt && echo "test-orthoH2-He passed" || echo "test-orthoH2-He failed"
+	@rm tmp1.txt tmp2.txt test/test-orthoH2-He/oH2-He-radialterms* test/test-orthoH2-He/scattering.x
 
 $(OBJS) : src/%.o : src/%.f90
 	$(F90) $(CFLAGS) $(FCFLAGS) $(INCFLAGS) -Jsrc -c $< -o $@

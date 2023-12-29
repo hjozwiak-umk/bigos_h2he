@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.00">
+   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01">
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
@@ -354,7 +354,7 @@ the largest partial inelastic state-to-state XS in this J-block</p>
 </g>
 </g>
 <!-- proc~print_largest_partial_xs&#45;&gt;proc~float_to_character -->
-<g id="proc~~print_largest_partial_xs~~CallsGraph_edge2" class="edge">
+<g id="proc~~print_largest_partial_xs~~CallsGraph_edge3" class="edge">
 <title>proc~print_largest_partial_xs&#45;&gt;proc~float_to_character</title>
 <path fill="none" stroke="#ff0000" d="M136.18,-54C147.1,-54 158.39,-54 169.24,-54"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="169.47,-57.5 179.47,-54 169.47,-50.5 169.47,-57.5"/>
@@ -369,7 +369,7 @@ the largest partial inelastic state-to-state XS in this J-block</p>
 </g>
 </g>
 <!-- proc~print_largest_partial_xs&#45;&gt;proc~write_message -->
-<g id="proc~~print_largest_partial_xs~~CallsGraph_edge3" class="edge">
+<g id="proc~~print_largest_partial_xs~~CallsGraph_edge2" class="edge">
 <title>proc~print_largest_partial_xs&#45;&gt;proc~write_message</title>
 <path fill="none" stroke="#ff0000" d="M116,-41.96C135.35,-37.01 157.9,-31.23 178.02,-26.08"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="179.15,-29.4 187.97,-23.53 177.42,-22.62 179.15,-29.4"/>
@@ -672,9 +672,11 @@ the largest partial inelastic state-to-state XS in this J-block</p>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">prntlvl</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="p">).</span><span class="nb">or</span><span class="p">.(</span><span class="n">prntlvl</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
 <span class="k">            call </span><span class="n">write_message</span><span class="p">(</span><span class="s2">&quot;Largest partial elastic state-to-state for JTOT = &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="n">integer_to_character</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">float_to_character</span><span class="p">(</span><span class="n">maxXSdiag</span><span class="p">))</span><span class="w"></span>
+<span class="w">               </span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">integer_to_character</span><span class="p">(</span><span class="n">jj</span><span class="p">)))</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="w"> </span><span class="o">//</span><span class="w">                    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">float_to_character</span><span class="p">(</span><span class="n">maxXSdiag</span><span class="p">))))</span><span class="w"></span>
 <span class="w">            </span><span class="k">call </span><span class="n">write_message</span><span class="p">(</span><span class="s2">&quot;Largest partial inelastic state-to-state for JTOT = &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="n">integer_to_character</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">float_to_character</span><span class="p">(</span><span class="n">maxXSoff</span><span class="p">))</span><span class="w"></span>
+<span class="w">               </span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">integer_to_character</span><span class="p">(</span><span class="n">jj</span><span class="p">)))</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="w"> </span><span class="o">//</span><span class="w">                    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">float_to_character</span><span class="p">(</span><span class="n">maxXSoff</span><span class="p">))))</span><span class="w"></span>
 <span class="w">            </span><span class="k">call </span><span class="n">write_message</span><span class="p">(</span><span class="nb">repeat</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="s2">&quot;***&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">prntlvl</span><span class="p">.</span><span class="n">ge</span><span class="p">.</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w"></span>
 <span class="w">            </span><span class="c">!------------------------------------------------------------------------!</span>
@@ -719,7 +721,7 @@ the largest partial inelastic state-to-state XS in this J-block</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-12-28 16:21            </p>
+ on 2023-12-29 14:32            </p>
         </div>
       </div>
       <br>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.00">
+   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01">
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
@@ -197,196 +197,202 @@ the code uses 3 namelists: input, basis and potential</p>
 <!-- proc~read_input_file -->
 <g id="proc~~read_input_file~~CallsGraph_node1" class="node">
 <title>proc~read_input_file</title>
-<polygon fill="none" stroke="black" points="91,-194.05 0,-194.05 0,-170.05 91,-170.05 91,-194.05"/>
-<text text-anchor="middle" x="45.5" y="-179.65" font-family="Helvetica,sans-Serif" font-size="10.50">read_input_file</text>
+<polygon fill="none" stroke="black" points="91,-134.05 0,-134.05 0,-110.05 91,-110.05 91,-134.05"/>
+<text text-anchor="middle" x="45.5" y="-119.65" font-family="Helvetica,sans-Serif" font-size="10.50">read_input_file</text>
+</g>
+<!-- proc~file_io_status -->
+<g id="proc~~read_input_file~~CallsGraph_node2" class="node">
+<title>proc~file_io_status</title>
+<g id="a_proc~~read_input_file~~CallsGraph_node2"><a xlink:href=".././proc/file_io_status.html" xlink:title="file_io_status">
+<polygon fill="#d9534f" stroke="#d9534f" points="215,-176.05 134,-176.05 134,-152.05 215,-152.05 215,-176.05"/>
+<text text-anchor="middle" x="174.5" y="-161.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">file_io_status</text>
+</a>
+</g>
+</g>
+<!-- proc~read_input_file&#45;&gt;proc~file_io_status -->
+<g id="proc~~read_input_file~~CallsGraph_edge1" class="edge">
+<title>proc~read_input_file&#45;&gt;proc~file_io_status</title>
+<path fill="none" stroke="#ff0000" d="M82.89,-134.09C96.71,-138.66 112.63,-143.93 127.24,-148.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="126.51,-152.2 137.1,-152.02 128.71,-145.55 126.51,-152.2"/>
 </g>
 <!-- interface~allocate_3d -->
-<g id="proc~~read_input_file~~CallsGraph_node2" class="node">
+<g id="proc~~read_input_file~~CallsGraph_node3" class="node">
 <title>interface~allocate_3d</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node2"><a xlink:href=".././interface/allocate_3d.html" xlink:title="allocate_3d">
-<polygon fill="#a7506f" stroke="#a7506f" points="211.5,-287.05 137.5,-287.05 137.5,-263.05 211.5,-263.05 211.5,-287.05"/>
-<text text-anchor="middle" x="174.5" y="-272.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">allocate_3d</text>
+<g id="a_proc~~read_input_file~~CallsGraph_node3"><a xlink:href=".././interface/allocate_3d.html" xlink:title="allocate_3d">
+<polygon fill="#a7506f" stroke="#a7506f" points="211.5,-92.05 137.5,-92.05 137.5,-68.05 211.5,-68.05 211.5,-92.05"/>
+<text text-anchor="middle" x="174.5" y="-77.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">allocate_3d</text>
 </a>
 </g>
 </g>
 <!-- proc~read_input_file&#45;&gt;interface~allocate_3d -->
-<g id="proc~~read_input_file~~CallsGraph_edge1" class="edge">
+<g id="proc~~read_input_file~~CallsGraph_edge2" class="edge">
 <title>proc~read_input_file&#45;&gt;interface~allocate_3d</title>
-<path fill="none" stroke="#ff0000" d="M57.83,-194.27C72.61,-209.7 99.81,-236.36 127,-254.05 129.29,-255.54 131.7,-256.98 134.17,-258.35"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="132.77,-261.57 143.27,-263.03 135.97,-255.34 132.77,-261.57"/>
+<path fill="none" stroke="#ff0000" d="M82.89,-110.02C96.71,-105.45 112.63,-100.18 127.24,-95.35"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="128.71,-98.55 137.1,-92.09 126.51,-91.91 128.71,-98.55"/>
+</g>
+<!-- interface~allocate_1d -->
+<g id="proc~~read_input_file~~CallsGraph_node4" class="node">
+<title>interface~allocate_1d</title>
+<g id="a_proc~~read_input_file~~CallsGraph_node4"><a xlink:href=".././interface/allocate_1d.html" xlink:title="allocate_1d">
+<polygon fill="#a7506f" stroke="#a7506f" points="211.5,-50.05 137.5,-50.05 137.5,-26.05 211.5,-26.05 211.5,-50.05"/>
+<text text-anchor="middle" x="174.5" y="-35.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">allocate_1d</text>
+</a>
+</g>
+</g>
+<!-- proc~read_input_file&#45;&gt;interface~allocate_1d -->
+<g id="proc~~read_input_file~~CallsGraph_edge3" class="edge">
+<title>proc~read_input_file&#45;&gt;interface~allocate_1d</title>
+<path fill="none" stroke="#ff0000" d="M60.01,-109.82C75.43,-96.27 101.79,-74.3 127,-59.05 129.49,-57.55 132.1,-56.09 134.77,-54.68"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="136.54,-57.71 143.93,-50.12 133.42,-51.44 136.54,-57.71"/>
 </g>
 <!-- proc~input_summary -->
-<g id="proc~~read_input_file~~CallsGraph_node3" class="node">
+<g id="proc~~read_input_file~~CallsGraph_node5" class="node">
 <title>proc~input_summary</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node3"><a xlink:href=".././proc/input_summary.html" xlink:title="input_summary">
+<g id="a_proc~~read_input_file~~CallsGraph_node5"><a xlink:href=".././proc/input_summary.html" xlink:title="input_summary">
 <polygon fill="#d9534f" stroke="#d9534f" points="222,-134.05 127,-134.05 127,-110.05 222,-110.05 222,-134.05"/>
 <text text-anchor="middle" x="174.5" y="-119.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">input_summary</text>
 </a>
 </g>
 </g>
 <!-- proc~read_input_file&#45;&gt;proc~input_summary -->
-<g id="proc~~read_input_file~~CallsGraph_edge2" class="edge">
+<g id="proc~~read_input_file~~CallsGraph_edge4" class="edge">
 <title>proc~read_input_file&#45;&gt;proc~input_summary</title>
-<path fill="none" stroke="#ff0000" d="M72.2,-169.91C91.31,-160.89 117.59,-148.47 138.6,-138.54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="140.29,-141.61 147.84,-134.18 137.3,-135.29 140.29,-141.61"/>
-</g>
-<!-- proc~file_io_status -->
-<g id="proc~~read_input_file~~CallsGraph_node4" class="node">
-<title>proc~file_io_status</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node4"><a xlink:href=".././proc/file_io_status.html" xlink:title="file_io_status">
-<polygon fill="#d9534f" stroke="#d9534f" points="215,-194.05 134,-194.05 134,-170.05 215,-170.05 215,-194.05"/>
-<text text-anchor="middle" x="174.5" y="-179.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">file_io_status</text>
-</a>
-</g>
-</g>
-<!-- proc~read_input_file&#45;&gt;proc~file_io_status -->
-<g id="proc~~read_input_file~~CallsGraph_edge3" class="edge">
-<title>proc~read_input_file&#45;&gt;proc~file_io_status</title>
-<path fill="none" stroke="#ff0000" d="M91.28,-182.05C101.77,-182.05 113.02,-182.05 123.73,-182.05"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="123.78,-185.55 133.78,-182.05 123.78,-178.55 123.78,-185.55"/>
+<path fill="none" stroke="#ff0000" d="M91.28,-122.05C99.5,-122.05 108.19,-122.05 116.71,-122.05"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="116.98,-125.55 126.98,-122.05 116.98,-118.55 116.98,-125.55"/>
 </g>
 <!-- proc~input_check -->
-<g id="proc~~read_input_file~~CallsGraph_node5" class="node">
+<g id="proc~~read_input_file~~CallsGraph_node6" class="node">
 <title>proc~input_check</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node5"><a xlink:href=".././proc/input_check.html" xlink:title="input_check">
-<polygon fill="#d9534f" stroke="#d9534f" points="212.5,-245.05 136.5,-245.05 136.5,-221.05 212.5,-221.05 212.5,-245.05"/>
-<text text-anchor="middle" x="174.5" y="-230.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">input_check</text>
+<g id="a_proc~~read_input_file~~CallsGraph_node6"><a xlink:href=".././proc/input_check.html" xlink:title="input_check">
+<polygon fill="#d9534f" stroke="#d9534f" points="212.5,-254.05 136.5,-254.05 136.5,-230.05 212.5,-230.05 212.5,-254.05"/>
+<text text-anchor="middle" x="174.5" y="-239.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">input_check</text>
 </a>
 </g>
 </g>
 <!-- proc~read_input_file&#45;&gt;proc~input_check -->
-<g id="proc~~read_input_file~~CallsGraph_edge4" class="edge">
-<title>proc~read_input_file&#45;&gt;proc~input_check</title>
-<path fill="none" stroke="#ff0000" d="M76.6,-194.14C93.71,-201.01 115.35,-209.7 133.84,-217.13"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="132.59,-220.4 143.18,-220.88 135.2,-213.9 132.59,-220.4"/>
-</g>
-<!-- interface~allocate_1d -->
-<g id="proc~~read_input_file~~CallsGraph_node6" class="node">
-<title>interface~allocate_1d</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node6"><a xlink:href=".././interface/allocate_1d.html" xlink:title="allocate_1d">
-<polygon fill="#a7506f" stroke="#a7506f" points="211.5,-92.05 137.5,-92.05 137.5,-68.05 211.5,-68.05 211.5,-92.05"/>
-<text text-anchor="middle" x="174.5" y="-77.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">allocate_1d</text>
-</a>
-</g>
-</g>
-<!-- proc~read_input_file&#45;&gt;interface~allocate_1d -->
 <g id="proc~~read_input_file~~CallsGraph_edge5" class="edge">
-<title>proc~read_input_file&#45;&gt;interface~allocate_1d</title>
-<path fill="none" stroke="#ff0000" d="M56.05,-169.97C70.1,-152.82 97.84,-121.28 127,-101.05 129.1,-99.6 131.32,-98.2 133.6,-96.87"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="135.43,-99.87 142.62,-92.08 132.14,-93.68 135.43,-99.87"/>
-</g>
-<!-- proc~write_message -->
-<g id="proc~~read_input_file~~CallsGraph_node7" class="node">
-<title>proc~write_message</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node7"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="616,-216.05 524,-216.05 524,-192.05 616,-192.05 616,-216.05"/>
-<text text-anchor="middle" x="570" y="-201.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
-</a>
-</g>
-</g>
-<!-- proc~input_summary&#45;&gt;proc~write_message -->
-<g id="proc~~read_input_file~~CallsGraph_edge6" class="edge">
-<title>proc~input_summary&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#cbff00" d="M209.08,-109.98C213.71,-107.46 218.19,-104.5 222,-101.05 245.65,-79.7 230.39,-54.95 258,-39.05 346.59,11.95 401.43,14.31 488,-40.05 538.21,-71.58 558.26,-144.34 565.44,-181.43"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="562.08,-182.48 567.28,-191.71 568.97,-181.25 562.08,-182.48"/>
-</g>
-<!-- proc~float_to_character -->
-<g id="proc~~read_input_file~~CallsGraph_node8" class="node">
-<title>proc~float_to_character</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node8"><a xlink:href=".././proc/float_to_character.html" xlink:title="float_to_character">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="374.5,-134.05 265.5,-134.05 265.5,-110.05 374.5,-110.05 374.5,-134.05"/>
-<text text-anchor="middle" x="320" y="-119.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">float_to_character</text>
-</a>
-</g>
-</g>
-<!-- proc~input_summary&#45;&gt;proc~float_to_character -->
-<g id="proc~~read_input_file~~CallsGraph_edge7" class="edge">
-<title>proc~input_summary&#45;&gt;proc~float_to_character</title>
-<path fill="none" stroke="#cbff00" d="M222.09,-122.05C232.68,-122.05 244.11,-122.05 255.27,-122.05"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="255.42,-125.55 265.42,-122.05 255.42,-118.55 255.42,-125.55"/>
-</g>
-<!-- proc~etotal -->
-<g id="proc~~read_input_file~~CallsGraph_node11" class="node">
-<title>proc~etotal</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node11"><a xlink:href=".././proc/etotal.html" xlink:title="ETOTAL">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="480,-73.05 426,-73.05 426,-49.05 480,-49.05 480,-73.05"/>
-<text text-anchor="middle" x="453" y="-58.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ETOTAL</text>
-</a>
-</g>
-</g>
-<!-- proc~input_summary&#45;&gt;proc~etotal -->
-<g id="proc~~read_input_file~~CallsGraph_edge8" class="edge">
-<title>proc~input_summary&#45;&gt;proc~etotal</title>
-<path fill="none" stroke="#cbff00" d="M207.57,-109.83C212.61,-107.28 217.61,-104.35 222,-101.05 241.67,-86.31 235.66,-69.33 258,-59.05 308.81,-35.68 375.33,-43.47 415.79,-51.83"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="415.23,-55.29 425.74,-54.01 416.72,-48.45 415.23,-55.29"/>
+<title>proc~read_input_file&#45;&gt;proc~input_check</title>
+<path fill="none" stroke="#ff0000" d="M59.61,-134.44C81.78,-155.39 126.82,-197.95 153.13,-222.81"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="150.98,-225.59 160.65,-229.91 155.78,-220.5 150.98,-225.59"/>
 </g>
 <!-- proc~integer_to_character -->
-<g id="proc~~read_input_file~~CallsGraph_node12" class="node">
+<g id="proc~~read_input_file~~CallsGraph_node7" class="node">
 <title>proc~integer_to_character</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node12"><a xlink:href=".././proc/integer_to_character.html" xlink:title="integer_to_character">
+<g id="a_proc~~read_input_file~~CallsGraph_node7"><a xlink:href=".././proc/integer_to_character.html" xlink:title="integer_to_character">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="382,-176.05 258,-176.05 258,-152.05 382,-152.05 382,-176.05"/>
 <text text-anchor="middle" x="320" y="-161.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integer_to_character</text>
 </a>
 </g>
 </g>
-<!-- proc~input_summary&#45;&gt;proc~integer_to_character -->
-<g id="proc~~read_input_file~~CallsGraph_edge9" class="edge">
-<title>proc~input_summary&#45;&gt;proc~integer_to_character</title>
-<path fill="none" stroke="#cbff00" d="M216.62,-134.09C232.68,-138.79 251.27,-144.23 268.16,-149.17"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="267.29,-152.57 277.87,-152.02 269.26,-145.85 267.29,-152.57"/>
-</g>
-<!-- proc~wavenumberekin -->
-<g id="proc~~read_input_file~~CallsGraph_node13" class="node">
-<title>proc~wavenumberekin</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node13"><a xlink:href=".././proc/wavenumberekin.html" xlink:title="WAVENUMBEREKIN">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="376,-92.05 264,-92.05 264,-68.05 376,-68.05 376,-92.05"/>
-<text text-anchor="middle" x="320" y="-77.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">WAVENUMBEREKIN</text>
-</a>
-</g>
-</g>
-<!-- proc~input_summary&#45;&gt;proc~wavenumberekin -->
-<g id="proc~~read_input_file~~CallsGraph_edge10" class="edge">
-<title>proc~input_summary&#45;&gt;proc~wavenumberekin</title>
-<path fill="none" stroke="#cbff00" d="M216.62,-110.02C232.68,-105.32 251.27,-99.88 268.16,-94.94"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="269.26,-98.26 277.87,-92.09 267.29,-91.54 269.26,-98.26"/>
+<!-- proc~file_io_status&#45;&gt;proc~integer_to_character -->
+<g id="proc~~read_input_file~~CallsGraph_edge6" class="edge">
+<title>proc~file_io_status&#45;&gt;proc~integer_to_character</title>
+<path fill="none" stroke="#ff0000" d="M215.09,-164.05C225.19,-164.05 236.36,-164.05 247.52,-164.05"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="247.74,-167.55 257.74,-164.05 247.74,-160.55 247.74,-167.55"/>
 </g>
 <!-- proc~write_error -->
-<g id="proc~~read_input_file~~CallsGraph_node9" class="node">
+<g id="proc~~read_input_file~~CallsGraph_node11" class="node">
 <title>proc~write_error</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node9"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
+<g id="a_proc~~read_input_file~~CallsGraph_node11"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
 <polygon fill="#d9534f" stroke="#d9534f" points="488,-216.05 418,-216.05 418,-192.05 488,-192.05 488,-216.05"/>
 <text text-anchor="middle" x="453" y="-201.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
 </a>
 </g>
 </g>
 <!-- proc~file_io_status&#45;&gt;proc~write_error -->
-<g id="proc~~read_input_file~~CallsGraph_edge12" class="edge">
+<g id="proc~~read_input_file~~CallsGraph_edge7" class="edge">
 <title>proc~file_io_status&#45;&gt;proc~write_error</title>
-<path fill="none" stroke="#00ff66" d="M215.12,-185.21C266.07,-189.26 354.33,-196.28 407.54,-200.52"/>
-<polygon fill="#00ff66" stroke="#00ff66" points="407.44,-204.02 417.69,-201.32 408,-197.04 407.44,-204.02"/>
+<path fill="none" stroke="#ff0000" d="M215.1,-175.43C228.61,-178.97 243.88,-182.58 258,-185.05 308.95,-193.98 368.21,-199.02 407.7,-201.63"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="407.59,-205.13 417.8,-202.28 408.04,-198.15 407.59,-205.13"/>
 </g>
-<!-- proc~file_io_status&#45;&gt;proc~integer_to_character -->
+<!-- proc~input_summary&#45;&gt;proc~integer_to_character -->
+<g id="proc~~read_input_file~~CallsGraph_edge10" class="edge">
+<title>proc~input_summary&#45;&gt;proc~integer_to_character</title>
+<path fill="none" stroke="#0066ff" d="M216.62,-134.09C232.68,-138.79 251.27,-144.23 268.16,-149.17"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="267.29,-152.57 277.87,-152.02 269.26,-145.85 267.29,-152.57"/>
+</g>
+<!-- proc~wavenumberekin -->
+<g id="proc~~read_input_file~~CallsGraph_node8" class="node">
+<title>proc~wavenumberekin</title>
+<g id="a_proc~~read_input_file~~CallsGraph_node8"><a xlink:href=".././proc/wavenumberekin.html" xlink:title="WAVENUMBEREKIN">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="376,-92.05 264,-92.05 264,-68.05 376,-68.05 376,-92.05"/>
+<text text-anchor="middle" x="320" y="-77.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">WAVENUMBEREKIN</text>
+</a>
+</g>
+</g>
+<!-- proc~input_summary&#45;&gt;proc~wavenumberekin -->
+<g id="proc~~read_input_file~~CallsGraph_edge9" class="edge">
+<title>proc~input_summary&#45;&gt;proc~wavenumberekin</title>
+<path fill="none" stroke="#0066ff" d="M216.62,-110.02C232.68,-105.32 251.27,-99.88 268.16,-94.94"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="269.26,-98.26 277.87,-92.09 267.29,-91.54 269.26,-98.26"/>
+</g>
+<!-- proc~float_to_character -->
+<g id="proc~~read_input_file~~CallsGraph_node9" class="node">
+<title>proc~float_to_character</title>
+<g id="a_proc~~read_input_file~~CallsGraph_node9"><a xlink:href=".././proc/float_to_character.html" xlink:title="float_to_character">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="374.5,-134.05 265.5,-134.05 265.5,-110.05 374.5,-110.05 374.5,-134.05"/>
+<text text-anchor="middle" x="320" y="-119.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">float_to_character</text>
+</a>
+</g>
+</g>
+<!-- proc~input_summary&#45;&gt;proc~float_to_character -->
 <g id="proc~~read_input_file~~CallsGraph_edge11" class="edge">
-<title>proc~file_io_status&#45;&gt;proc~integer_to_character</title>
-<path fill="none" stroke="#00ff66" d="M215.09,-177.09C225.19,-175.82 236.36,-174.42 247.52,-173.02"/>
-<polygon fill="#00ff66" stroke="#00ff66" points="248.25,-176.46 257.74,-171.74 247.38,-169.51 248.25,-176.46"/>
+<title>proc~input_summary&#45;&gt;proc~float_to_character</title>
+<path fill="none" stroke="#0066ff" d="M222.09,-122.05C232.68,-122.05 244.11,-122.05 255.27,-122.05"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="255.42,-125.55 265.42,-122.05 255.42,-118.55 255.42,-125.55"/>
+</g>
+<!-- proc~write_message -->
+<g id="proc~~read_input_file~~CallsGraph_node10" class="node">
+<title>proc~write_message</title>
+<g id="a_proc~~read_input_file~~CallsGraph_node10"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="616,-216.05 524,-216.05 524,-192.05 616,-192.05 616,-216.05"/>
+<text text-anchor="middle" x="570" y="-201.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+</a>
+</g>
+</g>
+<!-- proc~input_summary&#45;&gt;proc~write_message -->
+<g id="proc~~read_input_file~~CallsGraph_edge8" class="edge">
+<title>proc~input_summary&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#0066ff" d="M209.08,-109.98C213.71,-107.46 218.19,-104.5 222,-101.05 245.65,-79.7 230.39,-54.95 258,-39.05 346.59,11.95 401.43,14.31 488,-40.05 538.21,-71.58 558.26,-144.34 565.44,-181.43"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="562.08,-182.48 567.28,-191.71 568.97,-181.25 562.08,-182.48"/>
+</g>
+<!-- proc~etotal -->
+<g id="proc~~read_input_file~~CallsGraph_node12" class="node">
+<title>proc~etotal</title>
+<g id="a_proc~~read_input_file~~CallsGraph_node12"><a xlink:href=".././proc/etotal.html" xlink:title="ETOTAL">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="480,-73.05 426,-73.05 426,-49.05 480,-49.05 480,-73.05"/>
+<text text-anchor="middle" x="453" y="-58.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ETOTAL</text>
+</a>
+</g>
+</g>
+<!-- proc~input_summary&#45;&gt;proc~etotal -->
+<g id="proc~~read_input_file~~CallsGraph_edge12" class="edge">
+<title>proc~input_summary&#45;&gt;proc~etotal</title>
+<path fill="none" stroke="#0066ff" d="M207.57,-109.83C212.61,-107.28 217.61,-104.35 222,-101.05 241.67,-86.31 235.66,-69.33 258,-59.05 308.81,-35.68 375.33,-43.47 415.79,-51.83"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="415.23,-55.29 425.74,-54.01 416.72,-48.45 415.23,-55.29"/>
+</g>
+<!-- proc~input_check&#45;&gt;proc~integer_to_character -->
+<g id="proc~~read_input_file~~CallsGraph_edge14" class="edge">
+<title>proc~input_check&#45;&gt;proc~integer_to_character</title>
+<path fill="none" stroke="#cc00ff" d="M197.61,-230.04C221.66,-216.96 260.31,-195.96 287.52,-181.16"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="289.52,-184.06 296.63,-176.21 286.17,-177.91 289.52,-184.06"/>
 </g>
 <!-- proc~input_check&#45;&gt;proc~write_message -->
-<g id="proc~~read_input_file~~CallsGraph_edge15" class="edge">
+<g id="proc~~read_input_file~~CallsGraph_edge16" class="edge">
 <title>proc~input_check&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#0066ff" d="M212.82,-235.19C271.71,-237.88 389.61,-240.44 488,-225.05 498.12,-223.47 508.81,-221.17 518.98,-218.66"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="520.13,-221.98 528.95,-216.11 518.4,-215.2 520.13,-221.98"/>
+<path fill="none" stroke="#cc00ff" d="M212.86,-242.82C254.27,-243.37 323,-243.36 382,-239.05 429.39,-235.59 441.36,-234.15 488,-225.05 497.31,-223.24 507.15,-220.98 516.63,-218.63"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="517.52,-222.02 526.35,-216.16 515.79,-215.23 517.52,-222.02"/>
 </g>
 <!-- proc~input_check&#45;&gt;proc~write_error -->
-<g id="proc~~read_input_file~~CallsGraph_edge16" class="edge">
+<g id="proc~~read_input_file~~CallsGraph_edge15" class="edge">
 <title>proc~input_check&#45;&gt;proc~write_error</title>
-<path fill="none" stroke="#0066ff" d="M212.5,-229.17C263.1,-223.87 353.75,-214.36 407.84,-208.69"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="408.24,-212.16 417.82,-207.64 407.51,-205.2 408.24,-212.16"/>
+<path fill="none" stroke="#cc00ff" d="M212.55,-238.67C253.98,-234.67 323,-227.37 382,-218.05 390.45,-216.72 399.43,-215.09 408.04,-213.42"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="408.8,-216.84 417.92,-211.45 407.43,-209.97 408.8,-216.84"/>
 </g>
 <!-- interface~incorrect_value -->
-<g id="proc~~read_input_file~~CallsGraph_node10" class="node">
+<g id="proc~~read_input_file~~CallsGraph_node13" class="node">
 <title>interface~incorrect_value</title>
-<g id="a_proc~~read_input_file~~CallsGraph_node10"><a xlink:href=".././interface/incorrect_value.html" xlink:title="incorrect_value">
+<g id="a_proc~~read_input_file~~CallsGraph_node13"><a xlink:href=".././interface/incorrect_value.html" xlink:title="incorrect_value">
 <polygon fill="#a7506f" stroke="#a7506f" points="367,-332.05 273,-332.05 273,-308.05 367,-308.05 367,-332.05"/>
 <text text-anchor="middle" x="320" y="-317.65" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">incorrect_value</text>
 </a>
@@ -395,32 +401,26 @@ the code uses 3 namelists: input, basis and potential</p>
 <!-- proc~input_check&#45;&gt;interface~incorrect_value -->
 <g id="proc~~read_input_file~~CallsGraph_edge13" class="edge">
 <title>proc~input_check&#45;&gt;interface~incorrect_value</title>
-<path fill="none" stroke="#0066ff" d="M207.01,-245.13C212.23,-247.72 217.42,-250.71 222,-254.05 241.31,-268.17 238.54,-280.15 258,-294.05 262.92,-297.57 268.39,-300.74 273.98,-303.55"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="272.87,-306.9 283.41,-307.95 275.83,-300.56 272.87,-306.9"/>
-</g>
-<!-- proc~input_check&#45;&gt;proc~integer_to_character -->
-<g id="proc~~read_input_file~~CallsGraph_edge14" class="edge">
-<title>proc~input_check&#45;&gt;proc~integer_to_character</title>
-<path fill="none" stroke="#0066ff" d="M200.5,-221.04C223.81,-209.83 258.79,-193.01 284.71,-180.54"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="286.31,-183.66 293.81,-176.17 283.28,-177.35 286.31,-183.66"/>
-</g>
-<!-- proc~write_error&#45;&gt;proc~write_message -->
-<g id="proc~~read_input_file~~CallsGraph_edge17" class="edge">
-<title>proc~write_error&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#48ff00" d="M488.19,-204.05C496.19,-204.05 504.91,-204.05 513.56,-204.05"/>
-<polygon fill="#48ff00" stroke="#48ff00" points="513.65,-207.55 523.65,-204.05 513.65,-200.55 513.65,-207.55"/>
+<path fill="none" stroke="#cc00ff" d="M193.04,-254.26C209.41,-265.38 234.76,-281.87 258,-294.05 264.59,-297.51 271.74,-300.87 278.75,-303.98"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="277.58,-307.29 288.15,-308.03 280.35,-300.86 277.58,-307.29"/>
 </g>
 <!-- proc~wavenumberekin&#45;&gt;proc~write_error -->
-<g id="proc~~read_input_file~~CallsGraph_edge19" class="edge">
+<g id="proc~~read_input_file~~CallsGraph_edge18" class="edge">
 <title>proc~wavenumberekin&#45;&gt;proc~write_error</title>
-<path fill="none" stroke="#ff00da" d="M366.66,-92.07C372.11,-94.55 377.37,-97.52 382,-101.05 410.43,-122.79 431.36,-159.47 442.6,-182.69"/>
-<polygon fill="#ff00da" stroke="#ff00da" points="439.55,-184.44 446.95,-192.02 445.9,-181.48 439.55,-184.44"/>
+<path fill="none" stroke="#ffda00" d="M366.66,-92.07C372.11,-94.55 377.37,-97.52 382,-101.05 410.43,-122.79 431.36,-159.47 442.6,-182.69"/>
+<polygon fill="#ffda00" stroke="#ffda00" points="439.55,-184.44 446.95,-192.02 445.9,-181.48 439.55,-184.44"/>
 </g>
 <!-- proc~wavenumberekin&#45;&gt;proc~etotal -->
-<g id="proc~~read_input_file~~CallsGraph_edge18" class="edge">
+<g id="proc~~read_input_file~~CallsGraph_edge17" class="edge">
 <title>proc~wavenumberekin&#45;&gt;proc~etotal</title>
-<path fill="none" stroke="#ff00da" d="M376.18,-72.05C389.48,-70.12 403.37,-68.11 415.57,-66.34"/>
-<polygon fill="#ff00da" stroke="#ff00da" points="416.4,-69.75 425.8,-64.86 415.4,-62.83 416.4,-69.75"/>
+<path fill="none" stroke="#ffda00" d="M376.18,-72.05C389.48,-70.12 403.37,-68.11 415.57,-66.34"/>
+<polygon fill="#ffda00" stroke="#ffda00" points="416.4,-69.75 425.8,-64.86 415.4,-62.83 416.4,-69.75"/>
+</g>
+<!-- proc~write_error&#45;&gt;proc~write_message -->
+<g id="proc~~read_input_file~~CallsGraph_edge19" class="edge">
+<title>proc~write_error&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#0091ff" d="M488.19,-204.05C496.19,-204.05 504.91,-204.05 513.56,-204.05"/>
+<polygon fill="#0091ff" stroke="#0091ff" points="513.65,-207.55 523.65,-204.05 513.65,-200.55 513.65,-207.55"/>
 </g>
 </g>
 </svg>
@@ -933,7 +933,7 @@ the code uses 3 namelists: input, basis and potential</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-12-28 16:21            </p>
+ on 2023-12-29 14:32            </p>
         </div>
       </div>
       <br>
