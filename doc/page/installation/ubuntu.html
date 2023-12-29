@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../../favicon.png">
 
-    <title>What are coupled equations? &ndash; the SCATTERING code</title>
+    <title>Building the code - Ubuntu &ndash; the SCATTERING code</title>
 
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>What are coupled equations?</h1>
+    <h1>Building the code - Ubuntu</h1>
     <div class="row">
     <div class="col-lg-12">
     <div class="well well-sm" style="min-height: 40px;">
@@ -89,8 +89,8 @@
       </ul>
         <ol class="breadcrumb in-well">
          <li><a href='../../page/index.html'>Program Description</a></li>
-         <li><a href='../../page/background/index.html'>Theoretical background</a></li>
-         <li class="active">What are coupled equations?</li>
+         <li><a href='../../page/installation/index.html'>Installation</a></li>
+         <li class="active">Building the code - Ubuntu</li>
       </ol>
     </div>
     </div>
@@ -99,46 +99,16 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <p>In quantum scattering, coupled equations are sets of differential equations that describe 
-dynamics of colliding molecules and/or atoms under the influence of the interaction potential. 
-These equations are "coupled" because the solution for one equation depends on the solutions of the others. 
-In the context of diatom-atom collisions, these equations account for rotational and vibrational states of the diatom and the relative motion of the colliding partners.</p>
-<p>Coupled equations are derived from time-independent Schrodinger equation, by expanding the scattering wave function
-in the chosen basis, \( |\gamma \rangle \)</p>
-<p>
-<script type="math/tex; mode=display">\begin{equation}
-\label{eq:schrodinger}
-| \Psi \rangle = R^{-1} \sum_{\gamma} f_{\gamma} (R) |\gamma \rangle
-\end{equation}</script>
-</p>
-<p>which leads to a set of coupled differential equations on the
-expansion coefficients, \( f_{\gamma} (R) \). The basis states \( |\gamma \rangle \) define the collision channels.
-In the total angular momentum (\( J \)) representation, the coupled equations are block-diagonal with respect
-to total angular momentum and parity:</p>
-<p>
-<script type="math/tex; mode=display">\begin{equation}
-\label{eq:CC}
-\frac{d^{2}}{dR^{2}} {f}^{Jp}_{\gamma} (R)  = \sum_{\gamma'} {W}^{Jp}_{\gamma, \gamma'}(R) {f}^{Jp}_{\gamma'} (R). 
-\end{equation}</script>
-</p>
-<p>Here, \( W \) is the <a href="coupling_matrix.html">coupling matrix</a></p>
-<p>
-<script type="math/tex; mode=display">\begin{equation}
-\label{eq:coupling_matrix}
- {W}^{Jp}_{\gamma, \gamma'}(R) = 2\mu {V}^{Jp}_{\gamma, \gamma'}(R) + \frac{1}{R^{2}}\mathbf{L}^{2\,Jp}_{\gamma, \gamma'} - \delta_{\gamma, \gamma'} k_{\gamma}^{2}, 
-\end{equation}</script>
-</p>
-<p>which involves the contribution from the atom - molecule interaction energy, \( {V}^{Jp}_{\gamma, \gamma'}(R) \),
-relative motion of atom with respect to the molecule, quantified by the square relative angular momentum operator, \( \mathbf{L}^{2\,Jp}_{\gamma, \gamma'}  \), 
-and relatvie kinetic energy of the colliding pair, expressed using wavevector, \( k_{\gamma} = \sqrt{2\mu(E - E_{\mathrm{mol}})} \).
-\( \mu  \) is the reduced mass of the atom - molecule system, \( E \) is the total energy and \( E_{\mathrm{mol}} \) is the internal (rovibrational)
-energy of the molecule.</p>
-<p>For diatom (\( ^{1}\Sigma \)) - atom (\( ^{1}S \)) scattering in the BF frame, collision channels are defined through 
-vibrational and rotational quantum numbers of the molecule, \( v \) and \( j \), 
-and the absolute value of the projection of the rotational angular momentum of the molecule (and the total angular momentum)
-on the intermolecular axis, \( \bar{\Omega} \). </p>
-<p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>In this section, \( \gamma \) is a shorthand notation for a set of quantum numbers, 
-\( \gamma = v, j, \bar{\Omega}, J \).</p></div>
+      <p><strong>Before building the code, make sure that we have all the necessary compilers, librariries and apps installed</strong>:<br>
+ <code>sudo apt install make gfortran liblapack-dev libblas-dev wget git</code></p>
+<ol>
+<li>Enter <code>./bigos_dir</code></li>
+<li>Run <code>make all</code>.</li>
+</ol>
+<p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>The script will download and extract the <a href="http://fy.chalmers.se/subatom/wigxjpf/">wigxjpf</a> library in <code>./libs</code> directory, <br>
+and then build and compile the contents of <code>./src</code> directory.  <br>
+<strong>The executable, <code>scattering.x</code>, is located in the main directory.</strong></p></div>
+<p>You can now run <code>make test</code> to make sure that you recover reference outputs in the ref/ directory.</p>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <hr class="visible-xs visible-sm">
@@ -151,7 +121,7 @@ on the intermolecular axis, \( \bar{\Omega} \). </p>
             <li role="presentation">
             <a href='../../page/background/index.html'>Theoretical background</a>
             <ul class="nav nav-stacked nav-pills">
-                          <li role="presentation" class="disabled">
+                          <li role="presentation">
             <a href='../../page/background/coupled_equations.html'>What are coupled equations?</a>
             </li>
             <li role="presentation">
@@ -172,7 +142,7 @@ on the intermolecular axis, \( \bar{\Omega} \). </p>
             <li role="presentation">
             <a href='../../page/installation/index.html'>Installation</a>
             <ul class="nav nav-stacked nav-pills">
-                          <li role="presentation">
+                          <li role="presentation" class="disabled">
             <a href='../../page/installation/ubuntu.html'>Building the code - Ubuntu</a>
             </li>
             <li role="presentation">

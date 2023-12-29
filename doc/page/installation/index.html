@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01">
     <meta name="author" content="Hubert Jóźwiak" >
-    <link rel="icon" href="../favicon.png">
+    <link rel="icon" href="../../favicon.png">
 
     <title>Installation &ndash; the SCATTERING code</title>
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/pygments.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/local.css" rel="stylesheet">
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/pygments.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/local.css" rel="stylesheet">
+    <link  href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -22,8 +22,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <script src="../js/jquery-2.1.3.min.js"></script>
-    <script src="../js/svg-pan-zoom.min.js"></script>
+    <script src="../../js/jquery-2.1.3.min.js"></script>
+    <script src="../../js/svg-pan-zoom.min.js"></script>
 
   </head>
 
@@ -39,31 +39,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">the SCATTERING code </a>
+          <a class="navbar-brand" href="../../index.html">the SCATTERING code </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href='../page/index.html'>Program Description</a></li>
+            <li><a href='../../page/index.html'>Program Description</a></li>
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="../lists/files.html">Source Files</a></li>
-            <li><a href="../lists/modules.html">Modules</a></li>
-            <li><a href="../lists/procedures.html">Procedures</a></li>
-                   <li><a href="../program/scattering.html">Program</a></li>
+            <li><a href="../../lists/files.html">Source Files</a></li>
+            <li><a href="../../lists/modules.html">Modules</a></li>
+            <li><a href="../../lists/procedures.html">Procedures</a></li>
+                   <li><a href="../../program/scattering.html">Program</a></li>
        
             </ul>
         
             </li>
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-                             <li class="visible-xs hidden-sm visible-lg"><a href="../program/scattering.html">Program</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../../lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../../lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../../lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../../program/scattering.html">Program</a></li>
           </ul>
-        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <form action="../../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
         </div>
@@ -85,10 +85,13 @@
         <li><i class="fa fa-pencil"></i> Hubert Jóźwiak</li>
         <li><i class="fa fa-calendar-o"></i> %Y-%m-%d %H:%M %z</li>
 <!--
+        <li><i class="fa fa-sitemap"></i> Subsections:</li>
+        <li><a href='../../page/installation/ubuntu.html'>Building the code - Ubuntu</a></li>
+        <li><a href='../../page/installation/windows11.html'>Building the code - Windows 11</a></li>
 -->
       </ul>
         <ol class="breadcrumb in-well">
-         <li><a href='../page/index.html'>Program Description</a></li>
+         <li><a href='../../page/index.html'>Program Description</a></li>
          <li class="active">Installation</li>
       </ol>
     </div>
@@ -98,71 +101,76 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <h1 id="prerequisites">Prerequisites</h1>
+      <h2 id="prerequisites">Prerequisites</h2>
 <ol>
 <li>Make.</li>
 <li>A modern Fortran compiler, such as <a href="https://gcc.gnu.org/wiki/GFortran">GNU Fortran Compiler</a> (gfortran) or
  <a href="https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html">Intel Fortran Compiler</a> (ifort)</li>
-<li>LAPACK and BLAS libraries</li>
-<li>wget</li>
-<li>Git (optional)</li>
+<li><a href="http://www.netlib.org/blas/">LAPACK</a> and <a href="http://www.netlib.org/blas/">BLAS</a> libraries</li>
+<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> (optional)</li>
+<li><a href="https://www.gnu.org/software/wget/">wget</a></li>
+<li>the SCATTERING code uses the <a href="http://fy.chalmers.se/subatom/wigxjpf/">wigxjpf</a> and <a href="https://people.sc.fsu.edu/~jburkardt/f_src/special_functions/special_functions.html">special_functions</a>
+   libraries. These are downloaded and installed along with the rest of the code.</li>
 </ol>
-<p>Linux installation:</p>
-<ol>
-<li>Open the terminal</li>
-<li>Update package list: <code>sudo apt update</code></li>
-<li>Install everything at once: <code>sudo apt install make gfortran liblapack-dev libblas-dev wget git</code></li>
-</ol>
-<h1 id="build-instructions">Build instructions</h1>
 <h2 id="get-the-source-code">Get the source code</h2>
 <p><strong>Using git</strong></p>
 <p><code>git clone https://github.com/hjozwiak-umk/bigos_h2he.git ./bigos_dir</code></p>
-<p>This will create a directory <code>./bigos_dir</code> on the local machine.</p>
+<p>This will create a directory <code>./bigos_dir</code> on the local machine. Enter this directory.</p>
 <p><strong>Without git</strong></p>
-<p>Download the source code as a zip file: <a href="https://github.com/hjozwiak-umk/bigos_h2he/archive/refs/heads/main.zip">bigos.zip</a></p>
-<p>Extract the contents to <code>./bigos_dir</code> and enter this directory.</p>
-<p>Run <code>make all</code>.</p>
-<p>The script will download and extract the <a href="http://fy.chalmers.se/subatom/wigxjpf/">wigxjpf</a> library in <code>./libs</code> directory,
-and then build and compile the contents of <code>./src</code> directory. </p>
-<p>The executable, <code>scattering.x</code>, is located in the main directory.</p>
+<p>Download the source code as a zip file: <a href="https://github.com/hjozwiak-umk/bigos_h2he/archive/refs/heads/main.zip">bigos.zip</a>
+Extract the contents to <code>./bigos_dir</code> and enter this directory.</p>
+<h2 id="build-the-code">Build the code</h2>
+<ol>
+<li><a href="ubuntu.html">Ubuntu</a> </li>
+<li><a href="windows11.html">Windows 11</a></li>
+</ol>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <hr class="visible-xs visible-sm">
         <div class="well toc">
           <ul class="nav nav-stacked nav-pills">
-            <li role="presentation" class="title"><a href='../page/index.html'>Program Description</a></li>
+            <li role="presentation" class="title"><a href='../../page/index.html'>Program Description</a></li>
           </ul>
           <hr>
           <ul class="nav nav-stacked nav-pills">
             <li role="presentation">
-            <a href='../page/background/index.html'>Theoretical background</a>
+            <a href='../../page/background/index.html'>Theoretical background</a>
             <ul class="nav nav-stacked nav-pills">
                           <li role="presentation">
-            <a href='../page/background/coupled_equations.html'>What are coupled equations?</a>
+            <a href='../../page/background/coupled_equations.html'>What are coupled equations?</a>
             </li>
             <li role="presentation">
-            <a href='../page/background/coupling_matrix.html'>Coupling Matrix</a>
+            <a href='../../page/background/coupling_matrix.html'>Coupling Matrix</a>
             </li>
             <li role="presentation">
-            <a href='../page/background/solution.html'>Solution of the coupled equations</a>
+            <a href='../../page/background/solution.html'>Solution of the coupled equations</a>
             </li>
             <li role="presentation">
-            <a href='../page/background/cross_sections.html'>Cross-sections</a>
+            <a href='../../page/background/cross_sections.html'>Cross-sections</a>
             </li>
 
             </ul>
             </li>
             <li role="presentation">
-            <a href='../page/./inputfile.html'>Input file</a>
+            <a href='../../page/./inputfile.html'>Input file</a>
             </li>
             <li role="presentation" class="disabled">
-            <a href='../page/./installation.html'>Installation</a>
+            <a href='../../page/installation/index.html'>Installation</a>
+            <ul class="nav nav-stacked nav-pills">
+                          <li role="presentation">
+            <a href='../../page/installation/ubuntu.html'>Building the code - Ubuntu</a>
             </li>
             <li role="presentation">
-            <a href='../page/./radialterms.html'>Supplying radial terms</a>
+            <a href='../../page/installation/windows11.html'>Building the code - Windows 11</a>
+            </li>
+
+            </ul>
             </li>
             <li role="presentation">
-            <a href='../page/./smatrixfile.html'>S-matrix file</a>
+            <a href='../../page/./radialterms.html'>Supplying radial terms</a>
+            </li>
+            <li role="presentation">
+            <a href='../../page/./smatrixfile.html'>S-matrix file</a>
             </li>
           </ul>
         </div>
@@ -180,7 +188,7 @@ and then build and compile the contents of <code>./src</code> directory. </p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-12-29 14:32            </p>
+ on 2023-12-29 16:14            </p>
         </div>
       </div>
       <br>
@@ -193,9 +201,9 @@ and then build and compile the contents of <code>./src</code> directory. </p>
 <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../js/ie10-viewport-bug-workaround.js"></script>
 
     <!-- MathJax JavaScript
     ================================================== -->
@@ -209,9 +217,9 @@ and then build and compile the contents of <code>./src</code> directory. </p>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
+    <script src="../../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../../tipuesearch/tipuesearch.js"></script>
     
   </body>
 </html>

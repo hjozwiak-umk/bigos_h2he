@@ -4,12 +4,11 @@ atoms. The package is being developed at the Nicolaus Copernicus University in T
 
 ![bigos_graph](doc/media/bigos_graph.jpg "Structure of the BIGOS project")
 
-Here, we present the SCATTERINC code, the central part of the BIGOS package.
+Here, we present the SCATTERING code, the central part of the BIGOS package.
 The purpose of the SCATTERING code is to solve the coupled equations for a given scattering system, provide the
 scattering S-matrix elements and calculate the state-to-state cross-sections.
 
-**Please read the documentation in doc/index.html.**
-
+**Please read the documentation generated with [FORD](https://github.com/Fortran-FOSS-Programmers/ford) in doc/index.html.**
 
 This version of the code is adjusted for diatom - atom collision systems,<br>
 in particular the H<sub>2</sub> - He system. <br>
