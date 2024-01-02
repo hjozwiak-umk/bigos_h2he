@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>time_count_summary &ndash; the SCATTERING code</title>
+    <title>wavenumber_from_energy &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,8 +77,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>time_count_summary
-      <small>Subroutine</small>
+    <h1>wavenumber_from_energy
+      <small>Function</small>
       
     </h1>
       <div class="row" id="info-bar">
@@ -89,18 +89,18 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 0.8% of total for procedures.">15 statements</a>
+               title=" 0.5% of total for procedures.">9 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/utility_functions_mod.f90"> Source File</a>
+              <a href="../src/input_reader_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/utility_functions_mod.f90.html'>utility_functions_mod.f90</a></li>
-              <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
-          <li class="active">time_count_summary</li>
+              <li><a href='../sourcefile/input_reader_mod.f90.html'>input_reader_mod.f90</a></li>
+              <li><a href='../module/io_mod.html'>io_mod</a></li>
+          <li class="active">wavenumber_from_energy</li>
         </ol>
       </div>
     </div>
@@ -136,12 +136,6 @@
   
   
   
-    <div class="panel panel-primary">
-      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-      <div class="list-group">
-        <a class="list-group-item" href="../proc/time_count_summary.html#src">time_count_summary</a>
-      </div>
-    </div>
 
 
   </div>
@@ -149,11 +143,15 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine time_count_summary(start_, stop_, time_, message_)  
+    <h2>public  function wavenumber_from_energy(energy_) result(k_)  
 </h2>
     
 
-    <p>print the message about the time it took to complete a single task</p>
+    <p>returns the wavenumber, \(k_{a}\), given the energy of a given state,
+\(E_{a}\); calls etot() function; atomic units in the whole function
+\( k_{a} = \sqrt(2 \mu (E_{tot} - E_{a}) \)
+since it uses reducedmass and etotal(), the function checks
+if units are already converted</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -168,7 +166,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-start_"></span>
+              <span class="anchor" id="variable-energy_"></span>
               real(kind=dp),
             </td>
 <td>intent(in)</td>
@@ -176,60 +174,21 @@
               
             </td>
             <td>::</td>
-            <td><strong>start_</strong></td>
+            <td><strong>energy_</strong></td>
             <td>
-                <p>initial time</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-stop_"></span>
-              real(kind=dp),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>stop_</strong></td>
-            <td>
-                <p>final time</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-time_"></span>
-              real(kind=dp),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>time_</strong></td>
-            <td>
-                <p>stop_ - start_</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-message_~4"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>message_</strong></td>
-            <td>
-                <p>(optional) a message to print instead of a default
-"Completed in ... s"</p>
+                <p>energy of a given state, \( E_{a} \), in a.u.</p>
             </td>
         </tr>
     </tbody>
   </table>
 
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-k_"></span>
+          real(kind=dp)
+        </small>
+      </h3>
+      <p>wavenumber, \(k_{a}\), in a.u.</p>
     <br>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -241,32 +200,62 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~time_count_summary~~CallsGraph Pages: 1 -->
-<svg id="proctime_count_summaryCallsGraph" width="263pt" height="32pt"
- viewBox="0.00 0.00 263.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~time_count_summary~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~time_count_summary~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 259,-28 259,4 -4,4"/>
-<!-- proc~time_count_summary -->
-<g id="proc~~time_count_summary~~CallsGraph_node1" class="node">
-<title>proc~time_count_summary</title>
-<polygon fill="none" stroke="black" points="127,-24 0,-24 0,0 127,0 127,-24"/>
-<text text-anchor="middle" x="63.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">time_count_summary</text>
+<!-- Title: proc~~wavenumber_from_energy~~CallsGraph Pages: 1 -->
+<svg id="procwavenumber_from_energyCallsGraph" width="397pt" height="74pt"
+ viewBox="0.00 0.00 397.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~wavenumber_from_energy~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<title>proc~~wavenumber_from_energy~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 393,-70 393,4 -4,4"/>
+<!-- proc~wavenumber_from_energy -->
+<g id="proc~~wavenumber_from_energy~~CallsGraph_node1" class="node">
+<title>proc~wavenumber_from_energy</title>
+<polygon fill="none" stroke="black" points="155,-45 0,-45 0,-21 155,-21 155,-45"/>
+<text text-anchor="middle" x="77.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">wavenumber_from_energy</text>
 </g>
-<!-- proc~write_message -->
-<g id="proc~~time_count_summary~~CallsGraph_node2" class="node">
-<title>proc~write_message</title>
-<g id="a_proc~~time_count_summary~~CallsGraph_node2"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="255,-24 163,-24 163,0 255,0 255,-24"/>
-<text text-anchor="middle" x="209" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+<!-- proc~etotal -->
+<g id="proc~~wavenumber_from_energy~~CallsGraph_node2" class="node">
+<title>proc~etotal</title>
+<g id="a_proc~~wavenumber_from_energy~~CallsGraph_node2"><a xlink:href=".././proc/etotal.html" xlink:title="ETOTAL">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="253,-66 199,-66 199,-42 253,-42 253,-66"/>
+<text text-anchor="middle" x="226" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ETOTAL</text>
 </a>
 </g>
 </g>
-<!-- proc~time_count_summary&#45;&gt;proc~write_message -->
-<g id="proc~~time_count_summary~~CallsGraph_edge1" class="edge">
-<title>proc~time_count_summary&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#ff0000" d="M127.02,-12C135.62,-12 144.39,-12 152.83,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="152.94,-15.5 162.94,-12 152.94,-8.5 152.94,-15.5"/>
+<!-- proc~wavenumber_from_energy&#45;&gt;proc~etotal -->
+<g id="proc~~wavenumber_from_energy~~CallsGraph_edge1" class="edge">
+<title>proc~wavenumber_from_energy&#45;&gt;proc~etotal</title>
+<path fill="none" stroke="#ff0000" d="M155.18,-43.99C166.9,-45.67 178.5,-47.33 188.77,-48.81"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="188.56,-52.31 198.96,-50.27 189.55,-45.38 188.56,-52.31"/>
+</g>
+<!-- proc~write_error -->
+<g id="proc~~wavenumber_from_energy~~CallsGraph_node3" class="node">
+<title>proc~write_error</title>
+<g id="a_proc~~wavenumber_from_energy~~CallsGraph_node3"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
+<polygon fill="#d9534f" stroke="#d9534f" points="261,-24 191,-24 191,0 261,0 261,-24"/>
+<text text-anchor="middle" x="226" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
+</a>
+</g>
+</g>
+<!-- proc~wavenumber_from_energy&#45;&gt;proc~write_error -->
+<g id="proc~~wavenumber_from_energy~~CallsGraph_edge2" class="edge">
+<title>proc~wavenumber_from_energy&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ff0000" d="M155.18,-22.01C163.94,-20.75 172.64,-19.51 180.77,-18.34"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="181.32,-21.8 190.72,-16.91 180.33,-14.87 181.32,-21.8"/>
+</g>
+<!-- proc~write_message -->
+<g id="proc~~wavenumber_from_energy~~CallsGraph_node4" class="node">
+<title>proc~write_message</title>
+<g id="a_proc~~wavenumber_from_energy~~CallsGraph_node4"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="389,-24 297,-24 297,0 389,0 389,-24"/>
+<text text-anchor="middle" x="343" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+</a>
+</g>
+</g>
+<!-- proc~write_error&#45;&gt;proc~write_message -->
+<g id="proc~~wavenumber_from_energy~~CallsGraph_edge3" class="edge">
+<title>proc~write_error&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#00ffff" d="M261.19,-12C269.19,-12 277.91,-12 286.56,-12"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="286.65,-15.5 296.65,-12 286.65,-8.5 286.65,-15.5"/>
 </g>
 </g>
 </svg>
@@ -341,53 +330,68 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~time_count_summary~~CalledByGraph Pages: 1 -->
-<svg id="proctime_count_summaryCalledByGraph" width="382pt" height="52pt"
- viewBox="0.00 0.00 382.00 52.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~time_count_summary~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 48)">
-<title>proc~~time_count_summary~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-48 378,-48 378,4 -4,4"/>
-<!-- proc~time_count_summary -->
-<g id="proc~~time_count_summary~~CalledByGraph_node1" class="node">
-<title>proc~time_count_summary</title>
-<polygon fill="none" stroke="black" points="374,-44 247,-44 247,-20 374,-20 374,-44"/>
-<text text-anchor="middle" x="310.5" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50">time_count_summary</text>
+<!-- Title: proc~~wavenumber_from_energy~~CalledByGraph Pages: 1 -->
+<svg id="procwavenumber_from_energyCalledByGraph" width="452pt" height="74pt"
+ viewBox="0.00 0.00 452.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~wavenumber_from_energy~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<title>proc~~wavenumber_from_energy~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 448,-70 448,4 -4,4"/>
+<!-- proc~wavenumber_from_energy -->
+<g id="proc~~wavenumber_from_energy~~CalledByGraph_node1" class="node">
+<title>proc~wavenumber_from_energy</title>
+<polygon fill="none" stroke="black" points="444,-45 289,-45 289,-21 444,-21 444,-45"/>
+<text text-anchor="middle" x="366.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">wavenumber_from_energy</text>
 </g>
-<!-- proc~crosssection -->
-<g id="proc~~time_count_summary~~CalledByGraph_node2" class="node">
-<title>proc~crosssection</title>
-<g id="a_proc~~time_count_summary~~CalledByGraph_node2"><a xlink:href=".././proc/crosssection.html" xlink:title="CROSSSECTION">
-<polygon fill="#d9534f" stroke="#d9534f" points="211,-24 115,-24 115,0 211,0 211,-24"/>
-<text text-anchor="middle" x="163" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">CROSSSECTION</text>
+<!-- proc~save_open_basis_levels -->
+<g id="proc~~wavenumber_from_energy~~CalledByGraph_node2" class="node">
+<title>proc~save_open_basis_levels</title>
+<g id="a_proc~~wavenumber_from_energy~~CalledByGraph_node2"><a xlink:href=".././proc/save_open_basis_levels.html" xlink:title="save_open_basis_levels">
+<polygon fill="#d9534f" stroke="#d9534f" points="253,-66 115,-66 115,-42 253,-42 253,-66"/>
+<text text-anchor="middle" x="184" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_open_basis_levels</text>
 </a>
 </g>
 </g>
-<!-- proc~crosssection&#45;&gt;proc~time_count_summary -->
-<g id="proc~~time_count_summary~~CalledByGraph_edge1" class="edge">
-<title>proc~crosssection&#45;&gt;proc~time_count_summary</title>
-<path fill="none" stroke="#ff0000" d="M211.24,-18.49C219.41,-19.62 228.07,-20.81 236.74,-22"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="236.49,-25.5 246.88,-23.39 237.45,-18.56 236.49,-25.5"/>
+<!-- proc~save_open_basis_levels&#45;&gt;proc~wavenumber_from_energy -->
+<g id="proc~~wavenumber_from_energy~~CalledByGraph_edge1" class="edge">
+<title>proc~save_open_basis_levels&#45;&gt;proc~wavenumber_from_energy</title>
+<path fill="none" stroke="#ff0000" d="M253.24,-46.06C261.56,-45.09 270.15,-44.09 278.7,-43.1"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="279.17,-46.57 288.7,-41.94 278.36,-39.61 279.17,-46.57"/>
+</g>
+<!-- proc~calculate_k_matrix -->
+<g id="proc~~wavenumber_from_energy~~CalledByGraph_node3" class="node">
+<title>proc~calculate_k_matrix</title>
+<g id="a_proc~~wavenumber_from_energy~~CalledByGraph_node3"><a xlink:href=".././proc/calculate_k_matrix.html" xlink:title="calculate_k_matrix">
+<polygon fill="#d9534f" stroke="#d9534f" points="240,-24 128,-24 128,0 240,0 240,-24"/>
+<text text-anchor="middle" x="184" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_k_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_k_matrix&#45;&gt;proc~wavenumber_from_energy -->
+<g id="proc~~wavenumber_from_energy~~CalledByGraph_edge2" class="edge">
+<title>proc~calculate_k_matrix&#45;&gt;proc~wavenumber_from_energy</title>
+<path fill="none" stroke="#ff0000" d="M240.14,-18.41C252.36,-19.84 265.61,-21.38 278.76,-22.91"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="278.43,-26.39 288.77,-24.07 279.24,-19.44 278.43,-26.39"/>
 </g>
 <!-- program~scattering -->
-<g id="proc~~time_count_summary~~CalledByGraph_node3" class="node">
+<g id="proc~~wavenumber_from_energy~~CalledByGraph_node4" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~time_count_summary~~CalledByGraph_node3"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-44 0,-44 0,-20 79,-20 79,-44"/>
-<text text-anchor="middle" x="39.5" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+<g id="a_proc~~wavenumber_from_energy~~CalledByGraph_node4"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-45 0,-45 0,-21 79,-21 79,-45"/>
+<text text-anchor="middle" x="39.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~time_count_summary -->
-<g id="proc~~time_count_summary~~CalledByGraph_edge2" class="edge">
-<title>program~scattering&#45;&gt;proc~time_count_summary</title>
-<path fill="none" stroke="#ff0000" d="M79.17,-32.62C90.69,-32.78 103.36,-32.92 115,-33 157.67,-33.29 168.33,-33.22 211,-33 219.36,-32.96 228.12,-32.89 236.81,-32.82"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="237,-36.32 246.97,-32.73 236.94,-29.32 237,-36.32"/>
+<!-- program~scattering&#45;&gt;proc~save_open_basis_levels -->
+<g id="proc~~wavenumber_from_energy~~CalledByGraph_edge3" class="edge">
+<title>program~scattering&#45;&gt;proc~save_open_basis_levels</title>
+<path fill="none" stroke="#ff0000" d="M79.06,-38.68C87.09,-39.87 95.82,-41.15 104.7,-42.46"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.35,-45.95 114.75,-43.94 105.37,-39.02 104.35,-45.95"/>
 </g>
-<!-- program~scattering&#45;&gt;proc~crosssection -->
-<g id="proc~~time_count_summary~~CalledByGraph_edge3" class="edge">
-<title>program~scattering&#45;&gt;proc~crosssection</title>
-<path fill="none" stroke="#ff0000" d="M79.28,-25.62C87.36,-24.29 96.05,-22.86 104.65,-21.44"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="105.36,-24.87 114.65,-19.79 104.22,-17.96 105.36,-24.87"/>
+<!-- program~scattering&#45;&gt;proc~calculate_k_matrix -->
+<g id="proc~~wavenumber_from_energy~~CalledByGraph_edge4" class="edge">
+<title>program~scattering&#45;&gt;proc~calculate_k_matrix</title>
+<path fill="none" stroke="#00ffff" d="M79.06,-27.32C91.02,-25.56 104.54,-23.56 117.78,-21.61"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="118.44,-25.05 127.82,-20.13 117.42,-18.13 118.44,-25.05"/>
 </g>
 </g>
 </svg>
@@ -475,12 +479,6 @@
   
   
   
-    <div class="panel panel-primary">
-      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-      <div class="list-group">
-        <a class="list-group-item" href="../proc/time_count_summary.html#src">time_count_summary</a>
-      </div>
-    </div>
 
 
     </section>
@@ -495,40 +493,6 @@
 
 
     
-    <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">time_count_summary</span><span class="p">(</span><span class="n">start_</span><span class="p">,</span><span class="w"> </span><span class="n">stop_</span><span class="p">,</span><span class="w"> </span><span class="n">time_</span><span class="p">,</span><span class="w"> </span><span class="n">message_</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! print the message about the time it took to complete a single task</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">start_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! initial time</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">stop_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! final time</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">time_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! stop_ - start_</span>
-<span class="w">         </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">message_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! (optional) a message to print instead of a default</span>
-<span class="w">            </span><span class="c">!! &quot;Completed in ... s&quot;</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">default_message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Completed in&#39;</span><span class="w"></span>
-<span class="w">         </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">time_msg</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">time_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stop_</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_</span><span class="w"></span>
-<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">message_</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            write</span><span class="p">(</span><span class="n">time_msg</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(a,x,a,es11.4,x,a)&#39;</span><span class="p">)</span><span class="w">                          </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">message_</span><span class="p">),</span><span class="w"> </span><span class="n">time_</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="w"></span>
-<span class="w">         </span><span class="k">else</span>
-<span class="k">            write</span><span class="p">(</span><span class="n">time_msg</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(a,x,a,es11.4,x,a)&#39;</span><span class="p">)</span><span class="w">                          </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">default_message</span><span class="p">,</span><span class="w"> </span><span class="n">time_</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="w"></span>
-<span class="w">         </span><span class="k">endif</span>
-
-<span class="k">         call </span><span class="n">write_message</span><span class="p">(</span><span class="n">time_msg</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="k">end subroutine </span><span class="n">time_count_summary</span><span class="w"></span>
-</pre></div>
-
-    </section>
-    <br>
     
     </div>
   </div>

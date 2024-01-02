@@ -119,11 +119,11 @@
 and rovibrational wave functions of the isolated molecule, \(  \chi_{\eta}(r) \), where \( \eta = v, j\).
 Note that they are independent of \( J \) and \( p \).</p>
 <p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>Radial coupling terms are calculated separately and provided to the SCATTERING code in a tabulated form: they are read
-in by the <a href="proc/potential_read.html">potential_read</a> procedure and interpolated (see also <a href="#radialterms">Supplying radial coupling terms</a>)
-by <a href="proc/potential_interpolation.html">potential_interpolation</a>. <br>
-These subroutines are placed in the <a href="module/potential.html">potential_mod</a> module. <br>
-Interpolated radial coupling terms at aritrary \( R \) are provided by the <a href="proc/radtermvalue.html">radtermvalue</a> procedure from the
-<a href="module/propagators.html">propagators</a> module.</p></div>
+in by the <a href="../../proc/potential_read.html">potential_read</a> procedure and interpolated (see also <a href="../radialterms.html">Supplying radial coupling terms</a>)
+by <a href="../../proc/potential_interpolation.html">potential_interpolation</a>. <br>
+These subroutines are placed in the <a href="../../module/potential.html">potential_mod</a> module. <br>
+Interpolated radial coupling terms at aritrary \( R \) are provided by the <a href="../../proc/radtermvalue.html">radtermvalue</a> procedure from the
+<a href="../../module/propagators.html">propagators</a> module.</p></div>
 <p>\( g_{{\lambda},\gamma,\gamma'}^{Jp} \) are the algebraic coefficients of the expansion which stem from matrix elements of Legendre polynomials, 
 \( P_{\lambda} (\cos\theta) \) in the \( \gamma \) basis. They are given as</p>
 <p>
@@ -150,19 +150,19 @@ or <a href="https://arxiv.org/abs/1504.08329">Pre-print (2015)</a> <br></p></div
 <p>Algebraic coefficients are \(R\)-independent and are calculated only once per each block. 
 Note that they are block-diagonal with respect to \(\bar{\Omega}\).</p>
 <p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>Calculation of \( g_{{\lambda},\gamma,\gamma'}^{Jp} \) algebraic coefficients is handled 
-by the <a href="proc/check_nonzero_coupling_matrix_elements.html">check_nonzero_coupling_matrix_elements</a> and
-<a href="proc/prepare_coupling_matrix_elements.html">prepare_coupling_matrix_elements</a> procedures from the <a href="module/pes_coupling_matrix.html">algebraic_coefficients</a> module.</p></div>
-<p>Procedure <a href="proc/check_nonzero_coupling_matrix_elements.html">check_nonzero_coupling_matrix_elements</a> first checks how many
+by the <a href="../../proc/check_nonzero_coupling_matrix_elements.html">check_nonzero_coupling_matrix_elements</a> and
+<a href="../../proc/prepare_coupling_matrix_elements.html">prepare_coupling_matrix_elements</a> procedures from the <a href="../../module/pes_coupling_matrix.html">algebraic_coefficients</a> module.</p></div>
+<p>Procedure <a href="../../proc/check_nonzero_coupling_matrix_elements.html">check_nonzero_coupling_matrix_elements</a> first checks how many
 matrix elements fulfill the \( \delta_{\bar{\Omega},\bar{\Omega}'} \) condition - this is saved in the
-<a href="module/PES_COUPLING_MATRIX.html#variable-number_of_nonzero_coupling_matrix_elements">number_of_nonzero_coupling_matrix_elements</a> variable.
+<a href="../../proc/check_nonzero_coupling_matrix_elements.html#variable-number_of_nonzero_coupling_matrix_elements">number_of_nonzero_coupling_matrix_elements</a> variable.
 On top of that, for each non-zero matrix element, the number of non-zero terms in the sum over \(\lambda\)
 is checked and saved in number_of_nonzero_coupling_coefficients variable.
-The coefficients are calculated with <a href="proc/prepare_coupling_matrix_elements.html">prepare_coupling_matrix_elements</a> procedure and saved
+The coefficients are calculated with <a href="../../proc/prepare_coupling_matrix_elements.html">prepare_coupling_matrix_elements</a> procedure and saved
 in the nonzero_coupling_coefficients variable.
 The corresponding \( \lambda \) indices are written indirectly in nonzero_legendre_indices array
-which holds indices to <a href="module/io_mod.html#variable-l1tab">l1tab</a>.</p>
+which holds indices to <a href="../../module/io_mod.html#variable-l1tab">l1tab</a>.</p>
 <p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>The total contribution from the interaction potential, Eq. \eqref{eq:pes_contribution}, is determined by 
-<a href="proc/pes_contribution.html">pes_contribution</a> procedure from <a href="module/propagators.html">propagators</a> module.</p></div>
+<a href="../../proc/pes_contribution.html">pes_contribution</a> procedure from <a href="../../module/propagators.html">propagators</a> module.</p></div>
 <p>The centrifugal term, \( \mathbf{L}^{2\,Jp}_{\gamma, \gamma'} \), is block-diagonal with respect to the rotational quantum number \( j \).
 Terms diagonal with respect to \( \bar{\Omega} \) are given as
 <script type="math/tex; mode=display">\begin{equation}
@@ -177,8 +177,8 @@ Terms diagonal with respect to \( \bar{\Omega} \) are given as
 (\mathbf{L}^{2})^{Jp}_{v' j' \bar{\Omega}' \pm 1 ; v j \bar{\Omega}} = -\sqrt{\left(1+\delta_{\bar{\Omega}0}\right) \left(1+\delta_{\bar{\Omega}\pm1, 0}\right)} \sqrt{\left[J(J+1)- \bar{\Omega}(\bar{\Omega}+1)\right]\left[j(j+1)- \bar{\Omega}(\bar{\Omega}+1)\right]}
 \end{equation}</script>
 </p>
-<p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>Matrix elements, \( \mathbf{L}^{2\,Jp}_{\gamma, \gamma'} \), are calculated by the <a href="proc/cenitrfugal_matrix.html">centrifugal_matrix</a> subroutine from the <a href="module/propagators.html">propagators</a> module.
-These are called only once per block, at the begining of the <a href="proc/numerov.html">numerov</a> procedure.</p></div>
+<p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>Matrix elements, \( \mathbf{L}^{2\,Jp}_{\gamma, \gamma'} \), are calculated by the <a href="../../proc/cenitrfugal_matrix.html">centrifugal_matrix</a> subroutine from the <a href="../../module/propagators.html">propagators</a> module.
+These are called only once per block, at the begining of the <a href="../../proc/numerov.html">numerov</a> procedure.</p></div>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <hr class="visible-xs visible-sm">
@@ -236,14 +236,14 @@ These are called only once per block, at the begining of the <a href="proc/numer
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2023 
+        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2024 
 </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-12-29 16:53            </p>
+ on 2024-01-02 15:00            </p>
         </div>
       </div>
       <br>

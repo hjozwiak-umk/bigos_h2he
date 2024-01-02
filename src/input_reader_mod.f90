@@ -4,7 +4,7 @@ module io_mod
    !! 2. input_check - checks the variables supplied in the input file
    !! 3. input_summary - summary of the input variables
    !! 5. etotal (function) - returns the total energy of the system
-   !! 6. wavenumberekin (function) - returns the wavenumber (in 1/A^{2})
+   !! 6. wavenumber_from_energy (function) - returns the wavenumber
    !! 7. units_conversion - converts all physical quantities to atomic units
    !! 8. count_available_xs (function) - counts energetically accessible
    !!    levels in the basis
@@ -27,13 +27,14 @@ module io_mod
    real(dp), parameter :: bohrtoangstrom = 0.5291772109d0
    real(dp), parameter :: hartreetocm = 219474.631363d0
    real(dp), parameter :: pi = dacos(-1.d0)
+   real(dp), parameter :: unitary_tolerance = 1e-6_dp
    integer(int32), allocatable :: v1array(:), j1array(:), l1tab(:), l2tab(:),  &
       lltab(:), v1pes(:), j1pes(:), v1ppes(:), j1ppes(:), reduced_v1pes(:),    &
       reduced_j1pes(:), reduced_v1ppes(:), reduced_j1ppes(:)
    real(dp), allocatable :: elevel(:), rmat(:), b(:), c(:), d(:), vmat(:,:),   &
       bmat(:,:), cmat(:,:), dmat(:,:), read_vmat3D(:,:,:), vmat3D(:,:,:),      &
       bmat3D(:,:,:), cmat3D(:,:,:), dmat3D(:,:,:)
-   logical :: pes_file_exists
+   logical :: pes_file_exists, units_converted = .false.
    !------------------------------------------------------------------------------!
    contains
 
@@ -387,9 +388,6 @@ module io_mod
       else if(ietoterel.eq.1) then
          call write_message("Relative kinetic energy of the colliding system: " //&
             trim(adjustl(float_to_character(energy, "(F10.4)"))) // " cm-1")
-         call write_message("and the corresponding wavenumber: " // &
-            trim(adjustl(float_to_character(WAVENUMBEREKIN(), "(F10.4)"))) //  &
-            " 1/Ang")
          call write_message("The kinetic energy is calculated with respect to the" //&
             " v = " // trim(adjustl(integer_to_character(v1array(initial)))) //&
             " j = " // trim(adjustl(integer_to_character(j1array(initial)))) //&
@@ -408,6 +406,23 @@ module io_mod
       !------------------------------------------------------------------------!
    end subroutine input_summary
 !------------------------------------------------------------------------------!
+   subroutine units_conversion
+      !! converts all physical quantities to atomic units
+      !------------------------------------------------------------------------!
+      integer(int32) :: ilevel
+      !------------------------------------------------------------------------!
+      reducedmass = reducedmass*amutoau
+      energy=energy/hartreetocm
+      vdepth=vdepth/hartreetocm
+      !------------------------------------------------------------------------!
+      do ilevel=1,nlevel
+         elevel(ilevel)=elevel(ilevel)/hartreetocm
+      enddo
+      !------------------------------------------------------------------------!
+      units_converted = .true.
+      !------------------------------------------------------------------------!
+   end subroutine units_conversion
+!------------------------------------------------------------------------------!
    function ETOTAL() result(etot_)
       !! returns the total energy
       !------------------------------------------------------------------------!
@@ -421,73 +436,78 @@ module io_mod
       !------------------------------------------------------------------------!
    end function
 !------------------------------------------------------------------------------!
-   function WAVENUMBEREKIN() result(k_)
-      !! returns the wavenumber (in 1/A^{2})
+   function wavenumber_from_energy(energy_) result(k_)
+      !! returns the wavenumber, \\(k_{a}\\), given the energy of a given state,
+      !! \\(E_{a}\\); calls etot() function; atomic units in the whole function
+      !! \\( k_{a} = \sqrt(2 \mu (E_{tot} - E_{a}) \\)
+      !! since it uses reducedmass and etotal(), the function checks
+      !! if units are already converted
       !------------------------------------------------------------------------!
+      real(dp), intent(in) :: energy_
+         !! energy of a given state, \\( E_{a} \\), in a.u.
       real(dp) :: k_
+         !! wavenumber, \\(k_{a}\\), in a.u.
       !------------------------------------------------------------------------!
-      if (ietoterel.eq.1) then
-         k_ = dsqrt(2*reducedmass*amutoau*&
-          (ETOTAL()-elevel(initial))/hartreetocm)/bohrtoangstrom
+      if (units_converted) then
+         !---------------------------------------------------------------------!
+         ! abs() is for closed channels, see...
+         !---------------------------------------------------------------------!
+         k_ = dsqrt(2*reducedmass*abs(ETOTAL() - energy_))
       else
-         call write_error("Wavenumberekin called when ietoterel = 0")
+         call write_error("wavenumber_from_energy called but units are not " //&
+            "converted yet")
       endif
       !------------------------------------------------------------------------!
    end function
 !------------------------------------------------------------------------------!
-   subroutine units_conversion
-      !! converts all physical quantities to atomic units
-      !---------------------------------------------------------------------!
-      integer(int32) :: ilevel
-      !---------------------------------------------------------------------!
-      reducedmass = reducedmass*amutoau
-      energy=energy/hartreetocm
-      vdepth=vdepth/hartreetocm
-      !---------------------------------------------------------------------!
-      do ilevel=1,nlevel
-         elevel(ilevel)=elevel(ilevel)/hartreetocm
+   function is_open(energy_) result(is_open_)
+      !! checks if a channel/level is energetically accessible (open)
+      !! by comparing energy with etotal()
+      !------------------------------------------------------------------------!
+      real(dp), intent(in) :: energy_
+         !! level/channel energy
+      logical :: is_open_
+      !------------------------------------------------------------------------!
+      is_open_ = ( energy_ <= ETOTAL() )
+      !------------------------------------------------------------------------!
+   end function is_open
+!------------------------------------------------------------------------------!
+   function count_open_basis_levels() result(open_)
+      !! counts the energetically accessible levels in the basis
+      !------------------------------------------------------------------------!
+      integer(int32) :: open_, ilevel
+      !------------------------------------------------------------------------!
+      open_ = 0
+      do ilevel = 1, nlevel
+         if (is_open(elevel(ilevel))) open_ = open_ + 1
       enddo
-      !---------------------------------------------------------------------!
-   end subroutine units_conversion
+      !------------------------------------------------------------------------!
+   end function count_open_basis_levels
 !------------------------------------------------------------------------------!
-      function count_open_basis_levels() result(open_)
-         !! counts the energetically accessible levels in the basis
-         !---------------------------------------------------------------------!
-         integer(int32) :: open_, ilevel
-         !---------------------------------------------------------------------!
-         open_ = 0
-         do ilevel = 1, nlevel
-            if (ETOTAL()-elevel(ilevel).ge.0) then
-               open_ = open_ + 1
-            endif
-         enddo
-         !---------------------------------------------------------------------!
-      end function count_open_basis_levels
-!------------------------------------------------------------------------------!
-      subroutine save_open_basis_levels(number_of_open_basis_levels,           &
-         open_basis_levels, open_basis_wavevectors)
-         !! saves indices to open levels in the basis and corresponding
-         !! wavenumbers
-         !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: number_of_open_basis_levels
-            !! number of energetically accessible levels in the basis
-         integer(int32), intent(inout) :: open_basis_levels(number_of_open_basis_levels)
-            !! array holding indices to energetically accessible levels in the basis
-         real(dp), intent(inout) :: open_basis_wavevectors(number_of_open_basis_levels)
-            !! array holding wavevectors calculated w.r.t energetically accessible levels in the basis
-         !---------------------------------------------------------------------!
-         integer(int32) :: count_, ilevel
-         !---------------------------------------------------------------------!
-         count_ = 0
-         do ilevel = 1, nlevel
-            if (ETOTAL() - elevel(ilevel) >= 0) then
-               count_ = count_ + 1
-               open_basis_levels(count_) = ilevel
-               open_basis_wavevectors(count_) = dsqrt((2 * reducedmass         &
-                  * (ETOTAL() - elevel(ilevel)))) / bohrtoangstrom
-            endif
-         enddo
-         !---------------------------------------------------------------------!
-      end subroutine save_open_basis_levels
+   subroutine save_open_basis_levels(number_of_open_basis_levels,              &
+      open_basis_levels, open_basis_wavevectors)
+      !! saves indices to open levels in the basis and corresponding
+      !! wavenumbers (in A^2)
+      !------------------------------------------------------------------------!
+      integer(int32), intent(in) :: number_of_open_basis_levels
+         !! number of energetically accessible levels in the basis
+      integer(int32), intent(inout) :: open_basis_levels(number_of_open_basis_levels)
+         !! array holding indices to energetically accessible levels in the basis
+      real(dp), intent(inout) :: open_basis_wavevectors(number_of_open_basis_levels)
+         !! array holding wavevectors calculated w.r.t energetically accessible levels in the basis
+      !------------------------------------------------------------------------!
+      integer(int32) :: count_, ilevel
+      !------------------------------------------------------------------------!
+      count_ = 0
+      do ilevel = 1, nlevel
+         if (is_open(elevel(ilevel))) then
+            count_ = count_ + 1
+            open_basis_levels(count_) = ilevel
+            open_basis_wavevectors(count_) =                                   &
+               wavenumber_from_energy(elevel(ilevel)) / bohrtoangstrom
+         endif
+      enddo
+      !------------------------------------------------------------------------!
+   end subroutine save_open_basis_levels
 !------------------------------------------------------------------------------!
 end module io_mod

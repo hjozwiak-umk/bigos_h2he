@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>transform_summation &ndash; the SCATTERING code</title>
+    <title>calculate_sf_matrix_from_bf_matrix &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>transform_summation
+    <h1>calculate_sf_matrix_from_bf_matrix
       <small>Subroutine</small>
       
     </h1>
@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.3% of total for procedures.">25 statements</a>
+               title=" 1.2% of total for procedures.">23 statements</a>
           </li>
 
             <li id="source-file">
@@ -100,7 +100,7 @@
         <ol class="breadcrumb in-well text-right">
               <li><a href='../sourcefile/boundary_conditions_mod.f90.html'>boundary_conditions_mod.f90</a></li>
               <li><a href='../module/boundary_conditions_mod.html'>boundary_conditions_mod</a></li>
-          <li class="active">transform_summation</li>
+          <li class="active">calculate_sf_matrix_from_bf_matrix</li>
         </ol>
       </div>
     </div>
@@ -126,18 +126,17 @@
       </div>
       <div id="vars-0" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-coeff_inner">coeff_inner</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-coeff_outer">coeff_outer</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-ii~6">ii</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-ij~4">ij</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-j1ptmp~3">j1ptmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-j1tmp~3">j1tmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-omptmp">omptmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-omtmp">omtmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-sum_inner">sum_inner</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-sum_outer">sum_outer</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-v1ptmp">v1ptmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-v1tmp">v1tmp</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-ii~5">ii</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-ij~3">ij</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-j1_">j1_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-j1p_">j1p_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-l_~7">l_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-lp_~2">lp_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-omega_~2">omega_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-omegap_">omegap_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-single_sf_element">single_sf_element</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-v1_">v1_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-v1p_">v1p_</a>
         </div>
       </div>
     </div>
@@ -162,7 +161,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/transform_summation.html#src">transform_summation</a>
+        <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#src">calculate_sf_matrix_from_bf_matrix</a>
       </div>
     </div>
 
@@ -172,11 +171,13 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine transform_summation(number_of_channels, jtot_, v_, j_, vp_, jp_, l_, lp_, channels_level_indices, channels_omega_values, bf_matrix, sf_element)  
+    <h2>public  subroutine calculate_sf_matrix_from_bf_matrix(number_of_channels, total_angular_momentum_, channels_level_indices, channels_omega_values, channels_l_values, bf_matrix, sf_matrix)  
 </h2>
     
 
-    <p>performs the summation in Eqs. (6.17) and (6.18)</p>
+    <p>takes as an input matrix in the body-fixed frame and transforms it 
+to the spec-fixed frame; iterates over all matrix elements
+and calls calculate_single_SF_element</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -191,7 +192,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_channels~5"></span>
+              <span class="anchor" id="variable-number_of_channels~6"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -206,7 +207,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-jtot_~2"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~3"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -214,104 +215,14 @@
               
             </td>
             <td>::</td>
-            <td><strong>jtot_</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
                 <p>total angular momentum</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-v_"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>v_</strong></td>
-            <td>
-                <p>vibrational and rotational quantum numbers</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-j_~3"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>j_</strong></td>
-            <td>
-                <p>vibrational and rotational quantum numbers</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-vp_"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>vp_</strong></td>
-            <td>
-                <p>vibrational and rotational quantum numbers</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-jp_~2"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>jp_</strong></td>
-            <td>
-                <p>vibrational and rotational quantum numbers</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-l_~5"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>l_</strong></td>
-            <td>
-                <p>orbital angular momenta</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-lp_"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>lp_</strong></td>
-            <td>
-                <p>orbital angular momenta</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channels_level_indices~4"></span>
+              <span class="anchor" id="variable-channels_level_indices~5"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -326,7 +237,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channels_omega_values~3"></span>
+              <span class="anchor" id="variable-channels_omega_values~4"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -341,7 +252,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-bf_matrix"></span>
+              <span class="anchor" id="variable-channels_l_values~2"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_l_values</strong>(number_of_channels)</td>
+            <td>
+                <p>holds all values of l</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bf_matrix~2"></span>
               real(kind=dp),
             </td>
 <td>intent(in)</td>
@@ -356,17 +282,17 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-sf_element"></span>
+              <span class="anchor" id="variable-sf_matrix"></span>
               real(kind=dp),
             </td>
-<td>intent(out)</td>
+<td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>sf_element</strong></td>
+            <td><strong>sf_matrix</strong>(number_of_channels,number_of_channels)</td>
             <td>
-                <p>(output) matrix element in the SF frame</p>
+                <p>(output) matrix in the SF frame</p>
             </td>
         </tr>
     </tbody>
@@ -383,44 +309,59 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~transform_summation~~CallsGraph Pages: 1 -->
-<svg id="proctransform_summationCallsGraph" width="318pt" height="32pt"
- viewBox="0.00 0.00 318.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~transform_summation~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~transform_summation~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 314,-28 314,4 -4,4"/>
-<!-- proc~transform_summation -->
-<g id="proc~~transform_summation~~CallsGraph_node1" class="node">
-<title>proc~transform_summation</title>
-<polygon fill="none" stroke="black" points="130,-24 0,-24 0,0 130,0 130,-24"/>
-<text text-anchor="middle" x="65" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">transform_summation</text>
+<!-- Title: proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph Pages: 1 -->
+<svg id="proccalculate_sf_matrix_from_bf_matrixCallsGraph" width="591pt" height="32pt"
+ viewBox="0.00 0.00 591.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 587,-28 587,4 -4,4"/>
+<!-- proc~calculate_sf_matrix_from_bf_matrix -->
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_node1" class="node">
+<title>proc~calculate_sf_matrix_from_bf_matrix</title>
+<polygon fill="none" stroke="black" points="201,-24 0,-24 0,0 201,0 201,-24"/>
+<text text-anchor="middle" x="100.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">calculate_sf_matrix_from_bf_matrix</text>
 </g>
-<!-- proc~p_coeff -->
-<g id="proc~~transform_summation~~CallsGraph_node2" class="node">
-<title>proc~p_coeff</title>
-<g id="a_proc~~transform_summation~~CallsGraph_node2"><a xlink:href=".././proc/p_coeff.html" xlink:title="p_coeff">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="220,-24 166,-24 166,0 220,0 220,-24"/>
-<text text-anchor="middle" x="193" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">p_coeff</text>
+<!-- proc~calculate_single_sf_element -->
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_node2" class="node">
+<title>proc~calculate_single_sf_element</title>
+<g id="a_proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_node2"><a xlink:href=".././proc/calculate_single_sf_element.html" xlink:title="calculate_single_SF_element">
+<polygon fill="#d9534f" stroke="#d9534f" points="403,-24 237,-24 237,0 403,0 403,-24"/>
+<text text-anchor="middle" x="320" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_single_SF_element</text>
 </a>
 </g>
 </g>
-<!-- proc~transform_summation&#45;&gt;proc~p_coeff -->
-<g id="proc~~transform_summation~~CallsGraph_edge1" class="edge">
-<title>proc~transform_summation&#45;&gt;proc~p_coeff</title>
-<path fill="none" stroke="#ff0000" d="M130.11,-12C138.9,-12 147.66,-12 155.71,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="155.83,-15.5 165.83,-12 155.83,-8.5 155.83,-15.5"/>
+<!-- proc~calculate_sf_matrix_from_bf_matrix&#45;&gt;proc~calculate_single_sf_element -->
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_edge1" class="edge">
+<title>proc~calculate_sf_matrix_from_bf_matrix&#45;&gt;proc~calculate_single_sf_element</title>
+<path fill="none" stroke="#ff0000" d="M201.02,-12C209.53,-12 218.11,-12 226.56,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="226.79,-15.5 236.79,-12 226.79,-8.5 226.79,-15.5"/>
+</g>
+<!-- proc~p_coeff -->
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_node3" class="node">
+<title>proc~p_coeff</title>
+<g id="a_proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_node3"><a xlink:href=".././proc/p_coeff.html" xlink:title="p_coeff">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="493,-24 439,-24 439,0 493,0 493,-24"/>
+<text text-anchor="middle" x="466" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">p_coeff</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_single_sf_element&#45;&gt;proc~p_coeff -->
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_edge2" class="edge">
+<title>proc~calculate_single_sf_element&#45;&gt;proc~p_coeff</title>
+<path fill="none" stroke="#ff0000" d="M403.1,-12C411.95,-12 420.6,-12 428.5,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="428.73,-15.5 438.73,-12 428.73,-8.5 428.73,-15.5"/>
 </g>
 <!-- fwig3jj -->
-<g id="proc~~transform_summation~~CallsGraph_node3" class="node">
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_node4" class="node">
 <title>fwig3jj</title>
-<polygon fill="#777777" stroke="#777777" points="310,-24 256,-24 256,0 310,0 310,-24"/>
-<text text-anchor="middle" x="283" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fwig3jj</text>
+<polygon fill="#777777" stroke="#777777" points="583,-24 529,-24 529,0 583,0 583,-24"/>
+<text text-anchor="middle" x="556" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fwig3jj</text>
 </g>
 <!-- proc~p_coeff&#45;&gt;fwig3jj -->
-<g id="proc~~transform_summation~~CallsGraph_edge2" class="edge">
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CallsGraph_edge3" class="edge">
 <title>proc~p_coeff&#45;&gt;fwig3jj</title>
-<path fill="none" stroke="#ff0000" d="M220.4,-12C228.39,-12 237.31,-12 245.82,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="245.92,-15.5 255.92,-12 245.92,-8.5 245.92,-15.5"/>
+<path fill="none" stroke="#ff0000" d="M493.4,-12C501.39,-12 510.31,-12 518.82,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="518.92,-15.5 528.92,-12 518.92,-8.5 518.92,-15.5"/>
 </g>
 </g>
 </svg>
@@ -495,47 +436,32 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~transform_summation~~CalledByGraph Pages: 1 -->
-<svg id="proctransform_summationCalledByGraph" width="427pt" height="32pt"
- viewBox="0.00 0.00 427.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~transform_summation~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~transform_summation~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 423,-28 423,4 -4,4"/>
-<!-- proc~transform_summation -->
-<g id="proc~~transform_summation~~CalledByGraph_node1" class="node">
-<title>proc~transform_summation</title>
-<polygon fill="none" stroke="black" points="419,-24 289,-24 289,0 419,0 419,-24"/>
-<text text-anchor="middle" x="354" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">transform_summation</text>
-</g>
-<!-- proc~bf_to_sf_transformation -->
-<g id="proc~~transform_summation~~CalledByGraph_node2" class="node">
-<title>proc~bf_to_sf_transformation</title>
-<g id="a_proc~~transform_summation~~CalledByGraph_node2"><a xlink:href=".././proc/bf_to_sf_transformation.html" xlink:title="bf_to_sf_transformation">
-<polygon fill="#d9534f" stroke="#d9534f" points="253,-24 115,-24 115,0 253,0 253,-24"/>
-<text text-anchor="middle" x="184" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bf_to_sf_transformation</text>
-</a>
-</g>
-</g>
-<!-- proc~bf_to_sf_transformation&#45;&gt;proc~transform_summation -->
-<g id="proc~~transform_summation~~CalledByGraph_edge1" class="edge">
-<title>proc~bf_to_sf_transformation&#45;&gt;proc~transform_summation</title>
-<path fill="none" stroke="#ff0000" d="M253.33,-12C261.66,-12 270.21,-12 278.62,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="278.8,-15.5 288.8,-12 278.8,-8.5 278.8,-15.5"/>
+<!-- Title: proc~~calculate_sf_matrix_from_bf_matrix~~CalledByGraph Pages: 1 -->
+<svg id="proccalculate_sf_matrix_from_bf_matrixCalledByGraph" width="324pt" height="32pt"
+ viewBox="0.00 0.00 324.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~calculate_sf_matrix_from_bf_matrix~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 320,-28 320,4 -4,4"/>
+<!-- proc~calculate_sf_matrix_from_bf_matrix -->
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CalledByGraph_node1" class="node">
+<title>proc~calculate_sf_matrix_from_bf_matrix</title>
+<polygon fill="none" stroke="black" points="316,-24 115,-24 115,0 316,0 316,-24"/>
+<text text-anchor="middle" x="215.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">calculate_sf_matrix_from_bf_matrix</text>
 </g>
 <!-- program~scattering -->
-<g id="proc~~transform_summation~~CalledByGraph_node3" class="node">
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CalledByGraph_node2" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~transform_summation~~CalledByGraph_node3"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~calculate_sf_matrix_from_bf_matrix~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~bf_to_sf_transformation -->
-<g id="proc~~transform_summation~~CalledByGraph_edge2" class="edge">
-<title>program~scattering&#45;&gt;proc~bf_to_sf_transformation</title>
-<path fill="none" stroke="#ff0000" d="M79.06,-12C87.09,-12 95.82,-12 104.7,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="104.75,-15.5 114.75,-12 104.75,-8.5 104.75,-15.5"/>
+<!-- program~scattering&#45;&gt;proc~calculate_sf_matrix_from_bf_matrix -->
+<g id="proc~~calculate_sf_matrix_from_bf_matrix~~CalledByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;proc~calculate_sf_matrix_from_bf_matrix</title>
+<path fill="none" stroke="#ff0000" d="M79.12,-12C86.97,-12 95.6,-12 104.58,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.84,-15.5 114.84,-12 104.84,-8.5 104.84,-15.5"/>
 </g>
 </g>
 </svg>
@@ -613,18 +539,17 @@
       </div>
       <div id="vars-1" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-coeff_inner">coeff_inner</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-coeff_outer">coeff_outer</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-ii~6">ii</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-ij~4">ij</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-j1ptmp~3">j1ptmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-j1tmp~3">j1tmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-omptmp">omptmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-omtmp">omtmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-sum_inner">sum_inner</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-sum_outer">sum_outer</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-v1ptmp">v1ptmp</a>
-            <a class="list-group-item" href="../proc/transform_summation.html#variable-v1tmp">v1tmp</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-ii~5">ii</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-ij~3">ij</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-j1_">j1_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-j1p_">j1p_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-l_~7">l_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-lp_~2">lp_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-omega_~2">omega_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-omegap_">omegap_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-single_sf_element">single_sf_element</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-v1_">v1_</a>
+            <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#variable-v1p_">v1p_</a>
         </div>
       </div>
     </div>
@@ -649,7 +574,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/transform_summation.html#src">transform_summation</a>
+        <a class="list-group-item" href="../proc/calculate_sf_matrix_from_bf_matrix.html#src">calculate_sf_matrix_from_bf_matrix</a>
       </div>
     </div>
 
@@ -672,41 +597,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-coeff_inner"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>coeff_inner</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-coeff_outer"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>coeff_outer</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-ii~6"></span>
+              <span class="anchor" id="variable-ii~5"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -723,7 +614,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ij~4"></span>
+              <span class="anchor" id="variable-ij~3"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -740,7 +631,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-j1ptmp~3"></span>
+              <span class="anchor" id="variable-j1_"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -748,7 +639,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>j1ptmp</strong></td>
+            <td><strong>j1_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -757,7 +648,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-j1tmp~3"></span>
+              <span class="anchor" id="variable-j1p_"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -765,7 +656,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>j1tmp</strong></td>
+            <td><strong>j1p_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -774,7 +665,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-omptmp"></span>
+              <span class="anchor" id="variable-l_~7"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -782,7 +673,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>omptmp</strong></td>
+            <td><strong>l_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -791,7 +682,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-omtmp"></span>
+              <span class="anchor" id="variable-lp_~2"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -799,7 +690,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>omtmp</strong></td>
+            <td><strong>lp_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -808,7 +699,41 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-sum_inner"></span>
+              <span class="anchor" id="variable-omega_~2"></span>
+              integer(kind=int32),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omegap_"></span>
+              integer(kind=int32),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omegap_</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-single_sf_element"></span>
               real(kind=dp),
             </td>
               <td>public</td>
@@ -816,7 +741,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>sum_inner</strong></td>
+            <td><strong>single_sf_element</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -825,24 +750,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-sum_outer"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>sum_outer</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-v1ptmp"></span>
+              <span class="anchor" id="variable-v1_"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -850,7 +758,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>v1ptmp</strong></td>
+            <td><strong>v1_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -859,7 +767,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-v1tmp"></span>
+              <span class="anchor" id="variable-v1p_"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -867,7 +775,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>v1tmp</strong></td>
+            <td><strong>v1p_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -889,48 +797,48 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">transform_summation</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">,</span><span class="w"> </span><span class="n">jtot_</span><span class="p">,</span><span class="w"> </span><span class="n">v_</span><span class="p">,</span><span class="w"> </span><span class="n">j_</span><span class="p">,</span><span class="w"> </span><span class="n">vp_</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">jp_</span><span class="p">,</span><span class="w"> </span><span class="n">l_</span><span class="p">,</span><span class="w"> </span><span class="n">lp_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_level_indices</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">,</span><span class="w">          </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">bf_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">sf_element</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! performs the summation in Eqs. (6.17) and (6.18)</span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">calculate_sf_matrix_from_bf_matrix</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_level_indices</span><span class="p">,</span><span class="w">                      </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">channels_omega_values</span><span class="p">,</span><span class="n">channels_l_values</span><span class="p">,</span><span class="w"> </span><span class="n">bf_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">sf_matrix</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! takes as an input matrix in the body-fixed frame and transforms it </span>
+<span class="w">         </span><span class="c">!! to the spec-fixed frame; iterates over all matrix elements</span>
+<span class="w">         </span><span class="c">!! and calls calculate_single_SF_element</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! size of the basis</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">jtot_</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! total angular momentum</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">v_</span><span class="p">,</span><span class="w"> </span><span class="n">j_</span><span class="p">,</span><span class="w"> </span><span class="n">vp_</span><span class="p">,</span><span class="w"> </span><span class="n">jp_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! vibrational and rotational quantum numbers</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">l_</span><span class="p">,</span><span class="w"> </span><span class="n">lp_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! orbital angular momenta</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds the indices pointing to the basis arrays</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds all values of \bar{\Omega}</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_l_values</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! holds all values of l</span>
 <span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bf_matrix</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! matrix in the BF frame</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sf_element</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! (output) matrix element in the SF frame</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sf_matrix</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! (output) matrix in the SF frame</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ii</span><span class="p">,</span><span class="w"> </span><span class="n">ij</span><span class="p">,</span><span class="w"> </span><span class="n">omtmp</span><span class="p">,</span><span class="w"> </span><span class="n">omptmp</span><span class="p">,</span><span class="w"> </span><span class="n">v1tmp</span><span class="p">,</span><span class="w"> </span><span class="n">j1tmp</span><span class="p">,</span><span class="w"> </span><span class="n">v1ptmp</span><span class="p">,</span><span class="w"> </span><span class="n">j1ptmp</span><span class="w"></span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">coeff_outer</span><span class="p">,</span><span class="w"> </span><span class="n">coeff_inner</span><span class="p">,</span><span class="w"> </span><span class="n">sum_outer</span><span class="p">,</span><span class="w"> </span><span class="n">sum_inner</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">l_</span><span class="p">,</span><span class="w"> </span><span class="n">lp_</span><span class="p">,</span><span class="w"> </span><span class="n">omega_</span><span class="p">,</span><span class="w"> </span><span class="n">omegap_</span><span class="p">,</span><span class="w"> </span><span class="n">v1_</span><span class="p">,</span><span class="w"> </span><span class="n">j1_</span><span class="p">,</span><span class="w"> </span><span class="n">v1p_</span><span class="p">,</span><span class="w"> </span><span class="n">j1p_</span><span class="p">,</span><span class="w"> </span><span class="n">ii</span><span class="p">,</span><span class="w"> </span><span class="n">ij</span><span class="w"></span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">single_sf_element</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">sum_outer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="w"></span>
 <span class="w">         </span><span class="k">do </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v1array</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">v_</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w">                 </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="n">j1array</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">j_</span><span class="p">)</span><span class="w"> </span><span class="k">cycle</span>
-<span class="k">            </span><span class="n">coeff_outer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_coeff</span><span class="p">(</span><span class="n">jtot_</span><span class="p">,</span><span class="w"> </span><span class="n">j_</span><span class="p">,</span><span class="w"> </span><span class="n">l_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span><span class="w"></span>
-<span class="w">            </span><span class="n">sum_inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="w"></span>
+<span class="w">            </span><span class="n">v1_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1array</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="n">j1_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="n">l_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">channels_l_values</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="k">do </span><span class="n">ij</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels</span><span class="w"></span>
-<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v1array</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">ij</span><span class="p">))</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">vp_</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w">             </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">j1array</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">ij</span><span class="p">))</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">jp_</span><span class="p">)</span><span class="w"> </span><span class="k">cycle</span>
-<span class="k">               </span><span class="n">coeff_inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_coeff</span><span class="p">(</span><span class="n">jtot_</span><span class="p">,</span><span class="w"> </span><span class="n">jp_</span><span class="p">,</span><span class="w"> </span><span class="n">lp_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(</span><span class="n">ij</span><span class="p">))</span><span class="w"></span>
-<span class="w">               </span><span class="n">sum_inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_inner</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">coeff_inner</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bf_matrix</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">ij</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">end do</span>
-<span class="k">            </span><span class="n">sum_outer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_outer</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">coeff_outer</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sum_inner</span><span class="w"></span>
-<span class="w">         </span><span class="k">end do</span>
-<span class="k">         </span><span class="n">sf_element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_outer</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="k">end subroutine </span><span class="n">transform_summation</span><span class="w"></span>
+<span class="w">               </span><span class="n">v1p_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1array</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">ij</span><span class="p">))</span><span class="w"></span>
+<span class="w">               </span><span class="n">j1p_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">ij</span><span class="p">))</span><span class="w"></span>
+<span class="w">               </span><span class="n">lp_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">channels_l_values</span><span class="p">(</span><span class="n">ij</span><span class="p">)</span><span class="w"></span>
+<span class="w">               </span><span class="k">call </span><span class="n">calculate_single_SF_element</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="n">v1_</span><span class="p">,</span><span class="w"> </span><span class="n">j1_</span><span class="p">,</span><span class="w"> </span><span class="n">v1p_</span><span class="p">,</span><span class="w"> </span><span class="n">j1p_</span><span class="p">,</span><span class="w"> </span><span class="n">l_</span><span class="p">,</span><span class="w"> </span><span class="n">lp_</span><span class="p">,</span><span class="w">      </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">channels_level_indices</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">,</span><span class="w"> </span><span class="n">bf_matrix</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">single_sf_element</span><span class="p">)</span><span class="w"></span>
+<span class="w">               </span><span class="n">sf_matrix</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="w"> </span><span class="n">ij</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">single_sf_element</span><span class="w"></span>
+<span class="w">            </span><span class="k">enddo</span>
+<span class="k">         enddo</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!         </span>
+<span class="w">      </span><span class="k">end subroutine </span><span class="n">calculate_sf_matrix_from_bf_matrix</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -944,14 +852,14 @@
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2023 
+        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2024 
 </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-12-29 16:53            </p>
+ on 2024-01-02 15:00            </p>
         </div>
       </div>
       <br>

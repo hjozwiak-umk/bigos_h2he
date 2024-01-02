@@ -24,7 +24,7 @@ Partial cross sections will be saved into partialH2He.dat
 S-matrix elements will be saved into smatrixH2He.dat
 *** Reducing the number of the radial coupling terms... ***
 *** Reduced 990 radial terms to 28 ***
--- Initialization completed in 2.7291E+00 s
+-- Initialization completed in 3.3820E+00 s
 ******************************************************************************************
                             *** Loop over JTOT: ***
 ******************************************************************************************
@@ -46,16 +46,22 @@ Number of scattering channels: 7
      Number of non-zero elements of the potential matrix: 28
      Number of non-zero elements  of the coupling matrix: 64
 ******************************************************************************************
-Calculations of the coupling matrix took 0.58000000E-04 seconds
-Numerov propagator took 0.39824400E+00 seconds
+Calculations of the coupling matrix took 0.95000000E-04 seconds
+Numerov propagator took 0.53380800E+00 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 6.0000E-06 s
--- Parity block completed in 4.0003E-01 s
+-- Parity block completed in 5.3557E-01 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 0: .302152
 Largest partial inelastic state-to-state for JTOT = 0: .001432
                                            ***
--- JTOT block completed in 4.0004E-01 s
+-- JTOT block completed in 5.3558E-01 s
 ******************************************************************************************
 *                              JTOT =          1                                         *
 ******************************************************************************************
@@ -82,11 +88,17 @@ Number of scattering channels: 14
      Number of non-zero elements of the potential matrix: 56
      Number of non-zero elements  of the coupling matrix: 128
 ******************************************************************************************
-Calculations of the coupling matrix took 0.75000000E-04 seconds
-Numerov propagator took 0.80129700E+00 seconds
+Calculations of the coupling matrix took 0.86000000E-04 seconds
+Numerov propagator took 0.10241880E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 9.0000E-06 s
--- Parity block completed in 8.0198E-01 s
+-- Parity block completed in 1.0248E+00 s
                                            ***
 Block number: 3
 jtot: 1 parity: -1
@@ -104,16 +116,22 @@ Number of scattering channels: 7
      Number of non-zero elements of the potential matrix: 28
      Number of non-zero elements  of the coupling matrix: 64
 ******************************************************************************************
-Calculations of the coupling matrix took 0.46000000E-04 seconds
-Numerov propagator took 0.38968200E+00 seconds
+Calculations of the coupling matrix took 0.47000000E-04 seconds
+Numerov propagator took 0.45526200E+00 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 6.0000E-06 s
--- Parity block completed in 3.9003E-01 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 8.0000E-06 s
+-- Parity block completed in 4.5590E-01 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 1: 1.661206
 Largest partial inelastic state-to-state for JTOT = 1: .007920
                                            ***
--- JTOT block completed in 1.1920E+00 s
+-- JTOT block completed in 1.4807E+00 s
 ******************************************************************************************
 *                              JTOT =          2                                         *
 ******************************************************************************************
@@ -145,11 +163,17 @@ Number of scattering channels: 19
      Number of non-zero elements of the potential matrix: 71
      Number of non-zero elements  of the coupling matrix: 172
 ******************************************************************************************
-Calculations of the coupling matrix took 0.10000000E-03 seconds
-Numerov propagator took 0.10810690E+01 seconds
+Calculations of the coupling matrix took 0.14800000E-03 seconds
+Numerov propagator took 0.12630350E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 1.0822E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 2.8000E-05 s
+-- Parity block completed in 1.2650E+00 s
                                            ***
 Block number: 5
 jtot: 2 parity: -1
@@ -172,16 +196,22 @@ Number of scattering channels: 12
      Number of non-zero elements of the potential matrix: 43
      Number of non-zero elements  of the coupling matrix: 108
 ******************************************************************************************
-Calculations of the coupling matrix took 0.75000000E-04 seconds
-Numerov propagator took 0.66491200E+00 seconds
+Calculations of the coupling matrix took 0.84000000E-04 seconds
+Numerov propagator took 0.69080400E+00 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.0000E-06 s
--- Parity block completed in 6.6570E-01 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 8.0000E-06 s
+-- Parity block completed in 6.9143E-01 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 2: 4.075159
 Largest partial inelastic state-to-state for JTOT = 2: .013154
                                            ***
--- JTOT block completed in 1.7479E+00 s
+-- JTOT block completed in 1.9565E+00 s
 ******************************************************************************************
 *                              JTOT =          3                                         *
 ******************************************************************************************
@@ -218,11 +248,17 @@ Number of scattering channels: 24
      Number of non-zero elements of the potential matrix: 86
      Number of non-zero elements  of the coupling matrix: 216
 ******************************************************************************************
-Calculations of the coupling matrix took 0.12200000E-03 seconds
-Numerov propagator took 0.13911490E+01 seconds
+Calculations of the coupling matrix took 0.12400000E-03 seconds
+Numerov propagator took 0.14089800E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 1.3934E+00 s
+-- Parity block completed in 1.4118E+00 s
                                            ***
 Block number: 7
 jtot: 3 parity: -1
@@ -250,16 +286,22 @@ Number of scattering channels: 17
      Number of non-zero elements of the potential matrix: 58
      Number of non-zero elements  of the coupling matrix: 152
 ******************************************************************************************
-Calculations of the coupling matrix took 0.93000000E-04 seconds
-Numerov propagator took 0.94066800E+00 seconds
+Calculations of the coupling matrix took 0.96000000E-04 seconds
+Numerov propagator took 0.97648100E+00 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.2000E-05 s
--- Parity block completed in 9.4171E-01 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 9.7765E-01 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 3: 6.788535
 Largest partial inelastic state-to-state for JTOT = 3: .018319
                                            ***
--- JTOT block completed in 2.3351E+00 s
+-- JTOT block completed in 2.3894E+00 s
 ******************************************************************************************
 *                              JTOT =          4                                         *
 ******************************************************************************************
@@ -299,11 +341,17 @@ Number of scattering channels: 27
      Number of non-zero elements of the potential matrix: 92
      Number of non-zero elements  of the coupling matrix: 236
 ******************************************************************************************
-Calculations of the coupling matrix took 0.13700000E-03 seconds
-Numerov propagator took 0.15370050E+01 seconds
+Calculations of the coupling matrix took 0.14300000E-03 seconds
+Numerov propagator took 0.15508340E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.5409E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 1.5549E+00 s
                                            ***
 Block number: 9
 jtot: 4 parity: -1
@@ -335,15 +383,21 @@ Number of scattering channels: 20
      Number of non-zero elements  of the coupling matrix: 172
 ******************************************************************************************
 Calculations of the coupling matrix took 0.10800000E-03 seconds
-Numerov propagator took 0.10808060E+01 seconds
+Numerov propagator took 0.10877160E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 1.0826E+00 s
+-- Parity block completed in 1.0897E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 4: 7.609700
 Largest partial inelastic state-to-state for JTOT = 4: .023387
                                            ***
--- JTOT block completed in 2.6235E+00 s
+-- JTOT block completed in 2.6447E+00 s
 ******************************************************************************************
 *                              JTOT =          5                                         *
 ******************************************************************************************
@@ -386,11 +440,17 @@ Number of scattering channels: 30
      Number of non-zero elements of the potential matrix: 98
      Number of non-zero elements  of the coupling matrix: 256
 ******************************************************************************************
-Calculations of the coupling matrix took 0.14800000E-03 seconds
-Numerov propagator took 0.17130380E+01 seconds
+Calculations of the coupling matrix took 0.18000000E-03 seconds
+Numerov propagator took 0.17458020E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.7196E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 2.3000E-05 s
+-- Parity block completed in 1.7578E+00 s
                                            ***
 Block number: 11
 jtot: 5 parity: -1
@@ -424,16 +484,22 @@ Number of scattering channels: 23
      Number of non-zero elements of the potential matrix: 70
      Number of non-zero elements  of the coupling matrix: 192
 ******************************************************************************************
-Calculations of the coupling matrix took 0.12400000E-03 seconds
-Numerov propagator took 0.12277860E+01 seconds
+Calculations of the coupling matrix took 0.24300000E-03 seconds
+Numerov propagator took 0.12348490E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 1.2310E+00 s
+-- Parity block completed in 1.2383E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 5: 7.175473
 Largest partial inelastic state-to-state for JTOT = 5: .028331
                                            ***
--- JTOT block completed in 2.9507E+00 s
+-- JTOT block completed in 2.9961E+00 s
 ******************************************************************************************
 *                              JTOT =          6                                         *
 ******************************************************************************************
@@ -478,11 +544,17 @@ Number of scattering channels: 32
      Number of non-zero elements of the potential matrix: 101
      Number of non-zero elements  of the coupling matrix: 267
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16300000E-03 seconds
-Numerov propagator took 0.18118240E+01 seconds
+Calculations of the coupling matrix took 0.15600000E-03 seconds
+Numerov propagator took 0.18532590E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.5000E-05 s
--- Parity block completed in 1.8527E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.4000E-05 s
+-- Parity block completed in 1.8970E+00 s
                                            ***
 Block number: 13
 jtot: 6 parity: -1
@@ -519,15 +591,21 @@ Number of scattering channels: 25
      Number of non-zero elements  of the coupling matrix: 203
 ******************************************************************************************
 Calculations of the coupling matrix took 0.55700000E-03 seconds
-Numerov propagator took 0.19376390E+01 seconds
+Numerov propagator took 0.19383860E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 1.9437E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.9445E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 6: 8.338598
 Largest partial inelastic state-to-state for JTOT = 6: .033123
                                            ***
--- JTOT block completed in 3.7964E+00 s
+-- JTOT block completed in 3.8415E+00 s
 ******************************************************************************************
 *                              JTOT =          7                                         *
 ******************************************************************************************
@@ -574,11 +652,17 @@ Number of scattering channels: 34
      Number of non-zero elements of the potential matrix: 104
      Number of non-zero elements  of the coupling matrix: 278
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16500000E-03 seconds
-Numerov propagator took 0.19331660E+01 seconds
+Calculations of the coupling matrix took 0.16300000E-03 seconds
+Numerov propagator took 0.19605440E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.4000E-05 s
--- Parity block completed in 1.9927E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.0100E-04 s
+-- Parity block completed in 2.0262E+00 s
                                            ***
 Block number: 15
 jtot: 7 parity: -1
@@ -616,16 +700,22 @@ Number of scattering channels: 27
      Number of non-zero elements of the potential matrix: 76
      Number of non-zero elements  of the coupling matrix: 214
 ******************************************************************************************
-Calculations of the coupling matrix took 0.68200000E-03 seconds
-Numerov propagator took 0.20368800E+01 seconds
+Calculations of the coupling matrix took 0.63500000E-03 seconds
+Numerov propagator took 0.20444970E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 2.0453E+00 s
+-- Parity block completed in 2.0534E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 7: 5.249893
 Largest partial inelastic state-to-state for JTOT = 7: .037734
                                            ***
--- JTOT block completed in 4.0381E+00 s
+-- JTOT block completed in 4.0797E+00 s
 ******************************************************************************************
 *                              JTOT =          8                                         *
 ******************************************************************************************
@@ -673,11 +763,17 @@ Number of scattering channels: 35
      Number of non-zero elements of the potential matrix: 105
      Number of non-zero elements  of the coupling matrix: 282
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16700000E-03 seconds
-Numerov propagator took 0.19847310E+01 seconds
+Calculations of the coupling matrix took 0.19100000E-03 seconds
+Numerov propagator took 0.19376230E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 6.6000E-05 s
--- Parity block completed in 2.0585E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.1000E-05 s
+-- Parity block completed in 2.0126E+00 s
                                            ***
 Block number: 17
 jtot: 8 parity: -1
@@ -716,16 +812,22 @@ Number of scattering channels: 28
      Number of non-zero elements of the potential matrix: 77
      Number of non-zero elements  of the coupling matrix: 218
 ******************************************************************************************
-Calculations of the coupling matrix took 0.58800000E-03 seconds
-Numerov propagator took 0.20957090E+01 seconds
+Calculations of the coupling matrix took 0.58900000E-03 seconds
+Numerov propagator took 0.20255980E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 2.1065E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.0362E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 8: 2.271587
 Largest partial inelastic state-to-state for JTOT = 8: .042137
                                            ***
--- JTOT block completed in 4.1650E+00 s
+-- JTOT block completed in 4.0489E+00 s
 ******************************************************************************************
 *                              JTOT =          9                                         *
 ******************************************************************************************
@@ -774,11 +876,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17500000E-03 seconds
-Numerov propagator took 0.20916920E+01 seconds
+Calculations of the coupling matrix took 0.16700000E-03 seconds
+Numerov propagator took 0.19767480E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.4000E-05 s
--- Parity block completed in 2.1854E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.3000E-05 s
+-- Parity block completed in 2.0684E+00 s
                                            ***
 Block number: 19
 jtot: 9 parity: -1
@@ -818,16 +926,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.69100000E-03 seconds
-Numerov propagator took 0.21120470E+01 seconds
+Calculations of the coupling matrix took 0.59300000E-03 seconds
+Numerov propagator took 0.20894110E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1254E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.1030E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 9: 2.994966
 Largest partial inelastic state-to-state for JTOT = 9: .046304
                                            ***
--- JTOT block completed in 4.3109E+00 s
+-- JTOT block completed in 4.1714E+00 s
 ******************************************************************************************
 *                              JTOT =         10                                         *
 ******************************************************************************************
@@ -876,11 +990,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16700000E-03 seconds
-Numerov propagator took 0.20427200E+01 seconds
+Calculations of the coupling matrix took 0.16900000E-03 seconds
+Numerov propagator took 0.20473190E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.0900E-04 s
--- Parity block completed in 2.1512E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 6.9000E-05 s
+-- Parity block completed in 2.1441E+00 s
                                            ***
 Block number: 21
 jtot: 10 parity: -1
@@ -920,16 +1040,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.69100000E-03 seconds
-Numerov propagator took 0.21437950E+01 seconds
+Calculations of the coupling matrix took 0.60900000E-03 seconds
+Numerov propagator took 0.20685730E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 2.1578E+00 s
+-- Parity block completed in 2.0825E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 10: 2.440909
 Largest partial inelastic state-to-state for JTOT = 10: .050206
                                            ***
--- JTOT block completed in 4.3091E+00 s
+-- JTOT block completed in 4.2266E+00 s
 ******************************************************************************************
 *                              JTOT =         11                                         *
 ******************************************************************************************
@@ -978,11 +1104,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17000000E-03 seconds
-Numerov propagator took 0.20380210E+01 seconds
+Calculations of the coupling matrix took 0.16600000E-03 seconds
+Numerov propagator took 0.20010400E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.8000E-05 s
--- Parity block completed in 2.1422E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.2100E-04 s
+-- Parity block completed in 2.0996E+00 s
                                            ***
 Block number: 23
 jtot: 11 parity: -1
@@ -1022,16 +1154,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.77500000E-03 seconds
-Numerov propagator took 0.21161250E+01 seconds
+Calculations of the coupling matrix took 0.60700000E-03 seconds
+Numerov propagator took 0.21037560E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1304E+00 s
+-- Parity block completed in 2.1180E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 11: 1.610382
 Largest partial inelastic state-to-state for JTOT = 11: .053816
                                            ***
--- JTOT block completed in 4.2726E+00 s
+-- JTOT block completed in 4.2177E+00 s
 ******************************************************************************************
 *                              JTOT =         12                                         *
 ******************************************************************************************
@@ -1080,11 +1218,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16900000E-03 seconds
-Numerov propagator took 0.20381610E+01 seconds
+Calculations of the coupling matrix took 0.16800000E-03 seconds
+Numerov propagator took 0.20377240E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.1405E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.4000E-05 s
+-- Parity block completed in 2.1432E+00 s
                                            ***
 Block number: 25
 jtot: 12 parity: -1
@@ -1124,16 +1268,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.63300000E-03 seconds
-Numerov propagator took 0.21300930E+01 seconds
+Calculations of the coupling matrix took 0.59300000E-03 seconds
+Numerov propagator took 0.20828630E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1449E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.0977E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 12: 2.751756
 Largest partial inelastic state-to-state for JTOT = 12: .057108
                                            ***
--- JTOT block completed in 4.2855E+00 s
+-- JTOT block completed in 4.2409E+00 s
 ******************************************************************************************
 *                              JTOT =         13                                         *
 ******************************************************************************************
@@ -1182,11 +1332,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17300000E-03 seconds
-Numerov propagator took 0.20404290E+01 seconds
+Calculations of the coupling matrix took 0.16900000E-03 seconds
+Numerov propagator took 0.21165500E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.1448E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 6.0000E-05 s
+-- Parity block completed in 2.2339E+00 s
                                            ***
 Block number: 27
 jtot: 13 parity: -1
@@ -1226,9 +1382,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.70500000E-03 seconds
-Numerov propagator took 0.21339960E+01 seconds
+Calculations of the coupling matrix took 0.83000000E-03 seconds
+Numerov propagator took 0.21504710E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
 Warning: Unitary condition is not fulfilled for channel no.
 1         0.10000033E+01
 Consider increasing the STEPS parameter
@@ -1247,13 +1407,13 @@ Consider increasing the STEPS parameter
 Warning: Unitary condition is not fulfilled for channel no.
 14         0.10000026E+01
 Consider increasing the STEPS parameter
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 2.1492E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1665E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 13: 5.098144
 Largest partial inelastic state-to-state for JTOT = 13: .060056
                                            ***
--- JTOT block completed in 4.2940E+00 s
+-- JTOT block completed in 4.4004E+00 s
 ******************************************************************************************
 *                              JTOT =         14                                         *
 ******************************************************************************************
@@ -1302,11 +1462,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.26100000E-03 seconds
-Numerov propagator took 0.20478520E+01 seconds
+Calculations of the coupling matrix took 0.18500000E-03 seconds
+Numerov propagator took 0.20884030E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.1558E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.1000E-05 s
+-- Parity block completed in 2.2085E+00 s
                                            ***
 Block number: 29
 jtot: 14 parity: -1
@@ -1346,16 +1512,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.59100000E-03 seconds
-Numerov propagator took 0.21416550E+01 seconds
+Calculations of the coupling matrix took 0.59000000E-03 seconds
+Numerov propagator took 0.22122840E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1574E+00 s
+-- Parity block completed in 2.2289E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 14: 6.173539
 Largest partial inelastic state-to-state for JTOT = 14: .062635
                                            ***
--- JTOT block completed in 4.3132E+00 s
+-- JTOT block completed in 4.4374E+00 s
 ******************************************************************************************
 *                              JTOT =         15                                         *
 ******************************************************************************************
@@ -1404,11 +1576,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17300000E-03 seconds
-Numerov propagator took 0.20677340E+01 seconds
+Calculations of the coupling matrix took 0.16800000E-03 seconds
+Numerov propagator took 0.20706840E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 8.0000E-05 s
--- Parity block completed in 2.1790E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.1000E-05 s
+-- Parity block completed in 2.1824E+00 s
                                            ***
 Block number: 31
 jtot: 15 parity: -1
@@ -1448,16 +1626,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.60700000E-03 seconds
-Numerov propagator took 0.21465320E+01 seconds
+Calculations of the coupling matrix took 0.62500000E-03 seconds
+Numerov propagator took 0.21512960E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1628E+00 s
+-- Parity block completed in 2.1680E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 15: 5.182572
 Largest partial inelastic state-to-state for JTOT = 15: .064822
                                            ***
--- JTOT block completed in 4.3418E+00 s
+-- JTOT block completed in 4.3504E+00 s
 ******************************************************************************************
 *                              JTOT =         16                                         *
 ******************************************************************************************
@@ -1506,11 +1690,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18000000E-03 seconds
-Numerov propagator took 0.20796230E+01 seconds
+Calculations of the coupling matrix took 0.16900000E-03 seconds
+Numerov propagator took 0.21269750E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.4000E-05 s
--- Parity block completed in 2.1941E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.8000E-05 s
+-- Parity block completed in 2.2540E+00 s
                                            ***
 Block number: 33
 jtot: 16 parity: -1
@@ -1550,16 +1740,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.60700000E-03 seconds
-Numerov propagator took 0.21680830E+01 seconds
+Calculations of the coupling matrix took 0.70200000E-03 seconds
+Numerov propagator took 0.21820020E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1848E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.1985E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 16: 3.194712
 Largest partial inelastic state-to-state for JTOT = 16: .066597
                                            ***
--- JTOT block completed in 4.3788E+00 s
+-- JTOT block completed in 4.4526E+00 s
 ******************************************************************************************
 *                              JTOT =         17                                         *
 ******************************************************************************************
@@ -1608,9 +1804,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17900000E-03 seconds
-Numerov propagator took 0.20893220E+01 seconds
+Calculations of the coupling matrix took 0.17400000E-03 seconds
+Numerov propagator took 0.21033970E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
 Warning: Unitary condition is not fulfilled for channel no.
 1         0.10000019E+01
 Consider increasing the STEPS parameter
@@ -1629,8 +1829,8 @@ Consider increasing the STEPS parameter
 Warning: Unitary condition is not fulfilled for channel no.
 10         0.10000012E+01
 Consider increasing the STEPS parameter
--- Cross-sections calculations completed in 6.9000E-05 s
--- Parity block completed in 2.2132E+00 s
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.2586E+00 s
                                            ***
 Block number: 35
 jtot: 17 parity: -1
@@ -1670,16 +1870,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.60800000E-03 seconds
-Numerov propagator took 0.21684420E+01 seconds
+Calculations of the coupling matrix took 0.78200000E-03 seconds
+Numerov propagator took 0.21785290E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1855E+00 s
+-- Parity block completed in 2.1965E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 17: 1.790879
 Largest partial inelastic state-to-state for JTOT = 17: .067943
                                            ***
--- JTOT block completed in 4.3987E+00 s
+-- JTOT block completed in 4.4551E+00 s
 ******************************************************************************************
 *                              JTOT =         18                                         *
 ******************************************************************************************
@@ -1728,11 +1934,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17800000E-03 seconds
-Numerov propagator took 0.20976650E+01 seconds
+Calculations of the coupling matrix took 0.18000000E-03 seconds
+Numerov propagator took 0.21335340E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.2177E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 8.0000E-05 s
+-- Parity block completed in 2.2556E+00 s
                                            ***
 Block number: 37
 jtot: 18 parity: -1
@@ -1772,16 +1984,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.63300000E-03 seconds
-Numerov propagator took 0.21887760E+01 seconds
+Calculations of the coupling matrix took 0.60600000E-03 seconds
+Numerov propagator took 0.22375950E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2064E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2555E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 18: 1.863434
 Largest partial inelastic state-to-state for JTOT = 18: .068842
                                            ***
--- JTOT block completed in 4.4241E+00 s
+-- JTOT block completed in 4.5111E+00 s
 ******************************************************************************************
 *                              JTOT =         19                                         *
 ******************************************************************************************
@@ -1830,11 +2048,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17800000E-03 seconds
-Numerov propagator took 0.22158060E+01 seconds
+Calculations of the coupling matrix took 0.19800000E-03 seconds
+Numerov propagator took 0.20409460E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 7.3000E-05 s
--- Parity block completed in 2.3420E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.3000E-05 s
+-- Parity block completed in 2.1647E+00 s
                                            ***
 Block number: 39
 jtot: 19 parity: -1
@@ -1874,16 +2098,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.66300000E-03 seconds
-Numerov propagator took 0.22355450E+01 seconds
+Calculations of the coupling matrix took 0.59300000E-03 seconds
+Numerov propagator took 0.21737150E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.2543E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1918E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 19: 2.052029
 Largest partial inelastic state-to-state for JTOT = 19: .069285
                                            ***
--- JTOT block completed in 4.5963E+00 s
+-- JTOT block completed in 4.3565E+00 s
 ******************************************************************************************
 *                              JTOT =         20                                         *
 ******************************************************************************************
@@ -1932,11 +2162,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18700000E-03 seconds
-Numerov propagator took 0.21795770E+01 seconds
+Calculations of the coupling matrix took 0.17600000E-03 seconds
+Numerov propagator took 0.21397510E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.5000E-05 s
--- Parity block completed in 2.3079E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.2680E+00 s
                                            ***
 Block number: 41
 jtot: 20 parity: -1
@@ -1976,16 +2212,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.66300000E-03 seconds
-Numerov propagator took 0.22160410E+01 seconds
+Calculations of the coupling matrix took 0.66100000E-03 seconds
+Numerov propagator took 0.21843140E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.2348E+00 s
+-- Parity block completed in 2.2037E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 20: 2.118196
 Largest partial inelastic state-to-state for JTOT = 20: .069266
                                            ***
--- JTOT block completed in 4.5428E+00 s
+-- JTOT block completed in 4.4718E+00 s
 ******************************************************************************************
 *                              JTOT =         21                                         *
 ******************************************************************************************
@@ -2034,11 +2276,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18200000E-03 seconds
-Numerov propagator took 0.21446460E+01 seconds
+Calculations of the coupling matrix took 0.19600000E-03 seconds
+Numerov propagator took 0.21741070E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.6000E-05 s
--- Parity block completed in 2.2736E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.3063E+00 s
                                            ***
 Block number: 43
 jtot: 21 parity: -1
@@ -2078,16 +2326,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.62400000E-03 seconds
-Numerov propagator took 0.21890820E+01 seconds
+Calculations of the coupling matrix took 0.63600000E-03 seconds
+Numerov propagator took 0.22248300E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2080E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2439E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 21: 1.999954
 Largest partial inelastic state-to-state for JTOT = 21: .068781
                                            ***
--- JTOT block completed in 4.4817E+00 s
+-- JTOT block completed in 4.5502E+00 s
 ******************************************************************************************
 *                              JTOT =         22                                         *
 ******************************************************************************************
@@ -2136,11 +2390,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18300000E-03 seconds
-Numerov propagator took 0.21204630E+01 seconds
+Calculations of the coupling matrix took 0.17700000E-03 seconds
+Numerov propagator took 0.20998240E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.4000E-05 s
--- Parity block completed in 2.2493E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.2318E+00 s
                                            ***
 Block number: 45
 jtot: 22 parity: -1
@@ -2180,16 +2440,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.60700000E-03 seconds
-Numerov propagator took 0.21902440E+01 seconds
+Calculations of the coupling matrix took 0.60800000E-03 seconds
+Numerov propagator took 0.22155830E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2092E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2349E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 22: 1.982126
 Largest partial inelastic state-to-state for JTOT = 22: .067836
                                            ***
--- JTOT block completed in 4.4584E+00 s
+-- JTOT block completed in 4.4667E+00 s
 ******************************************************************************************
 *                              JTOT =         23                                         *
 ******************************************************************************************
@@ -2238,11 +2504,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17800000E-03 seconds
-Numerov propagator took 0.21161480E+01 seconds
+Calculations of the coupling matrix took 0.18900000E-03 seconds
+Numerov propagator took 0.20410550E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.2469E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.4000E-05 s
+-- Parity block completed in 2.1743E+00 s
                                            ***
 Block number: 47
 jtot: 23 parity: -1
@@ -2283,15 +2555,21 @@ Number of scattering channels: 29
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
 Calculations of the coupling matrix took 0.60600000E-03 seconds
-Numerov propagator took 0.21776070E+01 seconds
+Numerov propagator took 0.21284420E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 2.1967E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1478E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 23: 2.047439
 Largest partial inelastic state-to-state for JTOT = 23: .066439
                                            ***
--- JTOT block completed in 4.4437E+00 s
+-- JTOT block completed in 4.3222E+00 s
 ******************************************************************************************
 *                              JTOT =         24                                         *
 ******************************************************************************************
@@ -2341,10 +2619,16 @@ Number of scattering channels: 36
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
 Calculations of the coupling matrix took 0.17800000E-03 seconds
-Numerov propagator took 0.21097100E+01 seconds
+Numerov propagator took 0.21175500E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.2437E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.0000E-05 s
+-- Parity block completed in 2.2549E+00 s
                                            ***
 Block number: 49
 jtot: 24 parity: -1
@@ -2384,16 +2668,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.65600000E-03 seconds
-Numerov propagator took 0.21838690E+01 seconds
+Calculations of the coupling matrix took 0.59100000E-03 seconds
+Numerov propagator took 0.21967650E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2037E+00 s
+-- Parity block completed in 2.2174E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 24: 1.959106
 Largest partial inelastic state-to-state for JTOT = 24: .064607
                                            ***
--- JTOT block completed in 4.4474E+00 s
+-- JTOT block completed in 4.4723E+00 s
 ******************************************************************************************
 *                              JTOT =         25                                         *
 ******************************************************************************************
@@ -2442,11 +2732,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17700000E-03 seconds
-Numerov propagator took 0.20980200E+01 seconds
+Calculations of the coupling matrix took 0.17800000E-03 seconds
+Numerov propagator took 0.22142590E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.2331E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.3562E+00 s
                                            ***
 Block number: 51
 jtot: 25 parity: -1
@@ -2486,16 +2782,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.63300000E-03 seconds
-Numerov propagator took 0.21633600E+01 seconds
+Calculations of the coupling matrix took 0.72800000E-03 seconds
+Numerov propagator took 0.22393510E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1825E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2602E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 25: 1.733729
 Largest partial inelastic state-to-state for JTOT = 25: .062363
                                            ***
--- JTOT block completed in 4.4156E+00 s
+-- JTOT block completed in 4.6164E+00 s
 ******************************************************************************************
 *                              JTOT =         26                                         *
 ******************************************************************************************
@@ -2544,11 +2846,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16900000E-03 seconds
-Numerov propagator took 0.20204240E+01 seconds
+Calculations of the coupling matrix took 0.21200000E-03 seconds
+Numerov propagator took 0.23013250E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.2000E-05 s
--- Parity block completed in 2.1562E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 8.4000E-05 s
+-- Parity block completed in 2.4440E+00 s
                                            ***
 Block number: 53
 jtot: 26 parity: -1
@@ -2588,16 +2896,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.59800000E-03 seconds
-Numerov propagator took 0.21379120E+01 seconds
+Calculations of the coupling matrix took 0.62500000E-03 seconds
+Numerov propagator took 0.22752550E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1573E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.6000E-05 s
+-- Parity block completed in 2.3064E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 26: 1.581789
 Largest partial inelastic state-to-state for JTOT = 26: .059736
                                            ***
--- JTOT block completed in 4.3135E+00 s
+-- JTOT block completed in 4.7504E+00 s
 ******************************************************************************************
 *                              JTOT =         27                                         *
 ******************************************************************************************
@@ -2646,11 +2960,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16900000E-03 seconds
-Numerov propagator took 0.21040130E+01 seconds
+Calculations of the coupling matrix took 0.18400000E-03 seconds
+Numerov propagator took 0.22613100E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.2000E-05 s
--- Parity block completed in 2.2614E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.4140E+00 s
                                            ***
 Block number: 55
 jtot: 27 parity: -1
@@ -2690,16 +3010,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.59300000E-03 seconds
-Numerov propagator took 0.22322400E+01 seconds
+Calculations of the coupling matrix took 0.63900000E-03 seconds
+Numerov propagator took 0.22628440E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2520E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2855E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 27: 1.594183
 Largest partial inelastic state-to-state for JTOT = 27: .056764
                                            ***
--- JTOT block completed in 4.5134E+00 s
+-- JTOT block completed in 4.6996E+00 s
 ******************************************************************************************
 *                              JTOT =         28                                         *
 ******************************************************************************************
@@ -2748,11 +3074,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16900000E-03 seconds
-Numerov propagator took 0.21700030E+01 seconds
+Calculations of the coupling matrix took 0.18700000E-03 seconds
+Numerov propagator took 0.22254090E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.1000E-05 s
--- Parity block completed in 2.3503E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 6.7000E-05 s
+-- Parity block completed in 2.4490E+00 s
                                            ***
 Block number: 57
 jtot: 28 parity: -1
@@ -2792,16 +3124,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.59400000E-03 seconds
-Numerov propagator took 0.23297830E+01 seconds
+Calculations of the coupling matrix took 0.10560000E-02 seconds
+Numerov propagator took 0.21559550E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.9000E-05 s
--- Parity block completed in 2.3532E+00 s
+-- Parity block completed in 2.1838E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 28: 1.807298
 Largest partial inelastic state-to-state for JTOT = 28: .053491
                                            ***
--- JTOT block completed in 4.7035E+00 s
+-- JTOT block completed in 4.6329E+00 s
 ******************************************************************************************
 *                              JTOT =         29                                         *
 ******************************************************************************************
@@ -2850,11 +3188,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.27500000E-03 seconds
-Numerov propagator took 0.22328380E+01 seconds
+Calculations of the coupling matrix took 0.20100000E-03 seconds
+Numerov propagator took 0.22143500E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.1000E-05 s
--- Parity block completed in 2.3803E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.0100E-04 s
+-- Parity block completed in 2.3797E+00 s
                                            ***
 Block number: 59
 jtot: 29 parity: -1
@@ -2894,22 +3238,26 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.67800000E-03 seconds
-Numerov propagator took 0.22488460E+01 seconds
+Calculations of the coupling matrix took 0.65100000E-03 seconds
+Numerov propagator took 0.22947610E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
 Warning: Unitary condition is not fulfilled for channel no.
 3         0.10000037E+01
 Consider increasing the STEPS parameter
 Warning: Unitary condition is not fulfilled for channel no.
 4         0.10000950E+01
 Consider increasing the STEPS parameter
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2693E+00 s
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.3168E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 29: 1.847947
 Largest partial inelastic state-to-state for JTOT = 29: .049966
                                            ***
--- JTOT block completed in 4.6496E+00 s
+-- JTOT block completed in 4.6966E+00 s
 ******************************************************************************************
 *                              JTOT =         30                                         *
 ******************************************************************************************
@@ -2958,11 +3306,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16900000E-03 seconds
-Numerov propagator took 0.21722950E+01 seconds
+Calculations of the coupling matrix took 0.18100000E-03 seconds
+Numerov propagator took 0.22629100E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.4000E-05 s
--- Parity block completed in 2.3205E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.9000E-05 s
+-- Parity block completed in 2.4255E+00 s
                                            ***
 Block number: 61
 jtot: 30 parity: -1
@@ -3002,16 +3356,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.65000000E-03 seconds
-Numerov propagator took 0.21238240E+01 seconds
+Calculations of the coupling matrix took 0.64200000E-03 seconds
+Numerov propagator took 0.23092410E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.1448E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.3320E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 30: 1.782045
 Largest partial inelastic state-to-state for JTOT = 30: .046244
                                            ***
--- JTOT block completed in 4.4654E+00 s
+-- JTOT block completed in 4.7576E+00 s
 ******************************************************************************************
 *                              JTOT =         31                                         *
 ******************************************************************************************
@@ -3060,11 +3420,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16900000E-03 seconds
-Numerov propagator took 0.21051560E+01 seconds
+Calculations of the coupling matrix took 0.18300000E-03 seconds
+Numerov propagator took 0.21610090E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.4000E-05 s
--- Parity block completed in 2.2589E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.3209E+00 s
                                            ***
 Block number: 63
 jtot: 31 parity: -1
@@ -3104,16 +3470,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.60900000E-03 seconds
-Numerov propagator took 0.22412880E+01 seconds
+Calculations of the coupling matrix took 0.72800000E-03 seconds
+Numerov propagator took 0.21778350E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 2.2624E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.2008E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 31: 1.734685
 Largest partial inelastic state-to-state for JTOT = 31: .042387
                                            ***
--- JTOT block completed in 4.5214E+00 s
+-- JTOT block completed in 4.5217E+00 s
 ******************************************************************************************
 *                              JTOT =         32                                         *
 ******************************************************************************************
@@ -3162,11 +3534,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16900000E-03 seconds
-Numerov propagator took 0.21390700E+01 seconds
+Calculations of the coupling matrix took 0.18100000E-03 seconds
+Numerov propagator took 0.22016440E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.2939E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.3664E+00 s
                                            ***
 Block number: 65
 jtot: 32 parity: -1
@@ -3206,16 +3584,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.63300000E-03 seconds
-Numerov propagator took 0.22312250E+01 seconds
+Calculations of the coupling matrix took 0.63700000E-03 seconds
+Numerov propagator took 0.21719150E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.2539E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1954E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 32: 1.753582
 Largest partial inelastic state-to-state for JTOT = 32: .038456
                                            ***
--- JTOT block completed in 4.5478E+00 s
+-- JTOT block completed in 4.5619E+00 s
 ******************************************************************************************
 *                              JTOT =         33                                         *
 ******************************************************************************************
@@ -3264,11 +3648,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19000000E-03 seconds
-Numerov propagator took 0.22027580E+01 seconds
+Calculations of the coupling matrix took 0.18100000E-03 seconds
+Numerov propagator took 0.21614120E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.7000E-05 s
--- Parity block completed in 2.3688E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.5000E-05 s
+-- Parity block completed in 2.3922E+00 s
                                            ***
 Block number: 67
 jtot: 33 parity: -1
@@ -3308,16 +3698,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.62500000E-03 seconds
-Numerov propagator took 0.21961940E+01 seconds
+Calculations of the coupling matrix took 0.89500000E-03 seconds
+Numerov propagator took 0.22032140E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2191E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2276E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 33: 1.789591
 Largest partial inelastic state-to-state for JTOT = 33: .034514
                                            ***
--- JTOT block completed in 4.5879E+00 s
+-- JTOT block completed in 4.6198E+00 s
 ******************************************************************************************
 *                              JTOT =         34                                         *
 ******************************************************************************************
@@ -3366,11 +3762,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17800000E-03 seconds
-Numerov propagator took 0.21427890E+01 seconds
+Calculations of the coupling matrix took 0.18700000E-03 seconds
+Numerov propagator took 0.23318170E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.9000E-05 s
--- Parity block completed in 2.3047E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 7.2000E-05 s
+-- Parity block completed in 2.5311E+00 s
                                            ***
 Block number: 69
 jtot: 34 parity: -1
@@ -3410,16 +3812,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.65500000E-03 seconds
-Numerov propagator took 0.21980940E+01 seconds
+Calculations of the coupling matrix took 0.64400000E-03 seconds
+Numerov propagator took 0.21976130E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
 -- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.2233E+00 s
+-- Parity block completed in 2.2243E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 34: 1.763967
 Largest partial inelastic state-to-state for JTOT = 34: .030627
                                            ***
--- JTOT block completed in 4.5280E+00 s
+-- JTOT block completed in 4.7554E+00 s
 ******************************************************************************************
 *                              JTOT =         35                                         *
 ******************************************************************************************
@@ -3468,11 +3876,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17700000E-03 seconds
-Numerov propagator took 0.21358760E+01 seconds
+Calculations of the coupling matrix took 0.19100000E-03 seconds
+Numerov propagator took 0.21245120E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.6000E-05 s
--- Parity block completed in 2.2979E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 7.6000E-05 s
+-- Parity block completed in 2.3448E+00 s
                                            ***
 Block number: 71
 jtot: 35 parity: -1
@@ -3512,16 +3926,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.63700000E-03 seconds
-Numerov propagator took 0.22013160E+01 seconds
+Calculations of the coupling matrix took 0.81000000E-03 seconds
+Numerov propagator took 0.22553120E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2251E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2803E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 35: 1.982721
 Largest partial inelastic state-to-state for JTOT = 35: .026852
                                            ***
--- JTOT block completed in 4.5231E+00 s
+-- JTOT block completed in 4.6252E+00 s
 ******************************************************************************************
 *                              JTOT =         36                                         *
 ******************************************************************************************
@@ -3570,11 +3990,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17800000E-03 seconds
-Numerov propagator took 0.21193390E+01 seconds
+Calculations of the coupling matrix took 0.18200000E-03 seconds
+Numerov propagator took 0.21320980E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.4000E-05 s
--- Parity block completed in 2.2829E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.3079E+00 s
                                            ***
 Block number: 73
 jtot: 36 parity: -1
@@ -3614,16 +4040,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.60800000E-03 seconds
-Numerov propagator took 0.22210130E+01 seconds
+Calculations of the coupling matrix took 0.61700000E-03 seconds
+Numerov propagator took 0.22727720E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 2.0000E-05 s
--- Parity block completed in 2.2571E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2979E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 36: 2.140570
 Largest partial inelastic state-to-state for JTOT = 36: .023248
                                            ***
--- JTOT block completed in 4.5400E+00 s
+-- JTOT block completed in 4.6059E+00 s
 ******************************************************************************************
 *                              JTOT =         37                                         *
 ******************************************************************************************
@@ -3672,11 +4104,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.30100000E-03 seconds
-Numerov propagator took 0.21553350E+01 seconds
+Calculations of the coupling matrix took 0.17800000E-03 seconds
+Numerov propagator took 0.20733500E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 7.2000E-05 s
--- Parity block completed in 2.3254E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.2620E+00 s
                                            ***
 Block number: 75
 jtot: 37 parity: -1
@@ -3716,16 +4154,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.62500000E-03 seconds
-Numerov propagator took 0.22428000E+01 seconds
+Calculations of the coupling matrix took 0.62300000E-03 seconds
+Numerov propagator took 0.22187080E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.2671E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.7000E-05 s
+-- Parity block completed in 2.2447E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 37: 2.235933
 Largest partial inelastic state-to-state for JTOT = 37: .019861
                                            ***
--- JTOT block completed in 4.5925E+00 s
+-- JTOT block completed in 4.5068E+00 s
 ******************************************************************************************
 *                              JTOT =         38                                         *
 ******************************************************************************************
@@ -3774,11 +4218,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18300000E-03 seconds
-Numerov propagator took 0.21042780E+01 seconds
+Calculations of the coupling matrix took 0.19700000E-03 seconds
+Numerov propagator took 0.21449840E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 6.8000E-05 s
--- Parity block completed in 2.3141E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.5000E-05 s
+-- Parity block completed in 2.3231E+00 s
                                            ***
 Block number: 77
 jtot: 38 parity: -1
@@ -3818,16 +4268,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.62500000E-03 seconds
-Numerov propagator took 0.22578500E+01 seconds
+Calculations of the coupling matrix took 0.60800000E-03 seconds
+Numerov propagator took 0.21982650E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 2.0000E-05 s
--- Parity block completed in 2.2871E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.2240E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 38: 2.399438
 Largest partial inelastic state-to-state for JTOT = 38: .016732
                                            ***
--- JTOT block completed in 4.6012E+00 s
+-- JTOT block completed in 4.5472E+00 s
 ******************************************************************************************
 *                              JTOT =         39                                         *
 ******************************************************************************************
@@ -3876,11 +4332,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.21300000E-03 seconds
-Numerov propagator took 0.21992290E+01 seconds
+Calculations of the coupling matrix took 0.17300000E-03 seconds
+Numerov propagator took 0.20169910E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.0800E-04 s
--- Parity block completed in 2.4316E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.2044E+00 s
                                            ***
 Block number: 79
 jtot: 39 parity: -1
@@ -3920,16 +4382,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.81700000E-03 seconds
-Numerov propagator took 0.24031720E+01 seconds
+Calculations of the coupling matrix took 0.62500000E-03 seconds
+Numerov propagator took 0.21567570E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.4316E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1818E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 39: 2.319644
 Largest partial inelastic state-to-state for JTOT = 39: .013892
                                            ***
--- JTOT block completed in 4.8633E+00 s
+-- JTOT block completed in 4.3862E+00 s
 ******************************************************************************************
 *                              JTOT =         40                                         *
 ******************************************************************************************
@@ -3978,11 +4446,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19200000E-03 seconds
-Numerov propagator took 0.25835880E+01 seconds
+Calculations of the coupling matrix took 0.16700000E-03 seconds
+Numerov propagator took 0.23141540E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.3400E-04 s
--- Parity block completed in 2.8287E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 8.6000E-05 s
+-- Parity block completed in 2.5669E+00 s
                                            ***
 Block number: 81
 jtot: 40 parity: -1
@@ -4022,16 +4496,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.12510000E-02 seconds
-Numerov propagator took 0.30126970E+01 seconds
+Calculations of the coupling matrix took 0.12520000E-02 seconds
+Numerov propagator took 0.26588390E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.7000E-05 s
--- Parity block completed in 3.0454E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 2.1000E-05 s
+-- Parity block completed in 2.6913E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 40: 2.066566
 Largest partial inelastic state-to-state for JTOT = 40: .011358
                                            ***
--- JTOT block completed in 5.8742E+00 s
+-- JTOT block completed in 5.2582E+00 s
 ******************************************************************************************
 *                              JTOT =         41                                         *
 ******************************************************************************************
@@ -4080,11 +4560,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.22300000E-03 seconds
-Numerov propagator took 0.22796110E+01 seconds
+Calculations of the coupling matrix took 0.21800000E-03 seconds
+Numerov propagator took 0.22789440E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 8.7000E-05 s
--- Parity block completed in 2.5094E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 7.1000E-05 s
+-- Parity block completed in 2.5092E+00 s
                                            ***
 Block number: 83
 jtot: 41 parity: -1
@@ -4124,16 +4610,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.82400000E-03 seconds
-Numerov propagator took 0.22519870E+01 seconds
+Calculations of the coupling matrix took 0.10770000E-02 seconds
+Numerov propagator took 0.21600270E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.2783E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.2000E-05 s
+-- Parity block completed in 2.1854E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 41: 1.722603
 Largest partial inelastic state-to-state for JTOT = 41: .009140
                                            ***
--- JTOT block completed in 4.7878E+00 s
+-- JTOT block completed in 4.6947E+00 s
 ******************************************************************************************
 *                              JTOT =         42                                         *
 ******************************************************************************************
@@ -4182,11 +4674,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19700000E-03 seconds
-Numerov propagator took 0.23133020E+01 seconds
+Calculations of the coupling matrix took 0.16800000E-03 seconds
+Numerov propagator took 0.20339870E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.5264E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.7000E-05 s
+-- Parity block completed in 2.2460E+00 s
                                            ***
 Block number: 85
 jtot: 42 parity: -1
@@ -4226,16 +4724,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.66100000E-03 seconds
-Numerov propagator took 0.25283430E+01 seconds
+Calculations of the coupling matrix took 0.10310000E-02 seconds
+Numerov propagator took 0.21155760E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 2.0000E-05 s
--- Parity block completed in 2.5596E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.1412E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 42: 1.357442
 Largest partial inelastic state-to-state for JTOT = 42: .007234
                                            ***
--- JTOT block completed in 5.0860E+00 s
+-- JTOT block completed in 4.3872E+00 s
 ******************************************************************************************
 *                              JTOT =         43                                         *
 ******************************************************************************************
@@ -4284,11 +4788,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20600000E-03 seconds
-Numerov propagator took 0.23984310E+01 seconds
+Calculations of the coupling matrix took 0.16800000E-03 seconds
+Numerov propagator took 0.20537020E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.9000E-05 s
--- Parity block completed in 2.5858E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.5000E-05 s
+-- Parity block completed in 2.2336E+00 s
                                            ***
 Block number: 87
 jtot: 43 parity: -1
@@ -4328,16 +4838,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.62400000E-03 seconds
-Numerov propagator took 0.24279580E+01 seconds
+Calculations of the coupling matrix took 0.59100000E-03 seconds
+Numerov propagator took 0.21370960E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.4567E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.1624E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 43: 1.018248
 Largest partial inelastic state-to-state for JTOT = 43: .005628
                                            ***
--- JTOT block completed in 5.0426E+00 s
+-- JTOT block completed in 4.3960E+00 s
 ******************************************************************************************
 *                              JTOT =         44                                         *
 ******************************************************************************************
@@ -4386,11 +4902,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18300000E-03 seconds
-Numerov propagator took 0.26739010E+01 seconds
+Calculations of the coupling matrix took 0.16800000E-03 seconds
+Numerov propagator took 0.21103770E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 7.0000E-05 s
--- Parity block completed in 2.9432E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.4000E-05 s
+-- Parity block completed in 2.3188E+00 s
                                            ***
 Block number: 89
 jtot: 44 parity: -1
@@ -4430,16 +4952,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.79200000E-03 seconds
-Numerov propagator took 0.24035160E+01 seconds
+Calculations of the coupling matrix took 0.59100000E-03 seconds
+Numerov propagator took 0.21774660E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.4310E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.2039E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 44: .730104
 Largest partial inelastic state-to-state for JTOT = 44: .004301
                                            ***
--- JTOT block completed in 5.3743E+00 s
+-- JTOT block completed in 4.5228E+00 s
 ******************************************************************************************
 *                              JTOT =         45                                         *
 ******************************************************************************************
@@ -4488,11 +5016,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18300000E-03 seconds
-Numerov propagator took 0.22075420E+01 seconds
+Calculations of the coupling matrix took 0.17300000E-03 seconds
+Numerov propagator took 0.21048390E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 6.3000E-05 s
--- Parity block completed in 2.4606E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.8000E-05 s
+-- Parity block completed in 2.3028E+00 s
                                            ***
 Block number: 91
 jtot: 45 parity: -1
@@ -4532,16 +5066,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.83300000E-03 seconds
-Numerov propagator took 0.22893550E+01 seconds
+Calculations of the coupling matrix took 0.64300000E-03 seconds
+Numerov propagator took 0.22037620E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.3170E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 4.4000E-05 s
+-- Parity block completed in 2.2325E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 45: .501230
 Largest partial inelastic state-to-state for JTOT = 45: .003228
                                            ***
--- JTOT block completed in 4.7776E+00 s
+-- JTOT block completed in 4.5353E+00 s
 ******************************************************************************************
 *                              JTOT =         46                                         *
 ******************************************************************************************
@@ -4590,11 +5130,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18200000E-03 seconds
-Numerov propagator took 0.22622520E+01 seconds
+Calculations of the coupling matrix took 0.18300000E-03 seconds
+Numerov propagator took 0.20721300E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 9.5000E-05 s
--- Parity block completed in 2.4548E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 6.1000E-05 s
+-- Parity block completed in 2.2742E+00 s
                                            ***
 Block number: 93
 jtot: 46 parity: -1
@@ -4634,16 +5180,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.63600000E-03 seconds
-Numerov propagator took 0.22809780E+01 seconds
+Calculations of the coupling matrix took 0.63900000E-03 seconds
+Numerov propagator took 0.21635660E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.3095E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.1895E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 46: .329167
 Largest partial inelastic state-to-state for JTOT = 46: .002378
                                            ***
--- JTOT block completed in 4.7643E+00 s
+-- JTOT block completed in 4.4637E+00 s
 ******************************************************************************************
 *                              JTOT =         47                                         *
 ******************************************************************************************
@@ -4692,11 +5244,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20400000E-03 seconds
-Numerov propagator took 0.22268540E+01 seconds
+Calculations of the coupling matrix took 0.16700000E-03 seconds
+Numerov propagator took 0.19841600E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 7.1000E-05 s
--- Parity block completed in 2.4267E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.4000E-05 s
+-- Parity block completed in 2.1709E+00 s
                                            ***
 Block number: 95
 jtot: 47 parity: -1
@@ -4736,16 +5294,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.66700000E-03 seconds
-Numerov propagator took 0.23000630E+01 seconds
+Calculations of the coupling matrix took 0.59100000E-03 seconds
+Numerov propagator took 0.20554060E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.3287E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.0819E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 47: .205964
 Largest partial inelastic state-to-state for JTOT = 47: .001718
                                            ***
--- JTOT block completed in 4.7554E+00 s
+-- JTOT block completed in 4.2529E+00 s
 ******************************************************************************************
 *                              JTOT =         48                                         *
 ******************************************************************************************
@@ -4794,11 +5358,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19600000E-03 seconds
-Numerov propagator took 0.22623850E+01 seconds
+Calculations of the coupling matrix took 0.17200000E-03 seconds
+Numerov propagator took 0.19805500E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.7000E-05 s
--- Parity block completed in 2.4624E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.5000E-05 s
+-- Parity block completed in 2.1791E+00 s
                                            ***
 Block number: 97
 jtot: 48 parity: -1
@@ -4838,16 +5408,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.62500000E-03 seconds
-Numerov propagator took 0.23081990E+01 seconds
+Calculations of the coupling matrix took 0.70400000E-03 seconds
+Numerov propagator took 0.20600210E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.3375E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.0874E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 48: .121786
 Largest partial inelastic state-to-state for JTOT = 48: .001217
                                            ***
--- JTOT block completed in 4.7999E+00 s
+-- JTOT block completed in 4.2665E+00 s
 ******************************************************************************************
 *                              JTOT =         49                                         *
 ******************************************************************************************
@@ -4896,11 +5472,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18300000E-03 seconds
-Numerov propagator took 0.22209630E+01 seconds
+Calculations of the coupling matrix took 0.17700000E-03 seconds
+Numerov propagator took 0.19765650E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 5.7000E-05 s
--- Parity block completed in 2.4223E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 9.0000E-05 s
+-- Parity block completed in 2.1693E+00 s
                                            ***
 Block number: 99
 jtot: 49 parity: -1
@@ -4940,16 +5522,22 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.65100000E-03 seconds
-Numerov propagator took 0.22668430E+01 seconds
+Calculations of the coupling matrix took 0.59100000E-03 seconds
+Numerov propagator took 0.20573160E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.2961E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.0842E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 49: .067053
 Largest partial inelastic state-to-state for JTOT = 49: .000844
                                            ***
--- JTOT block completed in 4.7185E+00 s
+-- JTOT block completed in 4.2535E+00 s
 ******************************************************************************************
 *                              JTOT =         50                                         *
 ******************************************************************************************
@@ -4998,11 +5586,17 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the coupling matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20100000E-03 seconds
-Numerov propagator took 0.22226130E+01 seconds
+Calculations of the coupling matrix took 0.16900000E-03 seconds
+Numerov propagator took 0.19785870E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.0900E-04 s
--- Parity block completed in 2.4285E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 5.3000E-05 s
+-- Parity block completed in 2.1758E+00 s
                                            ***
 Block number: 101
 jtot: 50 parity: -1
@@ -5043,15 +5637,21 @@ Number of scattering channels: 29
      Number of non-zero elements  of the coupling matrix: 222
 ******************************************************************************************
 Calculations of the coupling matrix took 0.60300000E-03 seconds
-Numerov propagator took 0.22512440E+01 seconds
+Numerov propagator took 0.20599380E+01 seconds
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.2810E+00 s
+                                           ***
+Check of the unitarity of the S-matrix:
+                                  *** S-matrix elements: ***
+   ROW   COL               S**2                 RE (S)                 IM (S)
+S-matrix unitary condition fulfilled
+                                           ***
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.0880E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 50: .033488
 Largest partial inelastic state-to-state for JTOT = 50: .000573
                                            ***
--- JTOT block completed in 4.7095E+00 s
+-- JTOT block completed in 4.2639E+00 s
 ******************************************************************************************
                                Loop over JTOT finished
 ******************************************************************************************
@@ -5105,4 +5705,4 @@ Final state-to-state XS
      0     7         1     3    0.68608500E+02    0.16366472E-05
      1     1         1     3    0.68608500E+02    0.30560666E-01
      1     3         1     3    0.68608500E+02    0.50023557E+02
--- Total CPU time: 2.1933E+02 s
+-- Total CPU time: 2.1604E+02 s
