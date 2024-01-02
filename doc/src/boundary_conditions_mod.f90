@@ -1,13 +1,7 @@
 module boundary_conditions_mod
    !! This module contains subroutines that transform the asymptotic
-   !! log-derivative matrix into the scattering S-matrix:
-   !! 1. pfunc      - calculates the P coefficients from Eq. (6.19)
-   !! 2. transsum   - calculates the sum over \bar{\Omega} in Eq. (6.17-6.18)
-   !! 3. bftosfmat  - transforms a given BF-matrix to the SF frame of rerence
-   !! 4. calculate_k_matrix - transforms log-derivative matrix into reactance matrix
-   !     (Eq.6.42)
-   !! 5. kmattosmat - transfroms reactance matrix into scattering S-matrix
-   !     (Eq.6.44)
+   !! log-derivative matrix into the scattering S-matrix
+   !! (see "Solution of coupled equations" section)
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
@@ -286,50 +280,5 @@ module boundary_conditions_mod
          enddo
          !---------------------------------------------------------------------!
       end subroutine calculate_s_matrix
-      !------------------------------------------------------------------------!
-      subroutine unitarity_check(number_of_open_channels,s_matrix_real,        &
-         s_matrix_imag,is_unitary)
-         !! checks the unitarity of the S-matrix
-         !! (Eq. (13) in "Solution of coupled equations")
-         !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: number_of_open_channels
-            !! number of open channels
-         real(dp), intent(in) :: s_matrix_real(number_of_open_channels,number_of_open_channels)
-            !! real part of the S-matrix
-         real(dp), intent(in) :: s_matrix_imag(number_of_open_channels,number_of_open_channels)
-            !! imaginary part of the S-matrix
-         logical, intent(inout) :: is_unitary
-            !! (output) if .true. unitarity is fulfilled, .false. otherwise
-         !---------------------------------------------------------------------!
-         character(len = 200) :: line_
-         integer(int32) :: channel_index
-         real(dp) :: sum_of_squares(number_of_open_channels)
-         !---------------------------------------------------------------------!
-         is_unitary  = .true.
-         !---------------------------------------------------------------------!
-         call write_header("unitarity")
-         !---------------------------------------------------------------------!
-         do channel_index=1, number_of_open_channels
-            sum_of_squares(channel_index) =                                    &
-               sum((s_matrix_real(channel_index, :)**2)                        &
-               + (s_matrix_imag(channel_index, :)**2))
-         enddo
-         !---------------------------------------------------------------------!
-         do channel_index=1, number_of_open_channels
-            if (dabs(sum_of_squares(channel_index)-1.d0).gt.unitary_tolerance) then
-               call write_warning("Unitary condition is not fulfilled for channel no.")
-               write(line_, "(1X,I5,8X,E15.8)") channel_index, sum_of_squares(channel_index)
-               call write_message(trim(adjustl(line_)))
-               call write_message("Consider increasing the STEPS parameter")
-               is_unitary = .false.
-            endif
-         enddo
-         !---------------------------------------------------------------------!
-         if (is_unitary) then
-            call write_message("S-matrix unitary condition fulfilled")
-            call write_message(repeat(" ", 43) // "***")
-         endif
-         !---------------------------------------------------------------------!
-      end subroutine unitarity_check
-      !------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
 end module boundary_conditions_mod 
