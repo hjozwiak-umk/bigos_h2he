@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>triangle_inequality_holds &ndash; the SCATTERING code</title>
+    <title>check_unitarity_for_each_channel &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>triangle_inequality_holds
+    <h1>check_unitarity_for_each_channel
       <small>Function</small>
       
     </h1>
@@ -89,18 +89,18 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 0.4% of total for procedures.">8 statements</a>
+               title=" 0.6% of total for procedures.">12 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/math_functions_mod.f90"> Source File</a>
+              <a href="../src/unitarity_check_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/math_functions_mod.f90.html'>math_functions_mod.f90</a></li>
-              <li><a href='../module/math_functions_mod.html'>math_functions_mod</a></li>
-          <li class="active">triangle_inequality_holds</li>
+              <li><a href='../sourcefile/unitarity_check_mod.f90.html'>unitarity_check_mod.f90</a></li>
+              <li><a href='../module/unitarity_check_mod.html'>unitarity_check_mod</a></li>
+          <li class="active">check_unitarity_for_each_channel</li>
         </ol>
       </div>
     </div>
@@ -118,7 +118,19 @@
       <div id="sidebar">
       <h3>Contents</h3>
   
-  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#vars-0">Variables</a>
+        </h3>
+      </div>
+      <div id="vars-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../proc/check_unitarity_for_each_channel.html#variable-channel_index">channel_index</a>
+        </div>
+      </div>
+    </div>
+
   
   
   
@@ -139,7 +151,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/triangle_inequality_holds.html#src">triangle_inequality_holds</a>
+        <a class="list-group-item" href="../proc/check_unitarity_for_each_channel.html#src">check_unitarity_for_each_channel</a>
       </div>
     </div>
 
@@ -149,11 +161,11 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  function triangle_inequality_holds(x, y, z) result(triang)  
+    <h2>public  function check_unitarity_for_each_channel(sum_of_squares) result(is_unitary_)  
 </h2>
     
 
-    <p>check if the triangle inequality for 3 variables hols</p>
+    <p>checks if the calculated sum of squares equals 1 for each channel</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -168,47 +180,17 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-x"></span>
-              integer(kind=int32),
+              <span class="anchor" id="variable-sum_of_squares"></span>
+              real(kind=dp),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>x</strong></td>
+            <td><strong>sum_of_squares</strong>(:)</td>
             <td>
-                <p>variables to check the triangle inequality</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-y"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>y</strong></td>
-            <td>
-                <p>variables to check the triangle inequality</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-z"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>z</strong></td>
-            <td>
-                <p>variables to check the triangle inequality</p>
+                <p>\( \sum_{\gamma'} \Bigl|{S}^{Jp}_{\gamma, \gamma'}\Bigr|^{2} \)</p>
             </td>
         </tr>
     </tbody>
@@ -216,11 +198,11 @@
 
       <h3>Return Value
         <small>
-          <span class="anchor" id="variable-triang"></span>
-          integer(kind=int32)
+          <span class="anchor" id="variable-is_unitary_"></span>
+          logical
         </small>
       </h3>
-      <p>(out) result: 1 = true, 0 = false</p>
+      <p>(output) if .true. unitarity is fulfilled, .false. otherwise</p>
     <br>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -232,68 +214,47 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~triangle_inequality_holds~~CalledByGraph Pages: 1 -->
-<svg id="proctriangle_inequality_holdsCalledByGraph" width="542pt" height="74pt"
- viewBox="0.00 0.00 542.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~triangle_inequality_holds~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
-<title>proc~~triangle_inequality_holds~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 538,-70 538,4 -4,4"/>
-<!-- proc~triangle_inequality_holds -->
-<g id="proc~~triangle_inequality_holds~~CalledByGraph_node1" class="node">
-<title>proc~triangle_inequality_holds</title>
-<polygon fill="none" stroke="black" points="534,-45 389,-45 389,-21 534,-21 534,-45"/>
-<text text-anchor="middle" x="461.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">triangle_inequality_holds</text>
+<!-- Title: proc~~check_unitarity_for_each_channel~~CalledByGraph Pages: 1 -->
+<svg id="proccheck_unitarity_for_each_channelCalledByGraph" width="446pt" height="32pt"
+ viewBox="0.00 0.00 446.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~check_unitarity_for_each_channel~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~check_unitarity_for_each_channel~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 442,-28 442,4 -4,4"/>
+<!-- proc~check_unitarity_for_each_channel -->
+<g id="proc~~check_unitarity_for_each_channel~~CalledByGraph_node1" class="node">
+<title>proc~check_unitarity_for_each_channel</title>
+<polygon fill="none" stroke="black" points="438,-24 245,-24 245,0 438,0 438,-24"/>
+<text text-anchor="middle" x="341.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">check_unitarity_for_each_channel</text>
 </g>
-<!-- proc~check_nonzero_coupling_matrix_elements -->
-<g id="proc~~triangle_inequality_holds~~CalledByGraph_node2" class="node">
-<title>proc~check_nonzero_coupling_matrix_elements</title>
-<g id="a_proc~~triangle_inequality_holds~~CalledByGraph_node2"><a xlink:href=".././proc/check_nonzero_coupling_matrix_elements.html" xlink:title="check_nonzero_coupling_matrix_elements">
-<polygon fill="#d9534f" stroke="#d9534f" points="353,-66 115,-66 115,-42 353,-42 353,-66"/>
-<text text-anchor="middle" x="234" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check_nonzero_coupling_matrix_elements</text>
+<!-- proc~unitarity_check -->
+<g id="proc~~check_unitarity_for_each_channel~~CalledByGraph_node2" class="node">
+<title>proc~unitarity_check</title>
+<g id="a_proc~~check_unitarity_for_each_channel~~CalledByGraph_node2"><a xlink:href=".././proc/unitarity_check.html" xlink:title="unitarity_check">
+<polygon fill="#d9534f" stroke="#d9534f" points="209,-24 115,-24 115,0 209,0 209,-24"/>
+<text text-anchor="middle" x="162" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">unitarity_check</text>
 </a>
 </g>
 </g>
-<!-- proc~check_nonzero_coupling_matrix_elements&#45;&gt;proc~triangle_inequality_holds -->
-<g id="proc~~triangle_inequality_holds~~CalledByGraph_edge1" class="edge">
-<title>proc~check_nonzero_coupling_matrix_elements&#45;&gt;proc~triangle_inequality_holds</title>
-<path fill="none" stroke="#ff0000" d="M353.03,-43.01C361.75,-42.2 370.42,-41.39 378.84,-40.61"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="379.33,-44.07 388.97,-39.66 378.68,-37.1 379.33,-44.07"/>
-</g>
-<!-- proc~prepare_coupling_matrix_elements -->
-<g id="proc~~triangle_inequality_holds~~CalledByGraph_node3" class="node">
-<title>proc~prepare_coupling_matrix_elements</title>
-<g id="a_proc~~triangle_inequality_holds~~CalledByGraph_node3"><a xlink:href=".././proc/prepare_coupling_matrix_elements.html" xlink:title="prepare_coupling_matrix_elements">
-<polygon fill="#d9534f" stroke="#d9534f" points="333.5,-24 134.5,-24 134.5,0 333.5,0 333.5,-24"/>
-<text text-anchor="middle" x="234" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">prepare_coupling_matrix_elements</text>
-</a>
-</g>
-</g>
-<!-- proc~prepare_coupling_matrix_elements&#45;&gt;proc~triangle_inequality_holds -->
-<g id="proc~~triangle_inequality_holds~~CalledByGraph_edge2" class="edge">
-<title>proc~prepare_coupling_matrix_elements&#45;&gt;proc~triangle_inequality_holds</title>
-<path fill="none" stroke="#ff0000" d="M333.58,-21.18C348.7,-22.59 364.16,-24.03 378.86,-25.4"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="378.62,-28.89 388.9,-26.33 379.27,-21.92 378.62,-28.89"/>
+<!-- proc~unitarity_check&#45;&gt;proc~check_unitarity_for_each_channel -->
+<g id="proc~~check_unitarity_for_each_channel~~CalledByGraph_edge1" class="edge">
+<title>proc~unitarity_check&#45;&gt;proc~check_unitarity_for_each_channel</title>
+<path fill="none" stroke="#ff0000" d="M209.17,-12C217.23,-12 225.91,-12 234.82,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="234.96,-15.5 244.96,-12 234.96,-8.5 234.96,-15.5"/>
 </g>
 <!-- program~scattering -->
-<g id="proc~~triangle_inequality_holds~~CalledByGraph_node4" class="node">
+<g id="proc~~check_unitarity_for_each_channel~~CalledByGraph_node3" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~triangle_inequality_holds~~CalledByGraph_node4"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-45 0,-45 0,-21 79,-21 79,-45"/>
-<text text-anchor="middle" x="39.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+<g id="a_proc~~check_unitarity_for_each_channel~~CalledByGraph_node3"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
+<text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~check_nonzero_coupling_matrix_elements -->
-<g id="proc~~triangle_inequality_holds~~CalledByGraph_edge3" class="edge">
-<title>program~scattering&#45;&gt;proc~check_nonzero_coupling_matrix_elements</title>
-<path fill="none" stroke="#ff0000" d="M79.46,-37.25C89.5,-38.35 100.85,-39.58 112.72,-40.88"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="112.48,-44.37 122.8,-41.98 113.23,-37.41 112.48,-44.37"/>
-</g>
-<!-- program~scattering&#45;&gt;proc~prepare_coupling_matrix_elements -->
-<g id="proc~~triangle_inequality_holds~~CalledByGraph_edge4" class="edge">
-<title>program~scattering&#45;&gt;proc~prepare_coupling_matrix_elements</title>
-<path fill="none" stroke="#00ffff" d="M79.46,-28.75C92.74,-27.3 108.31,-25.6 124.35,-23.85"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="124.82,-27.32 134.38,-22.76 124.06,-20.36 124.82,-27.32"/>
+<!-- program~scattering&#45;&gt;proc~unitarity_check -->
+<g id="proc~~check_unitarity_for_each_channel~~CalledByGraph_edge2" class="edge">
+<title>program~scattering&#45;&gt;proc~unitarity_check</title>
+<path fill="none" stroke="#ff0000" d="M79.29,-12C87.4,-12 96.11,-12 104.71,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.71,-15.5 114.71,-12 104.71,-8.5 104.71,-15.5"/>
 </g>
 </g>
 </svg>
@@ -363,7 +324,19 @@
     <section class="visible-xs visible-sm hidden-md">
         <h3>Contents</h3>
   
-  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#vars-1">Variables</a>
+        </h3>
+      </div>
+      <div id="vars-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../proc/check_unitarity_for_each_channel.html#variable-channel_index">channel_index</a>
+        </div>
+      </div>
+    </div>
+
   
   
   
@@ -384,7 +357,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/triangle_inequality_holds.html#src">triangle_inequality_holds</a>
+        <a class="list-group-item" href="../proc/check_unitarity_for_each_channel.html#src">check_unitarity_for_each_channel</a>
       </div>
     </div>
 
@@ -393,6 +366,40 @@
     <br class="visible-xs visible-sm hidden-md">
 
 
+    <section>    
+      <h2>Variables</h2>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Visibility</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+<th></th><th>Initial</th>        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channel_index"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel_index</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </section>
+    <br>
     
     
 
@@ -403,20 +410,26 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">   </span><span class="k">function </span><span class="n">triangle_inequality_holds</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">triang</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="c">!! check if the triangle inequality for 3 variables hols</span>
-<span class="w">      </span><span class="c">!------------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! variables to check the triangle inequality</span>
-<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">triang</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! (out) result: 1 = true, 0 = false</span>
-<span class="w">      </span><span class="c">!------------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="n">triang</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">         </span><span class="n">triang</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">      </span><span class="k">endif</span><span class="w"></span>
-<span class="w">      </span><span class="c">!------------------------------------------------------------------------!</span>
-<span class="w">   </span><span class="k">end function </span><span class="n">triangle_inequality_holds</span><span class="w"></span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">function </span><span class="n">check_unitarity_for_each_channel</span><span class="p">(</span><span class="n">sum_of_squares</span><span class="p">)</span><span class="w">                </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="k">result</span><span class="p">(</span><span class="n">is_unitary_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! checks if the calculated sum of squares equals 1 for each channel</span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sum_of_squares</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! \\( \sum\_{\gamma&#39;} \Bigl|{S}^{Jp}\_{\gamma, \gamma&#39;}\Bigr|^{2} \\)</span>
+<span class="w">         </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_unitary_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! (output) if .true. unitarity is fulfilled, .false. otherwise</span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channel_index</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="n">is_unitary_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
+<span class="w">         </span><span class="k">do </span><span class="n">channel_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">sum_of_squares</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">sum_of_squares</span><span class="p">(</span><span class="n">channel_index</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0_dp</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">unitary_tolerance</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">               </span><span class="n">is_unitary_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">               </span><span class="k">exit</span>
+<span class="k">            endif</span>
+<span class="k">          end do</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">      </span><span class="k">end function </span><span class="n">check_unitarity_for_each_channel</span><span class="w"></span>
 </pre></div>
 
     </section>

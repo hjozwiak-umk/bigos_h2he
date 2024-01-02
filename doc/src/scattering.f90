@@ -6,6 +6,7 @@ program SCATTERING
    use PES_COUPLING_MATRIX
    use PROPAGATORS
    use boundary_conditions_mod
+   use unitarity_check_mod, only: unitarity_check
    use statetostateXS
    use utility_functions_mod, only: write_header, file_io_status, write_message,   &
       float_to_character, integer_to_character, time_count_summary
