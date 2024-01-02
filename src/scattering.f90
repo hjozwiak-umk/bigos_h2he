@@ -268,7 +268,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Transform the log-derivative matrix to the SF frame
          !---------------------------------------------------------------------!
-         call bf_to_sf_transformation(number_of_channels, jtot_,               &
+         call calculate_sf_matrix_from_bf_matrix(number_of_channels, jtot_,               &
             channels_level_indices, channels_omega_values, channels_l_values,  &
             BF_log_der_matrix, SF_log_der_matrix)
          !---------------------------------------------------------------------!

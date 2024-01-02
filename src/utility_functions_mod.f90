@@ -125,6 +125,12 @@ module utility_functions_mod
                   call write_error("**** JTOT value not provided in " //       &
                      "write_header_block ****")
                endif
+            case('unitarity')
+               call write_message(repeat(" ", 43) // "***")
+               call write_message("Check of the unitarity of the S-matrix:")
+               call write_message(repeat(" ", 34) // "*** S-matrix elements: ***")
+               call write_message("   ROW   COL" // repeat(" ", 15) // "S**2"//&
+                  repeat(" ", 17) // "RE (S)" // repeat(" ", 17) // "IM (S)")
             case default
                call incorrect_value('header_type (write_header)', header_type)
          end select
