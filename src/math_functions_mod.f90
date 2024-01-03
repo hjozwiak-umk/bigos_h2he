@@ -1,6 +1,7 @@
 module math_functions_mod
-   !! this module holds 3 types of functions:
-   !! -- geometric functions: triangle_inequality_holds and is_sum_even
+   !! this module holds 4 types of functions:
+   !! -- algebraic functions: percival_seaton_coefficient
+   !! -- geometric functions: triangle_inequality_holds, is_sum_even, zero_projections_3j_condition
    !! -- bessel functions: groups functions: riccati_bessel_j, bessely and modified_bessel_k_ratio
    !!    that call special functions from special_functions.f90 library
    !! -- interpolation procedures: spline and ispline functions for interpolating data
@@ -15,20 +16,53 @@ module math_functions_mod
    implicit none
 	contains
    !---------------------------------------------------------------------------!
+   !                           Algebraic functions
+   !---------------------------------------------------------------------------!
+   function percival_seaton_coefficient(j_, j_prime_, lambda_, omega_)         &
+      result(percival_seaton_coefficient_)
+      !! calculates Percival-Seaton coefficients (body-fixed variant)
+      !! \begin{equation}
+      !! \label{eq:algebraic_coeffs}
+      !! g_{{\lambda},\gamma,\gamma'}^{Jp} = \delta_{\bar{\Omega},\bar{\Omega}'} (-1)^{\bar{\Omega}} \sqrt{(2j+1)(2j'+1)}
+      !! \begin{pmatrix}
+      !!   j & j' & \lambda \\ 0 & 0 & 0
+      !! \end{pmatrix}
+      !! \begin{pmatrix}
+      !! j & j' & \lambda \\ \bar{\Omega} & -\bar{\Omega} & 0 \end{pmatrix},
+      !! \end{equation}
+      !------------------------------------------------------------------------!
+      use fwigxjpf, only: fwig3jj
+      !------------------------------------------------------------------------!
+      integer(int32), intent(in) :: j_
+         !! pre-collisional rotational angular momentum
+      integer(int32), intent(in) :: j_prime_
+         !! post-collisional rotational angular momentum
+      integer(int32), intent(in) :: omega_
+         !! \\(\bar{\Omega}\\)
+      integer(int32), intent(in) :: lambda_
+         !! Legendre expansion coefficient \\( \lambda\\)
+      real(dp) :: percival_seaton_coefficient_
+         !! (out) result: percival seaton coefficient in the body-fixed frame
+      !------------------------------------------------------------------------!
+      percival_seaton_coefficient_ = (-1.0_dp)**(omega_) * sqrt(               &
+         real((2 * j_ + 1)  * (2 * j_prime_ + 1), dp))                         &
+         * fwig3jj(2* j_ ,   2* j_prime_  , 2* lambda_, 0, 0, 0)               &
+         * fwig3jj(2* j_ ,   2* j_prime_  , 2* lambda_,                        &
+            2 * omega_, -2 * omega_,     0)
+      !------------------------------------------------------------------------!
+   end function percival_seaton_coefficient
+   !---------------------------------------------------------------------------!
    !                           Geometric functions
    !---------------------------------------------------------------------------!
-   function triangle_inequality_holds(x, y, z) result(triang)
+   function triangle_inequality_holds(x, y, z) result(holds)
       !! check if the triangle inequality for 3 variables hols
       !------------------------------------------------------------------------!
       integer(int32), intent(in) :: x, y, z
          !! variables to check the triangle inequality
-      integer(int32) :: triang
-         !! (out) result: 1 = true, 0 = false
+      logical :: holds
+         !! (out) result: true/false
       !------------------------------------------------------------------------!
-      triang = 0
-      if (x + y >= z .and. x + z >= y .and. y + z >= x) then
-         triang = 1
-      endif
+      holds = ( (x + y >= z) .and. (x + z >= y) .and. (y + z >= x) )
       !------------------------------------------------------------------------!
    end function triangle_inequality_holds
    !---------------------------------------------------------------------------!
@@ -37,12 +71,26 @@ module math_functions_mod
       !------------------------------------------------------------------------!
       integer(int32), intent(in) :: x, y, z
          !! variables to check if the sum is even
-      integer(int32) :: sum_even
-         !! (out) result: 1 = true, 0 = false
+      logical :: sum_even
+         !! (out) result: true/false
       !------------------------------------------------------------------------!
-      sum_even = merge(1, 0, modulo(x + y + z, 2) == 0)
+      sum_even = (modulo(x + y + z, 2) == 0)
       !------------------------------------------------------------------------!
    end function is_sum_even
+   !---------------------------------------------------------------------------!
+   function zero_projections_3j_condition(x, y, z) result(is_valid)
+      !! checks the condition for nonvanishing 3-j symbol with zero projections:
+      !! triangle inequality on x,y,z and if the sum x+y+z is an even integer
+      !------------------------------------------------------------------------!
+      integer(int32), intent(in) :: x, y, z
+         !! variables to check for 3-j symbol conditions
+      logical :: is_valid
+         !! (out) result: true/false if conditions are met
+      !------------------------------------------------------------------------!
+      is_valid = (triangle_inequality_holds(x, y, z) .and. is_sum_even(x, y, z))
+      !------------------------------------------------------------------------!
+   end function zero_projections_3j_condition
+   !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
    !                             Bessel functions
    ! these functions handle calling to specific subroutines from
