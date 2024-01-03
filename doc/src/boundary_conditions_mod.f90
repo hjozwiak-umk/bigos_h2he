@@ -41,6 +41,7 @@ module boundary_conditions_mod
          !---------------------------------------------------------------------!
       end function p_coeff
    !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
       subroutine calculate_single_SF_element(number_of_channels,               &
          total_angular_momentum_, v_, j_, vp_, jp_, l_, lp_,                   &
          channels_level_indices, channels_omega_values, bf_matrix, sf_element)
@@ -86,7 +87,8 @@ module boundary_conditions_mod
          sf_element = sum_outer
          !---------------------------------------------------------------------!
       end subroutine calculate_single_SF_element
-      !------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
       subroutine calculate_sf_matrix_from_bf_matrix(number_of_channels,        &
          total_angular_momentum_, channels_level_indices,                      &
          channels_omega_values,channels_l_values, bf_matrix, sf_matrix)
@@ -129,7 +131,8 @@ module boundary_conditions_mod
          enddo
          !---------------------------------------------------------------------!         
       end subroutine calculate_sf_matrix_from_bf_matrix
-      !------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
       subroutine calculate_k_matrix(number_of_channels, log_der_matrix,        &
          number_of_open_channels, channels_level_indices, channels_l_values,   &
          r_, k_matrix)
@@ -236,7 +239,8 @@ module boundary_conditions_mod
          k_matrix = diag_jp_matrix(1:number_of_open_channels, 1:number_of_open_channels)
          !---------------------------------------------------------------------!
       end subroutine calculate_k_matrix
-      !------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
       subroutine calculate_s_matrix(number_of_open_channels, k_matrix,         &
          s_matrix_real, s_matrix_imag)
          !! calculates S-matrix from open-open portion of the K-matrix using
@@ -280,5 +284,6 @@ module boundary_conditions_mod
          enddo
          !---------------------------------------------------------------------!
       end subroutine calculate_s_matrix
+   !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
 end module boundary_conditions_mod 

@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>set_number_of_open_channels_wavmax &ndash; the SCATTERING code</title>
+    <title>set_space_fixed_channels &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>set_number_of_open_channels_wavmax
+    <h1>set_space_fixed_channels
       <small>Subroutine</small>
       
     </h1>
@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 0.9% of total for procedures.">18 statements</a>
+               title=" 1.0% of total for procedures.">20 statements</a>
           </li>
 
             <li id="source-file">
@@ -100,7 +100,7 @@
         <ol class="breadcrumb in-well text-right">
               <li><a href='../sourcefile/channels_mod.f90.html'>channels_mod.f90</a></li>
               <li><a href='../module/channels_mod.html'>channels_mod</a></li>
-          <li class="active">set_number_of_open_channels_wavmax</li>
+          <li class="active">set_space_fixed_channels</li>
         </ol>
       </div>
     </div>
@@ -118,20 +118,7 @@
       <div id="sidebar">
       <h3>Contents</h3>
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#vars-0">Variables</a>
-        </h3>
-      </div>
-      <div id="vars-0" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../proc/set_number_of_open_channels_wavmax.html#variable-isize_~4">isize_</a>
-            <a class="list-group-item" href="../proc/set_number_of_open_channels_wavmax.html#variable-wavenumber~3">wavenumber</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -152,7 +139,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/set_number_of_open_channels_wavmax.html#src">set_number_of_open_channels_wavmax</a>
+        <a class="list-group-item" href="../proc/set_space_fixed_channels.html#src">set_space_fixed_channels</a>
       </div>
     </div>
 
@@ -162,12 +149,12 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine set_number_of_open_channels_wavmax(number_of_channels, channels_level_indices, channels_omega_values, number_of_open_channels, wavmax)  
+    <h2>public  subroutine set_space_fixed_channels(total_angular_momentum_, parity_exponent_, channels_l_values)  
 </h2>
     
 
-    <p>Calculates the number of energetically open channels (number_of_open_channels) and
-the largest wave number (wavmax) in the block.</p>
+    <p>Prepares the channels_l_values array which holds values of
+orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -182,7 +169,7 @@ the largest wave number (wavmax) in the block.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_channels~13"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~9"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -190,14 +177,14 @@ the largest wave number (wavmax) in the block.</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
-                <p>number of channels in the block</p>
+                <p>total angular momentum</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channels_level_indices~11"></span>
+              <span class="anchor" id="variable-parity_exponent_~2"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -205,29 +192,14 @@ the largest wave number (wavmax) in the block.</p>
               
             </td>
             <td>::</td>
-            <td><strong>channels_level_indices</strong>(number_of_channels)</td>
+            <td><strong>parity_exponent_</strong></td>
             <td>
-                <p>holds the indices pointing to the basis arrays</p>
+                <p>parity exponent of the block (0 if p = +1, 1 if p = -1)</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channels_omega_values~9"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
-            <td>
-                <p>holds all values of \bar{\Omega}</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-number_of_open_channels~4"></span>
+              <span class="anchor" id="variable-channels_l_values~4"></span>
               integer(kind=int32),
             </td>
 <td>intent(inout)</td>
@@ -235,24 +207,9 @@ the largest wave number (wavmax) in the block.</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_open_channels</strong></td>
+            <td><strong>channels_l_values</strong>(:)</td>
             <td>
-                <p>number of open channels</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-wavmax"></span>
-              real(kind=dp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>wavmax</strong></td>
-            <td>
-                <p>the largest wave number (wavmax) in the block</p>
+                <p>holds all values of l</p>
             </td>
         </tr>
     </tbody>
@@ -269,32 +226,47 @@ the largest wave number (wavmax) in the block.</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~set_number_of_open_channels_wavmax~~CallsGraph Pages: 1 -->
-<svg id="procset_number_of_open_channels_wavmaxCallsGraph" width="324pt" height="32pt"
- viewBox="0.00 0.00 324.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~set_number_of_open_channels_wavmax~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~set_number_of_open_channels_wavmax~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 320,-28 320,4 -4,4"/>
-<!-- proc~set_number_of_open_channels_wavmax -->
-<g id="proc~~set_number_of_open_channels_wavmax~~CallsGraph_node1" class="node">
-<title>proc~set_number_of_open_channels_wavmax</title>
-<polygon fill="none" stroke="black" points="226,-24 0,-24 0,0 226,0 226,-24"/>
-<text text-anchor="middle" x="113" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_number_of_open_channels_wavmax</text>
+<!-- Title: proc~~set_space_fixed_channels~~CallsGraph Pages: 1 -->
+<svg id="procset_space_fixed_channelsCallsGraph" width="391pt" height="32pt"
+ viewBox="0.00 0.00 391.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~set_space_fixed_channels~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~set_space_fixed_channels~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 387,-28 387,4 -4,4"/>
+<!-- proc~set_space_fixed_channels -->
+<g id="proc~~set_space_fixed_channels~~CallsGraph_node1" class="node">
+<title>proc~set_space_fixed_channels</title>
+<polygon fill="none" stroke="black" points="149,-24 0,-24 0,0 149,0 149,-24"/>
+<text text-anchor="middle" x="74.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_space_fixed_channels</text>
 </g>
-<!-- proc~etotal -->
-<g id="proc~~set_number_of_open_channels_wavmax~~CallsGraph_node2" class="node">
-<title>proc~etotal</title>
-<g id="a_proc~~set_number_of_open_channels_wavmax~~CallsGraph_node2"><a xlink:href=".././proc/etotal.html" xlink:title="ETOTAL">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="316,-24 262,-24 262,0 316,0 316,-24"/>
-<text text-anchor="middle" x="289" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ETOTAL</text>
+<!-- proc~write_error -->
+<g id="proc~~set_space_fixed_channels~~CallsGraph_node2" class="node">
+<title>proc~write_error</title>
+<g id="a_proc~~set_space_fixed_channels~~CallsGraph_node2"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
+<polygon fill="#d9534f" stroke="#d9534f" points="255,-24 185,-24 185,0 255,0 255,-24"/>
+<text text-anchor="middle" x="220" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
 </a>
 </g>
 </g>
-<!-- proc~set_number_of_open_channels_wavmax&#45;&gt;proc~etotal -->
-<g id="proc~~set_number_of_open_channels_wavmax~~CallsGraph_edge1" class="edge">
-<title>proc~set_number_of_open_channels_wavmax&#45;&gt;proc~etotal</title>
-<path fill="none" stroke="#ff0000" d="M226.16,-12C235.21,-12 243.85,-12 251.66,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="251.75,-15.5 261.75,-12 251.75,-8.5 251.75,-15.5"/>
+<!-- proc~set_space_fixed_channels&#45;&gt;proc~write_error -->
+<g id="proc~~set_space_fixed_channels~~CallsGraph_edge1" class="edge">
+<title>proc~set_space_fixed_channels&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ff0000" d="M149.35,-12C157.95,-12 166.5,-12 174.52,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="174.72,-15.5 184.72,-12 174.72,-8.5 174.72,-15.5"/>
+</g>
+<!-- proc~write_message -->
+<g id="proc~~set_space_fixed_channels~~CallsGraph_node3" class="node">
+<title>proc~write_message</title>
+<g id="a_proc~~set_space_fixed_channels~~CallsGraph_node3"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="383,-24 291,-24 291,0 383,0 383,-24"/>
+<text text-anchor="middle" x="337" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+</a>
+</g>
+</g>
+<!-- proc~write_error&#45;&gt;proc~write_message -->
+<g id="proc~~set_space_fixed_channels~~CallsGraph_edge2" class="edge">
+<title>proc~write_error&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M255.19,-12C263.19,-12 271.91,-12 280.56,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="280.65,-15.5 290.65,-12 280.65,-8.5 280.65,-15.5"/>
 </g>
 </g>
 </svg>
@@ -369,32 +341,32 @@ the largest wave number (wavmax) in the block.</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~set_number_of_open_channels_wavmax~~CalledByGraph Pages: 1 -->
-<svg id="procset_number_of_open_channels_wavmaxCalledByGraph" width="349pt" height="32pt"
- viewBox="0.00 0.00 349.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~set_number_of_open_channels_wavmax~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~set_number_of_open_channels_wavmax~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 345,-28 345,4 -4,4"/>
-<!-- proc~set_number_of_open_channels_wavmax -->
-<g id="proc~~set_number_of_open_channels_wavmax~~CalledByGraph_node1" class="node">
-<title>proc~set_number_of_open_channels_wavmax</title>
-<polygon fill="none" stroke="black" points="341,-24 115,-24 115,0 341,0 341,-24"/>
-<text text-anchor="middle" x="228" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_number_of_open_channels_wavmax</text>
+<!-- Title: proc~~set_space_fixed_channels~~CalledByGraph Pages: 1 -->
+<svg id="procset_space_fixed_channelsCalledByGraph" width="272pt" height="32pt"
+ viewBox="0.00 0.00 272.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~set_space_fixed_channels~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~set_space_fixed_channels~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 268,-28 268,4 -4,4"/>
+<!-- proc~set_space_fixed_channels -->
+<g id="proc~~set_space_fixed_channels~~CalledByGraph_node1" class="node">
+<title>proc~set_space_fixed_channels</title>
+<polygon fill="none" stroke="black" points="264,-24 115,-24 115,0 264,0 264,-24"/>
+<text text-anchor="middle" x="189.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_space_fixed_channels</text>
 </g>
 <!-- program~scattering -->
-<g id="proc~~set_number_of_open_channels_wavmax~~CalledByGraph_node2" class="node">
+<g id="proc~~set_space_fixed_channels~~CalledByGraph_node2" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~set_number_of_open_channels_wavmax~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~set_space_fixed_channels~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~set_number_of_open_channels_wavmax -->
-<g id="proc~~set_number_of_open_channels_wavmax~~CalledByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;proc~set_number_of_open_channels_wavmax</title>
-<path fill="none" stroke="#ff0000" d="M79.14,-12C87.06,-12 95.78,-12 104.91,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="104.97,-15.5 114.97,-12 104.97,-8.5 104.97,-15.5"/>
+<!-- program~scattering&#45;&gt;proc~set_space_fixed_channels -->
+<g id="proc~~set_space_fixed_channels~~CalledByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;proc~set_space_fixed_channels</title>
+<path fill="none" stroke="#ff0000" d="M79.39,-12C87.35,-12 96.02,-12 104.88,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.93,-15.5 114.93,-12 104.93,-8.5 104.93,-15.5"/>
 </g>
 </g>
 </svg>
@@ -464,20 +436,7 @@ the largest wave number (wavmax) in the block.</p>
     <section class="visible-xs visible-sm hidden-md">
         <h3>Contents</h3>
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#vars-1">Variables</a>
-        </h3>
-      </div>
-      <div id="vars-1" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../proc/set_number_of_open_channels_wavmax.html#variable-isize_~4">isize_</a>
-            <a class="list-group-item" href="../proc/set_number_of_open_channels_wavmax.html#variable-wavenumber~3">wavenumber</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -498,7 +457,7 @@ the largest wave number (wavmax) in the block.</p>
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/set_number_of_open_channels_wavmax.html#src">set_number_of_open_channels_wavmax</a>
+        <a class="list-group-item" href="../proc/set_space_fixed_channels.html#src">set_space_fixed_channels</a>
       </div>
     </div>
 
@@ -507,57 +466,6 @@ the largest wave number (wavmax) in the block.</p>
     <br class="visible-xs visible-sm hidden-md">
 
 
-    <section>    
-      <h2>Variables</h2>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Visibility</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-<th></th><th>Initial</th>        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-isize_~4"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>isize_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-wavenumber~3"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>wavenumber</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    </section>
-    <br>
     
     
 
@@ -568,38 +476,39 @@ the largest wave number (wavmax) in the block.</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">set_number_of_open_channels_wavmax</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">channels_level_indices</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">,</span><span class="w">                        </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_open_channels</span><span class="p">,</span><span class="w"> </span><span class="n">wavmax</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! Calculates the number of energetically open channels (number_of_open_channels) and</span>
-<span class="w">         </span><span class="c">!! the largest wave number (wavmax) in the block.</span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">set_space_fixed_channels</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">             </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">parity_exponent_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_l_values</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! Prepares the channels_l_values array which holds values of</span>
+<span class="w">         </span><span class="c">!! orbital angular momentum, \\(l\\), a space-fixed-frame quantum number.</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of channels in the block</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! holds the indices pointing to the basis arrays</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! holds all values of \bar{\Omega}</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_open_channels</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of open channels</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">wavmax</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! the largest wave number (wavmax) in the block</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! total angular momentum</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">parity_exponent_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! parity exponent of the block (0 if p = +1, 1 if p = -1)</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_l_values</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! holds all values of l</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">isize_</span><span class="w"></span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">wavenumber</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">level_index_</span><span class="p">,</span><span class="w"> </span><span class="n">l_min_</span><span class="p">,</span><span class="w"> </span><span class="n">l_max_</span><span class="p">,</span><span class="w"> </span><span class="n">l_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">number_of_open_channels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="n">wavmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">do </span><span class="n">isize_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">ETOTAL</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">elevel</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">isize_</span><span class="p">)))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">               </span><span class="n">number_of_open_channels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number_of_open_channels</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">               </span><span class="n">wavenumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dsqrt</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">reducedmass</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ETOTAL</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">elevel</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">isize_</span><span class="p">))))</span><span class="w"></span>
-<span class="w">               </span><span class="n">wavmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">wavmax</span><span class="p">,</span><span class="w"> </span><span class="n">wavenumber</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">endif</span>
+<span class="w">         </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">         </span><span class="k">do </span><span class="n">level_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nlevel</span><span class="w"></span>
+<span class="w">            </span><span class="n">l_min_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">level_index_</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="n">l_max_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">level_index_</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">do </span><span class="n">l_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l_min_</span><span class="p">,</span><span class="w"> </span><span class="n">l_max_</span><span class="w"></span>
+<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">l_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">level_index_</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parity_exponent_</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                  </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">channel_index_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">channels_l_values</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                     call </span><span class="n">write_error</span><span class="p">(</span><span class="s2">&quot;channel_index_ out of bounds of &quot;</span><span class="w"> </span><span class="o">//</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                        </span><span class="s2">&quot;channels_l_values in set_space_fixed_channels.&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">                  </span><span class="k">end if</span>
+<span class="k">                  </span><span class="n">channels_l_values</span><span class="p">(</span><span class="n">channel_index_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l_</span><span class="w"></span>
+<span class="w">               </span><span class="k">endif</span>
+<span class="k">            enddo</span>
 <span class="k">         enddo</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="k">end subroutine </span><span class="n">set_number_of_open_channels_wavmax</span><span class="w"></span>
+<span class="w">      </span><span class="k">end subroutine </span><span class="n">set_space_fixed_channels</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -620,7 +529,7 @@ the largest wave number (wavmax) in the block.</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-02 16:05            </p>
+ on 2024-01-03 12:09            </p>
         </div>
       </div>
       <br>
