@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.6% of total for procedures.">32 statements</a>
+               title=" 0.5% of total for procedures.">10 statements</a>
           </li>
 
             <li id="source-file">
@@ -118,28 +118,7 @@
       <div id="sidebar">
       <h3>Contents</h3>
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#vars-0">Variables</a>
-        </h3>
-      </div>
-      <div id="vars-0" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-ii~10">ii</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-j1tmp~7">j1tmp</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-l_len">l_len</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-len_even">len_even</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-len_odd">len_odd</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-lmax~2">lmax</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-lmin~2">lmin</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-omegamax~2">omegamax</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-size_sf_even">size_SF_even</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-size_sf_odd">size_SF_odd</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -170,12 +149,13 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine set_number_of_channels(jtot_, size_BF_even, size_BF_odd)  
+    <h2>public  subroutine set_number_of_channels(total_angular_momentum_, number_of_channels_even_parity_block, number_of_channels_odd_parity_block)  
 </h2>
     
 
     <p>determine the number of scattering channels in each parity block 
-for given JTOT; check both BF and SF frames</p>
+for given total angular momentum in both body-fixed and
+space-fixed frames</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -190,7 +170,7 @@ for given JTOT; check both BF and SF frames</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-jtot_"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~4"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -198,160 +178,45 @@ for given JTOT; check both BF and SF frames</p>
               
             </td>
             <td>::</td>
-            <td><strong>jtot_</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
                 <p>total angular momentum         </p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-size_bf_even"></span>
+              <span class="anchor" id="variable-number_of_channels_even_parity_block"></span>
               integer(kind=int32),
             </td>
-<td>intent(inout)</td>
+<td>intent(out)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>size_BF_even</strong></td>
+            <td><strong>number_of_channels_even_parity_block</strong></td>
             <td>
-                <p>number of channels in p = 1 block</p>
+                <p>number of channels in the p = 1 (even parity) block</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-size_bf_odd"></span>
+              <span class="anchor" id="variable-number_of_channels_odd_parity_block"></span>
               integer(kind=int32),
             </td>
-<td>intent(inout)</td>
+<td>intent(out)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>size_BF_odd</strong></td>
+            <td><strong>number_of_channels_odd_parity_block</strong></td>
             <td>
-                <p>number of channels in p = -1 block</p>
+                <p>number of channels in the p = -1 (odd parity) block</p>
             </td>
         </tr>
     </tbody>
   </table>
 
     <br>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-  <h3 class="panel-title">Calls</h3>
-      </div>
-      <div class="panel-body">
-  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.43.0 (0)
- -->
-<!-- Title: proc~~set_number_of_channels~~CallsGraph Pages: 1 -->
-<svg id="procset_number_of_channelsCallsGraph" width="387pt" height="32pt"
- viewBox="0.00 0.00 387.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~set_number_of_channels~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~set_number_of_channels~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 383,-28 383,4 -4,4"/>
-<!-- proc~set_number_of_channels -->
-<g id="proc~~set_number_of_channels~~CallsGraph_node1" class="node">
-<title>proc~set_number_of_channels</title>
-<polygon fill="none" stroke="black" points="145,-24 0,-24 0,0 145,0 145,-24"/>
-<text text-anchor="middle" x="72.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_number_of_channels</text>
-</g>
-<!-- proc~write_error -->
-<g id="proc~~set_number_of_channels~~CallsGraph_node2" class="node">
-<title>proc~write_error</title>
-<g id="a_proc~~set_number_of_channels~~CallsGraph_node2"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
-<polygon fill="#d9534f" stroke="#d9534f" points="251,-24 181,-24 181,0 251,0 251,-24"/>
-<text text-anchor="middle" x="216" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
-</a>
-</g>
-</g>
-<!-- proc~set_number_of_channels&#45;&gt;proc~write_error -->
-<g id="proc~~set_number_of_channels~~CallsGraph_edge1" class="edge">
-<title>proc~set_number_of_channels&#45;&gt;proc~write_error</title>
-<path fill="none" stroke="#ff0000" d="M145.08,-12C153.85,-12 162.61,-12 170.8,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="170.85,-15.5 180.85,-12 170.85,-8.5 170.85,-15.5"/>
-</g>
-<!-- proc~write_message -->
-<g id="proc~~set_number_of_channels~~CallsGraph_node3" class="node">
-<title>proc~write_message</title>
-<g id="a_proc~~set_number_of_channels~~CallsGraph_node3"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="379,-24 287,-24 287,0 379,0 379,-24"/>
-<text text-anchor="middle" x="333" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
-</a>
-</g>
-</g>
-<!-- proc~write_error&#45;&gt;proc~write_message -->
-<g id="proc~~set_number_of_channels~~CallsGraph_edge2" class="edge">
-<title>proc~write_error&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#ff0000" d="M251.19,-12C259.19,-12 267.91,-12 276.56,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="276.65,-15.5 286.65,-12 276.65,-8.5 276.65,-15.5"/>
-</g>
-</g>
-</svg>
-</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
-    <p>Nodes of different colours represent the following: </p>
-    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.43.0 (0)
- -->
-<!-- Title: Graph Key Pages: 1 -->
-<svg width="594pt" height="32pt"
- viewBox="0.00 0.00 594.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>Graph Key</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 590,-28 590,4 -4,4"/>
-<!-- Subroutine -->
-<g id="node1" class="node">
-<title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
-<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
-</g>
-<!-- Function -->
-<g id="node2" class="node">
-<title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
-<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node3" class="node">
-<title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
-<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node4" class="node">
-<title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="388,-24 244,-24 244,0 388,0 388,-24"/>
-<text text-anchor="middle" x="316" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
-</g>
-<!-- Program -->
-<g id="node5" class="node">
-<title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="463.5,-24 406.5,-24 406.5,0 463.5,0 463.5,-24"/>
-<text text-anchor="middle" x="435" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
-</g>
-<!-- This Page&#39;s Entity -->
-<g id="node6" class="node">
-<title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="586,-24 482,-24 482,0 586,0 586,-24"/>
-<text text-anchor="middle" x="534" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
-</g>
-</g>
-</svg>
-
-    
-    <p>Solid arrows point from a procedure to one which it calls. Dashed 
-    arrows point from an interface to procedures which implement that interface.
-    This could include the module procedures in a generic interface or the
-    implementation in a submodule of an interface in a parent module. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
-    </p>
-    </div></div></div></div>
-      </div>
-    </div>
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Called by</h3>
@@ -457,28 +322,7 @@ for given JTOT; check both BF and SF frames</p>
     <section class="visible-xs visible-sm hidden-md">
         <h3>Contents</h3>
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#vars-1">Variables</a>
-        </h3>
-      </div>
-      <div id="vars-1" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-ii~10">ii</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-j1tmp~7">j1tmp</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-l_len">l_len</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-len_even">len_even</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-len_odd">len_odd</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-lmax~2">lmax</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-lmin~2">lmin</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-omegamax~2">omegamax</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-size_sf_even">size_SF_even</a>
-            <a class="list-group-item" href="../proc/set_number_of_channels.html#variable-size_sf_odd">size_SF_odd</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -508,193 +352,6 @@ for given JTOT; check both BF and SF frames</p>
     <br class="visible-xs visible-sm hidden-md">
 
 
-    <section>    
-      <h2>Variables</h2>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Visibility</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-<th></th><th>Initial</th>        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-ii~10"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>ii</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-j1tmp~7"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>j1tmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-l_len"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>l_len</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-len_even"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>len_even</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-len_odd"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>len_odd</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-lmax~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>lmax</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-lmin~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>lmin</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omegamax~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omegamax</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-size_sf_even"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>size_SF_even</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-size_sf_odd"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>size_SF_odd</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    </section>
-    <br>
     
     
 
@@ -705,59 +362,39 @@ for given JTOT; check both BF and SF frames</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">set_number_of_channels</span><span class="p">(</span><span class="n">jtot_</span><span class="p">,</span><span class="w"> </span><span class="n">size_BF_even</span><span class="p">,</span><span class="w"> </span><span class="n">size_BF_odd</span><span class="p">)</span><span class="w"></span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">set_number_of_channels</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">               </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">number_of_channels_even_parity_block</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_odd_parity_block</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!! determine the number of scattering channels in each parity block </span>
-<span class="w">         </span><span class="c">!! for given JTOT; check both BF and SF frames</span>
+<span class="w">         </span><span class="c">!! for given total angular momentum in both body-fixed and</span>
+<span class="w">         </span><span class="c">!! space-fixed frames</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">jtot_</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! total angular momentum         </span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">size_BF_even</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of channels in p = 1 block</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">size_BF_odd</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of channels in p = -1 block</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels_even_parity_block</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! number of channels in the p = 1 (even parity) block</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels_odd_parity_block</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! number of channels in the p = -1 (odd parity) block</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ii</span><span class="p">,</span><span class="w"> </span><span class="n">j1tmp</span><span class="p">,</span><span class="w"> </span><span class="n">omegamax</span><span class="p">,</span><span class="w"> </span><span class="n">lmin</span><span class="p">,</span><span class="w"> </span><span class="n">lmax</span><span class="p">,</span><span class="w"> </span><span class="n">l_len</span><span class="p">,</span><span class="w"> </span><span class="n">len_even</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">len_odd</span><span class="p">,</span><span class="w"> </span><span class="n">size_SF_even</span><span class="p">,</span><span class="w"> </span><span class="n">size_SF_odd</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels_even_parity_block_sf</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">number_of_channels_odd_parity_block_sf</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! BF frame</span>
+<span class="w">         </span><span class="c">! body-fixed frame</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">size_BF_even</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="n">size_BF_odd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="k">do </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nlevel</span><span class="w"></span>
-<span class="w">            </span><span class="n">j1tmp</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">omegamax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">j1tmp</span><span class="p">,</span><span class="w"> </span><span class="n">jtot_</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">size_BF_even</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size_BF_even</span><span class="o">+</span><span class="n">omegamax</span><span class="o">+</span><span class="mi">1</span><span class="w"></span>
-<span class="w">            </span><span class="n">size_BF_odd</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">size_BF_odd</span><span class="o">+</span><span class="n">omegamax</span><span class="w"></span>
-<span class="w">         </span><span class="k">enddo</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">calculate_number_of_channels_body_fixed</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">number_of_channels_even_parity_block</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_odd_parity_block</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! SF frame</span>
+<span class="w">         </span><span class="c">! space-fixed frame</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">size_SF_even</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="n">size_SF_odd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="k">do </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">nlevel</span><span class="w"></span>
-<span class="w">            </span><span class="n">j1tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">lmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">jtot_</span><span class="o">-</span><span class="n">j1tmp</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">lmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jtot_</span><span class="o">+</span><span class="n">j1tmp</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">l_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lmax</span><span class="o">-</span><span class="n">lmin</span><span class="o">+</span><span class="mi">1</span><span class="w"></span>
-<span class="w">            </span><span class="n">len_even</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">int</span><span class="p">((</span><span class="n">l_len</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">len_odd</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">int</span><span class="p">((</span><span class="n">l_len</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">size_SF_even</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size_SF_even</span><span class="o">+</span><span class="n">len_even</span><span class="w"></span>
-<span class="w">            </span><span class="n">size_SF_odd</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">size_SF_odd</span><span class="o">+</span><span class="n">len_odd</span><span class="w"></span>
-<span class="w">         </span><span class="k">enddo</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">calculate_number_of_channels_space_fixed</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">number_of_channels_even_parity_block_sf</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_odd_parity_block_sf</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! Check if the results are the same</span>
+<span class="w">         </span><span class="c">! Check if the number of channels is the same</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">size_BF_even</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="n">size_SF_even</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            call </span><span class="n">write_error</span><span class="p">(</span><span class="s2">&quot;Different number of channels in even block &quot;</span><span class="w"> </span><span class="o">//</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="s2">&quot;(BF/SF); check set_number_of_channels&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="k">endif</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">size_BF_odd</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="n">size_SF_odd</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            call </span><span class="n">write_error</span><span class="p">(</span><span class="s2">&quot;Different number of channels in odd block &quot;</span><span class="w"> </span><span class="o">//</span><span class="w">   </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="s2">&quot;(BF/SF); check set_number_of_channels&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="k">endif</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">check_number_of_channels</span><span class="p">(</span><span class="n">number_of_channels_even_parity_block</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">number_of_channels_even_parity_block_sf</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;even&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">check_number_of_channels</span><span class="p">(</span><span class="n">number_of_channels_odd_parity_block</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">number_of_channels_odd_parity_block_sf</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;odd&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">      </span><span class="k">end subroutine </span><span class="n">set_number_of_channels</span><span class="w"></span>
 </pre></div>
@@ -780,7 +417,7 @@ for given JTOT; check both BF and SF frames</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-02 16:05            </p>
+ on 2024-01-03 12:09            </p>
         </div>
       </div>
       <br>

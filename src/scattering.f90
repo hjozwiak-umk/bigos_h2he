@@ -2,14 +2,16 @@ program SCATTERING
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
    use POTENTIAL
-   use channels_mod
+   use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
+      set_space_fixed_channels, count_open_channels_in_block,                  &
+      calculate_largest_wavenumber, print_channels
    use PES_COUPLING_MATRIX
    use PROPAGATORS
    use boundary_conditions_mod
    use unitarity_check_mod, only: unitarity_check
    use statetostateXS
-   use utility_functions_mod, only: write_header, file_io_status, write_message,   &
-      float_to_character, integer_to_character, time_count_summary
+   use utility_functions_mod, only: write_header, file_io_status,              &
+      write_message, float_to_character, integer_to_character, time_count_summary
    use array_operations_mod, only: append
    !---------------------------------------------------------------------------!
    implicit none
@@ -17,12 +19,12 @@ program SCATTERING
    character(len=200) :: err_message, partial_line, xs_line
    integer(int32) :: number_of_nonzero_coupling_matrix_elements,               &
       number_of_nonzero_coupling_coefficients, number_of_channels, size_even,  &
-      size_odd, number_of_open_basis_levels, iblock, jtot_, parity_index,      &
-      parity_indextmp, nsteps, number_of_open_channels, ncacdiag, ncacoff,     &
+      size_odd, number_of_open_basis_levels, iblock, jtot_, parity_exponent,      &
+      parity_exponenttmp, nsteps, number_of_open_channels, ncacdiag, ncacoff,     &
       omegamax, lmin, lmax, ltmp, lmat_len, len_even, len_odd, jinddiag,       &
       jindoff1, jindoff2, ij, ilevel, iomega, iopen, iopen2, isize_, isize_2,  &
       icheck, icount, icount2, io_status
-   real(dp) :: wavmax, wavvdepth, maxXSdiag, maxXSoff, time_total_start,       &
+   real(dp) :: largest_wavevector, wavvdepth, maxXSdiag, maxXSoff, time_total_start,       &
       time_total_stop, time_total, time_init_stop, time_init, time_jtot_start, &
       time_jtot_stop, time_jtot, time_parity_start,time_parity_stop,           &
       time_parity, time_coupling_start, time_coupling_stop, time_coupling
@@ -66,7 +68,7 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    ! Prepare the file with the partial XS
    !---------------------------------------------------------------------------!
-   if (parity_index == 1) then
+   if (parity_exponent == 1) then
       open(12, file=trim(partialfile),form='formatted',status='unknown',       &
          iostat = io_status, iomsg = err_message)
       call file_io_status(io_status, err_message, 12, "o")
@@ -147,11 +149,11 @@ program SCATTERING
       xs_jtot = 0
       call set_number_of_channels(jtot_, size_even, size_odd)
       !------------------------------------------------------------------------!
-      do parity_index = 0,1
+      do parity_exponent = 0,1
          !---------------------------------------------------------------------!
          call cpu_time(time_parity_start)
          !---------------------------------------------------------------------!
-         select case(parity_index)
+         select case(parity_exponent)
             case(0)
                number_of_channels = size_even
             case(1)
@@ -167,7 +169,7 @@ program SCATTERING
             call write_message("Block number: " // integer_to_character(iblock))
             call write_message("jtot: " //                                     &
                trim(adjustl(integer_to_character(jtot_))) // " parity: " //    &
-               trim(adjustl(integer_to_character((-1)**parity_index) )))
+               trim(adjustl(integer_to_character((-1)**parity_exponent) )))
             call write_message("Number of scattering channels: " //            &
                integer_to_character(number_of_channels))
          endif
@@ -184,23 +186,18 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Prepare channels_omega_values, channels_level_indices and channels_l_values
          !---------------------------------------------------------------------!
-         call set_channels_level_indices_channels_omega_values(                &
-            number_of_channels, jtot_, parity_index, channels_level_indices,   &
+         call set_body_fixed_channels(jtot_, parity_exponent, channels_level_indices,   &
             channels_omega_values)
-         call set_channels_l_values(number_of_channels, jtot_, parity_index,   &
-            channels_l_values)
+         call set_space_fixed_channels(jtot_, parity_exponent, channels_l_values)
          !---------------------------------------------------------------------!
          ! Print the BF quantum numbers on screen
          !---------------------------------------------------------------------!
-         if (prntlvl.ge.1) call print_bf_channels(number_of_channels, jtot_,   &
-            parity_index, channels_level_indices, channels_omega_values)
+         if (prntlvl.ge.1) call print_channels(parity_exponent,                &
+            channels_level_indices, channels_omega_values)
          !---------------------------------------------------------------------!
          ! Determine the number of open (energetically accessible) channels
-         ! and the largest wavevector in the block
          !---------------------------------------------------------------------!
-         call set_number_of_open_channels_wavmax(number_of_channels,           &
-            channels_level_indices, channels_omega_values,                     &
-            number_of_open_channels, wavmax)
+         number_of_open_channels = count_open_channels_in_block(channels_level_indices)
          !---------------------------------------------------------------------!
          ! If there are no open channels, skip this block
          !---------------------------------------------------------------------!
@@ -212,13 +209,17 @@ program SCATTERING
             cycle
          endif
          !---------------------------------------------------------------------!
+         ! Determine the largest wavevector in the block
+         !---------------------------------------------------------------------!
+         largest_wavevector = calculate_largest_wavenumber(channels_level_indices)
+         !---------------------------------------------------------------------!
          ! Determine the number of steps on the intermolecular (R) grid
          ! This is done either directly (if dr > 0)
          ! or through the number of steps per half de Broglie wavelength
          !---------------------------------------------------------------------!
          wavvdepth = dsqrt(2*reducedmass*vdepth)
          if (dr <= 0) then
-            nsteps = nint((Rmax-Rmin)/PI*((wavmax+wavvdepth)*steps))
+            nsteps = nint((Rmax-Rmin)/PI*((largest_wavevector+wavvdepth)*steps))
          else
             nsteps = nint((Rmax-Rmin)/dr)+1
          endif
@@ -295,7 +296,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! S-matrix is written to the binary S-matrix file
          !---------------------------------------------------------------------!
-         write(11) jtot_, parity_index, number_of_open_channels
+         write(11) jtot_, parity_exponent, number_of_open_channels
          write(11) (channels_level_indices(iopen), channels_l_values(iopen),&
                     wv(iopen), iopen = 1, number_of_open_channels)
          write(11) ((s_matrix_real(iopen,iopen2), iopen2 = 1, iopen),&
@@ -325,7 +326,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          do icount = 1, number_of_open_basis_levels
             do icount2 = 1, number_of_open_basis_levels
-               if (parity_index == 1) then
+               if (parity_exponent == 1) then
                   write(partial_line,                                          &
                      "(I6,2X,I6,2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")   &
                      jtot_,iblock,v1array(open_basis_levels(icount2)),         &

@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>alloc_status &ndash; the SCATTERING code</title>
+    <title>set_body_fixed_channels &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>alloc_status
+    <h1>set_body_fixed_channels
       <small>Subroutine</small>
       
     </h1>
@@ -89,18 +89,18 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.0% of total for procedures.">19 statements</a>
+               title=" 0.7% of total for procedures.">13 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/utility_functions_mod.f90"> Source File</a>
+              <a href="../src/channels_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/utility_functions_mod.f90.html'>utility_functions_mod.f90</a></li>
-              <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
-          <li class="active">alloc_status</li>
+              <li><a href='../sourcefile/channels_mod.f90.html'>channels_mod.f90</a></li>
+              <li><a href='../module/channels_mod.html'>channels_mod</a></li>
+          <li class="active">set_body_fixed_channels</li>
         </ol>
       </div>
     </div>
@@ -139,7 +139,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/alloc_status.html#src">alloc_status</a>
+        <a class="list-group-item" href="../proc/set_body_fixed_channels.html#src">set_body_fixed_channels</a>
       </div>
     </div>
 
@@ -149,11 +149,13 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine alloc_status(istat_, message_, op_, unit_)  
+    <h2>public  subroutine set_body_fixed_channels(total_angular_momentum_, parity_exponent_, channels_level_indices, channels_omega_values)  
 </h2>
     
 
-    <p>check the status after allocation</p>
+    <p>Prepares the channels_level_indices array which holds indices that refer to the
+basis arrays: v1level/j1level/elevel, and channels_omega_values which holds values
+of \bar{\Omega}</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -168,62 +170,62 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-istat_"></span>
-              integer(kind=int32)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>istat_</strong></td>
-            <td>
-                <p>result of stat=istat in (de)allocate</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-message_~5"></span>
-              character(len=*),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>message_</strong></td>
-            <td>
-                <p>a message to be written</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-op_"></span>
-              character(len=1),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>op_</strong></td>
-            <td>
-                <p>'a' for allocation, 'd' for deallocation</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-unit_~4"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~8"></span>
               integer(kind=int32),
             </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
+<td>intent(in)</td>
+              <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>unit_</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
-                <p>optional, unit where the message will be written</p>
+                <p>total angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-parity_exponent_"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>parity_exponent_</strong></td>
+            <td>
+                <p>parity exponent of the block (0 if p = +1, 1 if p = -1)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channels_level_indices~12"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_level_indices</strong>(:)</td>
+            <td>
+                <p>holds the indices pointing to the basis arrays</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channels_omega_values~8"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channels_omega_values</strong>(:)</td>
+            <td>
+                <p>holds all values of \bar{\Omega}</p>
             </td>
         </tr>
     </tbody>
@@ -232,7 +234,7 @@
     <br>
     <div class="panel panel-default">
       <div class="panel-heading">
-  <h3 class="panel-title">Calls</h3>
+  <h3 class="panel-title">Called by</h3>
       </div>
       <div class="panel-body">
   <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -240,47 +242,32 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~alloc_status~~CallsGraph Pages: 1 -->
-<svg id="procalloc_statusCallsGraph" width="317pt" height="32pt"
- viewBox="0.00 0.00 317.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~alloc_status~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~alloc_status~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 313,-28 313,4 -4,4"/>
-<!-- proc~alloc_status -->
-<g id="proc~~alloc_status~~CallsGraph_node1" class="node">
-<title>proc~alloc_status</title>
-<polygon fill="none" stroke="black" points="75,-24 0,-24 0,0 75,0 75,-24"/>
-<text text-anchor="middle" x="37.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">alloc_status</text>
+<!-- Title: proc~~set_body_fixed_channels~~CalledByGraph Pages: 1 -->
+<svg id="procset_body_fixed_channelsCalledByGraph" width="267pt" height="32pt"
+ viewBox="0.00 0.00 267.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~set_body_fixed_channels~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~set_body_fixed_channels~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 263,-28 263,4 -4,4"/>
+<!-- proc~set_body_fixed_channels -->
+<g id="proc~~set_body_fixed_channels~~CalledByGraph_node1" class="node">
+<title>proc~set_body_fixed_channels</title>
+<polygon fill="none" stroke="black" points="259,-24 115,-24 115,0 259,0 259,-24"/>
+<text text-anchor="middle" x="187" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_body_fixed_channels</text>
 </g>
-<!-- proc~write_error -->
-<g id="proc~~alloc_status~~CallsGraph_node2" class="node">
-<title>proc~write_error</title>
-<g id="a_proc~~alloc_status~~CallsGraph_node2"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
-<polygon fill="#d9534f" stroke="#d9534f" points="181,-24 111,-24 111,0 181,0 181,-24"/>
-<text text-anchor="middle" x="146" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
+<!-- program~scattering -->
+<g id="proc~~set_body_fixed_channels~~CalledByGraph_node2" class="node">
+<title>program~scattering</title>
+<g id="a_proc~~set_body_fixed_channels~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
+<text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- proc~alloc_status&#45;&gt;proc~write_error -->
-<g id="proc~~alloc_status~~CallsGraph_edge1" class="edge">
-<title>proc~alloc_status&#45;&gt;proc~write_error</title>
-<path fill="none" stroke="#ff0000" d="M75.15,-12C83.36,-12 92.16,-12 100.65,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="100.79,-15.5 110.79,-12 100.79,-8.5 100.79,-15.5"/>
-</g>
-<!-- proc~write_message -->
-<g id="proc~~alloc_status~~CallsGraph_node3" class="node">
-<title>proc~write_message</title>
-<g id="a_proc~~alloc_status~~CallsGraph_node3"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="309,-24 217,-24 217,0 309,0 309,-24"/>
-<text text-anchor="middle" x="263" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
-</a>
-</g>
-</g>
-<!-- proc~write_error&#45;&gt;proc~write_message -->
-<g id="proc~~alloc_status~~CallsGraph_edge2" class="edge">
-<title>proc~write_error&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#ff0000" d="M181.19,-12C189.19,-12 197.91,-12 206.56,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="206.65,-15.5 216.65,-12 206.65,-8.5 206.65,-15.5"/>
+<!-- program~scattering&#45;&gt;proc~set_body_fixed_channels -->
+<g id="proc~~set_body_fixed_channels~~CalledByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;proc~set_body_fixed_channels</title>
+<path fill="none" stroke="#ff0000" d="M79.11,-12C87.12,-12 95.85,-12 104.75,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.84,-15.5 114.84,-12 104.84,-8.5 104.84,-15.5"/>
 </g>
 </g>
 </svg>
@@ -371,7 +358,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/alloc_status.html#src">alloc_status</a>
+        <a class="list-group-item" href="../proc/set_body_fixed_channels.html#src">set_body_fixed_channels</a>
       </div>
     </div>
 
@@ -390,36 +377,39 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">alloc_status</span><span class="p">(</span><span class="n">istat_</span><span class="p">,</span><span class="w"> </span><span class="n">message_</span><span class="p">,</span><span class="w"> </span><span class="n">op_</span><span class="p">,</span><span class="w"> </span><span class="n">unit_</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! check the status after allocation</span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">set_body_fixed_channels</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">              </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">parity_exponent_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_level_indices</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! Prepares the channels_level_indices array which holds indices that refer to the</span>
+<span class="w">         </span><span class="c">!! basis arrays: v1level/j1level/elevel, and channels_omega_values which holds values</span>
+<span class="w">         </span><span class="c">!! of \bar{\Omega}</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w">                       </span><span class="kd">::</span><span class="w"> </span><span class="n">istat_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! result of stat=istat in (de)allocate</span>
-<span class="w">         </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">message_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! a message to be written</span>
-<span class="w">         </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">op_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! &#39;a&#39; for allocation, &#39;d&#39; for deallocation</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">unit_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! optional, unit where the message will be written</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! total angular momentum</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">parity_exponent_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! parity exponent of the block (0 if p = +1, 1 if p = -1)</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_level_indices</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! holds the indices pointing to the basis arrays</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! holds all values of \bar{\Omega}</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">add_prefix_</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">level_index_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_</span><span class="p">,</span><span class="w"> </span><span class="n">omega_max_</span><span class="p">,</span><span class="w"> </span><span class="n">parity_term_exponent_</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">add_prefix_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"></span>
-<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">istat_</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            select case</span><span class="p">(</span><span class="n">op_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">case</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">                  </span><span class="n">add_prefix_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;memory allocation: &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">message_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">case</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">                  </span><span class="n">add_prefix_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;memory deallocation: &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">message_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">case </span><span class="n">default</span><span class="w"></span>
-<span class="w">                  </span><span class="k">call </span><span class="n">write_error</span><span class="w">                                             </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                         </span><span class="p">(</span><span class="s1">&#39;Incorrect op_ argument in alloc_status subroutine (&#39;</span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                          </span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">op_</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;)&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">end select</span>
-<span class="k">            call </span><span class="n">write_error</span><span class="p">(</span><span class="n">add_prefix_</span><span class="p">,</span><span class="w"> </span><span class="n">unit_</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="k">endif</span><span class="w"></span>
+<span class="w">         </span><span class="c">! due to construction of body-fixed basis states:</span>
+<span class="w">         </span><span class="c">! |v j \bar{\Omega} J p &gt; = N (|v j \bar{\Omega} J &gt;</span>
+<span class="w">         </span><span class="c">!                         + p (-1)^{J} |v j -\bar{\Omega} J &gt; )</span>
+<span class="w">         </span><span class="c">! we are interested in the exponent of the &quot;p (-1)^{J}&quot; term</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="k">end subroutine </span><span class="n">alloc_status</span><span class="w"></span>
+<span class="w">         </span><span class="n">parity_term_exponent_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">mod</span><span class="p">(</span><span class="n">parity_exponent_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="k">do </span><span class="n">level_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nlevel</span><span class="w"></span>
+<span class="w">            </span><span class="n">omega_max_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">j1array</span><span class="p">(</span><span class="n">level_index_</span><span class="p">),</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">call </span><span class="n">update_body_fixed_channels_info</span><span class="p">(</span><span class="n">omega_max_</span><span class="p">,</span><span class="w"> </span><span class="n">parity_term_exponent_</span><span class="p">,</span><span class="w">     </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="n">level_index_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_level_indices</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="k">enddo</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">      </span><span class="k">end subroutine </span><span class="n">set_body_fixed_channels</span><span class="w"></span>
 </pre></div>
 
     </section>
