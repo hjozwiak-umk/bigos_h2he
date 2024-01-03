@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>PES_COUPLING_MATRIX &ndash; the SCATTERING code</title>
+    <title>coupling_matrix_mod &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>PES_COUPLING_MATRIX 
+    <h1>coupling_matrix_mod 
     <small>Module</small>
     
     </h1>
@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 3.5% of total for modules and submodules.">86 statements</a>
+               title=" 3.7% of total for modules and submodules.">91 statements</a>
           </li>
 
             <li id="source-file">
@@ -99,7 +99,7 @@
         </ul>
         <ol class="breadcrumb in-well text-right">
               <li><a href='../sourcefile/coupling_matrix_mod.f90.html'>coupling_matrix_mod.f90</a></li>
-          <li class="active">PES_COUPLING_MATRIX</li>
+          <li class="active">coupling_matrix_mod</li>
         </ol>
       </div>
     </div>
@@ -136,9 +136,10 @@
       </div>
       <div id="subs-0" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../module/pes_coupling_matrix.html#proc-check_nonzero_coupling_matrix_elements">check_nonzero_coupling_matrix_elements</a>
-            <a class="list-group-item" href="../module/pes_coupling_matrix.html#proc-prepare_coupling_matrix_elements">prepare_coupling_matrix_elements</a>
-            <a class="list-group-item" href="../module/pes_coupling_matrix.html#proc-print_coupling_matrix_elements_summary">print_coupling_matrix_elements_summary</a>
+            <a class="list-group-item" href="../module/coupling_matrix_mod.html#proc-check_nonzero_coupling_matrix_elements">check_nonzero_coupling_matrix_elements</a>
+            <a class="list-group-item" href="../module/coupling_matrix_mod.html#proc-prepare_coupling_matrix_elements">prepare_coupling_matrix_elements</a>
+            <a class="list-group-item" href="../module/coupling_matrix_mod.html#proc-print_coupling_matrix_elements_summary">print_coupling_matrix_elements_summary</a>
+            <a class="list-group-item" href="../module/coupling_matrix_mod.html#proc-process_single_matrix_element">process_single_matrix_element</a>
         </div>
       </div>
     </div>
@@ -157,7 +158,23 @@
     
     <div class="col-md-9" id='text'>
     <p>this module provides functions calculating the algebraic coefficients
-entering the coupling matrix (Eq. ...)</p>
+\( g_{{\lambda},\gamma,\gamma'}^{Jp} \) entering the coupling matrix:
+see Eq. 1 in the "Coupling Matrix" section. The data is organized as follows:
+- number of non-zero terms of the coupling matrix due to
+  \(\bar{\Omega} = \bar{\Omega}'\) condition is saved as
+  "number_of_nonzero_coupling_matrix_elements"
+- number of non-vanishing terms in the sum over \(\lambda\)
+  in Eq. 1 in the "Coupling Matrix" section is saved in a
+  "nonzero_terms_per_element" array which is of
+  "number_of_nonzero_coupling_matrix_elements" size
+- a <em>total</em> number of non-vanishing  \( g_{{\lambda},\gamma,\gamma'}^{Jp} \)
+  coefficients is saved in "number_of_nonzero_coupling_coefficients"
+- <em>all</em> non-vanishing  \( g_{{\lambda},\gamma,\gamma'}^{Jp} \)
+  coefficients are saved in "nonzero_coupling_coefficients" array,
+  which is of "number_of_nonzero_coupling_coefficients" size
+- corresponding \(\lambda\) value for each non-vanishing coefficient
+  is saved as an index to "l1tab" in the "nonzero_legendre_indices"
+  array (which is of "number_of_nonzero_coupling_coefficients" size)</p>
 <br>        <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Uses</h3>
@@ -165,11 +182,10 @@ entering the coupling matrix (Eq. ...)</p>
       <ul class="list-group">
           <li class="list-group-item">
             <ul class="list-inline">
-                <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+                <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
                 <li><a href='../module/math_functions_mod.html'>math_functions_mod</a></li>
                 <li><a href='../module/io_mod.html'>io_mod</a></li>
-                <li>fwigxjpf</li>
-                <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
+                <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
             </ul>
           </li>
           <li class="list-group-item">
@@ -178,155 +194,143 @@ entering the coupling matrix (Eq. ...)</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: module~~pes_coupling_matrix~~UsesGraph Pages: 1 -->
-<svg id="modulepes_coupling_matrixUsesGraph" width="603pt" height="190pt"
- viewBox="0.00 0.00 603.00 190.29" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~pes_coupling_matrix~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 186.29)">
-<title>module~~pes_coupling_matrix~~UsesGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-186.29 599,-186.29 599,4 -4,4"/>
-<!-- module~pes_coupling_matrix -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_node1" class="node">
-<title>module~pes_coupling_matrix</title>
-<polygon fill="none" stroke="black" points="595,-106 459,-106 459,-82 595,-82 595,-106"/>
-<text text-anchor="middle" x="527" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50">PES_COUPLING_MATRIX</text>
-</g>
-<!-- iso_fortran_env -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_node2" class="node">
-<title>iso_fortran_env</title>
-<g id="a_module~~pes_coupling_matrix~~UsesGraph_node2"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
-<polygon fill="#337ab7" stroke="#337ab7" points="94,-125 0,-125 0,-101 94,-101 94,-125"/>
-<text text-anchor="middle" x="47" y="-110.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
-</a>
-</g>
-</g>
-<!-- module~pes_coupling_matrix&#45;&gt;iso_fortran_env -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge1" class="edge">
-<title>module~pes_coupling_matrix&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M510.67,-106.13C491.44,-120.6 456.85,-144.18 423,-155 327.2,-185.62 297.19,-187.36 197.5,-174"/>
-</g>
-<!-- module~io_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_node3" class="node">
-<title>module~io_mod</title>
-<g id="a_module~~pes_coupling_matrix~~UsesGraph_node3"><a xlink:href=".././module/io_mod.html" xlink:title="io_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="388,-146 334,-146 334,-122 388,-122 388,-146"/>
-<text text-anchor="middle" x="361" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io_mod</text>
-</a>
-</g>
-</g>
-<!-- module~pes_coupling_matrix&#45;&gt;module~io_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge2" class="edge">
-<title>module~pes_coupling_matrix&#45;&gt;module~io_mod</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M476.79,-106C451.48,-112.18 421.17,-119.57 398.06,-125.2"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="397.2,-121.81 388.31,-127.58 398.85,-128.61 397.2,-121.81"/>
-</g>
-<!-- module~math_functions_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_node4" class="node">
-<title>module~math_functions_mod</title>
-<g id="a_module~~pes_coupling_matrix~~UsesGraph_node4"><a xlink:href=".././module/math_functions_mod.html" xlink:title="math_functions_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="423,-24 299,-24 299,0 423,0 423,-24"/>
-<text text-anchor="middle" x="361" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">math_functions_mod</text>
-</a>
-</g>
-</g>
-<!-- module~pes_coupling_matrix&#45;&gt;module~math_functions_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge3" class="edge">
-<title>module~pes_coupling_matrix&#45;&gt;module~math_functions_mod</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M508.01,-81.81C487.92,-68.57 454.12,-47.39 423,-33 418.94,-31.12 414.67,-29.32 410.35,-27.62"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="411.46,-24.3 400.87,-24.05 408.99,-30.85 411.46,-24.3"/>
-</g>
-<!-- fwigxjpf -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_node5" class="node">
-<title>fwigxjpf</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="388,-66 334,-66 334,-42 388,-42 388,-66"/>
-<text text-anchor="middle" x="361" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fwigxjpf</text>
-</g>
-<!-- module~pes_coupling_matrix&#45;&gt;fwigxjpf -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge4" class="edge">
-<title>module~pes_coupling_matrix&#45;&gt;fwigxjpf</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M476.79,-82C451.48,-75.82 421.17,-68.43 398.06,-62.8"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="398.85,-59.39 388.31,-60.42 397.2,-66.19 398.85,-59.39"/>
+<!-- Title: module~~coupling_matrix_mod~~UsesGraph Pages: 1 -->
+<svg id="modulecoupling_matrix_modUsesGraph" width="594pt" height="194pt"
+ viewBox="0.00 0.00 594.00 193.62" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~coupling_matrix_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 189.62)">
+<title>module~~coupling_matrix_mod~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-189.62 590,-189.62 590,4 -4,4"/>
+<!-- module~coupling_matrix_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_node1" class="node">
+<title>module~coupling_matrix_mod</title>
+<polygon fill="none" stroke="black" points="586,-83.62 459,-83.62 459,-59.62 586,-59.62 586,-83.62"/>
+<text text-anchor="middle" x="522.5" y="-69.22" font-family="Helvetica,sans-Serif" font-size="10.50">coupling_matrix_mod</text>
 </g>
 <!-- module~utility_functions_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_node6" class="node">
+<g id="module~~coupling_matrix_mod~~UsesGraph_node2" class="node">
 <title>module~utility_functions_mod</title>
-<g id="a_module~~pes_coupling_matrix~~UsesGraph_node6"><a xlink:href=".././module/utility_functions_mod.html" xlink:title="utility_functions_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="259,-104 134,-104 134,-80 259,-80 259,-104"/>
-<text text-anchor="middle" x="196.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">utility_functions_mod</text>
+<g id="a_module~~coupling_matrix_mod~~UsesGraph_node2"><a xlink:href=".././module/utility_functions_mod.html" xlink:title="utility_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="259,-105.62 134,-105.62 134,-81.62 259,-81.62 259,-105.62"/>
+<text text-anchor="middle" x="196.5" y="-91.22" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">utility_functions_mod</text>
 </a>
 </g>
 </g>
-<!-- module~pes_coupling_matrix&#45;&gt;module~utility_functions_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge5" class="edge">
-<title>module~pes_coupling_matrix&#45;&gt;module~utility_functions_mod</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M458.73,-93.59C403.6,-93.25 325.75,-92.78 269.39,-92.44"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="269.15,-88.94 259.13,-92.38 269.11,-95.94 269.15,-88.94"/>
+<!-- module~coupling_matrix_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge1" class="edge">
+<title>module~coupling_matrix_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M458.65,-75.89C404.42,-79.57 326.12,-84.89 269.41,-88.74"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="268.82,-85.27 259.08,-89.44 269.29,-92.25 268.82,-85.27"/>
 </g>
-<!-- module~io_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge6" class="edge">
-<title>module~io_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#cbff00" stroke-dasharray="5,2" d="M333.68,-142.97C294.78,-155.81 223.7,-177.51 197.5,-174"/>
-<path fill="none" stroke="#cbff00" stroke-dasharray="5,2" d="M195.5,-174C151.88,-168.15 105.62,-146.09 76.77,-130.17"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="78.48,-127.11 68.05,-125.25 75.04,-133.21 78.48,-127.11"/>
-</g>
-<!-- module~io_mod&#45;&gt;module~utility_functions_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge8" class="edge">
-<title>module~io_mod&#45;&gt;module~utility_functions_mod</title>
-<path fill="none" stroke="#cbff00" stroke-dasharray="5,2" d="M333.89,-127.25C312.4,-121.7 281.15,-113.62 253.99,-106.6"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="254.75,-103.18 244.2,-104.07 253,-109.96 254.75,-103.18"/>
-</g>
-<!-- module~array_operations_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_node7" class="node">
-<title>module~array_operations_mod</title>
-<g id="a_module~~pes_coupling_matrix~~UsesGraph_node7"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="263,-146 130,-146 130,-122 263,-122 263,-146"/>
-<text text-anchor="middle" x="196.5" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_mod</text>
+<!-- module~math_functions_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_node3" class="node">
+<title>module~math_functions_mod</title>
+<g id="a_module~~coupling_matrix_mod~~UsesGraph_node3"><a xlink:href=".././module/math_functions_mod.html" xlink:title="math_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="423,-63.62 299,-63.62 299,-39.62 423,-39.62 423,-63.62"/>
+<text text-anchor="middle" x="361" y="-49.22" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">math_functions_mod</text>
 </a>
 </g>
 </g>
-<!-- module~io_mod&#45;&gt;module~array_operations_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge7" class="edge">
-<title>module~io_mod&#45;&gt;module~array_operations_mod</title>
-<path fill="none" stroke="#cbff00" stroke-dasharray="5,2" d="M333.89,-134C317.39,-134 295.16,-134 273.43,-134"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="273.17,-130.5 263.16,-134 273.16,-137.5 273.17,-130.5"/>
+<!-- module~coupling_matrix_mod&#45;&gt;module~math_functions_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge2" class="edge">
+<title>module~coupling_matrix_mod&#45;&gt;module~math_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M458.92,-63.77C450.45,-62.71 441.71,-61.61 433.11,-60.53"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="433.45,-57.05 423.09,-59.28 432.58,-64 433.45,-57.05"/>
 </g>
-<!-- module~math_functions_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge9" class="edge">
-<title>module~math_functions_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#00ff66" stroke-dasharray="5,2" d="M307.6,-24.01C250.26,-37.41 162.19,-58.8 130,-71 111.92,-77.85 92.62,-87.6 77.3,-95.98"/>
-<polygon fill="#00ff66" stroke="#00ff66" points="75.35,-93.06 68.31,-100.98 78.75,-99.18 75.35,-93.06"/>
+<!-- iso_fortran_env -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_node4" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~coupling_matrix_mod~~UsesGraph_node4"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="94,-125.62 0,-125.62 0,-101.62 94,-101.62 94,-125.62"/>
+<text text-anchor="middle" x="47" y="-111.22" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~coupling_matrix_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge3" class="edge">
+<title>module~coupling_matrix_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M498.31,-59.55C478.78,-49.97 449.81,-37.16 423,-30.62 325.29,-6.78 295.22,12.18 197.5,-11.62"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M195.5,-11.62C166,-18.57 156.05,-15.12 130,-30.62 102.53,-46.97 77.76,-74.71 62.81,-93.58"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="59.99,-91.49 56.65,-101.55 65.53,-95.77 59.99,-91.49"/>
+</g>
+<!-- module~io_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_node5" class="node">
+<title>module~io_mod</title>
+<g id="a_module~~coupling_matrix_mod~~UsesGraph_node5"><a xlink:href=".././module/io_mod.html" xlink:title="io_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="388,-144.62 334,-144.62 334,-120.62 388,-120.62 388,-144.62"/>
+<text text-anchor="middle" x="361" y="-130.22" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io_mod</text>
+</a>
+</g>
+</g>
+<!-- module~coupling_matrix_mod&#45;&gt;module~io_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge4" class="edge">
+<title>module~coupling_matrix_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M489.99,-83.67C463.47,-93.81 425.54,-108.32 397.86,-118.9"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="396.26,-115.77 388.17,-122.61 398.76,-122.31 396.26,-115.77"/>
+</g>
+<!-- module~utility_functions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge5" class="edge">
+<title>module~utility_functions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M133.8,-101.98C123.96,-103.32 113.82,-104.69 104.12,-106.01"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="103.63,-102.54 94.19,-107.36 104.57,-109.48 103.63,-102.54"/>
 </g>
 <!-- module~math_functions_mod&#45;&gt;module~utility_functions_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge11" class="edge">
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge6" class="edge">
 <title>module~math_functions_mod&#45;&gt;module~utility_functions_mod</title>
-<path fill="none" stroke="#00ff66" stroke-dasharray="5,2" d="M317.64,-24.04C311.19,-26.58 304.78,-29.56 299,-33 280.35,-44.1 281.39,-54.47 263,-66 257.15,-69.67 250.7,-72.98 244.19,-75.92"/>
-<polygon fill="#00ff66" stroke="#00ff66" points="242.52,-72.83 234.68,-79.95 245.25,-79.27 242.52,-72.83"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M313.43,-63.65C294.91,-68.44 273.41,-74 254.01,-79.01"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="252.88,-75.69 244.07,-81.58 254.63,-82.47 252.88,-75.69"/>
+</g>
+<!-- module~math_functions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge8" class="edge">
+<title>module~math_functions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M326.84,-39.62C286.79,-25.8 221.78,-5.71 197.5,-11.62"/>
 </g>
 <!-- module~special_functions_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_node8" class="node">
+<g id="module~~coupling_matrix_mod~~UsesGraph_node6" class="node">
 <title>module~special_functions_mod</title>
-<g id="a_module~~pes_coupling_matrix~~UsesGraph_node8"><a xlink:href=".././module/special_functions_mod.html" xlink:title="special_functions_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="263,-24 130,-24 130,0 263,0 263,-24"/>
-<text text-anchor="middle" x="196.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">special_functions_mod</text>
+<g id="a_module~~coupling_matrix_mod~~UsesGraph_node6"><a xlink:href=".././module/special_functions_mod.html" xlink:title="special_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-63.62 130,-63.62 130,-39.62 263,-39.62 263,-63.62"/>
+<text text-anchor="middle" x="196.5" y="-49.22" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">special_functions_mod</text>
 </a>
 </g>
 </g>
 <!-- module~math_functions_mod&#45;&gt;module~special_functions_mod -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge10" class="edge">
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge7" class="edge">
 <title>module~math_functions_mod&#45;&gt;module~special_functions_mod</title>
-<path fill="none" stroke="#00ff66" stroke-dasharray="5,2" d="M298.57,-12C290.32,-12 281.79,-12 273.34,-12"/>
-<polygon fill="#00ff66" stroke="#00ff66" points="273.09,-8.5 263.09,-12 273.09,-15.5 273.09,-8.5"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M298.57,-51.62C290.32,-51.62 281.79,-51.62 273.34,-51.62"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="273.09,-48.12 263.09,-51.62 273.09,-55.12 273.09,-48.12"/>
 </g>
-<!-- module~utility_functions_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge12" class="edge">
-<title>module~utility_functions_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#cc00ff" stroke-dasharray="5,2" d="M133.8,-100.78C123.96,-102.19 113.82,-103.63 104.12,-105.01"/>
-<polygon fill="#cc00ff" stroke="#cc00ff" points="103.6,-101.55 94.19,-106.42 104.58,-108.48 103.6,-101.55"/>
+<!-- module~io_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge9" class="edge">
+<title>module~io_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M333.89,-126.35C313.37,-121.43 283.95,-114.37 257.69,-108.06"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="258.35,-104.62 247.81,-105.69 256.71,-111.43 258.35,-104.62"/>
+</g>
+<!-- module~io_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge11" class="edge">
+<title>module~io_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M333.94,-131.03C283.65,-127.97 172.2,-121.18 104.25,-117.04"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="104.34,-113.54 94.15,-116.43 103.91,-120.53 104.34,-113.54"/>
+</g>
+<!-- module~array_operations_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_node7" class="node">
+<title>module~array_operations_mod</title>
+<g id="a_module~~coupling_matrix_mod~~UsesGraph_node7"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-185.62 130,-185.62 130,-161.62 263,-161.62 263,-185.62"/>
+<text text-anchor="middle" x="196.5" y="-171.22" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_mod</text>
+</a>
+</g>
+</g>
+<!-- module~io_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge10" class="edge">
+<title>module~io_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M333.89,-139.21C312.64,-144.57 281.85,-152.34 254.9,-159.14"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="254.01,-155.75 245.17,-161.59 255.73,-162.54 254.01,-155.75"/>
 </g>
 <!-- module~array_operations_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~pes_coupling_matrix~~UsesGraph_edge13" class="edge">
+<g id="module~~coupling_matrix_mod~~UsesGraph_edge12" class="edge">
 <title>module~array_operations_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M129.95,-124.67C121.41,-123.45 112.73,-122.22 104.37,-121.02"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="104.74,-117.54 94.35,-119.6 103.76,-124.47 104.74,-117.54"/>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M164.8,-161.55C153.81,-157.19 141.34,-152.22 130,-147.62 115.75,-141.84 100.15,-135.4 86.42,-129.69"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="87.37,-126.3 76.8,-125.68 84.68,-132.76 87.37,-126.3"/>
 </g>
 </g>
 </svg>
@@ -403,32 +407,32 @@ entering the coupling matrix (Eq. ...)</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: module~~pes_coupling_matrix~~UsedByGraph Pages: 1 -->
-<svg id="modulepes_coupling_matrixUsedByGraph" width="259pt" height="32pt"
- viewBox="0.00 0.00 259.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~pes_coupling_matrix~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>module~~pes_coupling_matrix~~UsedByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 255,-28 255,4 -4,4"/>
-<!-- module~pes_coupling_matrix -->
-<g id="module~~pes_coupling_matrix~~UsedByGraph_node1" class="node">
-<title>module~pes_coupling_matrix</title>
-<polygon fill="none" stroke="black" points="136,-24 0,-24 0,0 136,0 136,-24"/>
-<text text-anchor="middle" x="68" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">PES_COUPLING_MATRIX</text>
+<!-- Title: module~~coupling_matrix_mod~~UsedByGraph Pages: 1 -->
+<svg id="modulecoupling_matrix_modUsedByGraph" width="250pt" height="32pt"
+ viewBox="0.00 0.00 250.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~coupling_matrix_mod~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>module~~coupling_matrix_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 246,-28 246,4 -4,4"/>
+<!-- module~coupling_matrix_mod -->
+<g id="module~~coupling_matrix_mod~~UsedByGraph_node1" class="node">
+<title>module~coupling_matrix_mod</title>
+<polygon fill="none" stroke="black" points="127,-24 0,-24 0,0 127,0 127,-24"/>
+<text text-anchor="middle" x="63.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">coupling_matrix_mod</text>
 </g>
 <!-- program~scattering -->
-<g id="module~~pes_coupling_matrix~~UsedByGraph_node2" class="node">
+<g id="module~~coupling_matrix_mod~~UsedByGraph_node2" class="node">
 <title>program~scattering</title>
-<g id="a_module~~pes_coupling_matrix~~UsedByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="251,-24 172,-24 172,0 251,0 251,-24"/>
-<text text-anchor="middle" x="211.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+<g id="a_module~~coupling_matrix_mod~~UsedByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="242,-24 163,-24 163,0 242,0 242,-24"/>
+<text text-anchor="middle" x="202.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;module~pes_coupling_matrix -->
-<g id="module~~pes_coupling_matrix~~UsedByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;module~pes_coupling_matrix</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M171.83,-12C163.81,-12 155.08,-12 146.22,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="146.19,-8.5 136.19,-12 146.19,-15.5 146.19,-8.5"/>
+<!-- program~scattering&#45;&gt;module~coupling_matrix_mod -->
+<g id="module~~coupling_matrix_mod~~UsedByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;module~coupling_matrix_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M162.97,-12C154.87,-12 146.06,-12 137.16,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="137.1,-8.5 127.1,-12 137.1,-15.5 137.1,-8.5"/>
 </g>
 </g>
 </svg>
@@ -518,9 +522,10 @@ entering the coupling matrix (Eq. ...)</p>
       </div>
       <div id="subs-1" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../module/pes_coupling_matrix.html#proc-check_nonzero_coupling_matrix_elements">check_nonzero_coupling_matrix_elements</a>
-            <a class="list-group-item" href="../module/pes_coupling_matrix.html#proc-prepare_coupling_matrix_elements">prepare_coupling_matrix_elements</a>
-            <a class="list-group-item" href="../module/pes_coupling_matrix.html#proc-print_coupling_matrix_elements_summary">print_coupling_matrix_elements_summary</a>
+            <a class="list-group-item" href="../module/coupling_matrix_mod.html#proc-check_nonzero_coupling_matrix_elements">check_nonzero_coupling_matrix_elements</a>
+            <a class="list-group-item" href="../module/coupling_matrix_mod.html#proc-prepare_coupling_matrix_elements">prepare_coupling_matrix_elements</a>
+            <a class="list-group-item" href="../module/coupling_matrix_mod.html#proc-print_coupling_matrix_elements_summary">print_coupling_matrix_elements_summary</a>
+            <a class="list-group-item" href="../module/coupling_matrix_mod.html#proc-process_single_matrix_element">process_single_matrix_element</a>
         </div>
       </div>
     </div>
@@ -546,15 +551,16 @@ entering the coupling matrix (Eq. ...)</p>
     <section>
     <h2>Subroutines</h2>
       <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-check_nonzero_coupling_matrix_elements"></span><h3>public  subroutine <a href='../proc/check_nonzero_coupling_matrix_elements.html'>check_nonzero_coupling_matrix_elements</a>(number_of_channels, channels_level_indices, channels_omega_values, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients)  
+    <div class="panel-heading codesum"><span class="anchor" id="proc-check_nonzero_coupling_matrix_elements"></span><h3>public  subroutine <a href='../proc/check_nonzero_coupling_matrix_elements.html'>check_nonzero_coupling_matrix_elements</a>(channels_level_indices, channels_omega_values, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients)  
 </h3></div>
     <div class="panel-body">
           
   <p>checks the number of non-zero coupling matrix elements due to
-the \bar{\Omega} = \bar{\Omega}' condition
-(number_of_nonzero_coupling_matrix_elements variable),
-and the total number of non-zero algebraic coefficients that enter
-Eqs. (6.13)-(6.15) (number_of_nonzero_coupling_coefficients variable).</p>
+the \bar{\Omega} = \bar{\Omega}' condition,
+"number_of_nonzero_coupling_matrix_elements",
+and the total number of non-zero algebraic coefficients,
+\( g_{{\lambda},\gamma,\gamma'}^{Jp} \), in the whole matrix,
+"number_of_nonzero_coupling_coefficients".</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -577,22 +583,7 @@ Eqs. (6.13)-(6.15) (number_of_nonzero_coupling_coefficients variable).</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels</strong></td>
-            <td>
-<p>size of the basis</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_level_indices</strong>(number_of_channels)</td>
+            <td><strong>channels_level_indices</strong>(:)</td>
             <td>
 <p>holds the indices pointing to the basis arrays</p>
             </td>
@@ -607,7 +598,7 @@ Eqs. (6.13)-(6.15) (number_of_nonzero_coupling_coefficients variable).</p>
               
             </td>
             <td>::</td>
-            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td><strong>channels_omega_values</strong>(:)</td>
             <td>
 <p>holds all values of \bar{\Omega}</p>
             </td>
@@ -650,18 +641,16 @@ Eqs. (6.13)-(6.15) (number_of_nonzero_coupling_coefficients variable).</p>
   </div>
 
       <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-prepare_coupling_matrix_elements"></span><h3>public  subroutine <a href='../proc/prepare_coupling_matrix_elements.html'>prepare_coupling_matrix_elements</a>(number_of_channels, channels_level_indices, channels_omega_values, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients)  
+    <div class="panel-heading codesum"><span class="anchor" id="proc-prepare_coupling_matrix_elements"></span><h3>public  subroutine <a href='../proc/prepare_coupling_matrix_elements.html'>prepare_coupling_matrix_elements</a>(channels_level_indices, channels_omega_values, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients)  
 </h3></div>
     <div class="panel-body">
           
-  <p>-- nonzero_terms_per_element - keeps the number of
-   non-zero terms in the sum (Eq. (6.21)) for each non-zero matrix
-   element of the coupling matrix
--- nonzero_legendre_indices - holds the proper
-   indices in the range (0, nterms) pointing to l1/l2/lltabs, which
-   correspond to the non-vanishing elements of the sum (Eq. (6.21))
-   for each non-zero  matrix element of the coupling matrix
--- nonzero_coupling_coefficients --  holds values of non-zero Percival-Seaton coefficients</p>
+  <p>-- nonzero_terms_per_element - number of non-vanishing terms in
+   the sum over \(\lambda\) in Eq. 1 in the "Coupling Matrix" section
+-- nonzero_legendre_indices - corresponding \(\lambda\) value for
+   each non-vanishing coefficient is saved as an index to "l1tab"
+-- nonzero_coupling_coefficients --  holds <em>all</em> non-vanishing
+   \( g_{{\lambda},\gamma,\gamma'}^{Jp} \) coefficients</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -684,22 +673,7 @@ Eqs. (6.13)-(6.15) (number_of_nonzero_coupling_coefficients variable).</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels</strong></td>
-            <td>
-<p>size of the basis</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_level_indices</strong>(number_of_channels)</td>
+            <td><strong>channels_level_indices</strong>(:)</td>
             <td>
 <p>holds the indices pointing to the basis arrays</p>
             </td>
@@ -714,7 +688,7 @@ Eqs. (6.13)-(6.15) (number_of_nonzero_coupling_coefficients variable).</p>
               
             </td>
             <td>::</td>
-            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td><strong>channels_omega_values</strong>(:)</td>
             <td>
 <p>holds all values of \bar{\Omega}</p>
             </td>
@@ -724,62 +698,32 @@ Eqs. (6.13)-(6.15) (number_of_nonzero_coupling_coefficients variable).</p>
               <span class="anchor" ></span>
               integer(kind=int32),
             </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>number_of_nonzero_coupling_matrix_elements</strong></td>
-            <td>
-<p>number of non-zero terms in the sum () for each non-zero element of the coupling matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>number_of_nonzero_coupling_coefficients</strong></td>
-            <td>
-<p>number of all non-zero algberaix coefficients in the whole coupling matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
 <td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>nonzero_terms_per_element</strong>(number_of_nonzero_coupling_matrix_elements)</td>
+            <td><strong>nonzero_terms_per_element</strong>(:)</td>
             <td>
-<p>keeps the number of non-zero terms in the sum (Eq. (6.21)) for
-each non-zero element of the coupling matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nonzero_legendre_indices</strong>(number_of_nonzero_coupling_coefficients)</td>
-            <td>
-<p>holds proper indices pointing to l1tab, which
-correspond to the non-vanishing elements of the sum  (Eq. (6.21))
+<p>keeps the number of non-vanishing elements of the sum over \(\lambda\)
 for each non-zero element of the coupling matrix</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nonzero_legendre_indices</strong>(:)</td>
+            <td>
+<p>holds indices pointing to l1tab, which correspond to
+the non-vanishing elements of the sum over \(\lambda\)
+for each non-zero element of the coupling matrix;</p>
             </td>
         </tr>
         <tr>
@@ -792,7 +736,7 @@ for each non-zero element of the coupling matrix</p>
               
             </td>
             <td>::</td>
-            <td><strong>nonzero_coupling_coefficients</strong>(number_of_nonzero_coupling_coefficients)</td>
+            <td><strong>nonzero_coupling_coefficients</strong>(:)</td>
             <td>
 <p>holds the values of the non-zero algebraic coefficients</p>
             </td>
@@ -877,6 +821,146 @@ coupling matrix</p>
     </div>
   </div>
 
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-process_single_matrix_element"></span><h3>public  subroutine <a href='../proc/process_single_matrix_element.html'>process_single_matrix_element</a>(j_, j_prime_, omega_, count_nonzero_coupling_coefficients, count_nonzero_legendre_terms, nonzero_legendre_indices, nonzero_coupling_coefficients)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>calculates the non-zero algebraic coefficients
+\( g_{{\lambda},\gamma,\gamma'}^{Jp} \) for a single matrix
+element - see Eq. (1) in the "Coupling matrix" section;
+algebraic coefficients are saved to nonzero_coupling_coefficients
+array; corresponding indices to l1tab are saved to
+nonzero_legendre_indices array</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j_</strong></td>
+            <td>
+<p>pre-collisional rotational angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j_prime_</strong></td>
+            <td>
+<p>post-collisional rotational angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_</strong></td>
+            <td>
+<p>\(\bar{\Omega}\)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>count_nonzero_coupling_coefficients</strong></td>
+            <td>
+<p>running index counting non-zero coupling coefficients,
+\( g_{{\lambda},\gamma,\gamma'}^{Jp} \) in the whole matrix;
+incremented in this subroutine</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>count_nonzero_legendre_terms</strong></td>
+            <td>
+<p>number of non-zero terms in Legendre expansion for a single
+matrix element of the interaction potential</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nonzero_legendre_indices</strong>(:)</td>
+            <td>
+<p>holds indices pointing to l1tab, which correspond to
+the non-vanishing elements of the sum over \(\lambda\)
+for each non-zero element of the coupling matrix;</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nonzero_coupling_coefficients</strong>(:)</td>
+            <td>
+<p>holds values of the non-zero algebraic coefficients</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
     </section>
     <br>
 
@@ -897,7 +981,7 @@ coupling matrix</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-03 12:09            </p>
+ on 2024-01-03 16:16            </p>
         </div>
       </div>
       <br>

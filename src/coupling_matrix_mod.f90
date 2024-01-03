@@ -1,30 +1,44 @@
-module PES_COUPLING_MATRIX
+module coupling_matrix_mod
    !! this module provides functions calculating the algebraic coefficients
-   !! entering the coupling matrix (Eq. ...)
+   !! \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\) entering the coupling matrix:
+   !! see Eq. 1 in the "Coupling Matrix" section. The data is organized as follows:
+   !! - number of non-zero terms of the coupling matrix due to
+   !!   \\(\bar{\Omega} = \bar{\Omega}'\\) condition is saved as
+   !!   "number_of_nonzero_coupling_matrix_elements"
+   !! - number of non-vanishing terms in the sum over \\(\lambda\\)
+   !!   in Eq. 1 in the "Coupling Matrix" section is saved in a
+   !!   "nonzero_terms_per_element" array which is of
+   !!   "number_of_nonzero_coupling_matrix_elements" size
+   !! - a _total_ number of non-vanishing  \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\)
+   !!   coefficients is saved in "number_of_nonzero_coupling_coefficients"
+   !! - _all_ non-vanishing  \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\)
+   !!   coefficients are saved in "nonzero_coupling_coefficients" array,
+   !!   which is of "number_of_nonzero_coupling_coefficients" size
+   !! - corresponding \\(\lambda\\) value for each non-vanishing coefficient
+   !!   is saved as an index to "l1tab" in the "nonzero_legendre_indices"
+   !!   array (which is of "number_of_nonzero_coupling_coefficients" size)
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_error, write_message, integer_to_character
-   use fwigxjpf, only: fwig3jj
    use io_mod
-   use math_functions_mod, only: triangle_inequality_holds, is_sum_even
+   use math_functions_mod, only: percival_seaton_coefficient,                  &
+      triangle_inequality_holds, is_sum_even, zero_projections_3j_condition
    implicit none
    contains
 !------------------------------------------------------------------------------!
-      subroutine check_nonzero_coupling_matrix_elements(number_of_channels,    &
-         channels_level_indices, channels_omega_values,                        &
-         number_of_nonzero_coupling_matrix_elements,                           &
+      subroutine check_nonzero_coupling_matrix_elements(channels_level_indices,&
+         channels_omega_values, number_of_nonzero_coupling_matrix_elements,    &
          number_of_nonzero_coupling_coefficients)
          !! checks the number of non-zero coupling matrix elements due to
-         !! the \bar{\Omega} = \bar{\Omega}' condition
-         !! (number_of_nonzero_coupling_matrix_elements variable),
-         !! and the total number of non-zero algebraic coefficients that enter
-         !! Eqs. (6.13)-(6.15) (number_of_nonzero_coupling_coefficients variable).
+         !! the \bar{\Omega} = \bar{\Omega}' condition,
+         !! "number_of_nonzero_coupling_matrix_elements",
+         !! and the total number of non-zero algebraic coefficients,
+         !! \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\), in the whole matrix,
+         !! "number_of_nonzero_coupling_coefficients".
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: number_of_channels
-            !! size of the basis
-         integer(int32), intent(in) :: channels_level_indices(number_of_channels)
+         integer(int32), intent(in) :: channels_level_indices(:)
             !! holds the indices pointing to the basis arrays
-         integer(int32), intent(in) :: channels_omega_values(number_of_channels)
+         integer(int32), intent(in) :: channels_omega_values(:)
             !! holds all values of \bar{\Omega}
          integer(int32), intent(out) :: number_of_nonzero_coupling_matrix_elements
             !! number of non-zero terms in the sum () for each non-zero element of the coupling matrix
@@ -32,24 +46,25 @@ module PES_COUPLING_MATRIX
             !! number of all non-zero algberaix coefficients in the whole coupling matrix
          !---------------------------------------------------------------------!
          integer(int32) :: count_nonzero_coupling_matrix_elements,             &
-            count_nonzero_coupling_coefficients, nil, j1tmp, j1ptmp, omegatmp, &
-            omegaptmp, l1, ii, ij, il
+            count_nonzero_coupling_coefficients, j_, j_prime_, omega_,         &
+            omega_prime_, lambda_, channel_index_1_, channel_index_2_, legendre_term_index_
          !---------------------------------------------------------------------!
          count_nonzero_coupling_coefficients = 0
          count_nonzero_coupling_matrix_elements = 0
-         do ii = 1, number_of_channels
-            j1tmp = j1array(channels_level_indices(ii))
-            omegatmp = channels_omega_values(ii)
-            do ij = 1, ii
-               j1ptmp = j1array(channels_level_indices(ij))
-               omegaptmp = channels_omega_values(ij)
-               if (omegatmp.ne.omegaptmp) cycle
+         do channel_index_1_ = 1, size(channels_level_indices)
+            j_ = j1array(channels_level_indices(channel_index_1_))
+            omega_ = channels_omega_values(channel_index_1_)
+            do channel_index_2_ = 1, channel_index_1_
+               j_prime_ = j1array(channels_level_indices(channel_index_2_))
+               omega_prime_ = channels_omega_values(channel_index_2_)
+               !---------------------------------------------------------------!
+               if (omega_ /= omega_prime_) cycle
+               !---------------------------------------------------------------!
                count_nonzero_coupling_matrix_elements =                        &
                   count_nonzero_coupling_matrix_elements + 1
-               do il = 1,nterms
-                  l1 = l1tab(il)
-                  if (triangle_inequality_holds(j1tmp,j1ptmp,l1).eq.0) cycle
-                  if (is_sum_even(j1tmp,j1ptmp,l1).eq.0) cycle
+               do legendre_term_index_ = 1, nterms
+                  lambda_ = l1tab(legendre_term_index_)
+                  if (.not. zero_projections_3j_condition(j_, j_prime_, lambda_)) cycle
                   count_nonzero_coupling_coefficients =                        &
                      count_nonzero_coupling_coefficients+1            
               enddo
@@ -61,48 +76,35 @@ module PES_COUPLING_MATRIX
          !---------------------------------------------------------------------!
       end subroutine check_nonzero_coupling_matrix_elements
 !------------------------------------------------------------------------------!
-      subroutine prepare_coupling_matrix_elements(number_of_channels,          &
-         channels_level_indices, channels_omega_values,                        &
-         number_of_nonzero_coupling_matrix_elements,                           &
-         number_of_nonzero_coupling_coefficients,                              &
-         nonzero_terms_per_element, nonzero_legendre_indices,                  &
-         nonzero_coupling_coefficients)
+      subroutine prepare_coupling_matrix_elements(channels_level_indices,      &
+         channels_omega_values, nonzero_terms_per_element,                     &
+         nonzero_legendre_indices, nonzero_coupling_coefficients)
          !! prepares:
-         !! -- nonzero_terms_per_element - keeps the number of
-         !!    non-zero terms in the sum (Eq. (6.21)) for each non-zero matrix
-         !!    element of the coupling matrix
-         !! -- nonzero_legendre_indices - holds the proper
-         !!    indices in the range (0, nterms) pointing to l1/l2/lltabs, which
-         !!    correspond to the non-vanishing elements of the sum (Eq. (6.21))
-         !!    for each non-zero  matrix element of the coupling matrix
-         !! -- nonzero_coupling_coefficients --  holds values of non-zero Percival-Seaton coefficients
+         !! -- nonzero_terms_per_element - number of non-vanishing terms in
+         !!    the sum over \\(\lambda\\) in Eq. 1 in the "Coupling Matrix" section
+         !! -- nonzero_legendre_indices - corresponding \\(\lambda\\) value for
+         !!    each non-vanishing coefficient is saved as an index to "l1tab"
+         !! -- nonzero_coupling_coefficients --  holds _all_ non-vanishing
+         !!    \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\) coefficients
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: number_of_channels
-            !! size of the basis
-         integer(int32), intent(in) :: channels_level_indices(number_of_channels)
+         integer(int32), intent(in) :: channels_level_indices(:)
             !! holds the indices pointing to the basis arrays
-         integer(int32), intent(in) :: channels_omega_values(number_of_channels)
+         integer(int32), intent(in) :: channels_omega_values(:)
             !! holds all values of \bar{\Omega}
-         integer(int32), intent(in) :: number_of_nonzero_coupling_matrix_elements
-            !! number of non-zero terms in the sum () for each non-zero element of the coupling matrix
-         integer(int32), intent(in) :: number_of_nonzero_coupling_coefficients
-            !! number of all non-zero algberaix coefficients in the whole coupling matrix
-         integer(int32), intent(inout) ::                                      &
-            nonzero_terms_per_element(number_of_nonzero_coupling_matrix_elements)
-            !! keeps the number of non-zero terms in the sum (Eq. (6.21)) for
-            !! each non-zero element of the coupling matrix
-         integer(int32), intent(inout) ::                                      &
-            nonzero_legendre_indices(number_of_nonzero_coupling_coefficients)
-            !! holds proper indices pointing to l1tab, which
-            !! correspond to the non-vanishing elements of the sum  (Eq. (6.21))
+         integer(int32), intent(inout) :: nonzero_terms_per_element(:)
+            !! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)
             !! for each non-zero element of the coupling matrix
-         real(dp), intent(inout) ::                                            &
-            nonzero_coupling_coefficients(number_of_nonzero_coupling_coefficients)
+         integer(int32), intent(inout) :: nonzero_legendre_indices(:)
+            !! holds indices pointing to l1tab, which correspond to
+            !! the non-vanishing elements of the sum over \\(\lambda\\)
+            !! for each non-zero element of the coupling matrix;
+         real(dp), intent(inout) :: nonzero_coupling_coefficients(:)
             !! holds the values of the non-zero algebraic coefficients
          !---------------------------------------------------------------------!
          integer(int32) :: count_nonzero_coupling_matrix_elements,             &
-            count_nonzero_coupling_coefficients, nonzero_legendre, j1tmp,      &
-            j1ptmp, omegatmp, omegaptmp, l1, ii, ij, il
+            count_nonzero_coupling_coefficients, count_nonzero_legendre_terms, &
+            j_, j_prime_, omega_, omega_prime_, lambda_, channel_index_1_,     &
+            channel_index_2_, legendre_term_index_
          real(dp) :: pscoeff
          !---------------------------------------------------------------------!
          nonzero_terms_per_element        = 0
@@ -111,53 +113,98 @@ module PES_COUPLING_MATRIX
          count_nonzero_coupling_coefficients     = 0
          count_nonzero_coupling_matrix_elements  = 0
          !---------------------------------------------------------------------!
-         do ii = 1, number_of_channels      
-            j1tmp = j1array(channels_level_indices(ii))
-            omegatmp = channels_omega_values(ii)
-            do ij = 1, ii
-               j1ptmp = j1array(channels_level_indices(ij))
-               omegaptmp = channels_omega_values(ij)
-               if (omegatmp.ne.omegaptmp) cycle
+         do channel_index_1_ = 1, size(channels_level_indices)
+            j_     = j1array(channels_level_indices(channel_index_1_))
+            omega_ = channels_omega_values(channel_index_1_)
+            do channel_index_2_ = 1, channel_index_1_
+               j_prime_     = j1array(channels_level_indices(channel_index_2_))
+               omega_prime_ = channels_omega_values(channel_index_2_)
+               if (omega_  /= omega_prime_) cycle
                !---------------------------------------------------------------!
                ! passed \bar{\Omega} = \bar{\Omega}' condition
                !---------------------------------------------------------------!
                count_nonzero_coupling_matrix_elements =                        &
                   count_nonzero_coupling_matrix_elements + 1
                !---------------------------------------------------------------!
-               ! count non-zero terms in the sum over legendre polynomials
-               ! for this element
+               ! process a single matrix element:
+               ! determine non-zero terms in the sum over legendre polynomials
+               ! for this element; these are saved to ...
                !---------------------------------------------------------------!
-               nonzero_legendre = 0
-               do il = 1, nterms
-                  l1 = l1tab(il)
-                  if (triangle_inequality_holds(j1tmp,j1ptmp,l1).eq.0) cycle
-                  if (is_sum_even(j1tmp,j1ptmp,l1).eq.0) cycle
-                  !------------------------------------------------------------!
-                  ! passed non-zero conditions
-                  !------------------------------------------------------------!
-                  count_nonzero_coupling_coefficients =                        &
-                     count_nonzero_coupling_coefficients + 1
-                  !------------------------------------------------------------!
-                  ! calculate the Percival-Seaton coefficient
-                  !------------------------------------------------------------!
-                  pscoeff = dsqrt(real((2 * j1tmp + 1) * (2 * j1ptmp + 1), dp))&
-                     * fwig3jj(2* j1tmp ,   2* j1ptmp  , 2* l1, 0, 0, 0)       &
-                     * fwig3jj(2* j1tmp ,   2* j1ptmp  , 2* l1,                &
-                            2 * omegatmp, -2 * omegatmp,     0)                &
-                     * (-1.0_dp)**(omegatmp)
-                  !------------------------------------------------------------!
-                  nonzero_coupling_coefficients(                               &
-                     count_nonzero_coupling_coefficients) = pscoeff
-                  nonzero_legendre_indices(count_nonzero_coupling_coefficients)&
-                     = il
-                  nonzero_legendre = nonzero_legendre + 1
-               enddo
+               call process_single_matrix_element(j_, j_prime_, omega_,        &
+                  count_nonzero_coupling_coefficients,                         &
+                  count_nonzero_legendre_terms, nonzero_legendre_indices,      &
+                  nonzero_coupling_coefficients)
+               
                nonzero_terms_per_element(count_nonzero_coupling_matrix_elements)&
-                  = nonzero_legendre
+                  = count_nonzero_legendre_terms
             enddo
          enddo
          !---------------------------------------------------------------------!
       end subroutine prepare_coupling_matrix_elements
+!------------------------------------------------------------------------------!
+!------------------------------------------------------------------------------!
+      subroutine process_single_matrix_element(j_, j_prime_, omega_,           &
+         count_nonzero_coupling_coefficients, count_nonzero_legendre_terms,    &
+         nonzero_legendre_indices, nonzero_coupling_coefficients)
+         !! calculates the non-zero algebraic coefficients
+         !! \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\) for a single matrix
+         !! element - see Eq. (1) in the "Coupling matrix" section;
+         !! algebraic coefficients are saved to nonzero_coupling_coefficients
+         !! array; corresponding indices to l1tab are saved to
+         !! nonzero_legendre_indices array
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: j_
+            !! pre-collisional rotational angular momentum
+         integer(int32), intent(in) :: j_prime_
+            !! post-collisional rotational angular momentum
+         integer(int32), intent(in) :: omega_
+            !! \\(\bar{\Omega}\\)
+         integer(int32), intent(inout) :: count_nonzero_coupling_coefficients
+            !! running index counting non-zero coupling coefficients,
+            !! \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\) in the whole matrix;
+            !! incremented in this subroutine
+         integer(int32), intent(inout) :: count_nonzero_legendre_terms
+            !! number of non-zero terms in Legendre expansion for a single
+            !! matrix element of the interaction potential
+         integer(int32), intent(inout) :: nonzero_legendre_indices(:)
+            !! holds indices pointing to l1tab, which correspond to
+            !! the non-vanishing elements of the sum over \\(\lambda\\)
+            !! for each non-zero element of the coupling matrix;
+         real(dp), intent(inout) :: nonzero_coupling_coefficients(:)
+            !! holds values of the non-zero algebraic coefficients
+         !---------------------------------------------------------------------!
+         integer(int32) :: legendre_term_index_, lambda_
+         real(dp) :: pscoeff
+         !---------------------------------------------------------------------!
+         count_nonzero_legendre_terms = 0
+         do legendre_term_index_ = 1, nterms
+            lambda_ = l1tab(legendre_term_index_)
+            !------------------------------------------------------------!
+            ! check the condition on 3-j symbol with zero projections
+            !------------------------------------------------------------!
+            if (.not. zero_projections_3j_condition(j_, j_prime_, lambda_)) cycle
+            !------------------------------------------------------------!
+            count_nonzero_coupling_coefficients =                        &
+               count_nonzero_coupling_coefficients + 1
+            !------------------------------------------------------------!
+            ! calculate the Percival-Seaton coefficient
+            !------------------------------------------------------------!
+            pscoeff = percival_seaton_coefficient(j_, j_prime_, lambda_, omega_)
+            !------------------------------------------------------------!
+            ! save the Percival-Seaton coefficient
+            !------------------------------------------------------------!
+            nonzero_coupling_coefficients(                               &
+               count_nonzero_coupling_coefficients) = pscoeff
+            !------------------------------------------------------------!
+            ! save indices to l1tab corresponding to \\(\lambda\\)
+            !------------------------------------------------------------!
+            nonzero_legendre_indices(count_nonzero_coupling_coefficients)&
+               = legendre_term_index_
+            !------------------------------------------------------------!
+            count_nonzero_legendre_terms = count_nonzero_legendre_terms + 1
+         enddo
+         !---------------------------------------------------------------------!
+      end subroutine process_single_matrix_element
 !------------------------------------------------------------------------------!
 !------------------------------------------------------------------------------!
       subroutine print_coupling_matrix_elements_summary(number_of_channels,    &
@@ -189,4 +236,4 @@ module PES_COUPLING_MATRIX
       end subroutine print_coupling_matrix_elements_summary
 !------------------------------------------------------------------------------!
 !------------------------------------------------------------------------------!
-end module PES_COUPLING_MATRIX
+end module coupling_matrix_mod

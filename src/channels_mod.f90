@@ -1,4 +1,7 @@
 module channels_mod
+   !! This module provides subroutines that set the number of channels in the
+   !! block, save quantum numbers for each channel (both in body- and space-fixed
+   !! cases) and print quantum numbers on screen
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod

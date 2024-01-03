@@ -5,9 +5,10 @@ program SCATTERING
    use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
       set_space_fixed_channels, count_open_channels_in_block,                  &
       calculate_largest_wavenumber, print_channels
-   use PES_COUPLING_MATRIX
+   use coupling_matrix_mod
    use PROPAGATORS
-   use boundary_conditions_mod
+   use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
+      calculate_k_matrix, calculate_s_matrix
    use unitarity_check_mod, only: unitarity_check
    use statetostateXS
    use utility_functions_mod, only: write_header, file_io_status,              &
@@ -227,17 +228,14 @@ program SCATTERING
          ! Prepare the coupling matrix
          !---------------------------------------------------------------------!
          call cpu_time(time_coupling_start)
-         call check_nonzero_coupling_matrix_elements(number_of_channels,       &
-            channels_level_indices, channels_omega_values,                     &
-            number_of_nonzero_coupling_matrix_elements,                        &
+         call check_nonzero_coupling_matrix_elements(channels_level_indices,   &
+            channels_omega_values, number_of_nonzero_coupling_matrix_elements, &
             number_of_nonzero_coupling_coefficients)
          call allocate_1d(nonzero_terms_per_element,number_of_nonzero_coupling_matrix_elements)
          call allocate_1d(nonzero_coupling_coefficients,number_of_nonzero_coupling_coefficients)
          call allocate_1d(nonzero_legendre_indices,number_of_nonzero_coupling_coefficients)
-         call prepare_coupling_matrix_elements(number_of_channels,             &
-            channels_level_indices, channels_omega_values,                     &
-            number_of_nonzero_coupling_matrix_elements,                        &
-            number_of_nonzero_coupling_coefficients, nonzero_terms_per_element,&
+         call prepare_coupling_matrix_elements(channels_level_indices,         &
+            channels_omega_values, nonzero_terms_per_element,                  &
             nonzero_legendre_indices, nonzero_coupling_coefficients)
          if (prntlvl.ge.2) call print_coupling_matrix_elements_summary(        &
             number_of_channels, number_of_nonzero_coupling_matrix_elements,    &

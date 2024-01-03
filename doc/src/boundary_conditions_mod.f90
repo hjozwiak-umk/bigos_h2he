@@ -12,6 +12,9 @@ module boundary_conditions_mod
    use array_operations_mod, only: invert_symmetric_matrix, fill_symmetric_matrix
    !---------------------------------------------------------------------------!
    implicit none
+   private
+   public :: calculate_sf_matrix_from_bf_matrix, calculate_k_matrix,           &
+      calculate_s_matrix
    !---------------------------------------------------------------------------!
    contains
    !---------------------------------------------------------------------------!
@@ -65,22 +68,22 @@ module boundary_conditions_mod
          real(dp), intent(out) :: sf_element
             !! (output) matrix element in the SF frame
          !---------------------------------------------------------------------!
-         integer(int32) :: ii, ij, omtmp, omptmp, v1tmp, j1tmp, v1ptmp, j1ptmp
+         integer(int32) :: channel_index_1_, channel_index_2_
          real(dp) :: p_coeff_outer, p_coeff_inner, sum_outer, sum_inner
          !---------------------------------------------------------------------!
          sum_outer = 0.0_dp
-         do ii = 1, number_of_channels
-            if (v1array(channels_level_indices(ii)) /= v_ .or.                 &
-               j1array(channels_level_indices(ii)) /= j_) cycle
+         do channel_index_1_ = 1, number_of_channels
+            if (v1array(channels_level_indices(channel_index_1_)) /= v_ .or.                 &
+               j1array(channels_level_indices(channel_index_1_)) /= j_) cycle
             p_coeff_outer = p_coeff(total_angular_momentum_, j_, l_,           &
-               channels_omega_values(ii))
+               channels_omega_values(channel_index_1_))
             sum_inner = 0.0_dp
-            do ij = 1, number_of_channels
-               if (v1array(channels_level_indices(ij)) /= vp_ .or.             &
-                  j1array(channels_level_indices(ij)) /= jp_) cycle
+            do channel_index_2_ = 1, number_of_channels
+               if (v1array(channels_level_indices(channel_index_2_)) /= vp_ .or.             &
+                  j1array(channels_level_indices(channel_index_2_)) /= jp_) cycle
                p_coeff_inner = p_coeff(total_angular_momentum_, jp_, lp_,      &
-                  channels_omega_values(ij))
-               sum_inner = sum_inner + p_coeff_inner * bf_matrix(ii,ij)
+                  channels_omega_values(channel_index_2_))
+               sum_inner = sum_inner + p_coeff_inner * bf_matrix(channel_index_1_,channel_index_2_)
             end do
             sum_outer = sum_outer + p_coeff_outer * sum_inner
          end do
@@ -111,22 +114,22 @@ module boundary_conditions_mod
          real(dp), intent(inout) :: sf_matrix(number_of_channels, number_of_channels)
             !! (output) matrix in the SF frame
          !---------------------------------------------------------------------!
-         integer(int32) :: l_, lp_, omega_, omegap_, v1_, j1_, v1p_, j1p_, ii, ij
+         integer(int32) :: l_, lp_, omega_, omegap_, v1_, j1_, v1p_, j1p_, channel_index_1_, channel_index_2_
          real(dp) :: single_sf_element
          !---------------------------------------------------------------------!
-         do ii = 1, number_of_channels
-            v1_ = v1array(channels_level_indices(ii))
-            j1_ = j1array(channels_level_indices(ii))
-            l_  = channels_l_values(ii)
-            do ij = 1, number_of_channels
-               v1p_ = v1array(channels_level_indices(ij))
-               j1p_ = j1array(channels_level_indices(ij))
-               lp_  = channels_l_values(ij)
+         do channel_index_1_ = 1, number_of_channels
+            v1_ = v1array(channels_level_indices(channel_index_1_))
+            j1_ = j1array(channels_level_indices(channel_index_1_))
+            l_  = channels_l_values(channel_index_1_)
+            do channel_index_2_ = 1, number_of_channels
+               v1p_ = v1array(channels_level_indices(channel_index_2_))
+               j1p_ = j1array(channels_level_indices(channel_index_2_))
+               lp_  = channels_l_values(channel_index_2_)
                call calculate_single_SF_element(number_of_channels,            &
                   total_angular_momentum_, v1_, j1_, v1p_, j1p_, l_, lp_,      &
                   channels_level_indices, channels_omega_values, bf_matrix,    &
                   single_sf_element)
-               sf_matrix(ii, ij) = single_sf_element
+               sf_matrix(channel_index_1_, channel_index_2_) = single_sf_element
             enddo
          enddo
          !---------------------------------------------------------------------!         
@@ -154,8 +157,8 @@ module boundary_conditions_mod
          real(dp), intent(inout) :: k_matrix(number_of_open_channels, number_of_open_channels)
             !! K-matrix
          !---------------------------------------------------------------------!
-         integer(int32) :: index_open, index_closed, ii, i_open, i_open2,      &
-            i_closed, status_
+         integer(int32) :: open_channel_index_, closed_channel_index_,         &
+            channel_index_, status_, l_
          real(dp) :: wavenumber, x, j_element_, jp_element_, n_element_,       &
             np_element_, ratio
          integer(int32) :: open_channels_indices(number_of_open_channels)
@@ -175,55 +178,60 @@ module boundary_conditions_mod
          diag_n_matrix  = 0
          diag_np_matrix = 0
          !---------------------------------------------------------------------!
-         index_open   = 0
-         index_closed = 0
+         open_channel_index_   = 0
+         closed_channel_index_ = 0
          !---------------------------------------------------------------------!
          ! save indices to open and closed channels
          ! this is because channels might not be sorted eneregetically
          !---------------------------------------------------------------------!
-         do ii = 1, number_of_channels
-            if (is_open(elevel(channels_level_indices(ii)))) then
-               index_open = index_open+1
-               open_channels_indices(index_open) = ii
+         do channel_index_ = 1, number_of_channels
+            if (is_open(elevel(channels_level_indices(channel_index_)))) then
+               open_channel_index_ = open_channel_index_+1
+               open_channels_indices(open_channel_index_) = channel_index_
             else
-               index_closed = index_closed+1
-               closed_channels_indices(index_closed) = ii
+               closed_channel_index_ = closed_channel_index_+1
+               closed_channels_indices(closed_channel_index_) = channel_index_
             endif
          enddo
          !---------------------------------------------------------------------!
          ! Prepare J, J', N and N' matrices (Eqs. 5-6)
          ! open channels:
          !---------------------------------------------------------------------!
-         do i_open = 1, number_of_open_channels
+         do open_channel_index_ = 1, number_of_open_channels
             wavenumber = wavenumber_from_energy(                               &
-               elevel(channels_level_indices(open_channels_indices(i_open))))
-            x = wavenumber*r_
+               elevel(channels_level_indices(open_channels_indices(open_channel_index_))))
+            x  = wavenumber*r_
+            l_ = channels_l_values(open_channels_indices(open_channel_index_))
             call riccati_bessel_j(                                             &
-               channels_l_values(open_channels_indices(i_open)), x, j_element_,&
-               jp_element_)
-            diag_j_matrix(i_open,i_open)  = (wavenumber)**(-0.5d0)*j_element_
-            diag_jp_matrix(i_open,i_open) = (wavenumber)**(0.5d0)*jp_element_
+               l_, x, j_element_, jp_element_)
+            diag_j_matrix(open_channel_index_,open_channel_index_)             &
+               = (wavenumber)**(-0.5d0)*j_element_
+            diag_jp_matrix(open_channel_index_,open_channel_index_)            &
+               = (wavenumber)**(0.5d0)*jp_element_
 
-            call riccati_bessel_y(                                             &
-               channels_l_values(open_channels_indices(i_open)), x, n_element_,&
-               np_element_)
-            diag_n_matrix(i_open,i_open)  = (wavenumber)**(-0.5d0)*n_element_
-            diag_np_matrix(i_open,i_open) = (wavenumber)**(0.5d0)*np_element_
+            call riccati_bessel_y(l_, x, n_element_, np_element_)
+            diag_n_matrix(open_channel_index_,open_channel_index_)             &
+               = (wavenumber)**(-0.5d0)*n_element_
+            diag_np_matrix(open_channel_index_,open_channel_index_)            &
+               = (wavenumber)**(0.5d0)*np_element_
          enddo
          !---------------------------------------------------------------------!
          ! Prepare J, J', N and N' matrices (Eqs. 7-8)
          ! closed channels:
          !---------------------------------------------------------------------!
-         do i_closed = 1,number_of_channels-number_of_open_channels  
+         do closed_channel_index_ = 1,number_of_channels-number_of_open_channels  
             wavenumber = wavenumber_from_energy(                               &
-               elevel(channels_level_indices(closed_channels_indices(i_closed))))
-            x = wavenumber*r_
-            call modified_bessel_k_ratio(channels_l_values(closed_channels_indices(i_closed)),x,ratio)
+               elevel(channels_level_indices(closed_channels_indices(closed_channel_index_))))
+            x  = wavenumber*r_
+            l_ = channels_l_values(closed_channels_indices(closed_channel_index_))
+            call modified_bessel_k_ratio(l_,x,ratio)
             !------------------------------------------------------------------!
             ! substitution for closed channels, (Eqs. 10 - 11)             
             !------------------------------------------------------------------!
-            diag_n_matrix(number_of_open_channels+i_closed,number_of_open_channels+i_closed) = 1.d0
-            diag_np_matrix(number_of_open_channels+i_closed,number_of_open_channels+i_closed) = (wavenumber)*ratio
+            diag_n_matrix(number_of_open_channels+closed_channel_index_,       &
+               number_of_open_channels+closed_channel_index_) = 1.d0
+            diag_np_matrix(number_of_open_channels+closed_channel_index_,      &
+               number_of_open_channels+closed_channel_index_) = wavenumber*ratio
          enddo
          !---------------------------------------------------------------------! -----------------------> consider a separate function
          call DGEMM('N','N',number_of_channels,number_of_channels,             &
@@ -255,7 +263,7 @@ module boundary_conditions_mod
          real(dp), intent(inout) :: s_matrix_imag(number_of_open_channels,number_of_open_channels)
             !! (output) imaginary part of the S-matrix
          !---------------------------------------------------------------------!
-         integer(int32) :: i_open, i_open2
+         integer(int32) :: open_channel_index_1_, open_channel_index_2_
          real(dp) :: s_tmp_matrix(number_of_open_channels,number_of_open_channels)
          !---------------------------------------------------------------------!
          s_matrix_real = 0
@@ -265,8 +273,9 @@ module boundary_conditions_mod
             number_of_open_channels,0.5d0,k_matrix,number_of_open_channels,    &
             k_matrix,number_of_open_channels,0.d0,s_tmp_matrix,number_of_open_channels)
          !---------------------------------------------------------------------!
-         do i_open = 1, number_of_open_channels
-            s_tmp_matrix(i_open, i_open) = s_tmp_matrix(i_open, i_open) + 0.5d0
+         do open_channel_index_1_ = 1, number_of_open_channels
+            s_tmp_matrix(open_channel_index_1_, open_channel_index_1_) =       &
+               s_tmp_matrix(open_channel_index_1_, open_channel_index_1_) + 0.5d0
          enddo
          !---------------------------------------------------------------------!
          call invert_symmetric_matrix(s_tmp_matrix)
@@ -276,11 +285,13 @@ module boundary_conditions_mod
             number_of_open_channels,-1.0d0,s_tmp_matrix,number_of_open_channels,&
             k_matrix,number_of_open_channels,0.d0,s_matrix_imag,number_of_open_channels)
          !---------------------------------------------------------------------!
-         do i_open = 1, number_of_open_channels
-            do i_open2 = 1, number_of_open_channels
-               s_matrix_real(i_open, i_open2) = s_tmp_matrix(i_open, i_open2)
+         do open_channel_index_1_ = 1, number_of_open_channels
+            do open_channel_index_2_ = 1, number_of_open_channels
+               s_matrix_real(open_channel_index_1_, open_channel_index_2_) =   &
+                  s_tmp_matrix(open_channel_index_1_, open_channel_index_2_)
             enddo
-            s_matrix_real(i_open, i_open) = s_matrix_real(i_open, i_open) - 1.d0
+            s_matrix_real(open_channel_index_1_, open_channel_index_1_) =      &
+               s_matrix_real(open_channel_index_1_, open_channel_index_1_) - 1.d0
          enddo
          !---------------------------------------------------------------------!
       end subroutine calculate_s_matrix
