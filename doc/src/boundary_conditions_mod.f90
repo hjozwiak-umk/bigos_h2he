@@ -12,6 +12,7 @@ module boundary_conditions_mod
    use array_operations_mod, only: invert_symmetric_matrix, fill_symmetric_matrix
    !---------------------------------------------------------------------------!
    implicit none
+   !---------------------------------------------------------------------------!
    private
    public :: calculate_sf_matrix_from_bf_matrix, calculate_k_matrix,           &
       calculate_s_matrix

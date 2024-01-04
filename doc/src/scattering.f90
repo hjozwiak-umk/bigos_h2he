@@ -1,7 +1,8 @@
 program SCATTERING
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
-   use POTENTIAL
+   use radial_coupling_terms_mod, only: read_radial_coupling_terms,            &
+      reduce_radial_coupling_terms, interpolate_radial_coupling_terms
    use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
       set_space_fixed_channels, count_open_channels_in_block,                  &
       calculate_largest_wavenumber, print_channels
@@ -85,15 +86,15 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    ! Read the radial terms of the potential from external file
    !---------------------------------------------------------------------------!
-   call potential_read
+   call read_radial_coupling_terms
    !---------------------------------------------------------------------------!
    ! Reduce matrix elements that are not needed
    !---------------------------------------------------------------------------!
-   call potential_reduction
+   call reduce_radial_coupling_terms
    !---------------------------------------------------------------------------!
    ! Interpolate radial terms                                            
    !---------------------------------------------------------------------------!
-   call potential_interpolation
+   call interpolate_radial_coupling_terms
    !---------------------------------------------------------------------------!
    ! Search for energetically accessible levels and prepare the arrays that are
    ! needed in the calculations of the state-to-state XS                       

@@ -9,6 +9,7 @@ module channels_mod
       integer_to_character, float_to_character
    !---------------------------------------------------------------------------!
    implicit none
+   !---------------------------------------------------------------------------!
    private
    public :: set_number_of_channels, set_body_fixed_channels,                  &
       set_space_fixed_channels, count_open_channels_in_block,                  &
