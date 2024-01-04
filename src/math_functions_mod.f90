@@ -28,7 +28,7 @@ module math_functions_mod
       !!   j & j' & \lambda \\ 0 & 0 & 0
       !! \end{pmatrix}
       !! \begin{pmatrix}
-      !! j & j' & \lambda \\ \bar{\Omega} & -\bar{\Omega} & 0 \end{pmatrix},
+      !! j & j' & \lambda \\ \bar{\Omega} & -\bar{\Omega} & 0 \end{pmatrix}.
       !! \end{equation}
       !------------------------------------------------------------------------!
       use fwigxjpf, only: fwig3jj

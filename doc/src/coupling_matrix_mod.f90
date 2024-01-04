@@ -23,7 +23,9 @@ module coupling_matrix_mod
    use io_mod
    use math_functions_mod, only: percival_seaton_coefficient,                  &
       triangle_inequality_holds, is_sum_even, zero_projections_3j_condition
+   !---------------------------------------------------------------------------!
    implicit none
+   !---------------------------------------------------------------------------!
    contains
 !------------------------------------------------------------------------------!
       subroutine check_nonzero_coupling_matrix_elements(channels_level_indices,&

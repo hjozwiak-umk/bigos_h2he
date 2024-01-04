@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>channels_mod &ndash; the SCATTERING code</title>
+    <title>radial_coupling_terms_mod &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>channels_mod 
+    <h1>radial_coupling_terms_mod 
     <small>Module</small>
     
     </h1>
@@ -89,17 +89,17 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 7.5% of total for modules and submodules.">191 statements</a>
+               title=" 7.5% of total for modules and submodules.">192 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/channels_mod.f90"> Source File</a>
+              <a href="../src/radial_coupling_terms_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/channels_mod.f90.html'>channels_mod.f90</a></li>
-          <li class="active">channels_mod</li>
+              <li><a href='../sourcefile/radial_coupling_terms_mod.f90.html'>radial_coupling_terms_mod.f90</a></li>
+          <li class="active">radial_coupling_terms_mod</li>
         </ol>
       </div>
     </div>
@@ -127,20 +127,7 @@
   
   
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#funcs-0">Functions</a>
-        </h3>
-      </div>
-      <div id="funcs-0" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../module/channels_mod.html#proc-calculate_largest_wavenumber">calculate_largest_wavenumber</a>
-            <a class="list-group-item" href="../module/channels_mod.html#proc-count_open_channels_in_block">count_open_channels_in_block</a>
-        </div>
-      </div>
-    </div>
-
+  
       <div class="panel panel-primary">
       <div class="panel-heading text-left">
         <h3 class="panel-title">
@@ -149,10 +136,10 @@
       </div>
       <div id="subs-0" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../module/channels_mod.html#proc-print_channels">print_channels</a>
-            <a class="list-group-item" href="../module/channels_mod.html#proc-set_body_fixed_channels">set_body_fixed_channels</a>
-            <a class="list-group-item" href="../module/channels_mod.html#proc-set_number_of_channels">set_number_of_channels</a>
-            <a class="list-group-item" href="../module/channels_mod.html#proc-set_space_fixed_channels">set_space_fixed_channels</a>
+            <a class="list-group-item" href="../module/radial_coupling_terms_mod.html#proc-get_radial_coupling_term_value">get_radial_coupling_term_value</a>
+            <a class="list-group-item" href="../module/radial_coupling_terms_mod.html#proc-interpolate_radial_coupling_terms">interpolate_radial_coupling_terms</a>
+            <a class="list-group-item" href="../module/radial_coupling_terms_mod.html#proc-read_radial_coupling_terms">read_radial_coupling_terms</a>
+            <a class="list-group-item" href="../module/radial_coupling_terms_mod.html#proc-reduce_radial_coupling_terms">reduce_radial_coupling_terms</a>
         </div>
       </div>
     </div>
@@ -170,9 +157,17 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <p>This module provides subroutines that set the number of channels in the
-block, save quantum numbers for each channel (both in body- and space-fixed
-cases) and print quantum numbers on screen</p>
+    <p>This module provides all functions that handle radial coupling terms
+ of the PES. It covers:
+ 1. reading radial coupling terms from external file ("read_radial_coupling_terms",
+    "skip_header_lines", "read_and_validate_lambda", "read_potential_data",
+    "validate_r_range")
+ 2. reducing the number of read coupling terms to retain only necessary
+    couplings ("reduce_radial_coupling_terms", "print_pes_quantum_numbers",
+    "reduce_coupling_terms", "find_reduced_term")
+ 3. interpolation of radial coupling terms ("interpolate_radial_coupling_terms")
+ 4. providing value of the interpolated radial coupling term ("get_radial_coupling_term_value")
+--------------------------------------------------------------------------!</p>
 <br>        <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Uses</h3>
@@ -183,6 +178,7 @@ cases) and print quantum numbers on screen</p>
                 <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
                 <li><a href='../module/io_mod.html'>io_mod</a></li>
                 <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
+                <li><a href='../module/math_functions_mod.html'>math_functions_mod</a></li>
             </ul>
           </li>
           <li class="list-group-item">
@@ -191,102 +187,143 @@ cases) and print quantum numbers on screen</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: module~~channels_mod~~UsesGraph Pages: 1 -->
-<svg id="modulechannels_modUsesGraph" width="487pt" height="145pt"
- viewBox="0.00 0.00 487.00 144.63" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~channels_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 140.63)">
-<title>module~~channels_mod~~UsesGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-140.63 483,-140.63 483,4 -4,4"/>
-<!-- module~channels_mod -->
-<g id="module~~channels_mod~~UsesGraph_node1" class="node">
-<title>module~channels_mod</title>
-<polygon fill="none" stroke="black" points="479,-104 389,-104 389,-80 479,-80 479,-104"/>
-<text text-anchor="middle" x="434" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50">channels_mod</text>
+<!-- Title: module~~radial_coupling_terms_mod~~UsesGraph Pages: 1 -->
+<svg id="moduleradial_coupling_terms_modUsesGraph" width="627pt" height="190pt"
+ viewBox="0.00 0.00 627.00 190.48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 186.48)">
+<title>module~~radial_coupling_terms_mod~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-186.48 623,-186.48 623,4 -4,4"/>
+<!-- module~radial_coupling_terms_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_node1" class="node">
+<title>module~radial_coupling_terms_mod</title>
+<polygon fill="none" stroke="black" points="619,-126 459,-126 459,-102 619,-102 619,-126"/>
+<text text-anchor="middle" x="539" y="-111.6" font-family="Helvetica,sans-Serif" font-size="10.50">radial_coupling_terms_mod</text>
 </g>
 <!-- iso_fortran_env -->
-<g id="module~~channels_mod~~UsesGraph_node2" class="node">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_node2" class="node">
 <title>iso_fortran_env</title>
-<g id="a_module~~channels_mod~~UsesGraph_node2"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<g id="a_module~~radial_coupling_terms_mod~~UsesGraph_node2"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
 <polygon fill="#337ab7" stroke="#337ab7" points="94,-84 0,-84 0,-60 94,-60 94,-84"/>
 <text text-anchor="middle" x="47" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
 </a>
 </g>
 </g>
-<!-- module~channels_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~channels_mod~~UsesGraph_edge1" class="edge">
-<title>module~channels_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M325,-132C238.36,-140.76 213.68,-137.1 130,-113 111.13,-107.57 91.4,-97.84 76.02,-89.23"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="77.47,-86.03 67.06,-84.06 73.97,-92.09 77.47,-86.03"/>
+<!-- module~radial_coupling_terms_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge1" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M511.27,-126.17C453.51,-150.85 312.98,-202.12 197.5,-174"/>
+</g>
+<!-- module~math_functions_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_node3" class="node">
+<title>module~math_functions_mod</title>
+<g id="a_module~~radial_coupling_terms_mod~~UsesGraph_node3"><a xlink:href=".././module/math_functions_mod.html" xlink:title="math_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="423,-146 299,-146 299,-122 423,-122 423,-146"/>
+<text text-anchor="middle" x="361" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">math_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~math_functions_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge2" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~math_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M458.75,-123.01C450.26,-123.97 441.65,-124.95 433.25,-125.9"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="432.68,-122.45 423.14,-127.05 433.47,-129.4 432.68,-122.45"/>
 </g>
 <!-- module~utility_functions_mod -->
-<g id="module~~channels_mod~~UsesGraph_node3" class="node">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_node4" class="node">
 <title>module~utility_functions_mod</title>
-<g id="a_module~~channels_mod~~UsesGraph_node3"><a xlink:href=".././module/utility_functions_mod.html" xlink:title="utility_functions_mod">
+<g id="a_module~~radial_coupling_terms_mod~~UsesGraph_node4"><a xlink:href=".././module/utility_functions_mod.html" xlink:title="utility_functions_mod">
 <polygon fill="#337ab7" stroke="#337ab7" points="259,-104 134,-104 134,-80 259,-80 259,-104"/>
 <text text-anchor="middle" x="196.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">utility_functions_mod</text>
 </a>
 </g>
 </g>
-<!-- module~channels_mod&#45;&gt;module~utility_functions_mod -->
-<g id="module~~channels_mod~~UsesGraph_edge2" class="edge">
-<title>module~channels_mod&#45;&gt;module~utility_functions_mod</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M411.09,-104.13C390.21,-114.74 357.53,-128.91 327,-132"/>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M325,-132C307.71,-133.75 267.01,-119.76 236.2,-107.84"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="237.18,-104.47 226.59,-104.07 234.62,-110.98 237.18,-104.47"/>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge3" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M458.6,-108.87C401.34,-105.17 324.7,-100.22 269.27,-96.64"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="269.38,-93.14 259.18,-95.99 268.93,-100.12 269.38,-93.14"/>
 </g>
 <!-- module~io_mod -->
-<g id="module~~channels_mod~~UsesGraph_node4" class="node">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_node5" class="node">
 <title>module~io_mod</title>
-<g id="a_module~~channels_mod~~UsesGraph_node4"><a xlink:href=".././module/io_mod.html" xlink:title="io_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="353,-84 299,-84 299,-60 353,-60 353,-84"/>
-<text text-anchor="middle" x="326" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io_mod</text>
+<g id="a_module~~radial_coupling_terms_mod~~UsesGraph_node5"><a xlink:href=".././module/io_mod.html" xlink:title="io_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="388,-65 334,-65 334,-41 388,-41 388,-65"/>
+<text text-anchor="middle" x="361" y="-50.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io_mod</text>
 </a>
 </g>
 </g>
-<!-- module~channels_mod&#45;&gt;module~io_mod -->
-<g id="module~~channels_mod~~UsesGraph_edge3" class="edge">
-<title>module~channels_mod&#45;&gt;module~io_mod</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M388.97,-83.69C380.41,-82.08 371.53,-80.4 363.25,-78.84"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="363.64,-75.35 353.17,-76.94 362.35,-82.23 363.64,-75.35"/>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~io_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge4" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M503.23,-101.95C472.67,-91.36 428.41,-76.02 397.61,-65.34"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="398.71,-62.02 388.11,-62.05 396.42,-68.63 398.71,-62.02"/>
+</g>
+<!-- module~math_functions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge6" class="edge">
+<title>module~math_functions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M326.84,-146C286.79,-159.82 221.78,-179.91 197.5,-174"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M195.5,-174C166.05,-166.83 156.05,-170.5 130,-155 102.53,-138.65 77.76,-110.91 62.81,-92.04"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="65.53,-89.85 56.65,-84.07 59.99,-94.12 65.53,-89.85"/>
+</g>
+<!-- module~math_functions_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge7" class="edge">
+<title>module~math_functions_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M313.43,-121.96C294.91,-117.18 273.41,-111.62 254.01,-106.6"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="254.63,-103.15 244.07,-104.04 252.88,-109.93 254.63,-103.15"/>
+</g>
+<!-- module~special_functions_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_node6" class="node">
+<title>module~special_functions_mod</title>
+<g id="a_module~~radial_coupling_terms_mod~~UsesGraph_node6"><a xlink:href=".././module/special_functions_mod.html" xlink:title="special_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-146 130,-146 130,-122 263,-122 263,-146"/>
+<text text-anchor="middle" x="196.5" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">special_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~math_functions_mod&#45;&gt;module~special_functions_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge5" class="edge">
+<title>module~math_functions_mod&#45;&gt;module~special_functions_mod</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M298.57,-134C290.32,-134 281.79,-134 273.34,-134"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="273.09,-130.5 263.09,-134 273.09,-137.5 273.09,-130.5"/>
 </g>
 <!-- module~utility_functions_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~channels_mod~~UsesGraph_edge4" class="edge">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge8" class="edge">
 <title>module~utility_functions_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M133.8,-83.63C123.96,-82.3 113.82,-80.92 104.12,-79.61"/>
-<polygon fill="#00ff00" stroke="#00ff00" points="104.57,-76.14 94.19,-78.26 103.63,-83.07 104.57,-76.14"/>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M133.8,-83.63C123.96,-82.3 113.82,-80.92 104.12,-79.61"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="104.57,-76.14 94.19,-78.26 103.63,-83.07 104.57,-76.14"/>
 </g>
 <!-- module~io_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~channels_mod~~UsesGraph_edge5" class="edge">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge9" class="edge">
 <title>module~io_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M298.76,-71.48C287.72,-71.29 274.73,-71.09 263,-71 203.89,-70.52 189.11,-70.64 130,-71 121.8,-71.05 113.14,-71.13 104.64,-71.22"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="104.36,-67.72 94.4,-71.34 104.44,-74.72 104.36,-67.72"/>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M333.94,-54.59C283.65,-57.65 172.2,-64.44 104.25,-68.57"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="103.91,-65.09 94.15,-69.19 104.34,-72.08 103.91,-65.09"/>
 </g>
 <!-- module~io_mod&#45;&gt;module~utility_functions_mod -->
-<g id="module~~channels_mod~~UsesGraph_edge6" class="edge">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge10" class="edge">
 <title>module~io_mod&#45;&gt;module~utility_functions_mod</title>
-<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M298.89,-76.1C290.11,-77.47 279.85,-79.08 269.29,-80.74"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="268.45,-77.33 259.11,-82.34 269.53,-84.24 268.45,-77.33"/>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M333.89,-59.27C313.37,-64.19 283.95,-71.25 257.69,-77.55"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="256.71,-74.19 247.81,-79.93 258.35,-81 256.71,-74.19"/>
 </g>
 <!-- module~array_operations_mod -->
-<g id="module~~channels_mod~~UsesGraph_node5" class="node">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_node7" class="node">
 <title>module~array_operations_mod</title>
-<g id="a_module~~channels_mod~~UsesGraph_node5"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
+<g id="a_module~~radial_coupling_terms_mod~~UsesGraph_node7"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
 <polygon fill="#337ab7" stroke="#337ab7" points="263,-24 130,-24 130,0 263,0 263,-24"/>
 <text text-anchor="middle" x="196.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_mod</text>
 </a>
 </g>
 </g>
 <!-- module~io_mod&#45;&gt;module~array_operations_mod -->
-<g id="module~~channels_mod~~UsesGraph_edge7" class="edge">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge11" class="edge">
 <title>module~io_mod&#45;&gt;module~array_operations_mod</title>
-<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M304.38,-59.86C292.48,-53.06 277.11,-44.64 263,-38 255.52,-34.48 247.43,-31.01 239.57,-27.81"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="240.74,-24.5 230.16,-24.04 238.14,-31 240.74,-24.5"/>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M333.89,-46.41C312.64,-41.05 281.85,-33.28 254.9,-26.48"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="255.73,-23.08 245.17,-24.03 254.01,-29.87 255.73,-23.08"/>
 </g>
 <!-- module~array_operations_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~channels_mod~~UsesGraph_edge8" class="edge">
+<g id="module~~radial_coupling_terms_mod~~UsesGraph_edge12" class="edge">
 <title>module~array_operations_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M164.8,-24.07C153.81,-28.43 141.34,-33.4 130,-38 115.75,-43.78 100.15,-50.22 86.42,-55.93"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="84.68,-52.86 76.8,-59.93 87.37,-59.32 84.68,-52.86"/>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M164.8,-24.07C153.81,-28.43 141.34,-33.4 130,-38 115.75,-43.78 100.15,-50.22 86.42,-55.93"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="84.68,-52.86 76.8,-59.93 87.37,-59.32 84.68,-52.86"/>
 </g>
 </g>
 </svg>
@@ -363,32 +400,53 @@ cases) and print quantum numbers on screen</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: module~~channels_mod~~UsedByGraph Pages: 1 -->
-<svg id="modulechannels_modUsedByGraph" width="213pt" height="32pt"
- viewBox="0.00 0.00 213.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~channels_mod~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>module~~channels_mod~~UsedByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 209,-28 209,4 -4,4"/>
-<!-- module~channels_mod -->
-<g id="module~~channels_mod~~UsedByGraph_node1" class="node">
-<title>module~channels_mod</title>
-<polygon fill="none" stroke="black" points="90,-24 0,-24 0,0 90,0 90,-24"/>
-<text text-anchor="middle" x="45" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">channels_mod</text>
+<!-- Title: module~~radial_coupling_terms_mod~~UsedByGraph Pages: 1 -->
+<svg id="moduleradial_coupling_terms_modUsedByGraph" width="410pt" height="52pt"
+ viewBox="0.00 0.00 410.00 52.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~radial_coupling_terms_mod~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 48)">
+<title>module~~radial_coupling_terms_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-48 406,-48 406,4 -4,4"/>
+<!-- module~radial_coupling_terms_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsedByGraph_node1" class="node">
+<title>module~radial_coupling_terms_mod</title>
+<polygon fill="none" stroke="black" points="160,-44 0,-44 0,-20 160,-20 160,-44"/>
+<text text-anchor="middle" x="80" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50">radial_coupling_terms_mod</text>
 </g>
-<!-- program~scattering -->
-<g id="module~~channels_mod~~UsedByGraph_node2" class="node">
-<title>program~scattering</title>
-<g id="a_module~~channels_mod~~UsedByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="205,-24 126,-24 126,0 205,0 205,-24"/>
-<text text-anchor="middle" x="165.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+<!-- module~propagators -->
+<g id="module~~radial_coupling_terms_mod~~UsedByGraph_node2" class="node">
+<title>module~propagators</title>
+<g id="a_module~~radial_coupling_terms_mod~~UsedByGraph_node2"><a xlink:href=".././module/propagators.html" xlink:title="PROPAGATORS">
+<polygon fill="#337ab7" stroke="#337ab7" points="287,-24 196,-24 196,0 287,0 287,-24"/>
+<text text-anchor="middle" x="241.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">PROPAGATORS</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;module~channels_mod -->
-<g id="module~~channels_mod~~UsedByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;module~channels_mod</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M125.7,-12C117.64,-12 109,-12 100.49,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="100.23,-8.5 90.23,-12 100.23,-15.5 100.23,-8.5"/>
+<!-- module~propagators&#45;&gt;module~radial_coupling_terms_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsedByGraph_edge1" class="edge">
+<title>module~propagators&#45;&gt;module~radial_coupling_terms_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M195.65,-17.62C187.61,-18.63 178.99,-19.71 170.21,-20.81"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="169.75,-17.34 160.26,-22.06 170.62,-24.29 169.75,-17.34"/>
+</g>
+<!-- program~scattering -->
+<g id="module~~radial_coupling_terms_mod~~UsedByGraph_node3" class="node">
+<title>program~scattering</title>
+<g id="a_module~~radial_coupling_terms_mod~~UsedByGraph_node3"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="402,-44 323,-44 323,-20 402,-20 402,-44"/>
+<text text-anchor="middle" x="362.5" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;module~radial_coupling_terms_mod -->
+<g id="module~~radial_coupling_terms_mod~~UsedByGraph_edge2" class="edge">
+<title>program~scattering&#45;&gt;module~radial_coupling_terms_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M322.83,-32.62C311.31,-32.78 298.64,-32.92 287,-33 248.75,-33.26 206.51,-33.12 170.29,-32.88"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="170.26,-29.38 160.24,-32.81 170.21,-36.38 170.26,-29.38"/>
+</g>
+<!-- program~scattering&#45;&gt;module~propagators -->
+<g id="module~~radial_coupling_terms_mod~~UsedByGraph_edge3" class="edge">
+<title>program~scattering&#45;&gt;module~propagators</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M322.86,-25.51C314.67,-24.13 305.87,-22.65 297.21,-21.19"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="297.59,-17.71 287.14,-19.5 296.43,-24.61 297.59,-17.71"/>
 </g>
 </g>
 </svg>
@@ -469,20 +527,7 @@ cases) and print quantum numbers on screen</p>
   
   
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#funcs-1">Functions</a>
-        </h3>
-      </div>
-      <div id="funcs-1" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../module/channels_mod.html#proc-calculate_largest_wavenumber">calculate_largest_wavenumber</a>
-            <a class="list-group-item" href="../module/channels_mod.html#proc-count_open_channels_in_block">count_open_channels_in_block</a>
-        </div>
-      </div>
-    </div>
-
+  
       <div class="panel panel-primary">
       <div class="panel-heading text-left">
         <h3 class="panel-title">
@@ -491,10 +536,10 @@ cases) and print quantum numbers on screen</p>
       </div>
       <div id="subs-1" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../module/channels_mod.html#proc-print_channels">print_channels</a>
-            <a class="list-group-item" href="../module/channels_mod.html#proc-set_body_fixed_channels">set_body_fixed_channels</a>
-            <a class="list-group-item" href="../module/channels_mod.html#proc-set_number_of_channels">set_number_of_channels</a>
-            <a class="list-group-item" href="../module/channels_mod.html#proc-set_space_fixed_channels">set_space_fixed_channels</a>
+            <a class="list-group-item" href="../module/radial_coupling_terms_mod.html#proc-get_radial_coupling_term_value">get_radial_coupling_term_value</a>
+            <a class="list-group-item" href="../module/radial_coupling_terms_mod.html#proc-interpolate_radial_coupling_terms">interpolate_radial_coupling_terms</a>
+            <a class="list-group-item" href="../module/radial_coupling_terms_mod.html#proc-read_radial_coupling_terms">read_radial_coupling_terms</a>
+            <a class="list-group-item" href="../module/radial_coupling_terms_mod.html#proc-reduce_radial_coupling_terms">reduce_radial_coupling_terms</a>
         </div>
       </div>
     </div>
@@ -516,111 +561,16 @@ cases) and print quantum numbers on screen</p>
 
     
     
- 
-    <section>
-    <h2>Functions</h2>
-      <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-calculate_largest_wavenumber"></span><h3>public  function <a href='../proc/calculate_largest_wavenumber.html'>calculate_largest_wavenumber</a>(channels_level_indices) result(largest_wavenumber_)  
-</h3></div>
-    <div class="panel-body">
-          
-  <p>Calculates the largest wave number in the block;
-called only if there are any open channels</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_level_indices</strong>(:)</td>
-            <td>
-<p>holds the indices pointing to the basis arrays</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    <h4>
-    Return Value
-    <small>real(kind=dp)</small>
-    </h4>
-    <p>(output) the largest wave number (wavmax) in the block</p>
-
-    </div>
-  </div>
-
-      <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-count_open_channels_in_block"></span><h3>public  function <a href='../proc/count_open_channels_in_block.html'>count_open_channels_in_block</a>(channels_level_indices) result(number_of_open_channels_)  
-</h3></div>
-    <div class="panel-body">
-          
-  <p>counts the energetically accessible channels in the given block</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_level_indices</strong>(:)</td>
-            <td>
-<p>holds the indices pointing to the basis arrays</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    <h4>
-    Return Value
-    <small>integer(kind=int32)</small>
-    </h4>
-    <p>(output) number of open channels</p>
-
-    </div>
-  </div>
-
-    </section>
-    <br>
 
     <section>
     <h2>Subroutines</h2>
       <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-print_channels"></span><h3>public  subroutine <a href='../proc/print_channels.html'>print_channels</a>(parity_exponent_, channels_level_indices, channels_omega_values)  
+    <div class="panel-heading codesum"><span class="anchor" id="proc-get_radial_coupling_term_value"></span><h3>public  subroutine <a href='../proc/get_radial_coupling_term_value.html'>get_radial_coupling_term_value</a>(intermolecular_distance, lambda_, v_, j_, v_prime_, j_prime_, radial_term_value_)  
 </h3></div>
     <div class="panel-body">
           
-  <p>prints information about body-fixed channels on screen</p>
+  <p>Returns the interpolated value of a specific radial coupling term
+at a given distance.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -636,88 +586,16 @@ called only if there are any open channels</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              integer(kind=int32),
+              real(kind=dp),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>parity_exponent_</strong></td>
+            <td><strong>intermolecular_distance</strong></td>
             <td>
-<p>parity exponent of the block (0 if p = +1, 1 if p = -1)</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_level_indices</strong>(:)</td>
-            <td>
-<p>holds the indices pointing to the basis arrays</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_omega_values</strong>(:)</td>
-            <td>
-<p>holds all values of \bar{\Omega}</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-      <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-set_body_fixed_channels"></span><h3>public  subroutine <a href='../proc/set_body_fixed_channels.html'>set_body_fixed_channels</a>(total_angular_momentum_, parity_exponent_, channels_level_indices, channels_omega_values)  
-</h3></div>
-    <div class="panel-body">
-          
-  <p>Prepares the channels_level_indices array which holds indices that refer to the
-basis arrays: v1level/j1level/elevel, and channels_omega_values which holds values
-of \bar{\Omega}</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>total_angular_momentum_</strong></td>
-            <td>
-<p>total angular momentum</p>
+<p>Intermolecular distance, \(R\)</p>
             </td>
         </tr>
         <tr>
@@ -730,68 +608,11 @@ of \bar{\Omega}</p>
               
             </td>
             <td>::</td>
-            <td><strong>parity_exponent_</strong></td>
+            <td><strong>lambda_</strong></td>
             <td>
-<p>parity exponent of the block (0 if p = +1, 1 if p = -1)</p>
+<p>Legendre expansion index</p>
             </td>
         </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_level_indices</strong>(:)</td>
-            <td>
-<p>holds the indices pointing to the basis arrays</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_omega_values</strong>(:)</td>
-            <td>
-<p>holds all values of \bar{\Omega}</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-      <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-set_number_of_channels"></span><h3>public  subroutine <a href='../proc/set_number_of_channels.html'>set_number_of_channels</a>(total_angular_momentum_, number_of_channels_even_parity_block, number_of_channels_odd_parity_block)  
-</h3></div>
-    <div class="panel-body">
-          
-  <p>determine the number of scattering channels in each parity block 
-for given total angular momentum in both body-fixed and
-space-fixed frames</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
-    </thead>
-    <tbody>
         <tr>
             <td>
               <span class="anchor" ></span>
@@ -802,39 +623,69 @@ space-fixed frames</p>
               
             </td>
             <td>::</td>
-            <td><strong>total_angular_momentum_</strong></td>
+            <td><strong>v_</strong></td>
             <td>
-<p>total angular momentum         </p>
+<p>pre-collisional vibrational quantum number</p>
             </td>
         </tr>
         <tr>
             <td>
               <span class="anchor" ></span>
               integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j_</strong></td>
+            <td>
+<p>pre-collisional rotational quantum number</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>v_prime_</strong></td>
+            <td>
+<p>post-collisional vibrational quantum number</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j_prime_</strong></td>
+            <td>
+<p>post-collisional rotational quantum number</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
             </td>
 <td>intent(out)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels_even_parity_block</strong></td>
+            <td><strong>radial_term_value_</strong></td>
             <td>
-<p>number of channels in the p = 1 (even parity) block</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>number_of_channels_odd_parity_block</strong></td>
-            <td>
-<p>number of channels in the p = -1 (odd parity) block</p>
+<p>Value of the radial coupling coefficient</p>
             </td>
         </tr>
     </tbody>
@@ -845,72 +696,45 @@ space-fixed frames</p>
   </div>
 
       <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-set_space_fixed_channels"></span><h3>public  subroutine <a href='../proc/set_space_fixed_channels.html'>set_space_fixed_channels</a>(total_angular_momentum_, parity_exponent_, channels_l_values)  
+    <div class="panel-heading codesum"><span class="anchor" id="proc-interpolate_radial_coupling_terms"></span><h3>public  subroutine <a href='../proc/interpolate_radial_coupling_terms.html'>interpolate_radial_coupling_terms</a>()  
 </h3></div>
     <div class="panel-body">
           
-  <p>Prepares the channels_l_values array which holds values of
-orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
+  <p>Interpolates the radial coupling terms using cubic spline functions.
+The resulting spline coefficients for each coupling term
+are stored in bmat3D, cmat3D, and dmat3D matrices.</p>
 
   <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>total_angular_momentum_</strong></td>
-            <td>
-<p>total angular momentum</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>parity_exponent_</strong></td>
-            <td>
-<p>parity exponent of the block (0 if p = +1, 1 if p = -1)</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channels_l_values</strong>(:)</td>
-            <td>
-<p>holds all values of l</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
+    <em>None</em>
 
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-read_radial_coupling_terms"></span><h3>public  subroutine <a href='../proc/read_radial_coupling_terms.html'>read_radial_coupling_terms</a>()  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>reads the radial coupling terms from the external file.
+The file is assumed to be formatted as described in
+"Supplying radial terms" section.
+The read radial coupling terms are kept in vmat/read_vmat3D</p>
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-reduce_radial_coupling_terms"></span><h3>public  subroutine <a href='../proc/reduce_radial_coupling_terms.html'>reduce_radial_coupling_terms</a>()  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>Reduces the read_vmat3D matrix to retain only the necessary coupling terms.</p>
+
+  <h4>Arguments</h4>
+    <em>None</em>
 
     </div>
   </div>

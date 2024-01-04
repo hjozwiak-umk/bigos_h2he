@@ -19,19 +19,28 @@ module io_mod
    implicit none
 !------------------------------------------------------------------------------!
    character(len = 80) :: label, potentialfile, smatrixfile, partialfile
-   integer(int32) :: ietoterel, jtotmin, jtotmax, jtotstep,                    &
-      steps, ncac, initial, nlevel, nr, nterms,  ncoupl, totalcol,&
-      n_skip_lines, iunits, ipart, prntlvl, saveeigenvectors, nmodlevels
-   real(dp) :: reducedmass, energy, rmin, rmax, dr, vdepth, dtol, otol
+   integer(int32) :: ietoterel, jtotmin, jtotmax, jtotstep, steps, ncac,       &
+      initial, nlevel, nr, nterms,  ncoupl, totalcol, n_skip_lines, iunits,    &
+      ipart, prntlvl, saveeigenvectors, nmodlevels
+   real(dp) :: reducedmass, energy, rmin, rmax, dr, vdepth, dtol, otol,        &
+      radial_term_distance_converter, radial_term_energy_converter
+   !---------------------------------------------------------------------------!
+   integer(int32), parameter :: input_unit = 5
+   integer(int32), parameter :: pes_file_unit = 8
+   integer(int32), parameter :: s_matrix_unit = 11
+   integer(int32), parameter :: partial_file_unit = 12
+   !---------------------------------------------------------------------------!
    real(dp), parameter :: amutoau = 1822.8884862d0
    real(dp), parameter :: bohrtoangstrom = 0.5291772109d0
    real(dp), parameter :: hartreetocm = 219474.631363d0
    real(dp), parameter :: pi = dacos(-1.d0)
    real(dp), parameter :: unitary_tolerance = 1e-6_dp
+   !---------------------------------------------------------------------------!
    integer(int32), allocatable :: v1array(:), j1array(:), l1tab(:), l2tab(:),  &
       lltab(:), v1pes(:), j1pes(:), v1ppes(:), j1ppes(:), reduced_v1pes(:),    &
       reduced_j1pes(:), reduced_v1ppes(:), reduced_j1ppes(:)
-   real(dp), allocatable :: elevel(:), rmat(:), b(:), c(:), d(:), vmat(:,:),   &
+   real(dp), allocatable :: elevel(:), rmat(:), spline_coeff_b(:),             &
+      spline_coeff_c(:), spline_coeff_d(:), vmat(:,:),   &
       bmat(:,:), cmat(:,:), dmat(:,:), read_vmat3D(:,:,:), vmat3D(:,:,:),      &
       bmat3D(:,:,:), cmat3D(:,:,:), dmat3D(:,:,:)
    logical :: pes_file_exists, units_converted = .false.
@@ -111,6 +120,15 @@ module io_mod
          call allocate_1d(v1ppes,totalcol)
          call allocate_1d(j1pes,totalcol)
          call allocate_1d(j1ppes,totalcol)
+
+         select case(iunits)
+            case(0)
+               radial_term_distance_converter = 1.0_dp
+            case(1)
+               radial_term_distance_converter = bohrtoangstrom
+         end select
+
+         radial_term_energy_converter = 1.0_dp / hartreetocm
 !------------------------------------------------------------------------------!
 ! Read the basis namelist & check if the values were supplied correctly:       !
 !------------------------------------------------------------------------------!
@@ -152,9 +170,9 @@ module io_mod
 ! Prepare the arrays that are needed for interpolation of the coupling terms:  !
 !------------------------------------------------------------------------------!
          call allocate_1d(rmat,nr)
-         call allocate_1d(b,nr)
-         call allocate_1d(c,nr)
-         call allocate_1d(d,nr)
+         call allocate_1d(spline_coeff_b,nr)
+         call allocate_1d(spline_coeff_c,nr)
+         call allocate_1d(spline_coeff_d,nr)
 
          call allocate_3d(read_vmat3D,nr,nterms,totalcol)
          call allocate_3d(vmat3D,nr,nterms,ncoupl)

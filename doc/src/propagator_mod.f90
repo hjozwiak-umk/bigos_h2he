@@ -10,8 +10,7 @@ module PROPAGATORS
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
    use array_operations_mod, only: invert_symmetric_matrix, fill_symmetric_matrix
-   use math_functions_mod, only: ispline
-   use POTENTIAL
+   use radial_coupling_terms_mod, only: get_radial_coupling_term_value
    implicit none
    contains
    !---------------------------------------------------------------------------!
@@ -131,7 +130,7 @@ module PROPAGATORS
                   indvl   = indvl+1
                   l1      = l1tab(nonzero_legendre_indices(indvl))
                   pscoeff = nonzero_coupling_coefficients(indvl)
-                  call RADTERMVALUE(r,l1,v1tmp,j1tmp,v1ptmp,j1ptmp,v)
+                  call get_radial_coupling_term_value(r,l1,v1tmp,j1tmp,v1ptmp,j1ptmp,v)
                   sumtemp = sumtemp+pscoeff*v
                enddo
                vmatrix(ii,ij) = -2*reducedmass*sumtemp
@@ -143,68 +142,7 @@ module PROPAGATORS
          !---------------------------------------------------------------------!
       end subroutine pes_contribution
 !------------------------------------------------------------------------------!
-      subroutine RADTERMVALUE(rr,l1,v1,j1,v1p,j1p,v)
-         !! returns the value of a specific radial coupling term at rr
-         !---------------------------------------------------------------------!
-         real(dp), intent(in) :: rr
-            !! intermolecular distance
-         integer(int32), intent(in) :: l1
-            !! Legendre expansion index
-         integer(int32), intent(in) :: v1,j1,v1p,j1p
-            !! rovibrational quantum numbers
-         real(dp), intent(out) :: v
-            !! value of the radial coupling coefficient
-         !---------------------------------------------------------------------!
-         integer(int32) :: il, icoupl, indl, indl2
-         real(dp) :: rrcurr
-         !---------------------------------------------------------------------!
-         ! If iunits=1, the r-values in the radialtermsfile are in angstrom
-         !---------------------------------------------------------------------!
-         if (iunits.eq.1) then
-            rrcurr=rr*bohrtoangstrom
-         else if (iunits.eq.0) then
-            rrcurr=rr
-         endif
-         !---------------------------------------------------------------------!
-         ! Locate the correct l1 index in l1tab
-         !---------------------------------------------------------------------!
-         do il = 1,nterms
-            if (l1tab(il).eq.l1) then
-               indl = il
-            endif
-         enddo
-         !---------------------------------------------------------------------!
-         ! Locate the correct quantum number that describes the v/j coupling
-         !---------------------------------------------------------------------!
-         indl2 = 0
-         do icoupl = 1,ncoupl
-            if(((reduced_v1ppes(icoupl).eq.v1p).and.&
-               (reduced_j1pes(icoupl).eq.j1).and.&
-               (reduced_v1pes(icoupl).eq.v1).and.&
-               (reduced_j1ppes(icoupl).eq.j1p)).or.&
-               ((reduced_v1pes(icoupl).eq.v1p).and.&
-               (reduced_j1pes(icoupl).eq.j1p).and.&
-               (reduced_v1ppes(icoupl).eq.v1).and.&
-               (reduced_j1ppes(icoupl).eq.j1))) then
-               indl2 = icoupl
-            endif
-         enddo
-         !---------------------------------------------------------------------!
-         if (indl2.eq.0) then
-            call write_error("Column with v1 = " // integer_to_character(v1)   &
-               // ", j1 = " // integer_to_character(j1) // ", v1` = " //       &
-               integer_to_character(v1p) // ", j1` = " //                      &
-               integer_to_character(j1p) // "not found")
-         endif
-         !---------------------------------------------------------------------!
-         v = ISPLINE(rrcurr, nr, rmat, vmat3D(:,indl,indl2), bmat3D(:,indl,indl2), &
-            cmat3D(:,indl,indl2), dmat3D(:,indl,indl2))
-         !---------------------------------------------------------------------!
-         if ((iunits.eq.0).or.(iunits.eq.1)) then
-            v = v/hartreetocm
-         endif
-         !---------------------------------------------------------------------!
-      end subroutine
+     
 !------------------------------------------------------------------------------!
       subroutine calculate_log_der_matrix(h,y_dim,tt_min,tt_n,tt_plus,r_n,r_plus,log_der_matrix)
          !! calculates the log-derivative matrix from Eq. (6.29)
