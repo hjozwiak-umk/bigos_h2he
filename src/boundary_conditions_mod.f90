@@ -199,8 +199,8 @@ module boundary_conditions_mod
          ! open channels:
          !---------------------------------------------------------------------!
          do open_channel_index_ = 1, number_of_open_channels
-            wavenumber = wavenumber_from_energy(                               &
-               elevel(channel_indices(open_channels_indices(open_channel_index_))))
+            wavenumber = sqrt( wavenumber_squared_from_energy(                 &
+               elevel(channel_indices(open_channels_indices(open_channel_index_)))))
             x  = wavenumber*r_
             l_ = channel_l_values(open_channels_indices(open_channel_index_))
             call riccati_bessel_j(                                             &
@@ -221,8 +221,8 @@ module boundary_conditions_mod
          ! closed channels:
          !---------------------------------------------------------------------!
          do closed_channel_index_ = 1,number_of_channels-number_of_open_channels  
-            wavenumber = wavenumber_from_energy(                               &
-               elevel(channel_indices(closed_channels_indices(closed_channel_index_))))
+            wavenumber = sqrt( abs( wavenumber_squared_from_energy(            &
+               elevel(channel_indices(closed_channels_indices(closed_channel_index_))))))
             x  = wavenumber*r_
             l_ = channel_l_values(closed_channels_indices(closed_channel_index_))
             call modified_bessel_k_ratio(l_,x,ratio)

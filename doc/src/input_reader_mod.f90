@@ -4,7 +4,7 @@ module io_mod
    !! 2. input_check - checks the variables supplied in the input file
    !! 3. input_summary - summary of the input variables
    !! 5. etotal (function) - returns the total energy of the system
-   !! 6. wavenumber_from_energy (function) - returns the wavenumber
+   !! 6. wavenumber_squared_from_energy (function) - returns the wavenumber
    !! 7. units_conversion - converts all physical quantities to atomic units
    !! 8. count_available_xs (function) - counts energetically accessible
    !!    levels in the basis
@@ -454,9 +454,10 @@ module io_mod
       !------------------------------------------------------------------------!
    end function
 !------------------------------------------------------------------------------!
-   function wavenumber_from_energy(energy_) result(k_)
-      !! returns the wavenumber, \\(k_{a}\\), given the energy of a given state,
-      !! \\(E_{a}\\); calls etot() function; atomic units in the whole function
+   function wavenumber_squared_from_energy(energy_) result(k_)
+      !! returns the squared wavenumber, \\(k_{a}^{2}\\),
+      !! given the energy of a given state, \\(E_{a}\\);
+      !! calls etot() function; atomic units in the whole function
       !! \\( k_{a} = \sqrt(2 \mu (E_{tot} - E_{a}) \\)
       !! since it uses reducedmass and etotal(), the function checks
       !! if units are already converted
@@ -470,13 +471,13 @@ module io_mod
          !---------------------------------------------------------------------!
          ! abs() is for closed channels, see...
          !---------------------------------------------------------------------!
-         k_ = dsqrt(2*reducedmass*abs(ETOTAL() - energy_))
+         k_ = 2*reducedmass*(ETOTAL() - energy_)
       else
-         call write_error("wavenumber_from_energy called but units are not " //&
+         call write_error("wavenumber_squared_from_energy called but units are not " //&
             "converted yet")
       endif
       !------------------------------------------------------------------------!
-   end function
+   end function wavenumber_squared_from_energy
 !------------------------------------------------------------------------------!
    function is_open(energy_) result(is_open_)
       !! checks if a channel/level is energetically accessible (open)
@@ -522,7 +523,7 @@ module io_mod
             count_ = count_ + 1
             open_basis_levels(count_) = ilevel
             open_basis_wavevectors(count_) =                                   &
-               wavenumber_from_energy(elevel(ilevel)) / bohrtoangstrom
+               sqrt( wavenumber_squared_from_energy(elevel(ilevel)) ) / bohrtoangstrom 
          endif
       enddo
       !------------------------------------------------------------------------!

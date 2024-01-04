@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 9.7% of total for modules and submodules.">250 statements</a>
+               title=" 9.8% of total for modules and submodules.">254 statements</a>
           </li>
 
             <li id="source-file">
@@ -127,7 +127,22 @@
   
   
   
-  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#funcs-0">Functions</a>
+        </h3>
+      </div>
+      <div id="funcs-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/propagators.html#proc-calculate_diagonal_centrifugal_element">calculate_diagonal_centrifugal_element</a>
+            <a class="list-group-item" href="../module/propagators.html#proc-calculate_offdiagonal_centrifugal_element">calculate_offdiagonal_centrifugal_element</a>
+            <a class="list-group-item" href="../module/propagators.html#proc-calculate_single_pes_matrix_element">calculate_single_pes_matrix_element</a>
+            <a class="list-group-item" href="../module/propagators.html#proc-delta_for_zero_omega">delta_for_zero_omega</a>
+        </div>
+      </div>
+    </div>
+
       <div class="panel panel-primary">
       <div class="panel-heading text-left">
         <h3 class="panel-title">
@@ -137,7 +152,7 @@
       <div id="subs-0" class="panel-collapse collapse">
         <div class="list-group">
             <a class="list-group-item" href="../module/propagators.html#proc-calculate_log_der_matrix">calculate_log_der_matrix</a>
-            <a class="list-group-item" href="../module/propagators.html#proc-cenitrfugal_matrix">cenitrfugal_matrix</a>
+            <a class="list-group-item" href="../module/propagators.html#proc-centrifugal_matrix">centrifugal_matrix</a>
             <a class="list-group-item" href="../module/propagators.html#proc-numerov">numerov</a>
             <a class="list-group-item" href="../module/propagators.html#proc-pes_contribution">pes_contribution</a>
         </div>
@@ -158,7 +173,7 @@
     
     <div class="col-md-9" id='text'>
     <p>this modules contains the subroutines used by the propagator:
-1. cenitrfugal_matrix - prepares the centrifugal term (Eq. (6.19))
+1. centrifugal_matrix - prepares the centrifugal term (Eq. (6.19))
 2. pes_contribution   - prepares the interaction energy term (Eq. (6.21))
 4. calculate_log_der_matrix - calculates the log-derivative matrix (Eq. 6.29)
 6. numerov - renormalized Numerov's algorithm                                      </p>
@@ -169,10 +184,10 @@
       <ul class="list-group">
           <li class="list-group-item">
             <ul class="list-inline">
-                <li><a href='../module/array_operations_mod.html'>array_operations_mod</a></li>
                 <li><a href='../module/radial_coupling_terms_mod.html'>radial_coupling_terms_mod</a></li>
-                <li><a href='../module/io_mod.html'>io_mod</a></li>
+                <li><a href='../module/array_operations_mod.html'>array_operations_mod</a></li>
                 <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+                <li><a href='../module/io_mod.html'>io_mod</a></li>
             </ul>
           </li>
           <li class="list-group-item">
@@ -193,52 +208,52 @@
 <polygon fill="none" stroke="black" points="746,-168.12 655,-168.12 655,-144.12 746,-144.12 746,-168.12"/>
 <text text-anchor="middle" x="700.5" y="-153.72" font-family="Helvetica,sans-Serif" font-size="10.50">PROPAGATORS</text>
 </g>
-<!-- module~array_operations_mod -->
-<g id="module~~propagators~~UsesGraph_node2" class="node">
-<title>module~array_operations_mod</title>
-<g id="a_module~~propagators~~UsesGraph_node2"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="263,-188.12 130,-188.12 130,-164.12 263,-164.12 263,-188.12"/>
-<text text-anchor="middle" x="196.5" y="-173.72" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_mod</text>
-</a>
-</g>
-</g>
-<!-- module~propagators&#45;&gt;module~array_operations_mod -->
-<g id="module~~propagators~~UsesGraph_edge1" class="edge">
-<title>module~propagators&#45;&gt;module~array_operations_mod</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M538,-216.12C459.96,-221.39 440.08,-220.85 362,-216.12"/>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M360,-216.12C318.74,-213.62 273.15,-201.55 240.78,-191.31"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="241.77,-187.95 231.18,-188.2 239.62,-194.61 241.77,-187.95"/>
-</g>
 <!-- module~radial_coupling_terms_mod -->
-<g id="module~~propagators~~UsesGraph_node3" class="node">
+<g id="module~~propagators~~UsesGraph_node2" class="node">
 <title>module~radial_coupling_terms_mod</title>
-<g id="a_module~~propagators~~UsesGraph_node3"><a xlink:href=".././module/radial_coupling_terms_mod.html" xlink:title="radial_coupling_terms_mod">
+<g id="a_module~~propagators~~UsesGraph_node2"><a xlink:href=".././module/radial_coupling_terms_mod.html" xlink:title="radial_coupling_terms_mod">
 <polygon fill="#337ab7" stroke="#337ab7" points="619,-108.12 459,-108.12 459,-84.12 619,-84.12 619,-108.12"/>
 <text text-anchor="middle" x="539" y="-93.72" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">radial_coupling_terms_mod</text>
 </a>
 </g>
 </g>
 <!-- module~propagators&#45;&gt;module~radial_coupling_terms_mod -->
-<g id="module~~propagators~~UsesGraph_edge2" class="edge">
+<g id="module~~propagators~~UsesGraph_edge1" class="edge">
 <title>module~propagators&#45;&gt;module~radial_coupling_terms_mod</title>
 <path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M667.22,-143.98C642.5,-134.68 608.2,-121.78 581.44,-111.71"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="582.55,-108.39 571.96,-108.14 580.08,-114.94 582.55,-108.39"/>
 </g>
 <!-- module~io_mod -->
-<g id="module~~propagators~~UsesGraph_node4" class="node">
+<g id="module~~propagators~~UsesGraph_node3" class="node">
 <title>module~io_mod</title>
-<g id="a_module~~propagators~~UsesGraph_node4"><a xlink:href=".././module/io_mod.html" xlink:title="io_mod">
+<g id="a_module~~propagators~~UsesGraph_node3"><a xlink:href=".././module/io_mod.html" xlink:title="io_mod">
 <polygon fill="#337ab7" stroke="#337ab7" points="388,-148.12 334,-148.12 334,-124.12 388,-124.12 388,-148.12"/>
 <text text-anchor="middle" x="361" y="-133.72" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io_mod</text>
 </a>
 </g>
 </g>
 <!-- module~propagators&#45;&gt;module~io_mod -->
-<g id="module~~propagators~~UsesGraph_edge3" class="edge">
+<g id="module~~propagators~~UsesGraph_edge2" class="edge">
 <title>module~propagators&#45;&gt;module~io_mod</title>
 <path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M679.23,-168.17C649.77,-184.64 592.84,-212.56 540,-216.12"/>
 <path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M538,-216.12C478.06,-220.17 415.89,-179.44 383.92,-154.58"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="386.09,-151.84 376.09,-148.33 381.73,-157.31 386.09,-151.84"/>
+</g>
+<!-- module~array_operations_mod -->
+<g id="module~~propagators~~UsesGraph_node4" class="node">
+<title>module~array_operations_mod</title>
+<g id="a_module~~propagators~~UsesGraph_node4"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-188.12 130,-188.12 130,-164.12 263,-164.12 263,-188.12"/>
+<text text-anchor="middle" x="196.5" y="-173.72" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_mod</text>
+</a>
+</g>
+</g>
+<!-- module~propagators&#45;&gt;module~array_operations_mod -->
+<g id="module~~propagators~~UsesGraph_edge3" class="edge">
+<title>module~propagators&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M538,-216.12C459.96,-221.39 440.08,-220.85 362,-216.12"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M360,-216.12C318.74,-213.62 273.15,-201.55 240.78,-191.31"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="241.77,-187.95 231.18,-188.2 239.62,-194.61 241.77,-187.95"/>
 </g>
 <!-- iso_fortran_env -->
 <g id="module~~propagators~~UsesGraph_node5" class="node">
@@ -255,24 +270,18 @@
 <path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M360,-216.12C257.62,-209.92 225.96,-233.35 130,-197.12 105.83,-188 82.62,-169.52 67.11,-155.28"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="69.4,-152.62 59.73,-148.29 64.58,-157.71 69.4,-152.62"/>
 </g>
-<!-- module~array_operations_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~propagators~~UsesGraph_edge5" class="edge">
-<title>module~array_operations_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M151.25,-164.12C135.86,-159.95 118.41,-155.22 102.31,-150.85"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="103.05,-147.42 92.48,-148.18 101.21,-154.18 103.05,-147.42"/>
-</g>
 <!-- module~radial_coupling_terms_mod&#45;&gt;module~io_mod -->
-<g id="module~~propagators~~UsesGraph_edge7" class="edge">
+<g id="module~~propagators~~UsesGraph_edge6" class="edge">
 <title>module~radial_coupling_terms_mod&#45;&gt;module~io_mod</title>
-<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M485.19,-108.12C457.07,-114.52 423.21,-122.21 398.11,-127.92"/>
-<polygon fill="#7fff00" stroke="#7fff00" points="397.25,-124.52 388.27,-130.15 398.8,-131.35 397.25,-124.52"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M485.19,-108.12C457.07,-114.52 423.21,-122.21 398.11,-127.92"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="397.25,-124.52 388.27,-130.15 398.8,-131.35 397.25,-124.52"/>
 </g>
 <!-- module~radial_coupling_terms_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~propagators~~UsesGraph_edge9" class="edge">
+<g id="module~~propagators~~UsesGraph_edge8" class="edge">
 <title>module~radial_coupling_terms_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M521.09,-83.87C499.52,-68.97 460.49,-44.42 423,-33.12 326.7,-4.11 294.11,13.84 197.5,-14.12"/>
-<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M195.5,-14.12C166.33,-22.38 155.18,-16.25 130,-33.12 98.29,-54.37 73.06,-91.73 59.35,-115.13"/>
-<polygon fill="#7fff00" stroke="#7fff00" points="56.24,-113.51 54.35,-123.93 62.33,-116.97 56.24,-113.51"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M521.09,-83.87C499.52,-68.97 460.49,-44.42 423,-33.12 326.7,-4.11 294.11,13.84 197.5,-14.12"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M195.5,-14.12C166.33,-22.38 155.18,-16.25 130,-33.12 98.29,-54.37 73.06,-91.73 59.35,-115.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="56.24,-113.51 54.35,-123.93 62.33,-116.97 56.24,-113.51"/>
 </g>
 <!-- module~utility_functions_mod -->
 <g id="module~~propagators~~UsesGraph_node6" class="node">
@@ -284,10 +293,10 @@
 </g>
 </g>
 <!-- module~radial_coupling_terms_mod&#45;&gt;module~utility_functions_mod -->
-<g id="module~~propagators~~UsesGraph_edge6" class="edge">
+<g id="module~~propagators~~UsesGraph_edge5" class="edge">
 <title>module~radial_coupling_terms_mod&#45;&gt;module~utility_functions_mod</title>
-<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M458.6,-96.12C401.34,-96.12 324.7,-96.12 269.27,-96.12"/>
-<polygon fill="#7fff00" stroke="#7fff00" points="269.18,-92.62 259.18,-96.12 269.18,-99.62 269.18,-92.62"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M458.6,-96.12C401.34,-96.12 324.7,-96.12 269.27,-96.12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="269.18,-92.62 259.18,-96.12 269.18,-99.62 269.18,-92.62"/>
 </g>
 <!-- module~math_functions_mod -->
 <g id="module~~propagators~~UsesGraph_node7" class="node">
@@ -299,28 +308,34 @@
 </g>
 </g>
 <!-- module~radial_coupling_terms_mod&#45;&gt;module~math_functions_mod -->
-<g id="module~~propagators~~UsesGraph_edge8" class="edge">
+<g id="module~~propagators~~UsesGraph_edge7" class="edge">
 <title>module~radial_coupling_terms_mod&#45;&gt;module~math_functions_mod</title>
-<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M487.57,-84.09C467.22,-79.23 443.58,-73.59 422.33,-68.52"/>
-<polygon fill="#7fff00" stroke="#7fff00" points="422.98,-65.08 412.44,-66.16 421.36,-71.89 422.98,-65.08"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M487.57,-84.09C467.22,-79.23 443.58,-73.59 422.33,-68.52"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="422.98,-65.08 412.44,-66.16 421.36,-71.89 422.98,-65.08"/>
 </g>
 <!-- module~io_mod&#45;&gt;module~array_operations_mod -->
 <g id="module~~propagators~~UsesGraph_edge10" class="edge">
 <title>module~io_mod&#45;&gt;module~array_operations_mod</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M333.89,-142.55C313.05,-147.68 283.04,-155.07 256.47,-161.61"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="255.36,-158.28 246.49,-164.06 257.03,-165.07 255.36,-158.28"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M333.89,-142.55C313.05,-147.68 283.04,-155.07 256.47,-161.61"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="255.36,-158.28 246.49,-164.06 257.03,-165.07 255.36,-158.28"/>
 </g>
 <!-- module~io_mod&#45;&gt;iso_fortran_env -->
 <g id="module~~propagators~~UsesGraph_edge11" class="edge">
 <title>module~io_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M333.94,-136.12C283.65,-136.12 172.2,-136.12 104.25,-136.12"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="104.15,-132.62 94.15,-136.12 104.15,-139.62 104.15,-132.62"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M333.94,-136.12C283.65,-136.12 172.2,-136.12 104.25,-136.12"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="104.15,-132.62 94.15,-136.12 104.15,-139.62 104.15,-132.62"/>
 </g>
 <!-- module~io_mod&#45;&gt;module~utility_functions_mod -->
-<g id="module~~propagators~~UsesGraph_edge12" class="edge">
+<g id="module~~propagators~~UsesGraph_edge9" class="edge">
 <title>module~io_mod&#45;&gt;module~utility_functions_mod</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M333.89,-129.7C313.05,-124.57 283.04,-117.18 256.47,-110.64"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="257.03,-107.17 246.49,-108.18 255.36,-113.97 257.03,-107.17"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M333.89,-129.7C313.05,-124.57 283.04,-117.18 256.47,-110.64"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="257.03,-107.17 246.49,-108.18 255.36,-113.97 257.03,-107.17"/>
+</g>
+<!-- module~array_operations_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~propagators~~UsesGraph_edge12" class="edge">
+<title>module~array_operations_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M151.25,-164.12C135.86,-159.95 118.41,-155.22 102.31,-150.85"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="103.05,-147.42 92.48,-148.18 101.21,-154.18 103.05,-147.42"/>
 </g>
 <!-- module~utility_functions_mod&#45;&gt;iso_fortran_env -->
 <g id="module~~propagators~~UsesGraph_edge13" class="edge">
@@ -329,7 +344,7 @@
 <polygon fill="#ff0000" stroke="#ff0000" points="101.21,-118.07 92.48,-124.06 103.05,-124.82 101.21,-118.07"/>
 </g>
 <!-- module~math_functions_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~propagators~~UsesGraph_edge16" class="edge">
+<g id="module~~propagators~~UsesGraph_edge15" class="edge">
 <title>module~math_functions_mod&#45;&gt;iso_fortran_env</title>
 <path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M327.44,-42.03C287.36,-27.86 221.64,-7.14 197.5,-14.12"/>
 </g>
@@ -349,7 +364,7 @@
 </g>
 </g>
 <!-- module~math_functions_mod&#45;&gt;module~special_functions_mod -->
-<g id="module~~propagators~~UsesGraph_edge15" class="edge">
+<g id="module~~propagators~~UsesGraph_edge16" class="edge">
 <title>module~math_functions_mod&#45;&gt;module~special_functions_mod</title>
 <path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M298.57,-54.12C290.32,-54.12 281.79,-54.12 273.34,-54.12"/>
 <polygon fill="#00ffff" stroke="#00ffff" points="273.09,-50.62 263.09,-54.12 273.09,-57.62 273.09,-50.62"/>
@@ -535,7 +550,22 @@
   
   
   
-  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#funcs-1">Functions</a>
+        </h3>
+      </div>
+      <div id="funcs-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/propagators.html#proc-calculate_diagonal_centrifugal_element">calculate_diagonal_centrifugal_element</a>
+            <a class="list-group-item" href="../module/propagators.html#proc-calculate_offdiagonal_centrifugal_element">calculate_offdiagonal_centrifugal_element</a>
+            <a class="list-group-item" href="../module/propagators.html#proc-calculate_single_pes_matrix_element">calculate_single_pes_matrix_element</a>
+            <a class="list-group-item" href="../module/propagators.html#proc-delta_for_zero_omega">delta_for_zero_omega</a>
+        </div>
+      </div>
+    </div>
+
       <div class="panel panel-primary">
       <div class="panel-heading text-left">
         <h3 class="panel-title">
@@ -545,7 +575,7 @@
       <div id="subs-1" class="panel-collapse collapse">
         <div class="list-group">
             <a class="list-group-item" href="../module/propagators.html#proc-calculate_log_der_matrix">calculate_log_der_matrix</a>
-            <a class="list-group-item" href="../module/propagators.html#proc-cenitrfugal_matrix">cenitrfugal_matrix</a>
+            <a class="list-group-item" href="../module/propagators.html#proc-centrifugal_matrix">centrifugal_matrix</a>
             <a class="list-group-item" href="../module/propagators.html#proc-numerov">numerov</a>
             <a class="list-group-item" href="../module/propagators.html#proc-pes_contribution">pes_contribution</a>
         </div>
@@ -569,6 +599,413 @@
 
     
     
+ 
+    <section>
+    <h2>Functions</h2>
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-calculate_diagonal_centrifugal_element"></span><h3>public  function <a href='../proc/calculate_diagonal_centrifugal_element.html'>calculate_diagonal_centrifugal_element</a>(total_angular_momentum_, j_, omega_) result(diagonal_element_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>calculates diagonal element of the centrifgual matrix, see
+Eq. 4 in "Coupling Matrix" section</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>total_angular_momentum_</strong></td>
+            <td>
+<p>total angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j_</strong></td>
+            <td>
+<p>rotational angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_</strong></td>
+            <td>
+<p>\(\bar{\Omega}\)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    <p>(output) value of the diagonal element of the coupling matrix</p>
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-calculate_offdiagonal_centrifugal_element"></span><h3>public  function <a href='../proc/calculate_offdiagonal_centrifugal_element.html'>calculate_offdiagonal_centrifugal_element</a>(total_angular_momentum_, j_, omega_, omega_prime_, delta_1_, delta_2_) result(offdiagonal_element_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>calculates off-diagonal element of the centrifgual matrix, see
+Eq. 5 in "Coupling Matrix" section</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>total_angular_momentum_</strong></td>
+            <td>
+<p>total angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j_</strong></td>
+            <td>
+<p>rotational angular momentum</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_</strong></td>
+            <td>
+<p>\(\bar{\Omega}\)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_prime_</strong></td>
+            <td>
+<p>\(\bar{\Omega}'\)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>delta_1_</strong></td>
+            <td>
+<p>Kronecker delta functions determined earlier</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>delta_2_</strong></td>
+            <td>
+<p>Kronecker delta functions determined earlier</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    <p>(output) value of the off-diagonal element of the coupling matrix</p>
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-calculate_single_pes_matrix_element"></span><h3>public  function <a href='../proc/calculate_single_pes_matrix_element.html'>calculate_single_pes_matrix_element</a>(intermolecular_distance_, channel_index_1_, channel_index_2_, channel_indices_, count_nonzero_legendre_terms, count_nonzero_coupling_coefficients, nonzero_legendre_indices, nonzero_coupling_coefficients) result(matrix_element_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>Implementation of Eq. 1 in "Coupling Matrix" section;
+diagonal contribution from wavevectors (see the last term in
+Eq. 3 of "What are coupled equations" section) is added</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>intermolecular_distance_</strong></td>
+            <td>
+<p>intermolecular distance</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel_index_1_</strong></td>
+            <td>
+<p>indices identifying matrix element</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel_index_2_</strong></td>
+            <td>
+<p>indices identifying matrix element</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel_indices_</strong>(:)</td>
+            <td>
+<p>holds the indices pointing to the basis arrays</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>count_nonzero_legendre_terms</strong></td>
+            <td>
+<p>number of non-zero terms in Legendre expansion for a single
+matrix element of the interaction potential</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>count_nonzero_coupling_coefficients</strong></td>
+            <td>
+<p>running index counting non-zero coupling coefficients,
+\( g_{{\lambda},\gamma,\gamma'}^{Jp} \) in the whole matrix;
+incremented in this subroutine</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nonzero_legendre_indices</strong>(:)</td>
+            <td>
+<p>holds indices pointing to l1tab, which correspond to
+the non-vanishing elements of the sum over \(\lambda\)
+for each non-zero element of the coupling matrix;</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nonzero_coupling_coefficients</strong>(:)</td>
+            <td>
+<p>holds the values of the non-zero algebraic coefficients</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    <p>matirx element of the interaction potential contribution
+to the coupling matrix</p>
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-delta_for_zero_omega"></span><h3>public  function <a href='../proc/delta_for_zero_omega.html'>delta_for_zero_omega</a>(omega_) result(delta_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>Checks if the input value equals 0; used in the calculation
+of off-diagonal elements of the centrifugal matrix; see
+Eq. 5 in "Coupling Matrix" section</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_</strong></td>
+            <td>
+<p>input value which is to be compared with 0</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    <p>(output) 1 if omega_ = 0, 0 otherwise</p>
+
+    </div>
+  </div>
+
+    </section>
+    <br>
 
     <section>
     <h2>Subroutines</h2>
@@ -719,12 +1156,13 @@ called by numerov and log_derivative at the end of the propagation</p>
   </div>
 
       <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-cenitrfugal_matrix"></span><h3>public  subroutine <a href='../proc/cenitrfugal_matrix.html'>cenitrfugal_matrix</a>(number_of_channels, jj, channel_indices, channels_omega_values, centmatrix)  
+    <div class="panel-heading codesum"><span class="anchor" id="proc-centrifugal_matrix"></span><h3>public  subroutine <a href='../proc/centrifugal_matrix.html'>centrifugal_matrix</a>(total_angular_momentum_, channel_indices_, channels_omega_values_, centrifugal_matrix_)  
 </h3></div>
     <div class="panel-body">
           
-  <p>calculates the (R*<em>2)</em>centrifugal matrix from Eq. (6.19)
-only called once at the beginning of the calculations</p>
+  <p>calculates the (R*<em>2)</em>centrifugal matrix from the second term
+of Eq. 3 in "What are coupled equations?" section;
+Matrix elements are given in Eq. 4 and 6 of "Coupling Matrix" secion</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -747,22 +1185,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels</strong></td>
-            <td>
-<p>size of the basis</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>jj</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
 <p>total angular momentum</p>
             </td>
@@ -777,7 +1200,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>channel_indices</strong>(number_of_channels)</td>
+            <td><strong>channel_indices_</strong>(:)</td>
             <td>
 <p>holds the indices pointing to the basis arrays</p>
             </td>
@@ -792,7 +1215,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td><strong>channels_omega_values_</strong>(:)</td>
             <td>
 <p>holds all values of \bar{\Omega}</p>
             </td>
@@ -807,7 +1230,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>centmatrix</strong>(number_of_channels,number_of_channels)</td>
+            <td><strong>centrifugal_matrix_</strong>(:,:)</td>
             <td>
 <p>(output) - (R*<em>2)</em>centrifugal matrix</p>
             </td>
@@ -820,7 +1243,7 @@ only called once at the beginning of the calculations</p>
   </div>
 
       <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-numerov"></span><h3>public  subroutine <a href='../proc/numerov.html'>numerov</a>(channel_indices, channels_omega_values, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients, nsteps, number_of_channels, jj, log_der_matrix)  
+    <div class="panel-heading codesum"><span class="anchor" id="proc-numerov"></span><h3>public  subroutine <a href='../proc/numerov.html'>numerov</a>(channel_indices_, channels_omega_values_, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients, nsteps, number_of_channels_, total_angular_momentum_, log_der_matrix)  
 </h3></div>
     <div class="panel-body">
           
@@ -847,7 +1270,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>channel_indices</strong>(number_of_channels)</td>
+            <td><strong>channel_indices_</strong>(number_of_channels_)</td>
             <td>
 <p>holds the indices pointing to the basis arrays</p>
             </td>
@@ -862,7 +1285,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td><strong>channels_omega_values_</strong>(number_of_channels_)</td>
             <td>
 <p>holds all values of \bar{\Omega}</p>
             </td>
@@ -970,7 +1393,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels</strong></td>
+            <td><strong>number_of_channels_</strong></td>
             <td>
 <p>size of the basis</p>
             </td>
@@ -985,7 +1408,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>jj</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
 <p>total angular momentum</p>
             </td>
@@ -1013,11 +1436,15 @@ for each non-zero element of W/V</p>
   </div>
 
       <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-pes_contribution"></span><h3>public  subroutine <a href='../proc/pes_contribution.html'>pes_contribution</a>(number_of_channels, jj, r, channel_indices, channels_omega_values, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients, vmatrix)  
+    <div class="panel-heading codesum"><span class="anchor" id="proc-pes_contribution"></span><h3>public  subroutine <a href='../proc/pes_contribution.html'>pes_contribution</a>(total_angular_momentum_, intermolecular_distance_, channel_indices_, channels_omega_values_, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients, vmatrix)  
 </h3></div>
     <div class="panel-body">
           
-  <p>calculates the contribution from the PES in (X) at given R</p>
+  <p>calculates the contribution to the coupling matrix
+from the the interaction potential (PES);
+see Eq. 1 in "Coupling Matrix" section;
+diagonal contribution from wavevectors (see the last term in
+Eq. 3 of "What are coupled equations" section) is added</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1040,22 +1467,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels</strong></td>
-            <td>
-<p>size of the basis</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>jj</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
 <p>total angular momentum</p>
             </td>
@@ -1070,7 +1482,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>r</strong></td>
+            <td><strong>intermolecular_distance_</strong></td>
             <td>
 <p>intermolecular distance</p>
             </td>
@@ -1085,7 +1497,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>channel_indices</strong>(number_of_channels)</td>
+            <td><strong>channel_indices_</strong>(:)</td>
             <td>
 <p>holds the indices pointing to the basis arrays</p>
             </td>
@@ -1100,7 +1512,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td><strong>channels_omega_values_</strong>(:)</td>
             <td>
 <p>holds all values of \bar{\Omega}</p>
             </td>
@@ -1115,9 +1527,10 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_nonzero_coupling_matrix_elements</strong></td>
+            <td><strong>nonzero_terms_per_element</strong>(:)</td>
             <td>
-<p>number of non-zero terms in the sum () for each non-zero element of the coupling matrix</p>
+<p>keeps the number of non-vanishing elements of the sum over \(\lambda\)
+for each non-zero element of the coupling matrix</p>
             </td>
         </tr>
         <tr>
@@ -1130,42 +1543,11 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_nonzero_coupling_coefficients</strong></td>
+            <td><strong>nonzero_legendre_indices</strong>(:)</td>
             <td>
-<p>number of all non-zero algberaix coefficients in the whole coupling matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nonzero_terms_per_element</strong>(number_of_nonzero_coupling_matrix_elements)</td>
-            <td>
-<p>keeps the number of non-zero terms in the sum (Eq. (6.21)) for
-each non-zero element of W/V</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nonzero_legendre_indices</strong>(number_of_nonzero_coupling_coefficients)</td>
-            <td>
-<p>holds the proper indices pointing to l1/l2/lltabs, which
-correspond to the non-vanishing elements of the sum  (Eq. (6.21))
-for each non-zero element of W/V</p>
+<p>holds indices pointing to l1tab, which correspond to
+the non-vanishing elements of the sum over \(\lambda\)
+for each non-zero element of the coupling matrix;</p>
             </td>
         </tr>
         <tr>
@@ -1178,7 +1560,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>nonzero_coupling_coefficients</strong>(number_of_nonzero_coupling_coefficients)</td>
+            <td><strong>nonzero_coupling_coefficients</strong>(:)</td>
             <td>
 <p>holds the values of the non-zero algebraic coefficients</p>
             </td>
@@ -1193,9 +1575,9 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>vmatrix</strong>(number_of_channels,number_of_channels)</td>
+            <td><strong>vmatrix</strong>(:,:)</td>
             <td>
-<p>(output) - the PES contribution to the coupling matrix</p>
+<p>(output) - the interaction potential contribution to the coupling matrix</p>
             </td>
         </tr>
     </tbody>
@@ -1225,7 +1607,7 @@ for each non-zero element of W/V</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-04 12:17            </p>
+ on 2024-01-04 15:34            </p>
         </div>
       </div>
       <br>

@@ -1,6 +1,6 @@
 module PROPAGATORS
    !! this modules contains the subroutines used by the propagator:
-   !! 1. cenitrfugal_matrix - prepares the centrifugal term (Eq. (6.19))
+   !! 1. centrifugal_matrix - prepares the centrifugal term (Eq. (6.19))
    !! 2. pes_contribution   - prepares the interaction energy term (Eq. (6.21))
    !! 4. calculate_log_der_matrix - calculates the log-derivative matrix (Eq. 6.29)
    !! 6. numerov - renormalized Numerov's algorithm                                      
@@ -12,136 +12,272 @@ module PROPAGATORS
    implicit none
    contains
    !---------------------------------------------------------------------------!
-      subroutine cenitrfugal_matrix(number_of_channels,jj,                     &
-         channel_indices,channels_omega_values,centmatrix)    
-         !! calculates the (R**2)*centrifugal matrix from Eq. (6.19)
-         !! only called once at the beginning of the calculations
+   !                           Centrifugal matrix
+   !---------------------------------------------------------------------------!
+      subroutine centrifugal_matrix(total_angular_momentum_,&
+         channel_indices_,channels_omega_values_,centrifugal_matrix_)    
+         !! calculates the (R**2)*centrifugal matrix from the second term
+         !! of Eq. 3 in "What are coupled equations?" section;
+         !! Matrix elements are given in Eq. 4 and 6 of "Coupling Matrix" secion
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: number_of_channels
-            !! size of the basis
-         integer(int32), intent(in) :: jj
+         integer(int32), intent(in) :: total_angular_momentum_
             !! total angular momentum
-         integer(int32), intent(in) :: channel_indices(number_of_channels)
+         integer(int32), intent(in) :: channel_indices_(:)
             !! holds the indices pointing to the basis arrays
-         integer(int32), intent(in) :: channels_omega_values(number_of_channels)
+         integer(int32), intent(in) :: channels_omega_values_(:)
             !! holds all values of \bar{\Omega}
-         real(dp), intent(out) :: centmatrix(number_of_channels, number_of_channels)
+         real(dp), intent(out) :: centrifugal_matrix_(:,:)
             !! (output) - (R**2)*centrifugal matrix
          !---------------------------------------------------------------------!
-         integer(int32) :: omegatmp, omegaptmp, v1tmp, j1tmp, v1ptmp, j1ptmp,  &
-            ii, ij
-         real(dp) :: centtmp, delta1, delta2
+         integer(int32) :: omega_, omega_prime_, v_, j_, v_prime_, j_prime_,  &
+            channel_index_1_, channel_index_2_
+         real(dp) :: centtmp, delta_1_, delta_2_
          !---------------------------------------------------------------------!
-         centmatrix  = 0
+         centrifugal_matrix_  = 0
 
-         do ii = 1, number_of_channels
-            v1tmp = v1array(channel_indices(ii))
-            j1tmp = j1array(channel_indices(ii))
-            omegatmp = channels_omega_values(ii)
-            delta1 = 0.d0
-            if (omegatmp.eq.0) delta1 = 1.d0
-            do ij = 1, ii
-               v1ptmp = v1array(channel_indices(ij))
-               j1ptmp = j1array(channel_indices(ij))
-               omegaptmp = channels_omega_values(ij)
-               delta2 = 0.d0
-               if (omegaptmp.eq.0) delta2 = 1.d0
-               if (v1tmp.ne.v1ptmp) cycle
-               if (j1tmp.ne.j1ptmp) cycle
-               if (abs(omegatmp-omegaptmp).gt.1) cycle
-               if (omegatmp.eq.omegaptmp) then
-                  centmatrix(ii, ij) = jj*(jj+1) +j1tmp*(j1tmp+1)-2*omegatmp**2
-               else if (omegatmp-omegaptmp.eq.1) then
-                  centtmp = -dsqrt(dfloat((jj*(jj+1)-&
-                   omegatmp*(omegatmp-1))*(j1tmp*(j1tmp+1)&
-                    -omegatmp*(omegatmp-1))))
-                  centmatrix(ii, ij) = centtmp * dsqrt(1.d0+delta1)*dsqrt(1.d0+delta2)
-               else if (omegatmp-omegaptmp.eq.-1) then
-                  centtmp = -dsqrt(dfloat((jj*(jj+1)-omegatmp*(omegatmp+1))    &
-                     *(j1tmp*(j1tmp+1)-omegatmp*(omegatmp+1))))
-                  centmatrix(ii, ij) = centtmp*dsqrt(1.d0+delta1)*dsqrt(1.d0+delta2)
-               endif               
-
+         do channel_index_1_ = 1, size(channel_indices_)
+            v_ = v1array(channel_indices_(channel_index_1_))
+            j_ = j1array(channel_indices_(channel_index_1_))
+            omega_ = channels_omega_values_(channel_index_1_)
+            delta_1_ = delta_for_zero_omega(omega_)
+            do channel_index_2_ = 1, channel_index_1_
+               v_prime_ = v1array(channel_indices_(channel_index_2_))
+               j_prime_ = j1array(channel_indices_(channel_index_2_))
+               omega_prime_ = channels_omega_values_(channel_index_2_)
+               delta_2_ = delta_for_zero_omega(omega_prime_)
+               !---------------------------------------------------------------!
+               if (v_ /= v_prime_ .or. j_ /= j_prime_ .or.                     &
+                  abs(omega_ - omega_prime_) > 1) then
+                  cycle
+               endif
+               !---------------------------------------------------------------!
+               if (omega_ == omega_prime_) then
+                  !------------------------------------------------------------!
+                  ! Eq. 4 in "Coupling Matrix" section
+                  !------------------------------------------------------------!
+                  centrifugal_matrix_(channel_index_1_, channel_index_2_)      &
+                     = calculate_diagonal_centrifugal_element(                 &
+                     total_angular_momentum_, j_, omega_)
+               else
+                  !------------------------------------------------------------!
+                  ! Eq. 5 in "Coupling Matrix" section
+                  !------------------------------------------------------------!
+                  centrifugal_matrix_(channel_index_1_, channel_index_2_)      &
+                     = calculate_offdiagonal_centrifugal_element(              &
+                     total_angular_momentum_, j_, omega_, omega_prime_,        &
+                     delta_1_, delta_2_)
+               endif
+               !---------------------------------------------------------------!
             enddo
          enddo
          !---------------------------------------------------------------------!
-         call fill_symmetric_matrix(centmatrix, 'u')
+         call fill_symmetric_matrix(centrifugal_matrix_, 'u')
          !---------------------------------------------------------------------!
       end subroutine
 !------------------------------------------------------------------------------!
-      subroutine pes_contribution(number_of_channels,jj,r,                     &
-         channel_indices,channels_omega_values,                         &
-         number_of_nonzero_coupling_matrix_elements,                           &
-         number_of_nonzero_coupling_coefficients,                              &
-         nonzero_terms_per_element,nonzero_legendre_indices,                   &
-         nonzero_coupling_coefficients,vmatrix)
-         !! calculates the contribution from the PES in (X) at given R
+      function delta_for_zero_omega(omega_) result(delta_)
+         !! Checks if the input value equals 0; used in the calculation
+         !! of off-diagonal elements of the centrifugal matrix; see
+         !! Eq. 5 in "Coupling Matrix" section
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: number_of_channels
-            !! size of the basis
-         integer(int32), intent(in) :: jj
+         integer(int32), intent(in) :: omega_
+            !! input value which is to be compared with 0
+         real(dp) :: delta_
+            !! (output) 1 if omega_ = 0, 0 otherwise
+         !---------------------------------------------------------------------!
+         if (omega_ == 0) then
+           delta_ = 1.0_dp
+         else
+           delta_ = 0.0_dp
+         endif
+         !---------------------------------------------------------------------!
+      end function delta_for_zero_omega
+!------------------------------------------------------------------------------!
+      function calculate_diagonal_centrifugal_element(total_angular_momentum_, &
+         j_, omega_) result(diagonal_element_)
+         !! calculates diagonal element of the centrifgual matrix, see
+         !! Eq. 4 in "Coupling Matrix" section
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: total_angular_momentum_
             !! total angular momentum
-         real(dp), intent(in) :: r
-            !! intermolecular distance
-         integer(int32), intent(in) :: channel_indices(number_of_channels)
-            !! holds the indices pointing to the basis arrays
-         integer(int32), intent(in) :: channels_omega_values(number_of_channels)
-            !! holds all values of \bar{\Omega}
-         integer(int32), intent(in) :: number_of_nonzero_coupling_matrix_elements
-            !! number of non-zero terms in the sum () for each non-zero element of the coupling matrix
-         integer(int32), intent(in) :: number_of_nonzero_coupling_coefficients
-            !! number of all non-zero algberaix coefficients in the whole coupling matrix
-         integer(int32), intent(in) :: nonzero_terms_per_element(number_of_nonzero_coupling_matrix_elements)
-            !! keeps the number of non-zero terms in the sum (Eq. (6.21)) for
-            !! each non-zero element of W/V
-         integer(int32), intent(in) :: nonzero_legendre_indices(number_of_nonzero_coupling_coefficients)
-            !! holds the proper indices pointing to l1/l2/lltabs, which
-            !! correspond to the non-vanishing elements of the sum  (Eq. (6.21))
-            !! for each non-zero element of W/V
-         real(dp), intent(in) :: nonzero_coupling_coefficients(number_of_nonzero_coupling_coefficients)
-            !! holds the values of the non-zero algebraic coefficients
-         real(dp), intent(out) :: vmatrix(number_of_channels, number_of_channels)
-            !! (output) - the PES contribution to the coupling matrix
+         integer(int32), intent(in) :: j_
+            !! rotational angular momentum
+         integer(int32), intent(in) :: omega_
+            !! \\(\bar{\Omega}\\)
+         real(dp) :: diagonal_element_
+            !! (output) value of the diagonal element of the coupling matrix
          !---------------------------------------------------------------------!
-         integer(int32) :: indvl, inonzero_coupling_matrix_elements, omegatmp, omegaptmp, l1,          &
-            nonzerolam, v1tmp, j1tmp, v1ptmp, j1ptmp, ii, ij, il
-         real(dp) :: erot, sumtemp, pscoeff, v
+         diagonal_element_ = real(                                             &
+            total_angular_momentum_ * (total_angular_momentum_ + 1)            &
+            + j_ * (j_ + 1) - 2 * omega_ **2, dp)
+         !---------------------------------------------------------------------!
+      end function calculate_diagonal_centrifugal_element
+!------------------------------------------------------------------------------!
+      function calculate_offdiagonal_centrifugal_element(total_angular_momentum_, &
+         j_, omega_, omega_prime_, delta_1_, delta_2_) result(offdiagonal_element_)
+         !! calculates off-diagonal element of the centrifgual matrix, see
+         !! Eq. 5 in "Coupling Matrix" section
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: total_angular_momentum_
+            !! total angular momentum
+         integer(int32), intent(in) :: j_
+            !! rotational angular momentum
+         integer(int32), intent(in) :: omega_
+            !! \\(\bar{\Omega}\\)
+         integer(int32), intent(in) :: omega_prime_
+            !! \\(\bar{\Omega}'\\)
+         real(dp), intent(in) :: delta_1_, delta_2_
+            !! Kronecker delta functions determined earlier
+         real(dp) :: offdiagonal_element_
+            !! (output) value of the off-diagonal element of the coupling matrix
+         !---------------------------------------------------------------------!
+         offdiagonal_element_ = - sqrt(real(                                   &
+            (total_angular_momentum_ * (total_angular_momentum_ + 1)           &
+            - omega_ * omega_prime_) * (j_ * (j_ + 1) - omega_ * omega_prime_),&
+            dp)) * sqrt( (1.0_dp + delta_1_) * (1.0_dp + delta_2_) )
+         !---------------------------------------------------------------------!
+      end function calculate_offdiagonal_centrifugal_element
+   !---------------------------------------------------------------------------!
+   !                      Interaction potential matrix
+   !---------------------------------------------------------------------------!
+      subroutine pes_contribution(total_angular_momentum_,                     &
+         intermolecular_distance_, channel_indices_, channels_omega_values_,   &
+         nonzero_terms_per_element, nonzero_legendre_indices,                  &
+         nonzero_coupling_coefficients, vmatrix)
+         !! calculates the contribution to the coupling matrix
+         !! from the the interaction potential (PES);
+         !! see Eq. 1 in "Coupling Matrix" section;
+         !! diagonal contribution from wavevectors (see the last term in
+         !! Eq. 3 of "What are coupled equations" section) is added
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: total_angular_momentum_
+            !! total angular momentum
+         real(dp), intent(in) :: intermolecular_distance_
+            !! intermolecular distance
+         integer(int32), intent(in) :: channel_indices_(:)
+            !! holds the indices pointing to the basis arrays
+         integer(int32), intent(in) :: channels_omega_values_(:)
+            !! holds all values of \bar{\Omega}
+         integer(int32), intent(in) :: nonzero_terms_per_element(:)
+            !! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)
+            !! for each non-zero element of the coupling matrix
+         integer(int32), intent(in) :: nonzero_legendre_indices(:)
+            !! holds indices pointing to l1tab, which correspond to
+            !! the non-vanishing elements of the sum over \\(\lambda\\)
+            !! for each non-zero element of the coupling matrix;
+         real(dp), intent(in) :: nonzero_coupling_coefficients(:)
+            !! holds the values of the non-zero algebraic coefficients
+         real(dp), intent(out) :: vmatrix(:,:)
+            !! (output) - the interaction potential contribution to the coupling matrix
+         !---------------------------------------------------------------------!
+         integer(int32) :: count_nonzero_coupling_coefficients,                &
+            count_nonzero_coupling_matrix_elements,                            &
+            count_nonzero_legendre_terms, channel_index_1_, channel_index_2_,  &
+            omega_, omega_prime_
          !---------------------------------------------------------------------!
          vmatrix   = 0
-         indvl     = 0
-         inonzero_coupling_matrix_elements = 0
+         count_nonzero_coupling_coefficients    = 0
+         count_nonzero_coupling_matrix_elements = 0
          !---------------------------------------------------------------------!
-         do ii = 1, number_of_channels
-            v1tmp    = v1array(channel_indices(ii))
-            j1tmp    = j1array(channel_indices(ii))
-            omegatmp = channels_omega_values(ii)
-            erot     = elevel(channel_indices(ii))               
-            do ij = 1, ii
-               v1ptmp    = v1array(channel_indices(ij))
-               j1ptmp    = j1array(channel_indices(ij))
-               omegaptmp = channels_omega_values(ij)
-               if (omegatmp.ne.omegaptmp) cycle
-               inonzero_coupling_matrix_elements  = inonzero_coupling_matrix_elements + 1
-               nonzerolam = nonzero_terms_per_element(inonzero_coupling_matrix_elements)
-               sumtemp    = 0.d0
-               do il = 1, nonzerolam
-                  indvl   = indvl+1
-                  l1      = l1tab(nonzero_legendre_indices(indvl))
-                  pscoeff = nonzero_coupling_coefficients(indvl)
-                  call get_radial_coupling_term_value(r,l1,v1tmp,j1tmp,v1ptmp,j1ptmp,v)
-                  sumtemp = sumtemp+pscoeff*v
-               enddo
-               vmatrix(ii,ij) = -2*reducedmass*sumtemp
+         do channel_index_1_ = 1, size(channel_indices_)
+            omega_ = channels_omega_values_(channel_index_1_)
+            do channel_index_2_ = 1, channel_index_1_
+               omega_prime_ = channels_omega_values_(channel_index_2_)
+               !---------------------------------------------------------------!
+               if (omega_ /= omega_prime_) cycle
+               !---------------------------------------------------------------!
+               count_nonzero_coupling_matrix_elements                          &
+                  = count_nonzero_coupling_matrix_elements + 1
+               !---------------------------------------------------------------!
+               ! process a single matrix element:
+               ! get number of  non-zero terms in Legendre expansion for this
+               ! matrix element
+               !---------------------------------------------------------------!
+               count_nonzero_legendre_terms                                    &
+                  = nonzero_terms_per_element(count_nonzero_coupling_matrix_elements)
+               !---------------------------------------------------------------!
+               ! implementation of Eq. 1 in "Coupling Matrix" section
+               !---------------------------------------------------------------!
+               vmatrix(channel_index_1_, channel_index_2_)                     &
+                  = calculate_single_pes_matrix_element(                       &
+                     intermolecular_distance_, channel_index_1_,               &
+                     channel_index_2_, channel_indices_,                       &
+                     count_nonzero_legendre_terms,                             &
+                     count_nonzero_coupling_coefficients,                      &
+                     nonzero_legendre_indices, nonzero_coupling_coefficients)
+               !---------------------------------------------------------------!
              enddo
-             vmatrix(ii,ii) = vmatrix(ii,ii)-(2*reducedmass*erot) 
          enddo
          !---------------------------------------------------------------------!
          call fill_symmetric_matrix(vmatrix,'u')
          !---------------------------------------------------------------------!
       end subroutine pes_contribution
 !------------------------------------------------------------------------------!
-     
-!------------------------------------------------------------------------------!
+      function calculate_single_pes_matrix_element(intermolecular_distance_,   &
+         channel_index_1_, channel_index_2_, channel_indices_,                 &
+         count_nonzero_legendre_terms, count_nonzero_coupling_coefficients,    &
+         nonzero_legendre_indices, nonzero_coupling_coefficients) result(matrix_element_)
+         !! Implementation of Eq. 1 in "Coupling Matrix" section;
+         !! diagonal contribution from wavevectors (see the last term in
+         !! Eq. 3 of "What are coupled equations" section) is added
+         !---------------------------------------------------------------------!
+         real(dp), intent(in) :: intermolecular_distance_
+            !! intermolecular distance
+         integer(int32), intent(in) :: channel_index_1_, channel_index_2_
+            !! indices identifying matrix element
+         integer(int32), intent(in) :: channel_indices_(:)
+            !! holds the indices pointing to the basis arrays
+         integer(int32), intent(in) :: count_nonzero_legendre_terms
+            !! number of non-zero terms in Legendre expansion for a single
+            !! matrix element of the interaction potential
+         integer(int32), intent(in) :: nonzero_legendre_indices(:)
+            !! holds indices pointing to l1tab, which correspond to
+            !! the non-vanishing elements of the sum over \\(\lambda\\)
+            !! for each non-zero element of the coupling matrix;
+         real(dp), intent(in) :: nonzero_coupling_coefficients(:)
+            !! holds the values of the non-zero algebraic coefficients
+         integer(int32), intent(inout) :: count_nonzero_coupling_coefficients
+            !! running index counting non-zero coupling coefficients,
+            !! \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\) in the whole matrix;
+            !! incremented in this subroutine
+         real(dp) :: matrix_element_
+            !! matirx element of the interaction potential contribution
+            !! to the coupling matrix
+         !---------------------------------------------------------------------!
+         integer(int32) :: v_, j_, v_prime_, j_prime_, lambda_, lambda_index_
+         real(dp) :: internal_energy_, sum_over_lambda_,                       &
+            algebraic_coefficient_, radial_term_
+         !---------------------------------------------------------------------!
+         v_ = v1array(channel_indices_(channel_index_1_))
+         j_ = j1array(channel_indices_(channel_index_1_))
+         v_prime_ = v1array(channel_indices_(channel_index_2_))
+         j_prime_ = j1array(channel_indices_(channel_index_2_))
+         internal_energy_ = elevel(channel_indices_(channel_index_1_))
+         !---------------------------------------------------------------------!
+         sum_over_lambda_ = 0.0_dp
+         do lambda_index_ = 1, count_nonzero_legendre_terms
+            !------------------------------------------------------------------!
+            count_nonzero_coupling_coefficients                                &
+               = count_nonzero_coupling_coefficients + 1
+            !------------------------------------------------------------------!
+            lambda_ = l1tab(nonzero_legendre_indices(count_nonzero_coupling_coefficients))
+            algebraic_coefficient_ = nonzero_coupling_coefficients(count_nonzero_coupling_coefficients)
+            !------------------------------------------------------------------!
+            call get_radial_coupling_term_value(intermolecular_distance_,      &
+               lambda_, v_, j_, v_prime_, j_prime_, radial_term_)
+            !------------------------------------------------------------------!
+            sum_over_lambda_ = sum_over_lambda_ + algebraic_coefficient_ * radial_term_
+            !------------------------------------------------------------------!
+         enddo
+         matrix_element_ =  2.0_dp * reducedmass * sum_over_lambda_
+         !---------------------------------------------------------------------!
+         if (channel_index_1_ == channel_index_2_) then
+            matrix_element_ = matrix_element_                                  &
+               - wavenumber_squared_from_energy(internal_energy_)
+         endif
+         !---------------------------------------------------------------------!
+      end function calculate_single_pes_matrix_element
+!------------------------------------------------------------------------------! ---------------> clean the following 2 functions
       subroutine calculate_log_der_matrix(h,y_dim,tt_min,tt_n,tt_plus,r_n,r_plus,log_der_matrix)
          !! calculates the log-derivative matrix from Eq. (6.29)
          !! called by numerov and log_derivative at the end of the propagation
@@ -212,18 +348,18 @@ module PROPAGATORS
          !---------------------------------------------------------------------!
       end subroutine calculate_log_der_matrix
       !------------------------------------------------------------------------!
-      subroutine numerov(channel_indices,channels_omega_values,         &
+      subroutine numerov(channel_indices_,channels_omega_values_,         &
          number_of_nonzero_coupling_matrix_elements,                           &
          number_of_nonzero_coupling_coefficients,nonzero_terms_per_element,    &
          nonzero_legendre_indices,nonzero_coupling_coefficients,nsteps,        &
-         number_of_channels,jj,log_der_matrix)
+         number_of_channels_,total_angular_momentum_,log_der_matrix)
          !! renormalized Numerov propagator
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: number_of_channels
+         integer(int32), intent(in) :: number_of_channels_
             !! size of the basis
-         integer(int32), intent(in) :: channel_indices(number_of_channels)
+         integer(int32), intent(in) :: channel_indices_(number_of_channels_)
             !! holds the indices pointing to the basis arrays
-         integer(int32), intent(in) :: channels_omega_values(number_of_channels)
+         integer(int32), intent(in) :: channels_omega_values_(number_of_channels_)
             !! holds all values of \bar{\Omega}
          integer(int32), intent(in) :: number_of_nonzero_coupling_matrix_elements
             !! number of non-zero terms in the sum () for each non-zero element of the coupling matrix
@@ -240,57 +376,49 @@ module PROPAGATORS
             !! holds the values of the non-zero algebraic coefficients
          integer(int32), intent(in) :: nsteps
             !! number of steps from rmin to rmax
-         integer(int32), intent(in) :: jj
+         integer(int32), intent(in) :: total_angular_momentum_
             !! total angular momentum
          real(dp), intent(inout) :: log_der_matrix(:,:)
             !! resulting log-derivative matrix at RMAX  
          !---------------------------------------------------------------------!
-         integer(int32) :: i, ii, ij
+         integer(int32) :: i, channel_index_1_, channel_index_2_
          real(dp) :: start, finish, r, step_numerov
          real(dp), allocatable, dimension(:,:) :: umatrix, r_temp, rmatrix,    &
             t_minus, t_center, t_plus, r_center, r_plus, w_tmp, v_tmp
-         real(dp), dimension(number_of_channels,number_of_channels) ::         &
+         real(dp), dimension(number_of_channels_,number_of_channels_) ::         &
             cent_mat, v_mat, w_mat, t_mat, u_left, u_right
          !---------------------------------------------------------------------!
          CALL CPU_TIME(start)
          !---------------------------------------------------------------------!
          ! Calculate the centrifugal term
          !---------------------------------------------------------------------!
-         call cenitrfugal_matrix(number_of_channels,jj,channel_indices, &
-            channels_omega_values,cent_mat)
+         call centrifugal_matrix(total_angular_momentum_,channel_indices_, &
+            channels_omega_values_,cent_mat)
          step_numerov = (rmax - rmin)/dble(nsteps - 1)
-         call allocate_2d(R_temp,number_of_channels,number_of_channels)
+         call allocate_2d(R_temp,number_of_channels_,number_of_channels_)
          !---------------------------------------------------------------------!
          ! Calculate the PES contribution at rmin
          !---------------------------------------------------------------------!
-         call pes_contribution(number_of_channels,jj,rmin,                     &
-            channel_indices,channels_omega_values,                      &
-            number_of_nonzero_coupling_matrix_elements,                        &
-            number_of_nonzero_coupling_coefficients,                           &
+         call pes_contribution(total_angular_momentum_,rmin,                     &
+            channel_indices_,channels_omega_values_,                      &
             nonzero_terms_per_element,nonzero_legendre_indices,                &
             nonzero_coupling_coefficients,v_mat)
          !---------------------------------------------------------------------!
          ! Coupling matrix W at rmin
          !---------------------------------------------------------------------!
-         w_mat = v_mat - (1./rmin**2.)*cent_mat
+         w_mat = v_mat + (1./rmin**2.)*cent_mat
          !---------------------------------------------------------------------!
          ! T-matrix (Eq. 6.23)
          !---------------------------------------------------------------------!
-         do ii = 1, number_of_channels
-            do ij = 1, number_of_channels
-               t_mat(ii, ij) = - ((step_numerov**2.)/12.) * (w_mat(ii, ij))
-            enddo
-            t_mat(ii, ii) = - ((step_numerov**2.)/12.)*&
-                                  (2*reducedmass*ETOTAL())+t_mat(ii, ii)
-         enddo
+         t_mat = (step_numerov**2.0_dp)/12.0_dp * w_mat
          !---------------------------------------------------------------------!
          ! U-matrix (Eq. 6.25)
          !---------------------------------------------------------------------!
-         do ii = 1, number_of_channels
-            do ij = 1, number_of_channels
-               u_left(ii, ij) = - t_mat(ii, ij)
+         do channel_index_1_ = 1, number_of_channels_
+            do channel_index_2_ = 1, number_of_channels_
+               u_left(channel_index_1_, channel_index_2_) = - t_mat(channel_index_1_, channel_index_2_)
             end do
-            u_left(ii, ii) = 1.d0 + u_left(ii, ii)
+            u_left(channel_index_1_, channel_index_1_) = 1.d0 + u_left(channel_index_1_, channel_index_1_)
          end do
 
          call invert_symmetric_matrix(u_left)
@@ -298,12 +426,13 @@ module PROPAGATORS
          !---------------------------------------------------------------------!
          ! R-matrix at rmin + 1 = U-matrix at rmin
          !---------------------------------------------------------------------!
-         do ii = 1, number_of_channels
-            do ij = 1, number_of_channels
-               r_temp(ii, ij) = 12.d0*u_left(ii, ij)
+         do channel_index_1_ = 1, number_of_channels_
+            do channel_index_2_ = 1, number_of_channels_
+               r_temp(channel_index_1_, channel_index_2_) = 12.d0*u_left(channel_index_1_, channel_index_2_)
             enddo
-            r_temp(ii, ii) = r_temp(ii, ii) - 10.d0
+            r_temp(channel_index_1_, channel_index_1_) = r_temp(channel_index_1_, channel_index_1_) - 10.d0
          enddo
+
          !---------------------------------------------------------------------!
          ! Continue the propagation to rmax
          !---------------------------------------------------------------------!
@@ -312,41 +441,33 @@ module PROPAGATORS
             ! Coupling matrix W at R
             !------------------------------------------------------------------!
             R = rmin + (i-1)*step_numerov
-            call allocate_2d(rmatrix,number_of_channels,number_of_channels)
-            call allocate_2d(umatrix,number_of_channels,number_of_channels)
-            call pes_contribution(number_of_channels,jj,R,                     &
-               channel_indices,channels_omega_values,                   &
-               number_of_nonzero_coupling_matrix_elements,                     &
-               number_of_nonzero_coupling_coefficients,                        &
+            call allocate_2d(rmatrix,number_of_channels_,number_of_channels_)
+            call allocate_2d(umatrix,number_of_channels_,number_of_channels_)
+            call pes_contribution(total_angular_momentum_,R,                     &
+               channel_indices_,channels_omega_values_,                   &
                nonzero_terms_per_element,nonzero_legendre_indices,             &
                nonzero_coupling_coefficients,v_mat)
-            w_mat = v_mat - (1./R**2.)*cent_mat
+            w_mat = v_mat + (1./R**2.)*cent_mat
             !------------------------------------------------------------------!
             ! T-matrix at R (6.18)
             !------------------------------------------------------------------!
-            do ii = 1, number_of_channels
-               do ij= 1, number_of_channels
-                  t_mat(ii, ij) = - ((step_numerov**2.)/12.) * (w_mat(ii, ij))
-               enddo
-               t_mat(ii, ii) = - ((step_numerov**2.)/12.) *                    &
-                  (2*reducedmass*ETOTAL()) + t_mat(ii, ii)
-            enddo
+            t_mat = (step_numerov**2.0_dp)/12.0_dp * w_mat
             !------------------------------------------------------------------!
             ! U-matrix at R (6.20)
             !------------------------------------------------------------------!
-            do ii = 1, number_of_channels
-               do ij = 1, number_of_channels
-                  u_left(ii, ij) = - t_mat(ii, ij)
+            do channel_index_1_ = 1, number_of_channels_
+               do channel_index_2_ = 1, number_of_channels_
+                  u_left(channel_index_1_, channel_index_2_) = - t_mat(channel_index_1_, channel_index_2_)
                end do
-               u_left(ii, ii) = 1.d0 + u_left(ii, ii)
+               u_left(channel_index_1_, channel_index_1_) = 1.d0 + u_left(channel_index_1_, channel_index_1_)
             end do
             call invert_symmetric_matrix(u_left)
             call fill_symmetric_matrix(u_left, 'u')
-            do ii = 1, number_of_channels
-               do ij = 1, number_of_channels
-                  umatrix(ii, ij) = 12.d0*u_left(ii, ij)
+            do channel_index_1_ = 1, number_of_channels_
+               do channel_index_2_ = 1, number_of_channels_
+                  umatrix(channel_index_1_, channel_index_2_) = 12.d0*u_left(channel_index_1_, channel_index_2_)
                enddo
-               umatrix(ii, ii) = umatrix(ii, ii) - 10.d0
+               umatrix(channel_index_1_, channel_index_1_) = umatrix(channel_index_1_, channel_index_1_) - 10.d0
             enddo
 
             call invert_symmetric_matrix(r_temp)
@@ -355,85 +476,55 @@ module PROPAGATORS
             ! Prepare T at Rmax - 1 and R at Rmax
             !------------------------------------------------------------------!
             if (i == nsteps - 1) then
-               call allocate_2d(v_tmp,number_of_channels,number_of_channels)
-               call allocate_2d(w_tmp,number_of_channels,number_of_channels)
-               call allocate_2d(t_minus,number_of_channels,number_of_channels)
+               call allocate_2d(v_tmp,number_of_channels_,number_of_channels_)
+               call allocate_2d(w_tmp,number_of_channels_,number_of_channels_)
+               call allocate_2d(t_minus,number_of_channels_,number_of_channels_)
 
-               call pes_contribution(number_of_channels,jj,r,                  &
-                  channel_indices,channels_omega_values,                &
-                  number_of_nonzero_coupling_matrix_elements,                  &
-                  number_of_nonzero_coupling_coefficients,                     &
+               call pes_contribution(total_angular_momentum_,r,                  &
+                  channel_indices_,channels_omega_values_,                &
                   nonzero_terms_per_element,nonzero_legendre_indices,          &
                   nonzero_coupling_coefficients,v_tmp)
-               w_tmp = v_tmp - (1./R**2.)*cent_mat
-
-               do ii = 1, number_of_channels
-                  do ij= 1, number_of_channels
-                     t_minus(ii, ij) = -((step_numerov**2.)/12.)*&
-                                              (w_tmp(ii, ij))
-                  enddo
-                  t_minus(ii, ii) = -((step_numerov**2.)/12.) *                &
-                     (2*reducedmass*ETOTAL()) + t_minus(ii, ii)
-               enddo
-
-               call allocate_2d(r_center,number_of_channels,number_of_channels)
+               w_tmp = v_tmp + (1./R**2.)*cent_mat
+               t_minus = (step_numerov**2.0_dp)/12.0_dp * w_tmp
+               
+               call allocate_2d(r_center,number_of_channels_,number_of_channels_)
                r_center = umatrix - r_temp
                !---------------------------------------------------------------!
                ! Prepare T at Rmax and R max + 1, and R at Rmax + 1
                !---------------------------------------------------------------!
             else if (i == nsteps) then
-               call allocate_2d(v_tmp,number_of_channels,number_of_channels)
-               call allocate_2d(w_tmp,number_of_channels,number_of_channels)
-               call allocate_2d(t_center,number_of_channels,number_of_channels)
+               call allocate_2d(v_tmp,number_of_channels_,number_of_channels_)
+               call allocate_2d(w_tmp,number_of_channels_,number_of_channels_)
+               call allocate_2d(t_center,number_of_channels_,number_of_channels_)
 
-               call pes_contribution(number_of_channels,jj,r,                  &
-                  channel_indices,channels_omega_values,                &
-                  number_of_nonzero_coupling_matrix_elements,                  &
-                  number_of_nonzero_coupling_coefficients,                     &
+               call pes_contribution(total_angular_momentum_,r,                  &
+                  channel_indices_,channels_omega_values_,                &
                   nonzero_terms_per_element,nonzero_legendre_indices,          &
                   nonzero_coupling_coefficients,v_tmp)
-               w_tmp = v_tmp - (1./R**2.)*cent_mat
-
-               do ii = 1, number_of_channels
-                  do ij= 1, number_of_channels
-                     t_center(ii, ij) = -((step_numerov**2.)/12.)*             &
-                                               (w_tmp(ii, ij))
-                  enddo 
-                  t_center(ii, ii) = -((step_numerov**2.)/12.) *               &
-                     (2*reducedmass*ETOTAL()) + t_center(ii, ii)
-               enddo
-
-               call allocate_2d(r_plus,number_of_channels,number_of_channels)
+               w_tmp = v_tmp + (1./R**2.)*cent_mat
+               t_center = (step_numerov**2.0_dp)/12.0_dp * w_tmp
+               
+               call allocate_2d(r_plus,number_of_channels_,number_of_channels_)
                r_plus = umatrix - r_temp
 
                r = rmax + step_numerov
-               call allocate_2d(v_tmp,number_of_channels,number_of_channels)
-               call allocate_2d(t_plus,number_of_channels,number_of_channels)
-               call allocate_2d(w_tmp,number_of_channels,number_of_channels)
+               call allocate_2d(v_tmp,number_of_channels_,number_of_channels_)
+               call allocate_2d(t_plus,number_of_channels_,number_of_channels_)
+               call allocate_2d(w_tmp,number_of_channels_,number_of_channels_)
 
-               call pes_contribution(number_of_channels,jj,r,                  &
-                  channel_indices,channels_omega_values,                &
-                  number_of_nonzero_coupling_matrix_elements,                  &
-                  number_of_nonzero_coupling_coefficients,                     &
+               call pes_contribution(total_angular_momentum_,r,                  &
+                  channel_indices_,channels_omega_values_,                &
                   nonzero_terms_per_element,nonzero_legendre_indices,          &
                   nonzero_coupling_coefficients,v_tmp)
-               w_tmp = v_tmp - (1./R**2.)*cent_mat
-
-               do ii = 1, number_of_channels
-                  do ij= 1, number_of_channels
-                     t_plus(ii, ij) = -((step_numerov**2.)/12.) *              &
-                        (w_tmp(ii, ij))
-                  enddo
-                  t_plus(ii, ii) = -((step_numerov**2.)/12.) *                 &
-                     (2*reducedmass*ETOTAL()) + t_plus(ii, ii)
-               enddo
+               w_tmp = v_tmp + (1./R**2.)*cent_mat
+               t_plus = (step_numerov**2.0_dp)/12.0_dp * w_tmp
 
             end if
             !------------------------------------------------------------------!
             ! R-matrix at R_{n+1} (Eq. 6.28)
             !------------------------------------------------------------------!
             rmatrix = umatrix - r_temp
-            call allocate_2d(r_temp,number_of_channels,number_of_channels)
+            call allocate_2d(r_temp,number_of_channels_,number_of_channels_)
             !------------------------------------------------------------------!
             ! Move R_{n+1} to R_{n}
             !------------------------------------------------------------------!
@@ -444,7 +535,7 @@ module PROPAGATORS
          !---------------------------------------------------------------------!
          ! Eq. (6.29)
          !---------------------------------------------------------------------!
-         call calculate_log_der_matrix(step_numerov,number_of_channels,        &
+         call calculate_log_der_matrix(step_numerov,number_of_channels_,        &
             t_minus,t_center,t_plus,r_center,r_plus,log_der_matrix)
          !---------------------------------------------------------------------!
          if (prntlvl.ge.2) then

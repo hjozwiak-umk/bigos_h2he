@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>set_number_of_channels &ndash; the SCATTERING code</title>
+    <title>calculate_offdiagonal_centrifugal_element &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,8 +77,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>set_number_of_channels
-      <small>Subroutine</small>
+    <h1>calculate_offdiagonal_centrifugal_element
+      <small>Function</small>
       
     </h1>
       <div class="row" id="info-bar">
@@ -89,18 +89,18 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 0.6% of total for procedures.">10 statements</a>
+               title=" 0.5% of total for procedures.">9 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/channels_mod.f90"> Source File</a>
+              <a href="../src/propagator_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/channels_mod.f90.html'>channels_mod.f90</a></li>
-              <li><a href='../module/channels_mod.html'>channels_mod</a></li>
-          <li class="active">set_number_of_channels</li>
+              <li><a href='../sourcefile/propagator_mod.f90.html'>propagator_mod.f90</a></li>
+              <li><a href='../module/propagators.html'>PROPAGATORS</a></li>
+          <li class="active">calculate_offdiagonal_centrifugal_element</li>
         </ol>
       </div>
     </div>
@@ -139,7 +139,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/set_number_of_channels.html#src">set_number_of_channels</a>
+        <a class="list-group-item" href="../proc/calculate_offdiagonal_centrifugal_element.html#src">calculate_offdiagonal_centrifugal_element</a>
       </div>
     </div>
 
@@ -149,13 +149,12 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine set_number_of_channels(total_angular_momentum_, number_of_channels_even_parity_block, number_of_channels_odd_parity_block)  
+    <h2>public  function calculate_offdiagonal_centrifugal_element(total_angular_momentum_, j_, omega_, omega_prime_, delta_1_, delta_2_) result(offdiagonal_element_)  
 </h2>
     
 
-    <p>determine the number of scattering channels in each parity block 
-for given total angular momentum in both body-fixed and
-space-fixed frames</p>
+    <p>calculates off-diagonal element of the centrifgual matrix, see
+Eq. 5 in "Coupling Matrix" section</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -170,7 +169,7 @@ space-fixed frames</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-total_angular_momentum_~9"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~5"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -180,42 +179,94 @@ space-fixed frames</p>
             <td>::</td>
             <td><strong>total_angular_momentum_</strong></td>
             <td>
-                <p>total angular momentum         </p>
+                <p>total angular momentum</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_channels_even_parity_block"></span>
+              <span class="anchor" id="variable-j_~10"></span>
               integer(kind=int32),
             </td>
-<td>intent(out)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels_even_parity_block</strong></td>
+            <td><strong>j_</strong></td>
             <td>
-                <p>number of channels in the p = 1 (even parity) block</p>
+                <p>rotational angular momentum</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_channels_odd_parity_block"></span>
+              <span class="anchor" id="variable-omega_~6"></span>
               integer(kind=int32),
             </td>
-<td>intent(out)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels_odd_parity_block</strong></td>
+            <td><strong>omega_</strong></td>
             <td>
-                <p>number of channels in the p = -1 (odd parity) block</p>
+                <p>\(\bar{\Omega}\)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega_prime_"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_prime_</strong></td>
+            <td>
+                <p>\(\bar{\Omega}'\)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-delta_1_"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>delta_1_</strong></td>
+            <td>
+                <p>Kronecker delta functions determined earlier</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-delta_2_"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>delta_2_</strong></td>
+            <td>
+                <p>Kronecker delta functions determined earlier</p>
             </td>
         </tr>
     </tbody>
   </table>
 
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-offdiagonal_element_"></span>
+          real(kind=dp)
+        </small>
+      </h3>
+      <p>(output) value of the off-diagonal element of the coupling matrix</p>
     <br>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -227,31 +278,61 @@ space-fixed frames</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~set_number_of_channels~~CalledByGraph Pages: 1 -->
-<svg id="procset_number_of_channelsCalledByGraph" width="268pt" height="32pt"
- viewBox="0.00 0.00 268.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~set_number_of_channels~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~set_number_of_channels~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 264,-28 264,4 -4,4"/>
-<!-- proc~set_number_of_channels -->
-<g id="proc~~set_number_of_channels~~CalledByGraph_node1" class="node">
-<title>proc~set_number_of_channels</title>
-<polygon fill="none" stroke="black" points="260,-24 115,-24 115,0 260,0 260,-24"/>
-<text text-anchor="middle" x="187.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_number_of_channels</text>
+<!-- Title: proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph Pages: 1 -->
+<svg id="proccalculate_offdiagonal_centrifugal_elementCalledByGraph" width="605pt" height="32pt"
+ viewBox="0.00 0.00 605.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 601,-28 601,4 -4,4"/>
+<!-- proc~calculate_offdiagonal_centrifugal_element -->
+<g id="proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_node1" class="node">
+<title>proc~calculate_offdiagonal_centrifugal_element</title>
+<polygon fill="none" stroke="black" points="597,-24 357,-24 357,0 597,0 597,-24"/>
+<text text-anchor="middle" x="477" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">calculate_offdiagonal_centrifugal_element</text>
+</g>
+<!-- proc~centrifugal_matrix -->
+<g id="proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_node2" class="node">
+<title>proc~centrifugal_matrix</title>
+<g id="a_proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_node2"><a xlink:href=".././proc/centrifugal_matrix.html" xlink:title="centrifugal_matrix">
+<polygon fill="#d9534f" stroke="#d9534f" points="321,-24 211,-24 211,0 321,0 321,-24"/>
+<text text-anchor="middle" x="266" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">centrifugal_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element -->
+<g id="proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_edge1" class="edge">
+<title>proc~centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element</title>
+<path fill="none" stroke="#ff0000" d="M321.09,-12C329.18,-12 337.79,-12 346.66,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="346.76,-15.5 356.76,-12 346.76,-8.5 346.76,-15.5"/>
+</g>
+<!-- proc~numerov -->
+<g id="proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_node3" class="node">
+<title>proc~numerov</title>
+<g id="a_proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_node3"><a xlink:href=".././proc/numerov.html" xlink:title="numerov">
+<polygon fill="#d9534f" stroke="#d9534f" points="175,-24 115,-24 115,0 175,0 175,-24"/>
+<text text-anchor="middle" x="145" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">numerov</text>
+</a>
+</g>
+</g>
+<!-- proc~numerov&#45;&gt;proc~centrifugal_matrix -->
+<g id="proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_edge2" class="edge">
+<title>proc~numerov&#45;&gt;proc~centrifugal_matrix</title>
+<path fill="none" stroke="#ff0000" d="M175.11,-12C182.91,-12 191.66,-12 200.56,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="200.63,-15.5 210.63,-12 200.63,-8.5 200.63,-15.5"/>
 </g>
 <!-- program~scattering -->
-<g id="proc~~set_number_of_channels~~CalledByGraph_node2" class="node">
+<g id="proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_node4" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~set_number_of_channels~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_node4"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~set_number_of_channels -->
-<g id="proc~~set_number_of_channels~~CalledByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;proc~set_number_of_channels</title>
-<path fill="none" stroke="#ff0000" d="M79.24,-12C87.22,-12 95.91,-12 104.77,-12"/>
+<!-- program~scattering&#45;&gt;proc~numerov -->
+<g id="proc~~calculate_offdiagonal_centrifugal_element~~CalledByGraph_edge3" class="edge">
+<title>program~scattering&#45;&gt;proc~numerov</title>
+<path fill="none" stroke="#ff0000" d="M79.04,-12C87.36,-12 96.18,-12 104.54,-12"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="104.81,-15.5 114.81,-12 104.81,-8.5 104.81,-15.5"/>
 </g>
 </g>
@@ -343,7 +424,7 @@ space-fixed frames</p>
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/set_number_of_channels.html#src">set_number_of_channels</a>
+        <a class="list-group-item" href="../proc/calculate_offdiagonal_centrifugal_element.html#src">calculate_offdiagonal_centrifugal_element</a>
       </div>
     </div>
 
@@ -362,41 +443,30 @@ space-fixed frames</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">set_number_of_channels</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">               </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_channels_even_parity_block</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_odd_parity_block</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! determine the number of scattering channels in each parity block </span>
-<span class="w">         </span><span class="c">!! for given total angular momentum in both body-fixed and</span>
-<span class="w">         </span><span class="c">!! space-fixed frames</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">function </span><span class="n">calculate_offdiagonal_centrifugal_element</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">j_</span><span class="p">,</span><span class="w"> </span><span class="n">omega_</span><span class="p">,</span><span class="w"> </span><span class="n">omega_prime_</span><span class="p">,</span><span class="w"> </span><span class="n">delta_1_</span><span class="p">,</span><span class="w"> </span><span class="n">delta_2_</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">offdiagonal_element_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! calculates off-diagonal element of the centrifgual matrix, see</span>
+<span class="w">         </span><span class="c">!! Eq. 5 in &quot;Coupling Matrix&quot; section</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! total angular momentum         </span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels_even_parity_block</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of channels in the p = 1 (even parity) block</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels_odd_parity_block</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of channels in the p = -1 (odd parity) block</span>
+<span class="w">            </span><span class="c">!! total angular momentum</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">j_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! rotational angular momentum</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omega_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! \\(\bar{\Omega}\\)</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omega_prime_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! \\(\bar{\Omega}&#39;\\)</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">delta_1_</span><span class="p">,</span><span class="w"> </span><span class="n">delta_2_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! Kronecker delta functions determined earlier</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">offdiagonal_element_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! (output) value of the off-diagonal element of the coupling matrix</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels_even_parity_block_sf</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">number_of_channels_odd_parity_block_sf</span><span class="w"></span>
+<span class="w">         </span><span class="n">offdiagonal_element_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="w">                                   </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">           </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="n">omega_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">omega_prime_</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">j_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">j_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">omega_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">omega_prime_</span><span class="p">),&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0_dp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delta_1_</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0_dp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delta_2_</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! body-fixed frame</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">call </span><span class="n">calculate_number_of_channels_body_fixed</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">number_of_channels_even_parity_block</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_odd_parity_block</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! space-fixed frame</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">call </span><span class="n">calculate_number_of_channels_space_fixed</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">number_of_channels_even_parity_block_sf</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_odd_parity_block_sf</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! Check if the number of channels is the same</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">call </span><span class="n">check_number_of_channels</span><span class="p">(</span><span class="n">number_of_channels_even_parity_block</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">number_of_channels_even_parity_block_sf</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;even&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="k">call </span><span class="n">check_number_of_channels</span><span class="p">(</span><span class="n">number_of_channels_odd_parity_block</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">number_of_channels_odd_parity_block_sf</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;odd&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="k">end subroutine </span><span class="n">set_number_of_channels</span><span class="w"></span>
+<span class="w">      </span><span class="k">end function </span><span class="n">calculate_offdiagonal_centrifugal_element</span><span class="w"></span>
 </pre></div>
 
     </section>

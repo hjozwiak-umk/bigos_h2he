@@ -354,7 +354,7 @@ module channels_mod
          !---------------------------------------------------------------------!
          do channel_index_ = 1, size(channel_indices)
             if (is_open(elevel(channel_indices(channel_index_)))) then
-               wavenumber_ = wavenumber_from_energy(elevel(channel_indices(channel_index_)))
+               wavenumber_ = sqrt( wavenumber_squared_from_energy(elevel(channel_indices(channel_index_))) )
                largest_wavenumber_ = max(largest_wavenumber_, wavenumber_)
             endif
          enddo
@@ -389,7 +389,7 @@ module channels_mod
             ! format for open channels:
             !------------------------------------------------------------------!
             if (is_open(internal_energy_)) then
-               wavenumber_ = wavenumber_from_energy(internal_energy_)
+               wavenumber_ = sqrt( wavenumber_squared_from_energy(internal_energy_) )
                call write_channel_line(v_, j_, omega_, parity_,                &
                   internal_energy_, wavenumber_)
             !------------------------------------------------------------------!
