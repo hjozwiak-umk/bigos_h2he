@@ -149,7 +149,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  function calculate_largest_wavenumber(channels_level_indices) result(largest_wavenumber_)  
+    <h2>public  function calculate_largest_wavenumber(channel_indices) result(largest_wavenumber_)  
 </h2>
     
 
@@ -169,7 +169,7 @@ called only if there are any open channels</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-channels_level_indices~11"></span>
+              <span class="anchor" id="variable-channel_indices~10"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -177,7 +177,7 @@ called only if there are any open channels</p>
               
             </td>
             <td>::</td>
-            <td><strong>channels_level_indices</strong>(:)</td>
+            <td><strong>channel_indices</strong>(:)</td>
             <td>
                 <p>holds the indices pointing to the basis arrays</p>
             </td>
@@ -504,11 +504,11 @@ called only if there are any open channels</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">function </span><span class="n">calculate_largest_wavenumber</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">largest_wavenumber_</span><span class="p">)</span><span class="w"></span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">function </span><span class="n">calculate_largest_wavenumber</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">largest_wavenumber_</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!! Calculates the largest wave number in the block;</span>
 <span class="w">         </span><span class="c">!! called only if there are any open channels</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_level_indices</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channel_indices</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds the indices pointing to the basis arrays</span>
 <span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">largest_wavenumber_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! (output) the largest wave number (wavmax) in the block</span>
@@ -518,9 +518,9 @@ called only if there are any open channels</p>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="n">wavenumber_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">do </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_open</span><span class="p">(</span><span class="n">elevel</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">channel_index_</span><span class="p">))))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">               </span><span class="n">wavenumber_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wavenumber_from_energy</span><span class="p">(</span><span class="n">elevel</span><span class="p">(</span><span class="n">channels_level_indices</span><span class="p">(</span><span class="n">channel_index_</span><span class="p">)))</span><span class="w"></span>
+<span class="w">         </span><span class="k">do </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_open</span><span class="p">(</span><span class="n">elevel</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">(</span><span class="n">channel_index_</span><span class="p">))))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">               </span><span class="n">wavenumber_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wavenumber_from_energy</span><span class="p">(</span><span class="n">elevel</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">(</span><span class="n">channel_index_</span><span class="p">)))</span><span class="w"></span>
 <span class="w">               </span><span class="n">largest_wavenumber_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">largest_wavenumber_</span><span class="p">,</span><span class="w"> </span><span class="n">wavenumber_</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="k">endif</span>
 <span class="k">         enddo</span><span class="w"></span>
@@ -546,7 +546,7 @@ called only if there are any open channels</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-04 10:14            </p>
+ on 2024-01-04 12:17            </p>
         </div>
       </div>
       <br>

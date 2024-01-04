@@ -15,7 +15,7 @@ OBJS = src/utility_functions_mod.o src/array_operations_mod.o src/array_operatio
        src/array_operations_fill_symmetric_matrix_submod.o src/special_functions_mod.o \
        src/math_functions_mod.o src/input_reader_mod.o src/radial_coupling_terms_mod.o src/channels_mod.o \
        src/coupling_matrix_mod.o src/propagator_mod.o src/boundary_conditions_mod.o src/unitarity_check_mod.o \
-       src/sts_xs_mod.o src/scattering.o
+       src/state_to_state_cross_sections_mod.o src/scattering.o
 
 .PHONY: all check_libs wigxjpf scattering test
 

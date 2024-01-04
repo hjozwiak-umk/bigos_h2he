@@ -48,7 +48,7 @@ module boundary_conditions_mod
    !---------------------------------------------------------------------------!
       subroutine calculate_single_SF_element(number_of_channels,               &
          total_angular_momentum_, v_, j_, vp_, jp_, l_, lp_,                   &
-         channels_level_indices, channels_omega_values, bf_matrix, sf_element)
+         channel_indices, channels_omega_values, bf_matrix, sf_element)
          !! calculates a single space-fixed matrix element from Eq. (2) in
          !! "Solution of coupled equations" 
          !---------------------------------------------------------------------!
@@ -60,7 +60,7 @@ module boundary_conditions_mod
             !! vibrational and rotational quantum numbers
          integer(int32), intent(in) :: l_, lp_
             !! orbital angular momenta
-         integer(int32), intent(in) :: channels_level_indices(number_of_channels)
+         integer(int32), intent(in) :: channel_indices(number_of_channels)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(in) :: channels_omega_values(number_of_channels)
             !! holds all values of \bar{\Omega}
@@ -74,14 +74,14 @@ module boundary_conditions_mod
          !---------------------------------------------------------------------!
          sum_outer = 0.0_dp
          do channel_index_1_ = 1, number_of_channels
-            if (v1array(channels_level_indices(channel_index_1_)) /= v_ .or.                 &
-               j1array(channels_level_indices(channel_index_1_)) /= j_) cycle
+            if (v1array(channel_indices(channel_index_1_)) /= v_ .or.                 &
+               j1array(channel_indices(channel_index_1_)) /= j_) cycle
             p_coeff_outer = p_coeff(total_angular_momentum_, j_, l_,           &
                channels_omega_values(channel_index_1_))
             sum_inner = 0.0_dp
             do channel_index_2_ = 1, number_of_channels
-               if (v1array(channels_level_indices(channel_index_2_)) /= vp_ .or.             &
-                  j1array(channels_level_indices(channel_index_2_)) /= jp_) cycle
+               if (v1array(channel_indices(channel_index_2_)) /= vp_ .or.             &
+                  j1array(channel_indices(channel_index_2_)) /= jp_) cycle
                p_coeff_inner = p_coeff(total_angular_momentum_, jp_, lp_,      &
                   channels_omega_values(channel_index_2_))
                sum_inner = sum_inner + p_coeff_inner * bf_matrix(channel_index_1_,channel_index_2_)
@@ -94,8 +94,8 @@ module boundary_conditions_mod
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine calculate_sf_matrix_from_bf_matrix(number_of_channels,        &
-         total_angular_momentum_, channels_level_indices,                      &
-         channels_omega_values,channels_l_values, bf_matrix, sf_matrix)
+         total_angular_momentum_, channel_indices,                      &
+         channels_omega_values,channel_l_values, bf_matrix, sf_matrix)
          !! takes as an input matrix in the body-fixed frame and transforms it 
          !! to the spec-fixed frame; iterates over all matrix elements
          !! and calls calculate_single_SF_element
@@ -104,11 +104,11 @@ module boundary_conditions_mod
             !! size of the basis
          integer(int32), intent(in) :: total_angular_momentum_
             !! total angular momentum
-         integer(int32), intent(in) :: channels_level_indices(number_of_channels)
+         integer(int32), intent(in) :: channel_indices(number_of_channels)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(in) :: channels_omega_values(number_of_channels)
             !! holds all values of \bar{\Omega}
-         integer(int32), intent(in) :: channels_l_values(number_of_channels)
+         integer(int32), intent(in) :: channel_l_values(number_of_channels)
             !! holds all values of l
          real(dp), intent(in) :: bf_matrix(number_of_channels, number_of_channels)
             !! matrix in the BF frame
@@ -119,16 +119,16 @@ module boundary_conditions_mod
          real(dp) :: single_sf_element
          !---------------------------------------------------------------------!
          do channel_index_1_ = 1, number_of_channels
-            v1_ = v1array(channels_level_indices(channel_index_1_))
-            j1_ = j1array(channels_level_indices(channel_index_1_))
-            l_  = channels_l_values(channel_index_1_)
+            v1_ = v1array(channel_indices(channel_index_1_))
+            j1_ = j1array(channel_indices(channel_index_1_))
+            l_  = channel_l_values(channel_index_1_)
             do channel_index_2_ = 1, number_of_channels
-               v1p_ = v1array(channels_level_indices(channel_index_2_))
-               j1p_ = j1array(channels_level_indices(channel_index_2_))
-               lp_  = channels_l_values(channel_index_2_)
+               v1p_ = v1array(channel_indices(channel_index_2_))
+               j1p_ = j1array(channel_indices(channel_index_2_))
+               lp_  = channel_l_values(channel_index_2_)
                call calculate_single_SF_element(number_of_channels,            &
                   total_angular_momentum_, v1_, j1_, v1p_, j1p_, l_, lp_,      &
-                  channels_level_indices, channels_omega_values, bf_matrix,    &
+                  channel_indices, channels_omega_values, bf_matrix,    &
                   single_sf_element)
                sf_matrix(channel_index_1_, channel_index_2_) = single_sf_element
             enddo
@@ -138,7 +138,7 @@ module boundary_conditions_mod
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine calculate_k_matrix(number_of_channels, log_der_matrix,        &
-         number_of_open_channels, channels_level_indices, channels_l_values,   &
+         number_of_open_channels, channel_indices, channel_l_values,   &
          r_, k_matrix)
          !! calculates the K-matrix from log-derivative matrix using Eq. (4) in
          !! "Solution of coupled equations" 
@@ -149,9 +149,9 @@ module boundary_conditions_mod
             !! asymptotic log-derivative matrix
          integer(int32), intent(in) :: number_of_open_channels
             !! number of open channels
-         integer(int32), intent(in) :: channels_level_indices(number_of_channels)
+         integer(int32), intent(in) :: channel_indices(number_of_channels)
             !! holds the indices pointing to the basis arrays
-         integer(int32), intent(in) :: channels_l_values(number_of_channels)
+         integer(int32), intent(in) :: channel_l_values(number_of_channels)
             !! holds all values of l
          real(dp), intent(in) :: r_
             !! Rmax
@@ -186,7 +186,7 @@ module boundary_conditions_mod
          ! this is because channels might not be sorted eneregetically
          !---------------------------------------------------------------------!
          do channel_index_ = 1, number_of_channels
-            if (is_open(elevel(channels_level_indices(channel_index_)))) then
+            if (is_open(elevel(channel_indices(channel_index_)))) then
                open_channel_index_ = open_channel_index_+1
                open_channels_indices(open_channel_index_) = channel_index_
             else
@@ -200,9 +200,9 @@ module boundary_conditions_mod
          !---------------------------------------------------------------------!
          do open_channel_index_ = 1, number_of_open_channels
             wavenumber = wavenumber_from_energy(                               &
-               elevel(channels_level_indices(open_channels_indices(open_channel_index_))))
+               elevel(channel_indices(open_channels_indices(open_channel_index_))))
             x  = wavenumber*r_
-            l_ = channels_l_values(open_channels_indices(open_channel_index_))
+            l_ = channel_l_values(open_channels_indices(open_channel_index_))
             call riccati_bessel_j(                                             &
                l_, x, j_element_, jp_element_)
             diag_j_matrix(open_channel_index_,open_channel_index_)             &
@@ -222,9 +222,9 @@ module boundary_conditions_mod
          !---------------------------------------------------------------------!
          do closed_channel_index_ = 1,number_of_channels-number_of_open_channels  
             wavenumber = wavenumber_from_energy(                               &
-               elevel(channels_level_indices(closed_channels_indices(closed_channel_index_))))
+               elevel(channel_indices(closed_channels_indices(closed_channel_index_))))
             x  = wavenumber*r_
-            l_ = channels_l_values(closed_channels_indices(closed_channel_index_))
+            l_ = channel_l_values(closed_channels_indices(closed_channel_index_))
             call modified_bessel_k_ratio(l_,x,ratio)
             !------------------------------------------------------------------!
             ! substitution for closed channels, (Eqs. 10 - 11)             
