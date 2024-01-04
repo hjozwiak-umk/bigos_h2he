@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>check_cross_section_thresholds &ndash; the SCATTERING code</title>
+    <title>calculate_diagonal_centrifugal_element &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,8 +77,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>check_cross_section_thresholds
-      <small>Subroutine</small>
+    <h1>calculate_diagonal_centrifugal_element
+      <small>Function</small>
       
     </h1>
       <div class="row" id="info-bar">
@@ -89,18 +89,18 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.3% of total for procedures.">24 statements</a>
+               title=" 0.4% of total for procedures.">7 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/state_to_state_cross_sections_mod.f90"> Source File</a>
+              <a href="../src/propagator_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/state_to_state_cross_sections_mod.f90.html'>state_to_state_cross_sections_mod.f90</a></li>
-              <li><a href='../module/state_to_state_cross_sections_mod.html'>state_to_state_cross_sections_mod</a></li>
-          <li class="active">check_cross_section_thresholds</li>
+              <li><a href='../sourcefile/propagator_mod.f90.html'>propagator_mod.f90</a></li>
+              <li><a href='../module/propagators.html'>PROPAGATORS</a></li>
+          <li class="active">calculate_diagonal_centrifugal_element</li>
         </ol>
       </div>
     </div>
@@ -139,7 +139,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/check_cross_section_thresholds.html#src">check_cross_section_thresholds</a>
+        <a class="list-group-item" href="../proc/calculate_diagonal_centrifugal_element.html#src">calculate_diagonal_centrifugal_element</a>
       </div>
     </div>
 
@@ -149,12 +149,12 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine check_cross_section_thresholds(largest_elastic_xs_, largest_inelastic_xs_, consecutive_elastic_, consecutive_inelastic_, terminate_)  
+    <h2>public  function calculate_diagonal_centrifugal_element(total_angular_momentum_, j_, omega_) result(diagonal_element_)  
 </h2>
     
 
-    <p>Checks if the dtol (threshold for elastic XS) and otol
-(threshold for inelastic XS) conditions are already fulfilled.</p>
+    <p>calculates diagonal element of the centrifgual matrix, see
+Eq. 4 in "Coupling Matrix" section</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -169,82 +169,59 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-largest_elastic_xs_~2"></span>
-              real(kind=dp),
+              <span class="anchor" id="variable-total_angular_momentum_~4"></span>
+              integer(kind=int32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>largest_elastic_xs_</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
-                <p>largest elastic XS in the block</p>
+                <p>total angular momentum</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-largest_inelastic_xs_~2"></span>
-              real(kind=dp),
+              <span class="anchor" id="variable-j_~9"></span>
+              integer(kind=int32),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>largest_inelastic_xs_</strong></td>
+            <td><strong>j_</strong></td>
             <td>
-                <p>largest inelastic XS in the block</p>
+                <p>rotational angular momentum</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-consecutive_elastic_"></span>
+              <span class="anchor" id="variable-omega_~5"></span>
               integer(kind=int32),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>consecutive_elastic_</strong></td>
+            <td><strong>omega_</strong></td>
             <td>
-                <p>number of consecutive blocks meeting condition on elastic XS</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-consecutive_inelastic_"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>consecutive_inelastic_</strong></td>
-            <td>
-                <p>number of consecutive blocks meeting condition on inelastic XS</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-terminate_"></span>
-              logical,
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>terminate_</strong></td>
-            <td>
-                <p>flag to indicate termination of loop based on thresholds</p>
+                <p>\(\bar{\Omega}\)</p>
             </td>
         </tr>
     </tbody>
   </table>
 
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-diagonal_element_"></span>
+          real(kind=dp)
+        </small>
+      </h3>
+      <p>(output) value of the diagonal element of the coupling matrix</p>
     <br>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -256,32 +233,62 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~check_cross_section_thresholds~~CalledByGraph Pages: 1 -->
-<svg id="proccheck_cross_section_thresholdsCalledByGraph" width="303pt" height="32pt"
- viewBox="0.00 0.00 303.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~check_cross_section_thresholds~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~check_cross_section_thresholds~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 299,-28 299,4 -4,4"/>
-<!-- proc~check_cross_section_thresholds -->
-<g id="proc~~check_cross_section_thresholds~~CalledByGraph_node1" class="node">
-<title>proc~check_cross_section_thresholds</title>
-<polygon fill="none" stroke="black" points="295,-24 115,-24 115,0 295,0 295,-24"/>
-<text text-anchor="middle" x="205" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">check_cross_section_thresholds</text>
+<!-- Title: proc~~calculate_diagonal_centrifugal_element~~CalledByGraph Pages: 1 -->
+<svg id="proccalculate_diagonal_centrifugal_elementCalledByGraph" width="591pt" height="32pt"
+ viewBox="0.00 0.00 591.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~calculate_diagonal_centrifugal_element~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~calculate_diagonal_centrifugal_element~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 587,-28 587,4 -4,4"/>
+<!-- proc~calculate_diagonal_centrifugal_element -->
+<g id="proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_node1" class="node">
+<title>proc~calculate_diagonal_centrifugal_element</title>
+<polygon fill="none" stroke="black" points="583,-24 357,-24 357,0 583,0 583,-24"/>
+<text text-anchor="middle" x="470" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">calculate_diagonal_centrifugal_element</text>
+</g>
+<!-- proc~centrifugal_matrix -->
+<g id="proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_node2" class="node">
+<title>proc~centrifugal_matrix</title>
+<g id="a_proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_node2"><a xlink:href=".././proc/centrifugal_matrix.html" xlink:title="centrifugal_matrix">
+<polygon fill="#d9534f" stroke="#d9534f" points="321,-24 211,-24 211,0 321,0 321,-24"/>
+<text text-anchor="middle" x="266" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">centrifugal_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element -->
+<g id="proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_edge1" class="edge">
+<title>proc~centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element</title>
+<path fill="none" stroke="#ff0000" d="M321.13,-12C329.28,-12 337.96,-12 346.86,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="347,-15.5 357,-12 347,-8.5 347,-15.5"/>
+</g>
+<!-- proc~numerov -->
+<g id="proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_node3" class="node">
+<title>proc~numerov</title>
+<g id="a_proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_node3"><a xlink:href=".././proc/numerov.html" xlink:title="numerov">
+<polygon fill="#d9534f" stroke="#d9534f" points="175,-24 115,-24 115,0 175,0 175,-24"/>
+<text text-anchor="middle" x="145" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">numerov</text>
+</a>
+</g>
+</g>
+<!-- proc~numerov&#45;&gt;proc~centrifugal_matrix -->
+<g id="proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_edge2" class="edge">
+<title>proc~numerov&#45;&gt;proc~centrifugal_matrix</title>
+<path fill="none" stroke="#ff0000" d="M175.11,-12C182.91,-12 191.66,-12 200.56,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="200.63,-15.5 210.63,-12 200.63,-8.5 200.63,-15.5"/>
 </g>
 <!-- program~scattering -->
-<g id="proc~~check_cross_section_thresholds~~CalledByGraph_node2" class="node">
+<g id="proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_node4" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~check_cross_section_thresholds~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_node4"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~check_cross_section_thresholds -->
-<g id="proc~~check_cross_section_thresholds~~CalledByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;proc~check_cross_section_thresholds</title>
-<path fill="none" stroke="#ff0000" d="M79.25,-12C87.14,-12 95.77,-12 104.71,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="104.89,-15.5 114.89,-12 104.89,-8.5 104.89,-15.5"/>
+<!-- program~scattering&#45;&gt;proc~numerov -->
+<g id="proc~~calculate_diagonal_centrifugal_element~~CalledByGraph_edge3" class="edge">
+<title>program~scattering&#45;&gt;proc~numerov</title>
+<path fill="none" stroke="#ff0000" d="M79.04,-12C87.36,-12 96.18,-12 104.54,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.81,-15.5 114.81,-12 104.81,-8.5 104.81,-15.5"/>
 </g>
 </g>
 </svg>
@@ -372,7 +379,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/check_cross_section_thresholds.html#src">check_cross_section_thresholds</a>
+        <a class="list-group-item" href="../proc/calculate_diagonal_centrifugal_element.html#src">calculate_diagonal_centrifugal_element</a>
       </div>
     </div>
 
@@ -391,47 +398,25 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">check_cross_section_thresholds</span><span class="p">(</span><span class="n">largest_elastic_xs_</span><span class="p">,</span><span class="w">           </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">largest_inelastic_xs_</span><span class="p">,</span><span class="w"> </span><span class="n">consecutive_elastic_</span><span class="p">,</span><span class="w"> </span><span class="n">consecutive_inelastic_</span><span class="p">,</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">terminate_</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! Checks if the dtol (threshold for elastic XS) and otol</span>
-<span class="w">         </span><span class="c">!! (threshold for inelastic XS) conditions are already fulfilled.</span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">function </span><span class="n">calculate_diagonal_centrifugal_element</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">j_</span><span class="p">,</span><span class="w"> </span><span class="n">omega_</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">diagonal_element_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! calculates diagonal element of the centrifgual matrix, see</span>
+<span class="w">         </span><span class="c">!! Eq. 4 in &quot;Coupling Matrix&quot; section</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">largest_elastic_xs_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! largest elastic XS in the block</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">largest_inelastic_xs_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! largest inelastic XS in the block</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">consecutive_elastic_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of consecutive blocks meeting condition on elastic XS</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">consecutive_inelastic_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of consecutive blocks meeting condition on inelastic XS</span>
-<span class="w">         </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">terminate_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! flag to indicate termination of loop based on thresholds</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! total angular momentum</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">j_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! rotational angular momentum</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omega_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! \\(\bar{\Omega}\\)</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">diagonal_element_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! (output) value of the diagonal element of the coupling matrix</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_elastic_xs_within_threshold</span><span class="p">,</span><span class="w"> </span><span class="n">is_inelastic_xs_within_threshold</span><span class="w"></span>
+<span class="w">         </span><span class="n">diagonal_element_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="w">                                             </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">total_angular_momentum_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">            </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="o">+</span><span class="w"> </span><span class="n">j_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">j_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">omega_</span><span class="w"> </span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">terminate_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">         </span><span class="n">is_elastic_xs_within_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">largest_elastic_xs_</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">dtol</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="n">is_inelastic_xs_within_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">largest_inelastic_xs_</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">otol</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_elastic_xs_within_threshold</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            </span><span class="n">consecutive_elastic_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consecutive_elastic_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">         </span><span class="k">else</span>
-<span class="k">            </span><span class="n">consecutive_elastic_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="k">endif</span>
-<span class="k">         </span>
-<span class="k">         if</span><span class="w"> </span><span class="p">(</span><span class="n">is_inelastic_xs_within_threshold</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            </span><span class="n">consecutive_inelastic_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consecutive_inelastic_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">         </span><span class="k">else</span>
-<span class="k">            </span><span class="n">consecutive_inelastic_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="k">endif</span>
-
-<span class="k">         if</span><span class="w"> </span><span class="p">((</span><span class="n">consecutive_elastic_</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">ncac</span><span class="p">).</span><span class="nb">and</span><span class="p">.(</span><span class="n">consecutive_inelastic_</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">ncac</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            </span><span class="n">terminate_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
-<span class="w">         </span><span class="k">endif</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="k">end subroutine </span><span class="n">check_cross_section_thresholds</span><span class="w"></span>
+<span class="w">      </span><span class="k">end function </span><span class="n">calculate_diagonal_centrifugal_element</span><span class="w"></span>
 </pre></div>
 
     </section>

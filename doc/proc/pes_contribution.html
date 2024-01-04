@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 2.4% of total for procedures.">43 statements</a>
+               title=" 1.4% of total for procedures.">25 statements</a>
           </li>
 
             <li id="source-file">
@@ -126,23 +126,13 @@
       </div>
       <div id="vars-0" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-erot">erot</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-ii~3">ii</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-ij~3">ij</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-il~3">il</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-indvl">indvl</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-inonzero_coupling_matrix_elements">inonzero_coupling_matrix_elements</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-j1ptmp~2">j1ptmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-j1tmp~2">j1tmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-l1">l1</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-nonzerolam">nonzerolam</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-omegaptmp~2">omegaptmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-omegatmp~2">omegatmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-pscoeff~3">pscoeff</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-sumtemp">sumtemp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-v~2">v</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-v1ptmp~2">v1ptmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-v1tmp~2">v1tmp</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-channel_index_1_~6">channel_index_1_</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-channel_index_2_~6">channel_index_2_</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-count_nonzero_coupling_coefficients~5">count_nonzero_coupling_coefficients</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-count_nonzero_coupling_matrix_elements~3">count_nonzero_coupling_matrix_elements</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-count_nonzero_legendre_terms~4">count_nonzero_legendre_terms</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-omega_~11">omega_</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-omega_prime_~5">omega_prime_</a>
         </div>
       </div>
     </div>
@@ -177,11 +167,15 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine pes_contribution(number_of_channels, jj, r, channel_indices, channels_omega_values, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients, vmatrix)  
+    <h2>public  subroutine pes_contribution(total_angular_momentum_, intermolecular_distance_, channel_indices_, channels_omega_values_, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients, vmatrix)  
 </h2>
     
 
-    <p>calculates the contribution from the PES in (X) at given R</p>
+    <p>calculates the contribution to the coupling matrix
+from the the interaction potential (PES);
+see Eq. 1 in "Coupling Matrix" section;
+diagonal contribution from wavevectors (see the last term in
+Eq. 3 of "What are coupled equations" section) is added</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -196,7 +190,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_channels~6"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~7"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -204,29 +198,14 @@
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels</strong></td>
-            <td>
-                <p>size of the basis</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-jj~2"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>jj</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
                 <p>total angular momentum</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-r"></span>
+              <span class="anchor" id="variable-intermolecular_distance_~2"></span>
               real(kind=dp),
             </td>
 <td>intent(in)</td>
@@ -234,14 +213,14 @@
               
             </td>
             <td>::</td>
-            <td><strong>r</strong></td>
+            <td><strong>intermolecular_distance_</strong></td>
             <td>
                 <p>intermolecular distance</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel_indices~7"></span>
+              <span class="anchor" id="variable-channel_indices_~3"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -249,14 +228,14 @@
               
             </td>
             <td>::</td>
-            <td><strong>channel_indices</strong>(number_of_channels)</td>
+            <td><strong>channel_indices_</strong>(:)</td>
             <td>
                 <p>holds the indices pointing to the basis arrays</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channels_omega_values~6"></span>
+              <span class="anchor" id="variable-channels_omega_values_~2"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -264,39 +243,9 @@
               
             </td>
             <td>::</td>
-            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td><strong>channels_omega_values_</strong>(:)</td>
             <td>
                 <p>holds all values of \bar{\Omega}</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-number_of_nonzero_coupling_matrix_elements~3"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>number_of_nonzero_coupling_matrix_elements</strong></td>
-            <td>
-                <p>number of non-zero terms in the sum () for each non-zero element of the coupling matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-number_of_nonzero_coupling_coefficients~3"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>number_of_nonzero_coupling_coefficients</strong></td>
-            <td>
-                <p>number of all non-zero algberaix coefficients in the whole coupling matrix</p>
             </td>
         </tr>
         <tr>
@@ -309,15 +258,15 @@
               
             </td>
             <td>::</td>
-            <td><strong>nonzero_terms_per_element</strong>(number_of_nonzero_coupling_matrix_elements)</td>
+            <td><strong>nonzero_terms_per_element</strong>(:)</td>
             <td>
-                <p>keeps the number of non-zero terms in the sum (Eq. (6.21)) for
-each non-zero element of W/V</p>
+                <p>keeps the number of non-vanishing elements of the sum over \(\lambda\)
+for each non-zero element of the coupling matrix</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nonzero_legendre_indices~3"></span>
+              <span class="anchor" id="variable-nonzero_legendre_indices~4"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -325,16 +274,16 @@ each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>nonzero_legendre_indices</strong>(number_of_nonzero_coupling_coefficients)</td>
+            <td><strong>nonzero_legendre_indices</strong>(:)</td>
             <td>
-                <p>holds the proper indices pointing to l1/l2/lltabs, which
-correspond to the non-vanishing elements of the sum  (Eq. (6.21))
-for each non-zero element of W/V</p>
+                <p>holds indices pointing to l1tab, which correspond to
+the non-vanishing elements of the sum over \(\lambda\)
+for each non-zero element of the coupling matrix;</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nonzero_coupling_coefficients~3"></span>
+              <span class="anchor" id="variable-nonzero_coupling_coefficients~4"></span>
               real(kind=dp),
             </td>
 <td>intent(in)</td>
@@ -342,7 +291,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>nonzero_coupling_coefficients</strong>(number_of_nonzero_coupling_coefficients)</td>
+            <td><strong>nonzero_coupling_coefficients</strong>(:)</td>
             <td>
                 <p>holds the values of the non-zero algebraic coefficients</p>
             </td>
@@ -357,9 +306,9 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>vmatrix</strong>(number_of_channels,number_of_channels)</td>
+            <td><strong>vmatrix</strong>(:,:)</td>
             <td>
-                <p>(output) - the PES contribution to the coupling matrix</p>
+                <p>(output) - the interaction potential contribution to the coupling matrix</p>
             </td>
         </tr>
     </tbody>
@@ -377,106 +326,172 @@ for each non-zero element of W/V</p>
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~pes_contribution~~CallsGraph Pages: 1 -->
-<svg id="procpes_contributionCallsGraph" width="641pt" height="88pt"
- viewBox="0.00 0.00 641.00 88.25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~pes_contribution~~CallsGraph" class="graph" transform="scale(1.08 1.08) rotate(0) translate(4 91)">
+<svg id="procpes_contributionCallsGraph" width="641pt" height="104pt"
+ viewBox="0.00 0.00 641.00 104.38" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~pes_contribution~~CallsGraph" class="graph" transform="scale(1.49 1.49) rotate(0) translate(4 152)">
 <title>proc~~pes_contribution~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-91 686,-91 686,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-152 954,-152 954,4 -4,4"/>
 <!-- proc~pes_contribution -->
 <g id="proc~~pes_contribution~~CallsGraph_node1" class="node">
 <title>proc~pes_contribution</title>
-<polygon fill="none" stroke="black" points="101,-45 0,-45 0,-21 101,-21 101,-45"/>
-<text text-anchor="middle" x="50.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">pes_contribution</text>
+<polygon fill="none" stroke="black" points="101,-64 0,-64 0,-40 101,-40 101,-64"/>
+<text text-anchor="middle" x="50.5" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50">pes_contribution</text>
 </g>
-<!-- proc~get_radial_coupling_term_value -->
+<!-- proc~calculate_single_pes_matrix_element -->
 <g id="proc~~pes_contribution~~CallsGraph_node2" class="node">
-<title>proc~get_radial_coupling_term_value</title>
-<g id="a_proc~~pes_contribution~~CallsGraph_node2"><a xlink:href=".././proc/get_radial_coupling_term_value.html" xlink:title="get_radial_coupling_term_value">
-<polygon fill="#d9534f" stroke="#d9534f" points="319,-66 137,-66 137,-42 319,-42 319,-66"/>
-<text text-anchor="middle" x="228" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_radial_coupling_term_value</text>
+<title>proc~calculate_single_pes_matrix_element</title>
+<g id="a_proc~~pes_contribution~~CallsGraph_node2"><a xlink:href=".././proc/calculate_single_pes_matrix_element.html" xlink:title="calculate_single_pes_matrix_element">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="348,-85 137,-85 137,-61 348,-61 348,-85"/>
+<text text-anchor="middle" x="242.5" y="-70.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_single_pes_matrix_element</text>
 </a>
 </g>
 </g>
-<!-- proc~pes_contribution&#45;&gt;proc~get_radial_coupling_term_value -->
+<!-- proc~pes_contribution&#45;&gt;proc~calculate_single_pes_matrix_element -->
 <g id="proc~~pes_contribution~~CallsGraph_edge1" class="edge">
-<title>proc~pes_contribution&#45;&gt;proc~get_radial_coupling_term_value</title>
-<path fill="none" stroke="#ff0000" d="M101.32,-38.96C109.42,-39.93 118.05,-40.96 126.86,-42.02"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="126.5,-45.5 136.85,-43.21 127.33,-38.55 126.5,-45.5"/>
+<title>proc~pes_contribution&#45;&gt;proc~calculate_single_pes_matrix_element</title>
+<path fill="none" stroke="#ff0000" d="M101.42,-57.52C109.41,-58.4 117.95,-59.34 126.73,-60.31"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="126.4,-63.8 136.72,-61.42 127.17,-56.84 126.4,-63.8"/>
 </g>
 <!-- interface~fill_symmetric_matrix -->
 <g id="proc~~pes_contribution~~CallsGraph_node3" class="node">
 <title>interface~fill_symmetric_matrix</title>
 <g id="a_proc~~pes_contribution~~CallsGraph_node3"><a xlink:href=".././interface/fill_symmetric_matrix.html" xlink:title="fill_symmetric_matrix">
-<polygon fill="#a7506f" stroke="#a7506f" points="291.5,-24 164.5,-24 164.5,0 291.5,0 291.5,-24"/>
-<text text-anchor="middle" x="228" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fill_symmetric_matrix</text>
+<polygon fill="#a7506f" stroke="#a7506f" points="306,-43 179,-43 179,-19 306,-19 306,-43"/>
+<text text-anchor="middle" x="242.5" y="-28.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fill_symmetric_matrix</text>
 </a>
 </g>
 </g>
 <!-- proc~pes_contribution&#45;&gt;interface~fill_symmetric_matrix -->
 <g id="proc~~pes_contribution~~CallsGraph_edge2" class="edge">
 <title>proc~pes_contribution&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#ff0000" d="M101.32,-27.04C117.67,-25.08 136.2,-22.87 153.9,-20.75"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="154.7,-24.18 164.21,-19.51 153.86,-17.23 154.7,-24.18"/>
+<path fill="none" stroke="#ff0000" d="M101.42,-46.48C122.02,-44.21 146.29,-41.52 168.79,-39.04"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="169.44,-42.49 178.99,-37.91 168.67,-35.53 169.44,-42.49"/>
+</g>
+<!-- proc~get_radial_coupling_term_value -->
+<g id="proc~~pes_contribution~~CallsGraph_node4" class="node">
+<title>proc~get_radial_coupling_term_value</title>
+<g id="a_proc~~pes_contribution~~CallsGraph_node4"><a xlink:href=".././proc/get_radial_coupling_term_value.html" xlink:title="get_radial_coupling_term_value">
+<polygon fill="#d9534f" stroke="#d9534f" points="576.5,-106 394.5,-106 394.5,-82 576.5,-82 576.5,-106"/>
+<text text-anchor="middle" x="485.5" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_radial_coupling_term_value</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_single_pes_matrix_element&#45;&gt;proc~get_radial_coupling_term_value -->
+<g id="proc~~pes_contribution~~CallsGraph_edge3" class="edge">
+<title>proc~calculate_single_pes_matrix_element&#45;&gt;proc~get_radial_coupling_term_value</title>
+<path fill="none" stroke="#ff0000" d="M348.15,-82.12C360.04,-83.16 372.14,-84.21 383.97,-85.24"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="384.03,-88.76 394.29,-86.14 384.63,-81.78 384.03,-88.76"/>
+</g>
+<!-- proc~wavenumber_squared_from_energy -->
+<g id="proc~~pes_contribution~~CallsGraph_node5" class="node">
+<title>proc~wavenumber_squared_from_energy</title>
+<g id="a_proc~~pes_contribution~~CallsGraph_node5"><a xlink:href=".././proc/wavenumber_squared_from_energy.html" xlink:title="wavenumber_squared_from_energy">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="587,-64 384,-64 384,-40 587,-40 587,-64"/>
+<text text-anchor="middle" x="485.5" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">wavenumber_squared_from_energy</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_single_pes_matrix_element&#45;&gt;proc~wavenumber_squared_from_energy -->
+<g id="proc~~pes_contribution~~CallsGraph_edge4" class="edge">
+<title>proc~calculate_single_pes_matrix_element&#45;&gt;proc~wavenumber_squared_from_energy</title>
+<path fill="none" stroke="#ff0000" d="M348.15,-63.88C356.65,-63.14 365.24,-62.39 373.78,-61.65"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="374.09,-65.13 383.75,-60.78 373.49,-58.16 374.09,-65.13"/>
 </g>
 <!-- proc~ispline -->
-<g id="proc~~pes_contribution~~CallsGraph_node4" class="node">
+<g id="proc~~pes_contribution~~CallsGraph_node6" class="node">
 <title>proc~ispline</title>
-<g id="a_proc~~pes_contribution~~CallsGraph_node4"><a xlink:href=".././proc/ispline.html" xlink:title="ispline">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="409,-66 355,-66 355,-42 409,-42 409,-66"/>
-<text text-anchor="middle" x="382" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ispline</text>
+<g id="a_proc~~pes_contribution~~CallsGraph_node6"><a xlink:href=".././proc/ispline.html" xlink:title="ispline">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="677,-106 623,-106 623,-82 677,-82 677,-106"/>
+<text text-anchor="middle" x="650" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ispline</text>
 </a>
 </g>
 </g>
 <!-- proc~get_radial_coupling_term_value&#45;&gt;proc~ispline -->
-<g id="proc~~pes_contribution~~CallsGraph_edge3" class="edge">
+<g id="proc~~pes_contribution~~CallsGraph_edge5" class="edge">
 <title>proc~get_radial_coupling_term_value&#45;&gt;proc~ispline</title>
-<path fill="none" stroke="#ff0000" d="M319.18,-54C328.14,-54 336.83,-54 344.73,-54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="344.96,-57.5 354.96,-54 344.96,-50.5 344.96,-57.5"/>
+<path fill="none" stroke="#ff0000" d="M576.78,-94C589.38,-94 601.69,-94 612.47,-94"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="612.7,-97.5 622.7,-94 612.7,-90.5 612.7,-97.5"/>
+</g>
+<!-- proc~write_error -->
+<g id="proc~~pes_contribution~~CallsGraph_node7" class="node">
+<title>proc~write_error</title>
+<g id="a_proc~~pes_contribution~~CallsGraph_node7"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
+<polygon fill="#d9534f" stroke="#d9534f" points="802.5,-64 732.5,-64 732.5,-40 802.5,-40 802.5,-64"/>
+<text text-anchor="middle" x="767.5" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
+</a>
+</g>
+</g>
+<!-- proc~wavenumber_squared_from_energy&#45;&gt;proc~write_error -->
+<g id="proc~~pes_contribution~~CallsGraph_edge7" class="edge">
+<title>proc~wavenumber_squared_from_energy&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#00ffff" d="M587.19,-52C633.42,-52 685.88,-52 722.06,-52"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="722.27,-55.5 732.27,-52 722.27,-48.5 722.27,-55.5"/>
+</g>
+<!-- proc~etotal -->
+<g id="proc~~pes_contribution~~CallsGraph_node8" class="node">
+<title>proc~etotal</title>
+<g id="a_proc~~pes_contribution~~CallsGraph_node8"><a xlink:href=".././proc/etotal.html" xlink:title="ETOTAL">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="677,-24 623,-24 623,0 677,0 677,-24"/>
+<text text-anchor="middle" x="650" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ETOTAL</text>
+</a>
+</g>
+</g>
+<!-- proc~wavenumber_squared_from_energy&#45;&gt;proc~etotal -->
+<g id="proc~~pes_contribution~~CallsGraph_edge6" class="edge">
+<title>proc~wavenumber_squared_from_energy&#45;&gt;proc~etotal</title>
+<path fill="none" stroke="#00ffff" d="M535.26,-40C560.23,-33.85 590.1,-26.5 612.96,-20.87"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="614.06,-24.21 622.93,-18.42 612.38,-17.41 614.06,-24.21"/>
 </g>
 <!-- proc~float_to_character -->
-<g id="proc~~pes_contribution~~CallsGraph_node5" class="node">
+<g id="proc~~pes_contribution~~CallsGraph_node9" class="node">
 <title>proc~float_to_character</title>
-<g id="a_proc~~pes_contribution~~CallsGraph_node5"><a xlink:href=".././proc/float_to_character.html" xlink:title="float_to_character">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="554,-87 445,-87 445,-63 554,-63 554,-87"/>
-<text text-anchor="middle" x="499.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">float_to_character</text>
+<g id="a_proc~~pes_contribution~~CallsGraph_node9"><a xlink:href=".././proc/float_to_character.html" xlink:title="float_to_character">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="822,-148 713,-148 713,-124 822,-124 822,-148"/>
+<text text-anchor="middle" x="767.5" y="-133.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">float_to_character</text>
 </a>
 </g>
 </g>
 <!-- proc~ispline&#45;&gt;proc~float_to_character -->
-<g id="proc~~pes_contribution~~CallsGraph_edge4" class="edge">
+<g id="proc~~pes_contribution~~CallsGraph_edge8" class="edge">
 <title>proc~ispline&#45;&gt;proc~float_to_character</title>
-<path fill="none" stroke="#ff0000" d="M409.21,-58.77C416.85,-60.15 425.55,-61.74 434.46,-63.36"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="434.09,-66.85 444.55,-65.19 435.34,-59.96 434.09,-66.85"/>
+<path fill="none" stroke="#ff0000" d="M677.21,-103.53C690.99,-108.54 708.22,-114.81 723.87,-120.5"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="722.76,-123.82 733.36,-123.95 725.15,-117.24 722.76,-123.82"/>
 </g>
 <!-- proc~write_warning -->
-<g id="proc~~pes_contribution~~CallsGraph_node6" class="node">
+<g id="proc~~pes_contribution~~CallsGraph_node11" class="node">
 <title>proc~write_warning</title>
-<g id="a_proc~~pes_contribution~~CallsGraph_node6"><a xlink:href=".././proc/write_warning.html" xlink:title="write_warning">
-<polygon fill="#d9534f" stroke="#d9534f" points="543,-45 456,-45 456,-21 543,-21 543,-45"/>
-<text text-anchor="middle" x="499.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_warning</text>
+<g id="a_proc~~pes_contribution~~CallsGraph_node11"><a xlink:href=".././proc/write_warning.html" xlink:title="write_warning">
+<polygon fill="#d9534f" stroke="#d9534f" points="811,-106 724,-106 724,-82 811,-82 811,-106"/>
+<text text-anchor="middle" x="767.5" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_warning</text>
 </a>
 </g>
 </g>
 <!-- proc~ispline&#45;&gt;proc~write_warning -->
-<g id="proc~~pes_contribution~~CallsGraph_edge5" class="edge">
+<g id="proc~~pes_contribution~~CallsGraph_edge9" class="edge">
 <title>proc~ispline&#45;&gt;proc~write_warning</title>
-<path fill="none" stroke="#ff0000" d="M409.21,-49.23C420.03,-47.27 432.98,-44.91 445.61,-42.62"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="446.42,-46.03 455.63,-40.79 445.17,-39.14 446.42,-46.03"/>
+<path fill="none" stroke="#ff0000" d="M677.21,-94C688.03,-94 700.98,-94 713.61,-94"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="713.63,-97.5 723.63,-94 713.63,-90.5 713.63,-97.5"/>
 </g>
 <!-- proc~write_message -->
-<g id="proc~~pes_contribution~~CallsGraph_node7" class="node">
+<g id="proc~~pes_contribution~~CallsGraph_node10" class="node">
 <title>proc~write_message</title>
-<g id="a_proc~~pes_contribution~~CallsGraph_node7"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="682,-45 590,-45 590,-21 682,-21 682,-45"/>
-<text text-anchor="middle" x="636" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+<g id="a_proc~~pes_contribution~~CallsGraph_node10"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="950,-85 858,-85 858,-61 950,-61 950,-85"/>
+<text text-anchor="middle" x="904" y="-70.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
 </a>
 </g>
 </g>
+<!-- proc~write_error&#45;&gt;proc~write_message -->
+<g id="proc~~pes_contribution~~CallsGraph_edge10" class="edge">
+<title>proc~write_error&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#00ff00" d="M802.79,-57.35C816.51,-59.5 832.68,-62.02 847.96,-64.41"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="847.43,-67.87 857.85,-65.95 848.51,-60.95 847.43,-67.87"/>
+</g>
 <!-- proc~write_warning&#45;&gt;proc~write_message -->
-<g id="proc~~pes_contribution~~CallsGraph_edge6" class="edge">
+<g id="proc~~pes_contribution~~CallsGraph_edge11" class="edge">
 <title>proc~write_warning&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#00ffff" d="M543.06,-33C554.72,-33 567.54,-33 579.8,-33"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="579.93,-36.5 589.93,-33 579.93,-29.5 579.93,-36.5"/>
+<path fill="none" stroke="#0000ff" d="M811.06,-87.36C822.72,-85.53 835.54,-83.53 847.8,-81.62"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="848.59,-85.04 857.93,-80.04 847.51,-78.12 848.59,-85.04"/>
 </g>
 </g>
 </svg>
@@ -669,23 +684,13 @@ for each non-zero element of W/V</p>
       </div>
       <div id="vars-1" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-erot">erot</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-ii~3">ii</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-ij~3">ij</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-il~3">il</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-indvl">indvl</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-inonzero_coupling_matrix_elements">inonzero_coupling_matrix_elements</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-j1ptmp~2">j1ptmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-j1tmp~2">j1tmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-l1">l1</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-nonzerolam">nonzerolam</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-omegaptmp~2">omegaptmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-omegatmp~2">omegatmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-pscoeff~3">pscoeff</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-sumtemp">sumtemp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-v~2">v</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-v1ptmp~2">v1ptmp</a>
-            <a class="list-group-item" href="../proc/pes_contribution.html#variable-v1tmp~2">v1tmp</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-channel_index_1_~6">channel_index_1_</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-channel_index_2_~6">channel_index_2_</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-count_nonzero_coupling_coefficients~5">count_nonzero_coupling_coefficients</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-count_nonzero_coupling_matrix_elements~3">count_nonzero_coupling_matrix_elements</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-count_nonzero_legendre_terms~4">count_nonzero_legendre_terms</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-omega_~11">omega_</a>
+            <a class="list-group-item" href="../proc/pes_contribution.html#variable-omega_prime_~5">omega_prime_</a>
         </div>
       </div>
     </div>
@@ -733,24 +738,7 @@ for each non-zero element of W/V</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-erot"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>erot</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-ii~3"></span>
+              <span class="anchor" id="variable-channel_index_1_~6"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -758,7 +746,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>ii</strong></td>
+            <td><strong>channel_index_1_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -767,7 +755,7 @@ for each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ij~3"></span>
+              <span class="anchor" id="variable-channel_index_2_~6"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -775,7 +763,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>ij</strong></td>
+            <td><strong>channel_index_2_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -784,7 +772,7 @@ for each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-il~3"></span>
+              <span class="anchor" id="variable-count_nonzero_coupling_coefficients~5"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -792,7 +780,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>il</strong></td>
+            <td><strong>count_nonzero_coupling_coefficients</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -801,7 +789,7 @@ for each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-indvl"></span>
+              <span class="anchor" id="variable-count_nonzero_coupling_matrix_elements~3"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -809,7 +797,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>indvl</strong></td>
+            <td><strong>count_nonzero_coupling_matrix_elements</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -818,7 +806,7 @@ for each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-inonzero_coupling_matrix_elements"></span>
+              <span class="anchor" id="variable-count_nonzero_legendre_terms~4"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -826,7 +814,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>inonzero_coupling_matrix_elements</strong></td>
+            <td><strong>count_nonzero_legendre_terms</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -835,7 +823,7 @@ for each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-j1ptmp~2"></span>
+              <span class="anchor" id="variable-omega_~11"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -843,7 +831,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>j1ptmp</strong></td>
+            <td><strong>omega_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -852,7 +840,7 @@ for each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-j1tmp~2"></span>
+              <span class="anchor" id="variable-omega_prime_~5"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -860,160 +848,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>j1tmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-l1"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>l1</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nonzerolam"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nonzerolam</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omegaptmp~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omegaptmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omegatmp~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omegatmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-pscoeff~3"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>pscoeff</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-sumtemp"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>sumtemp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-v~2"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>v</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-v1ptmp~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>v1ptmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-v1tmp~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>v1tmp</strong></td>
+            <td><strong>omega_prime_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -1035,72 +870,74 @@ for each non-zero element of W/V</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">pes_contribution</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">,</span><span class="n">jj</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="w">                     </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">channel_indices</span><span class="p">,</span><span class="n">channels_omega_values</span><span class="p">,</span><span class="w">                         </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="p">,</span><span class="w">                           </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="p">,</span><span class="w">                              </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">nonzero_terms_per_element</span><span class="p">,</span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="w">                   </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">nonzero_coupling_coefficients</span><span class="p">,</span><span class="n">vmatrix</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! calculates the contribution from the PES in (X) at given R</span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">pes_contribution</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">                     </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">intermolecular_distance_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_indices_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">nonzero_terms_per_element</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="w">                  </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">nonzero_coupling_coefficients</span><span class="p">,</span><span class="w"> </span><span class="n">vmatrix</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! calculates the contribution to the coupling matrix</span>
+<span class="w">         </span><span class="c">!! from the the interaction potential (PES);</span>
+<span class="w">         </span><span class="c">!! see Eq. 1 in &quot;Coupling Matrix&quot; section;</span>
+<span class="w">         </span><span class="c">!! diagonal contribution from wavevectors (see the last term in</span>
+<span class="w">         </span><span class="c">!! Eq. 3 of &quot;What are coupled equations&quot; section) is added</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! size of the basis</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">jj</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! total angular momentum</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">intermolecular_distance_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! intermolecular distance</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channel_indices</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channel_indices_</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds the indices pointing to the basis arrays</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_omega_values_</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds all values of \bar{\Omega}</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of non-zero terms in the sum () for each non-zero element of the coupling matrix</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of all non-zero algberaix coefficients in the whole coupling matrix</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_terms_per_element</span><span class="p">(</span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! keeps the number of non-zero terms in the sum (Eq. (6.21)) for</span>
-<span class="w">            </span><span class="c">!! each non-zero element of W/V</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_legendre_indices</span><span class="p">(</span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! holds the proper indices pointing to l1/l2/lltabs, which</span>
-<span class="w">            </span><span class="c">!! correspond to the non-vanishing elements of the sum  (Eq. (6.21))</span>
-<span class="w">            </span><span class="c">!! for each non-zero element of W/V</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_coupling_coefficients</span><span class="p">(</span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_terms_per_element</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)</span>
+<span class="w">            </span><span class="c">!! for each non-zero element of the coupling matrix</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_legendre_indices</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! holds indices pointing to l1tab, which correspond to</span>
+<span class="w">            </span><span class="c">!! the non-vanishing elements of the sum over \\(\lambda\\)</span>
+<span class="w">            </span><span class="c">!! for each non-zero element of the coupling matrix;</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_coupling_coefficients</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds the values of the non-zero algebraic coefficients</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vmatrix</span><span class="p">(</span><span class="n">number_of_channels</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! (output) - the PES contribution to the coupling matrix</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vmatrix</span><span class="p">(:,:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! (output) - the interaction potential contribution to the coupling matrix</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">indvl</span><span class="p">,</span><span class="w"> </span><span class="n">inonzero_coupling_matrix_elements</span><span class="p">,</span><span class="w"> </span><span class="n">omegatmp</span><span class="p">,</span><span class="w"> </span><span class="n">omegaptmp</span><span class="p">,</span><span class="w"> </span><span class="n">l1</span><span class="p">,</span><span class="w">          </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">nonzerolam</span><span class="p">,</span><span class="w"> </span><span class="n">v1tmp</span><span class="p">,</span><span class="w"> </span><span class="n">j1tmp</span><span class="p">,</span><span class="w"> </span><span class="n">v1ptmp</span><span class="p">,</span><span class="w"> </span><span class="n">j1ptmp</span><span class="p">,</span><span class="w"> </span><span class="n">ii</span><span class="p">,</span><span class="w"> </span><span class="n">ij</span><span class="p">,</span><span class="w"> </span><span class="n">il</span><span class="w"></span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">erot</span><span class="p">,</span><span class="w"> </span><span class="n">sumtemp</span><span class="p">,</span><span class="w"> </span><span class="n">pscoeff</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">count_nonzero_coupling_coefficients</span><span class="p">,</span><span class="w">                </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="p">,</span><span class="w">                            </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">count_nonzero_legendre_terms</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">,</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">omega_</span><span class="p">,</span><span class="w"> </span><span class="n">omega_prime_</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="n">vmatrix</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="n">indvl</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="n">inonzero_coupling_matrix_elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">         </span><span class="n">count_nonzero_coupling_coefficients</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">         </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">do </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels</span><span class="w"></span>
-<span class="w">            </span><span class="n">v1tmp</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">v1array</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span><span class="w"></span>
-<span class="w">            </span><span class="n">j1tmp</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span><span class="w"></span>
-<span class="w">            </span><span class="n">omegatmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">erot</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">elevel</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span><span class="w">               </span>
-<span class="w">            </span><span class="k">do </span><span class="n">ij</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ii</span><span class="w"></span>
-<span class="w">               </span><span class="n">v1ptmp</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">v1array</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">(</span><span class="n">ij</span><span class="p">))</span><span class="w"></span>
-<span class="w">               </span><span class="n">j1ptmp</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">(</span><span class="n">ij</span><span class="p">))</span><span class="w"></span>
-<span class="w">               </span><span class="n">omegaptmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(</span><span class="n">ij</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">omegatmp</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="n">omegaptmp</span><span class="p">)</span><span class="w"> </span><span class="k">cycle</span>
-<span class="k">               </span><span class="n">inonzero_coupling_matrix_elements</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">inonzero_coupling_matrix_elements</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">               </span><span class="n">nonzerolam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nonzero_terms_per_element</span><span class="p">(</span><span class="n">inonzero_coupling_matrix_elements</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="n">sumtemp</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mf">0.d0</span><span class="w"></span>
-<span class="w">               </span><span class="k">do </span><span class="n">il</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nonzerolam</span><span class="w"></span>
-<span class="w">                  </span><span class="n">indvl</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">indvl</span><span class="o">+</span><span class="mi">1</span><span class="w"></span>
-<span class="w">                  </span><span class="n">l1</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">l1tab</span><span class="p">(</span><span class="n">nonzero_legendre_indices</span><span class="p">(</span><span class="n">indvl</span><span class="p">))</span><span class="w"></span>
-<span class="w">                  </span><span class="n">pscoeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nonzero_coupling_coefficients</span><span class="p">(</span><span class="n">indvl</span><span class="p">)</span><span class="w"></span>
-<span class="w">                  </span><span class="k">call </span><span class="n">get_radial_coupling_term_value</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">l1</span><span class="p">,</span><span class="n">v1tmp</span><span class="p">,</span><span class="n">j1tmp</span><span class="p">,</span><span class="n">v1ptmp</span><span class="p">,</span><span class="n">j1ptmp</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="w"></span>
-<span class="w">                  </span><span class="n">sumtemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sumtemp</span><span class="o">+</span><span class="n">pscoeff</span><span class="o">*</span><span class="n">v</span><span class="w"></span>
-<span class="w">               </span><span class="k">enddo</span>
-<span class="k">               </span><span class="n">vmatrix</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">ij</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">reducedmass</span><span class="o">*</span><span class="n">sumtemp</span><span class="w"></span>
+<span class="w">         </span><span class="k">do </span><span class="n">channel_index_1_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">channel_indices_</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">omega_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channels_omega_values_</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">do </span><span class="n">channel_index_2_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="w"></span>
+<span class="w">               </span><span class="n">omega_prime_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channels_omega_values_</span><span class="p">(</span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"></span>
+<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
+<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">omega_</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">omega_prime_</span><span class="p">)</span><span class="w"> </span><span class="k">cycle</span><span class="w"></span>
+<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
+<span class="w">               </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="w">                          </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
+<span class="w">               </span><span class="c">! process a single matrix element:</span>
+<span class="w">               </span><span class="c">! get number of  non-zero terms in Legendre expansion for this</span>
+<span class="w">               </span><span class="c">! matrix element</span>
+<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
+<span class="w">               </span><span class="n">count_nonzero_legendre_terms</span><span class="w">                                    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="n">nonzero_terms_per_element</span><span class="p">(</span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="p">)</span><span class="w"></span>
+<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
+<span class="w">               </span><span class="c">! implementation of Eq. 1 in &quot;Coupling Matrix&quot; section</span>
+<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
+<span class="w">               </span><span class="n">vmatrix</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w">                     </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="n">calculate_single_pes_matrix_element</span><span class="p">(</span><span class="w">                       </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                     </span><span class="n">intermolecular_distance_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w">               </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                     </span><span class="n">channel_index_2_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_indices_</span><span class="p">,</span><span class="w">                       </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                     </span><span class="n">count_nonzero_legendre_terms</span><span class="p">,</span><span class="w">                             </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                     </span><span class="n">count_nonzero_coupling_coefficients</span><span class="p">,</span><span class="w">                      </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                     </span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_coupling_coefficients</span><span class="p">)</span><span class="w"></span>
+<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
 <span class="w">             </span><span class="k">enddo</span>
-<span class="k">             </span><span class="n">vmatrix</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vmatrix</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">ii</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">reducedmass</span><span class="o">*</span><span class="n">erot</span><span class="p">)</span><span class="w"> </span>
-<span class="w">         </span><span class="k">enddo</span><span class="w"></span>
+<span class="k">         enddo</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="k">call </span><span class="n">fill_symmetric_matrix</span><span class="p">(</span><span class="n">vmatrix</span><span class="p">,</span><span class="s1">&#39;u&#39;</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
@@ -1125,7 +962,7 @@ for each non-zero element of W/V</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-04 12:17            </p>
+ on 2024-01-04 15:34            </p>
         </div>
       </div>
       <br>

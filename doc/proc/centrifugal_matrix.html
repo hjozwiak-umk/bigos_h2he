@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>cenitrfugal_matrix &ndash; the SCATTERING code</title>
+    <title>centrifugal_matrix &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>cenitrfugal_matrix
+    <h1>centrifugal_matrix
       <small>Subroutine</small>
       
     </h1>
@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 2.1% of total for procedures.">37 statements</a>
+               title=" 1.7% of total for procedures.">30 statements</a>
           </li>
 
             <li id="source-file">
@@ -100,7 +100,7 @@
         <ol class="breadcrumb in-well text-right">
               <li><a href='../sourcefile/propagator_mod.f90.html'>propagator_mod.f90</a></li>
               <li><a href='../module/propagators.html'>PROPAGATORS</a></li>
-          <li class="active">cenitrfugal_matrix</li>
+          <li class="active">centrifugal_matrix</li>
         </ol>
       </div>
     </div>
@@ -126,17 +126,17 @@
       </div>
       <div id="vars-0" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-centtmp">centtmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-delta1">delta1</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-delta2">delta2</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-ii">ii</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-ij">ij</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-j1ptmp">j1ptmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-j1tmp">j1tmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-omegaptmp">omegaptmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-omegatmp">omegatmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-v1ptmp">v1ptmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-v1tmp">v1tmp</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-centtmp">centtmp</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-channel_index_1_~4">channel_index_1_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-channel_index_2_~4">channel_index_2_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-delta_1_~2">delta_1_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-delta_2_~2">delta_2_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-j_~17">j_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-j_prime_~9">j_prime_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-omega_~10">omega_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-omega_prime_~4">omega_prime_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-v_~8">v_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-v_prime_~5">v_prime_</a>
         </div>
       </div>
     </div>
@@ -165,12 +165,13 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine cenitrfugal_matrix(number_of_channels, jj, channel_indices, channels_omega_values, centmatrix)  
+    <h2>public  subroutine centrifugal_matrix(total_angular_momentum_, channel_indices_, channels_omega_values_, centrifugal_matrix_)  
 </h2>
     
 
-    <p>calculates the (R*<em>2)</em>centrifugal matrix from Eq. (6.19)
-only called once at the beginning of the calculations</p>
+    <p>calculates the (R*<em>2)</em>centrifugal matrix from the second term
+of Eq. 3 in "What are coupled equations?" section;
+Matrix elements are given in Eq. 4 and 6 of "Coupling Matrix" secion</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -185,7 +186,7 @@ only called once at the beginning of the calculations</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_channels~5"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~6"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -193,29 +194,14 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>number_of_channels</strong></td>
-            <td>
-                <p>size of the basis</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-jj"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>jj</strong></td>
+            <td><strong>total_angular_momentum_</strong></td>
             <td>
                 <p>total angular momentum</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel_indices~6"></span>
+              <span class="anchor" id="variable-channel_indices_~2"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -223,14 +209,14 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>channel_indices</strong>(number_of_channels)</td>
+            <td><strong>channel_indices_</strong>(:)</td>
             <td>
                 <p>holds the indices pointing to the basis arrays</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channels_omega_values~5"></span>
+              <span class="anchor" id="variable-channels_omega_values_"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -238,14 +224,14 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>channels_omega_values</strong>(number_of_channels)</td>
+            <td><strong>channels_omega_values_</strong>(:)</td>
             <td>
                 <p>holds all values of \bar{\Omega}</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-centmatrix"></span>
+              <span class="anchor" id="variable-centrifugal_matrix_"></span>
               real(kind=dp),
             </td>
 <td>intent(out)</td>
@@ -253,7 +239,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>centmatrix</strong>(number_of_channels,number_of_channels)</td>
+            <td><strong>centrifugal_matrix_</strong>(:,:)</td>
             <td>
                 <p>(output) - (R*<em>2)</em>centrifugal matrix</p>
             </td>
@@ -272,44 +258,77 @@ only called once at the beginning of the calculations</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~cenitrfugal_matrix~~CallsGraph Pages: 1 -->
-<svg id="proccenitrfugal_matrixCallsGraph" width="281pt" height="74pt"
- viewBox="0.00 0.00 281.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~cenitrfugal_matrix~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
-<title>proc~~cenitrfugal_matrix~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 277,-70 277,4 -4,4"/>
-<!-- proc~cenitrfugal_matrix -->
-<g id="proc~~cenitrfugal_matrix~~CallsGraph_node1" class="node">
-<title>proc~cenitrfugal_matrix</title>
-<polygon fill="none" stroke="black" points="110,-45 0,-45 0,-21 110,-21 110,-45"/>
-<text text-anchor="middle" x="55" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">cenitrfugal_matrix</text>
+<!-- Title: proc~~centrifugal_matrix~~CallsGraph Pages: 1 -->
+<svg id="proccentrifugal_matrixCallsGraph" width="394pt" height="158pt"
+ viewBox="0.00 0.00 394.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~centrifugal_matrix~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
+<title>proc~~centrifugal_matrix~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 390,-154 390,4 -4,4"/>
+<!-- proc~centrifugal_matrix -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_node1" class="node">
+<title>proc~centrifugal_matrix</title>
+<polygon fill="none" stroke="black" points="110,-87 0,-87 0,-63 110,-63 110,-87"/>
+<text text-anchor="middle" x="55" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">centrifugal_matrix</text>
 </g>
-<!-- dfloat -->
-<g id="proc~~cenitrfugal_matrix~~CallsGraph_node2" class="node">
-<title>dfloat</title>
-<polygon fill="#777777" stroke="#777777" points="236.5,-66 182.5,-66 182.5,-42 236.5,-42 236.5,-66"/>
-<text text-anchor="middle" x="209.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dfloat</text>
-</g>
-<!-- proc~cenitrfugal_matrix&#45;&gt;dfloat -->
-<g id="proc~~cenitrfugal_matrix~~CallsGraph_edge1" class="edge">
-<title>proc~cenitrfugal_matrix&#45;&gt;dfloat</title>
-<path fill="none" stroke="#ff0000" d="M110.2,-40.46C130.76,-43.29 153.66,-46.45 172.19,-49"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="171.88,-52.49 182.26,-50.39 172.83,-45.56 171.88,-52.49"/>
-</g>
-<!-- interface~fill_symmetric_matrix -->
-<g id="proc~~cenitrfugal_matrix~~CallsGraph_node3" class="node">
-<title>interface~fill_symmetric_matrix</title>
-<g id="a_proc~~cenitrfugal_matrix~~CallsGraph_node3"><a xlink:href=".././interface/fill_symmetric_matrix.html" xlink:title="fill_symmetric_matrix">
-<polygon fill="#a7506f" stroke="#a7506f" points="273,-24 146,-24 146,0 273,0 273,-24"/>
-<text text-anchor="middle" x="209.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fill_symmetric_matrix</text>
+<!-- proc~delta_for_zero_omega -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_node2" class="node">
+<title>proc~delta_for_zero_omega</title>
+<g id="a_proc~~centrifugal_matrix~~CallsGraph_node2"><a xlink:href=".././proc/delta_for_zero_omega.html" xlink:title="delta_for_zero_omega">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="331,-150 201,-150 201,-126 331,-126 331,-150"/>
+<text text-anchor="middle" x="266" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">delta_for_zero_omega</text>
 </a>
 </g>
 </g>
-<!-- proc~cenitrfugal_matrix&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~cenitrfugal_matrix~~CallsGraph_edge2" class="edge">
-<title>proc~cenitrfugal_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#ff0000" d="M110.2,-25.54C118.5,-24.39 127.19,-23.2 135.82,-22.01"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="136.46,-25.45 145.89,-20.62 135.51,-18.52 136.46,-25.45"/>
+<!-- proc~centrifugal_matrix&#45;&gt;proc~delta_for_zero_omega -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_edge1" class="edge">
+<title>proc~centrifugal_matrix&#45;&gt;proc~delta_for_zero_omega</title>
+<path fill="none" stroke="#ff0000" d="M77.54,-87.02C95.39,-96.48 121.66,-109.32 146,-117 160.22,-121.49 175.72,-125.1 190.7,-127.98"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="190.49,-131.5 200.96,-129.86 191.75,-124.62 190.49,-131.5"/>
+</g>
+<!-- interface~fill_symmetric_matrix -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_node3" class="node">
+<title>interface~fill_symmetric_matrix</title>
+<g id="a_proc~~centrifugal_matrix~~CallsGraph_node3"><a xlink:href=".././interface/fill_symmetric_matrix.html" xlink:title="fill_symmetric_matrix">
+<polygon fill="#a7506f" stroke="#a7506f" points="329.5,-108 202.5,-108 202.5,-84 329.5,-84 329.5,-108"/>
+<text text-anchor="middle" x="266" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fill_symmetric_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~centrifugal_matrix&#45;&gt;interface~fill_symmetric_matrix -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_edge2" class="edge">
+<title>proc~centrifugal_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
+<path fill="none" stroke="#ff0000" d="M110.09,-80.44C135.08,-82.95 165.13,-85.97 192.08,-88.67"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="191.94,-92.18 202.24,-89.69 192.64,-85.21 191.94,-92.18"/>
+</g>
+<!-- proc~calculate_offdiagonal_centrifugal_element -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_node4" class="node">
+<title>proc~calculate_offdiagonal_centrifugal_element</title>
+<g id="a_proc~~centrifugal_matrix~~CallsGraph_node4"><a xlink:href=".././proc/calculate_offdiagonal_centrifugal_element.html" xlink:title="calculate_offdiagonal_centrifugal_element">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="386,-66 146,-66 146,-42 386,-42 386,-66"/>
+<text text-anchor="middle" x="266" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_offdiagonal_centrifugal_element</text>
+</a>
+</g>
+</g>
+<!-- proc~centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_edge3" class="edge">
+<title>proc~centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element</title>
+<path fill="none" stroke="#ff0000" d="M110.09,-69.56C118.18,-68.75 126.79,-67.89 135.66,-67"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="136.16,-70.46 145.76,-65.98 135.46,-63.5 136.16,-70.46"/>
+</g>
+<!-- proc~calculate_diagonal_centrifugal_element -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_node5" class="node">
+<title>proc~calculate_diagonal_centrifugal_element</title>
+<g id="a_proc~~centrifugal_matrix~~CallsGraph_node5"><a xlink:href=".././proc/calculate_diagonal_centrifugal_element.html" xlink:title="calculate_diagonal_centrifugal_element">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="379,-24 153,-24 153,0 379,0 379,-24"/>
+<text text-anchor="middle" x="266" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_diagonal_centrifugal_element</text>
+</a>
+</g>
+</g>
+<!-- proc~centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element -->
+<g id="proc~~centrifugal_matrix~~CallsGraph_edge4" class="edge">
+<title>proc~centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element</title>
+<path fill="none" stroke="#ff0000" d="M77.54,-62.98C95.39,-53.52 121.66,-40.68 146,-33 153.98,-30.48 162.36,-28.24 170.83,-26.25"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="171.79,-29.62 180.79,-24.02 170.26,-22.79 171.79,-29.62"/>
 </g>
 </g>
 </svg>
@@ -384,44 +403,44 @@ only called once at the beginning of the calculations</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~cenitrfugal_matrix~~CalledByGraph Pages: 1 -->
-<svg id="proccenitrfugal_matrixCalledByGraph" width="329pt" height="32pt"
+<!-- Title: proc~~centrifugal_matrix~~CalledByGraph Pages: 1 -->
+<svg id="proccentrifugal_matrixCalledByGraph" width="329pt" height="32pt"
  viewBox="0.00 0.00 329.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~cenitrfugal_matrix~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~cenitrfugal_matrix~~CalledByGraph</title>
+<g id="proc~~centrifugal_matrix~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~centrifugal_matrix~~CalledByGraph</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-28 325,-28 325,4 -4,4"/>
-<!-- proc~cenitrfugal_matrix -->
-<g id="proc~~cenitrfugal_matrix~~CalledByGraph_node1" class="node">
-<title>proc~cenitrfugal_matrix</title>
+<!-- proc~centrifugal_matrix -->
+<g id="proc~~centrifugal_matrix~~CalledByGraph_node1" class="node">
+<title>proc~centrifugal_matrix</title>
 <polygon fill="none" stroke="black" points="321,-24 211,-24 211,0 321,0 321,-24"/>
-<text text-anchor="middle" x="266" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">cenitrfugal_matrix</text>
+<text text-anchor="middle" x="266" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">centrifugal_matrix</text>
 </g>
 <!-- proc~numerov -->
-<g id="proc~~cenitrfugal_matrix~~CalledByGraph_node2" class="node">
+<g id="proc~~centrifugal_matrix~~CalledByGraph_node2" class="node">
 <title>proc~numerov</title>
-<g id="a_proc~~cenitrfugal_matrix~~CalledByGraph_node2"><a xlink:href=".././proc/numerov.html" xlink:title="numerov">
+<g id="a_proc~~centrifugal_matrix~~CalledByGraph_node2"><a xlink:href=".././proc/numerov.html" xlink:title="numerov">
 <polygon fill="#d9534f" stroke="#d9534f" points="175,-24 115,-24 115,0 175,0 175,-24"/>
 <text text-anchor="middle" x="145" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">numerov</text>
 </a>
 </g>
 </g>
-<!-- proc~numerov&#45;&gt;proc~cenitrfugal_matrix -->
-<g id="proc~~cenitrfugal_matrix~~CalledByGraph_edge1" class="edge">
-<title>proc~numerov&#45;&gt;proc~cenitrfugal_matrix</title>
+<!-- proc~numerov&#45;&gt;proc~centrifugal_matrix -->
+<g id="proc~~centrifugal_matrix~~CalledByGraph_edge1" class="edge">
+<title>proc~numerov&#45;&gt;proc~centrifugal_matrix</title>
 <path fill="none" stroke="#ff0000" d="M175.11,-12C182.91,-12 191.66,-12 200.56,-12"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="200.63,-15.5 210.63,-12 200.63,-8.5 200.63,-15.5"/>
 </g>
 <!-- program~scattering -->
-<g id="proc~~cenitrfugal_matrix~~CalledByGraph_node3" class="node">
+<g id="proc~~centrifugal_matrix~~CalledByGraph_node3" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~cenitrfugal_matrix~~CalledByGraph_node3"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~centrifugal_matrix~~CalledByGraph_node3"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
 <!-- program~scattering&#45;&gt;proc~numerov -->
-<g id="proc~~cenitrfugal_matrix~~CalledByGraph_edge2" class="edge">
+<g id="proc~~centrifugal_matrix~~CalledByGraph_edge2" class="edge">
 <title>program~scattering&#45;&gt;proc~numerov</title>
 <path fill="none" stroke="#ff0000" d="M79.04,-12C87.36,-12 96.18,-12 104.54,-12"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="104.81,-15.5 114.81,-12 104.81,-8.5 104.81,-15.5"/>
@@ -502,17 +521,17 @@ only called once at the beginning of the calculations</p>
       </div>
       <div id="vars-1" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-centtmp">centtmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-delta1">delta1</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-delta2">delta2</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-ii">ii</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-ij">ij</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-j1ptmp">j1ptmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-j1tmp">j1tmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-omegaptmp">omegaptmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-omegatmp">omegatmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-v1ptmp">v1ptmp</a>
-            <a class="list-group-item" href="../proc/cenitrfugal_matrix.html#variable-v1tmp">v1tmp</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-centtmp">centtmp</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-channel_index_1_~4">channel_index_1_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-channel_index_2_~4">channel_index_2_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-delta_1_~2">delta_1_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-delta_2_~2">delta_2_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-j_~17">j_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-j_prime_~9">j_prime_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-omega_~10">omega_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-omega_prime_~4">omega_prime_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-v_~8">v_</a>
+            <a class="list-group-item" href="../proc/centrifugal_matrix.html#variable-v_prime_~5">v_prime_</a>
         </div>
       </div>
     </div>
@@ -571,7 +590,41 @@ only called once at the beginning of the calculations</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-delta1"></span>
+              <span class="anchor" id="variable-channel_index_1_~4"></span>
+              integer(kind=int32),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel_index_1_</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channel_index_2_~4"></span>
+              integer(kind=int32),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel_index_2_</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-delta_1_~2"></span>
               real(kind=dp),
             </td>
               <td>public</td>
@@ -579,7 +632,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>delta1</strong></td>
+            <td><strong>delta_1_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -588,7 +641,7 @@ only called once at the beginning of the calculations</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-delta2"></span>
+              <span class="anchor" id="variable-delta_2_~2"></span>
               real(kind=dp),
             </td>
               <td>public</td>
@@ -596,7 +649,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>delta2</strong></td>
+            <td><strong>delta_2_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -605,7 +658,7 @@ only called once at the beginning of the calculations</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ii"></span>
+              <span class="anchor" id="variable-j_~17"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -613,7 +666,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>ii</strong></td>
+            <td><strong>j_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -622,7 +675,7 @@ only called once at the beginning of the calculations</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ij"></span>
+              <span class="anchor" id="variable-j_prime_~9"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -630,7 +683,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>ij</strong></td>
+            <td><strong>j_prime_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -639,7 +692,7 @@ only called once at the beginning of the calculations</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-j1ptmp"></span>
+              <span class="anchor" id="variable-omega_~10"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -647,7 +700,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>j1ptmp</strong></td>
+            <td><strong>omega_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -656,7 +709,7 @@ only called once at the beginning of the calculations</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-j1tmp"></span>
+              <span class="anchor" id="variable-omega_prime_~4"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -664,7 +717,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>j1tmp</strong></td>
+            <td><strong>omega_prime_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -673,7 +726,7 @@ only called once at the beginning of the calculations</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-omegaptmp"></span>
+              <span class="anchor" id="variable-v_~8"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -681,7 +734,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>omegaptmp</strong></td>
+            <td><strong>v_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -690,7 +743,7 @@ only called once at the beginning of the calculations</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-omegatmp"></span>
+              <span class="anchor" id="variable-v_prime_~5"></span>
               integer(kind=int32),
             </td>
               <td>public</td>
@@ -698,41 +751,7 @@ only called once at the beginning of the calculations</p>
               
             </td>
             <td>::</td>
-            <td><strong>omegatmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-v1ptmp"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>v1ptmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-v1tmp"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>v1tmp</strong></td>
+            <td><strong>v_prime_</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -768,7 +787,7 @@ only called once at the beginning of the calculations</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-04 12:17            </p>
+ on 2024-01-04 15:34            </p>
         </div>
       </div>
       <br>
