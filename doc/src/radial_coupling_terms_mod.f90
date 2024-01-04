@@ -27,7 +27,7 @@ module radial_coupling_terms_mod
    !                            Reading procedures
    !---------------------------------------------------------------------------!
       subroutine read_radial_coupling_terms
-         !! reads the radial coupling terms from the external file.
+         !! Reads the radial coupling terms from the external file.
          !! The file is assumed to be formatted as described in
          !! "Supplying radial terms" section.
          !! The read radial coupling terms are kept in vmat/read_vmat3D
@@ -58,7 +58,7 @@ module radial_coupling_terms_mod
       end subroutine read_radial_coupling_terms
    !---------------------------------------------------------------------------!
       subroutine skip_header_lines
-         !! skip the first n_skip_lines (read on input) lines in the pes_file
+         !! Skips the first n_skip_lines (read on input) lines in the pes_file
          !---------------------------------------------------------------------!
          integer(int32) :: line_index_
          !---------------------------------------------------------------------!
@@ -69,7 +69,7 @@ module radial_coupling_terms_mod
       end subroutine skip_header_lines
    !---------------------------------------------------------------------------!
       subroutine read_and_validate_lambda(lambda_index_)
-         !! read the value of lambda and compare with expected value
+         !! Reads the value of lambda and compares with expected value.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: lambda_index_
          !---------------------------------------------------------------------!
@@ -90,9 +90,9 @@ module radial_coupling_terms_mod
       end subroutine read_and_validate_lambda
    !---------------------------------------------------------------------------!
       subroutine read_potential_data(lambda_index_)
-         !! read the intermolecular distance and radial coupling terms formatted
-         !! in columns; iterate over number of tabulated ]](R\\) points;
-         !! immediately convert \\(R\\) and radial coupling terms to a.u.
+         !! Reads the intermolecular distance and radial coupling terms formatted
+         !! in columns by iterating over number of tabulated ]](R\\) points.
+         !! Immediately converts \\(R\\) and radial coupling terms to a.u.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: lambda_index_
          !---------------------------------------------------------------------!
@@ -112,7 +112,7 @@ module radial_coupling_terms_mod
       end subroutine read_potential_data
    !---------------------------------------------------------------------------!
       subroutine validate_r_range
-         !! check if read R values are consistent with rmin and rmax
+         !! Checks if read R values are consistent with rmin and rmax.
          !---------------------------------------------------------------------!
          if (rmin < rmat(1)) then
             close(s_matrix_unit)
@@ -320,7 +320,7 @@ module radial_coupling_terms_mod
       end subroutine get_radial_coupling_term_value
    !---------------------------------------------------------------------------!
       function find_lambda_index(lambda_) result(result_index_)
-         !! Locate give \\(\lambda\\) value in l1tab
+         !! Locates given \\(\lambda\\) value in l1tab.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: lambda_
             !! Legendre expansion index, \\(\lambda\\)
@@ -340,7 +340,7 @@ module radial_coupling_terms_mod
       end function find_lambda_index
    !---------------------------------------------------------------------------!
       subroutine handle_lambda_index_error(lambda_)
-         !! handle error when the \\(\lambda\\) is not found in l1tab
+         !! Handles error when \\(\lambda\\) is not found in l1tab.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: lambda_
             !! Legendre expansion index, \\(\lambda\\)
@@ -351,9 +351,9 @@ module radial_coupling_terms_mod
       end subroutine handle_lambda_index_error
    !---------------------------------------------------------------------------!
       function find_coupling_index(v_, j_, v_prime_, j_prime_) result(result_index_)
-         !! Locate the correct quantum number that describes the v/j coupling;
+         !! Locates the correct quantum number that describes the v/j coupling.
          !! Note that coupling terms are symmetric with respect to the change
-         !! of pre- and post-collisional quantum numbers
+         !! of pre- and post-collisional quantum numbers.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: v_
             !! pre-collisional vibrational quantum number
@@ -387,7 +387,7 @@ module radial_coupling_terms_mod
       end function find_coupling_index
    !---------------------------------------------------------------------------!
       subroutine handle_coupling_index_error(v_, j_, v_prime_, j_prime_)
-         !! handle error when the appropriate coupling term is not found
+         !! Handles error when the appropriate coupling term is not found.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: v_
             !! pre-collisional vibrational quantum number

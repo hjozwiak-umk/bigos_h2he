@@ -28,7 +28,7 @@ module coupling_matrix_mod
    !---------------------------------------------------------------------------!
    contains
 !------------------------------------------------------------------------------!
-      subroutine check_nonzero_coupling_matrix_elements(channels_level_indices,&
+      subroutine check_nonzero_coupling_matrix_elements(channel_indices,&
          channels_omega_values, number_of_nonzero_coupling_matrix_elements,    &
          number_of_nonzero_coupling_coefficients)
          !! checks the number of non-zero coupling matrix elements due to
@@ -38,7 +38,7 @@ module coupling_matrix_mod
          !! \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\), in the whole matrix,
          !! "number_of_nonzero_coupling_coefficients".
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: channels_level_indices(:)
+         integer(int32), intent(in) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(in) :: channels_omega_values(:)
             !! holds all values of \bar{\Omega}
@@ -53,11 +53,11 @@ module coupling_matrix_mod
          !---------------------------------------------------------------------!
          count_nonzero_coupling_coefficients = 0
          count_nonzero_coupling_matrix_elements = 0
-         do channel_index_1_ = 1, size(channels_level_indices)
-            j_ = j1array(channels_level_indices(channel_index_1_))
+         do channel_index_1_ = 1, size(channel_indices)
+            j_ = j1array(channel_indices(channel_index_1_))
             omega_ = channels_omega_values(channel_index_1_)
             do channel_index_2_ = 1, channel_index_1_
-               j_prime_ = j1array(channels_level_indices(channel_index_2_))
+               j_prime_ = j1array(channel_indices(channel_index_2_))
                omega_prime_ = channels_omega_values(channel_index_2_)
                !---------------------------------------------------------------!
                if (omega_ /= omega_prime_) cycle
@@ -78,7 +78,7 @@ module coupling_matrix_mod
          !---------------------------------------------------------------------!
       end subroutine check_nonzero_coupling_matrix_elements
 !------------------------------------------------------------------------------!
-      subroutine prepare_coupling_matrix_elements(channels_level_indices,      &
+      subroutine prepare_coupling_matrix_elements(channel_indices,      &
          channels_omega_values, nonzero_terms_per_element,                     &
          nonzero_legendre_indices, nonzero_coupling_coefficients)
          !! prepares:
@@ -89,7 +89,7 @@ module coupling_matrix_mod
          !! -- nonzero_coupling_coefficients --  holds _all_ non-vanishing
          !!    \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\) coefficients
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: channels_level_indices(:)
+         integer(int32), intent(in) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(in) :: channels_omega_values(:)
             !! holds all values of \bar{\Omega}
@@ -115,11 +115,11 @@ module coupling_matrix_mod
          count_nonzero_coupling_coefficients     = 0
          count_nonzero_coupling_matrix_elements  = 0
          !---------------------------------------------------------------------!
-         do channel_index_1_ = 1, size(channels_level_indices)
-            j_     = j1array(channels_level_indices(channel_index_1_))
+         do channel_index_1_ = 1, size(channel_indices)
+            j_     = j1array(channel_indices(channel_index_1_))
             omega_ = channels_omega_values(channel_index_1_)
             do channel_index_2_ = 1, channel_index_1_
-               j_prime_     = j1array(channels_level_indices(channel_index_2_))
+               j_prime_     = j1array(channel_indices(channel_index_2_))
                omega_prime_ = channels_omega_values(channel_index_2_)
                if (omega_  /= omega_prime_) cycle
                !---------------------------------------------------------------!

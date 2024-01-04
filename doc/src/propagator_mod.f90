@@ -2,9 +2,7 @@ module PROPAGATORS
    !! this modules contains the subroutines used by the propagator:
    !! 1. cenitrfugal_matrix - prepares the centrifugal term (Eq. (6.19))
    !! 2. pes_contribution   - prepares the interaction energy term (Eq. (6.21))
-   !! 3. radtermvalue - returns the value of a radial coupling term at given R
    !! 4. calculate_log_der_matrix - calculates the log-derivative matrix (Eq. 6.29)
-   !! 5. pes_diagonalization - diagonalizes the coupling matrix from rmin to rmax
    !! 6. numerov - renormalized Numerov's algorithm                                      
    !----------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
@@ -15,7 +13,7 @@ module PROPAGATORS
    contains
    !---------------------------------------------------------------------------!
       subroutine cenitrfugal_matrix(number_of_channels,jj,                     &
-         channels_level_indices,channels_omega_values,centmatrix)    
+         channel_indices,channels_omega_values,centmatrix)    
          !! calculates the (R**2)*centrifugal matrix from Eq. (6.19)
          !! only called once at the beginning of the calculations
          !---------------------------------------------------------------------!
@@ -23,7 +21,7 @@ module PROPAGATORS
             !! size of the basis
          integer(int32), intent(in) :: jj
             !! total angular momentum
-         integer(int32), intent(in) :: channels_level_indices(number_of_channels)
+         integer(int32), intent(in) :: channel_indices(number_of_channels)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(in) :: channels_omega_values(number_of_channels)
             !! holds all values of \bar{\Omega}
@@ -37,14 +35,14 @@ module PROPAGATORS
          centmatrix  = 0
 
          do ii = 1, number_of_channels
-            v1tmp = v1array(channels_level_indices(ii))
-            j1tmp = j1array(channels_level_indices(ii))
+            v1tmp = v1array(channel_indices(ii))
+            j1tmp = j1array(channel_indices(ii))
             omegatmp = channels_omega_values(ii)
             delta1 = 0.d0
             if (omegatmp.eq.0) delta1 = 1.d0
             do ij = 1, ii
-               v1ptmp = v1array(channels_level_indices(ij))
-               j1ptmp = j1array(channels_level_indices(ij))
+               v1ptmp = v1array(channel_indices(ij))
+               j1ptmp = j1array(channel_indices(ij))
                omegaptmp = channels_omega_values(ij)
                delta2 = 0.d0
                if (omegaptmp.eq.0) delta2 = 1.d0
@@ -72,7 +70,7 @@ module PROPAGATORS
       end subroutine
 !------------------------------------------------------------------------------!
       subroutine pes_contribution(number_of_channels,jj,r,                     &
-         channels_level_indices,channels_omega_values,                         &
+         channel_indices,channels_omega_values,                         &
          number_of_nonzero_coupling_matrix_elements,                           &
          number_of_nonzero_coupling_coefficients,                              &
          nonzero_terms_per_element,nonzero_legendre_indices,                   &
@@ -85,7 +83,7 @@ module PROPAGATORS
             !! total angular momentum
          real(dp), intent(in) :: r
             !! intermolecular distance
-         integer(int32), intent(in) :: channels_level_indices(number_of_channels)
+         integer(int32), intent(in) :: channel_indices(number_of_channels)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(in) :: channels_omega_values(number_of_channels)
             !! holds all values of \bar{\Omega}
@@ -114,13 +112,13 @@ module PROPAGATORS
          inonzero_coupling_matrix_elements = 0
          !---------------------------------------------------------------------!
          do ii = 1, number_of_channels
-            v1tmp    = v1array(channels_level_indices(ii))
-            j1tmp    = j1array(channels_level_indices(ii))
+            v1tmp    = v1array(channel_indices(ii))
+            j1tmp    = j1array(channel_indices(ii))
             omegatmp = channels_omega_values(ii)
-            erot     = elevel(channels_level_indices(ii))               
+            erot     = elevel(channel_indices(ii))               
             do ij = 1, ii
-               v1ptmp    = v1array(channels_level_indices(ij))
-               j1ptmp    = j1array(channels_level_indices(ij))
+               v1ptmp    = v1array(channel_indices(ij))
+               j1ptmp    = j1array(channel_indices(ij))
                omegaptmp = channels_omega_values(ij)
                if (omegatmp.ne.omegaptmp) cycle
                inonzero_coupling_matrix_elements  = inonzero_coupling_matrix_elements + 1
@@ -214,7 +212,7 @@ module PROPAGATORS
          !---------------------------------------------------------------------!
       end subroutine calculate_log_der_matrix
       !------------------------------------------------------------------------!
-      subroutine numerov(channels_level_indices,channels_omega_values,         &
+      subroutine numerov(channel_indices,channels_omega_values,         &
          number_of_nonzero_coupling_matrix_elements,                           &
          number_of_nonzero_coupling_coefficients,nonzero_terms_per_element,    &
          nonzero_legendre_indices,nonzero_coupling_coefficients,nsteps,        &
@@ -223,7 +221,7 @@ module PROPAGATORS
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_channels
             !! size of the basis
-         integer(int32), intent(in) :: channels_level_indices(number_of_channels)
+         integer(int32), intent(in) :: channel_indices(number_of_channels)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(in) :: channels_omega_values(number_of_channels)
             !! holds all values of \bar{\Omega}
@@ -258,7 +256,7 @@ module PROPAGATORS
          !---------------------------------------------------------------------!
          ! Calculate the centrifugal term
          !---------------------------------------------------------------------!
-         call cenitrfugal_matrix(number_of_channels,jj,channels_level_indices, &
+         call cenitrfugal_matrix(number_of_channels,jj,channel_indices, &
             channels_omega_values,cent_mat)
          step_numerov = (rmax - rmin)/dble(nsteps - 1)
          call allocate_2d(R_temp,number_of_channels,number_of_channels)
@@ -266,7 +264,7 @@ module PROPAGATORS
          ! Calculate the PES contribution at rmin
          !---------------------------------------------------------------------!
          call pes_contribution(number_of_channels,jj,rmin,                     &
-            channels_level_indices,channels_omega_values,                      &
+            channel_indices,channels_omega_values,                      &
             number_of_nonzero_coupling_matrix_elements,                        &
             number_of_nonzero_coupling_coefficients,                           &
             nonzero_terms_per_element,nonzero_legendre_indices,                &
@@ -317,7 +315,7 @@ module PROPAGATORS
             call allocate_2d(rmatrix,number_of_channels,number_of_channels)
             call allocate_2d(umatrix,number_of_channels,number_of_channels)
             call pes_contribution(number_of_channels,jj,R,                     &
-               channels_level_indices,channels_omega_values,                   &
+               channel_indices,channels_omega_values,                   &
                number_of_nonzero_coupling_matrix_elements,                     &
                number_of_nonzero_coupling_coefficients,                        &
                nonzero_terms_per_element,nonzero_legendre_indices,             &
@@ -362,7 +360,7 @@ module PROPAGATORS
                call allocate_2d(t_minus,number_of_channels,number_of_channels)
 
                call pes_contribution(number_of_channels,jj,r,                  &
-                  channels_level_indices,channels_omega_values,                &
+                  channel_indices,channels_omega_values,                &
                   number_of_nonzero_coupling_matrix_elements,                  &
                   number_of_nonzero_coupling_coefficients,                     &
                   nonzero_terms_per_element,nonzero_legendre_indices,          &
@@ -389,7 +387,7 @@ module PROPAGATORS
                call allocate_2d(t_center,number_of_channels,number_of_channels)
 
                call pes_contribution(number_of_channels,jj,r,                  &
-                  channels_level_indices,channels_omega_values,                &
+                  channel_indices,channels_omega_values,                &
                   number_of_nonzero_coupling_matrix_elements,                  &
                   number_of_nonzero_coupling_coefficients,                     &
                   nonzero_terms_per_element,nonzero_legendre_indices,          &
@@ -414,7 +412,7 @@ module PROPAGATORS
                call allocate_2d(w_tmp,number_of_channels,number_of_channels)
 
                call pes_contribution(number_of_channels,jj,r,                  &
-                  channels_level_indices,channels_omega_values,                &
+                  channel_indices,channels_omega_values,                &
                   number_of_nonzero_coupling_matrix_elements,                  &
                   number_of_nonzero_coupling_coefficients,                     &
                   nonzero_terms_per_element,nonzero_legendre_indices,          &

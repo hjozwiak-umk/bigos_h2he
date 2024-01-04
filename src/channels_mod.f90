@@ -206,8 +206,8 @@ module channels_mod
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine set_body_fixed_channels(total_angular_momentum_,              &
-         parity_exponent_, channels_level_indices, channels_omega_values)
-         !! Prepares the channels_level_indices array which holds indices that refer to the
+         parity_exponent_, channel_indices, channels_omega_values)
+         !! Prepares the channel_indices array which holds indices that refer to the
          !! basis arrays: v1level/j1level/elevel, and channels_omega_values which holds values
          !! of \bar{\Omega}
          !---------------------------------------------------------------------!
@@ -215,7 +215,7 @@ module channels_mod
             !! total angular momentum
          integer(int32), intent(in) :: parity_exponent_
             !! parity exponent of the block (0 if p = +1, 1 if p = -1)
-         integer(int32), intent(inout) :: channels_level_indices(:)
+         integer(int32), intent(inout) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(inout) :: channels_omega_values(:)
             !! holds all values of \bar{\Omega}
@@ -234,15 +234,15 @@ module channels_mod
          do level_index_ = 1, nlevel
             omega_max_ = min(j1array(level_index_), total_angular_momentum_)
             call update_body_fixed_channels_info(omega_max_, parity_term_exponent_,     &
-               level_index_, channel_index_, channels_level_indices, channels_omega_values)
+               level_index_, channel_index_, channel_indices, channels_omega_values)
           enddo
          !---------------------------------------------------------------------!
       end subroutine set_body_fixed_channels
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine update_body_fixed_channels_info(omega_max_, parity_term_exponent_, &
-         level_index_, channel_index_, channels_level_indices, channels_omega_values)
-         !! update channels_level_indices array which holds indices within the
+         level_index_, channel_index_, channel_indices, channels_omega_values)
+         !! update channel_indices array which holds indices within the
          !! loop over level_index_ in set_body_fixed_channels
          !---------------------------------------------------------------------!
          integer(int32) :: omega_max_
@@ -253,9 +253,9 @@ module channels_mod
          integer(int32) :: level_index_
             !! indices pointing to the basis arrays
          integer(int32), intent(inout) :: channel_index_
-            !! index pointing to the current value in channels_level_indices
+            !! index pointing to the current value in channel_indices
             !! and channels_omega_values; incremented in this subroutine
-         integer(int32), intent(inout) :: channels_level_indices(:)
+         integer(int32), intent(inout) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(inout) :: channels_omega_values(:)
             !! holds all values of \bar{\Omega}
@@ -271,27 +271,27 @@ module channels_mod
          !---------------------------------------------------------------------!
          do omega_ = omega_start_, omega_max_
             channel_index_ = channel_index_ + 1
-            if (channel_index_ > size(channels_level_indices)) then
+            if (channel_index_ > size(channel_indices)) then
                call write_error("channel_index_ out of bounds of " //      &
-                  "channels_level_indices in set_body_fixed_channels.")
+                  "channel_indices in set_body_fixed_channels.")
             end if
             channels_omega_values(channel_index_)  = omega_
-            channels_level_indices(channel_index_) = level_index_
+            channel_indices(channel_index_) = level_index_
          enddo
          !---------------------------------------------------------------------!
       end subroutine update_body_fixed_channels_info
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine set_space_fixed_channels(total_angular_momentum_,             &
-         parity_exponent_, channels_l_values)
-         !! Prepares the channels_l_values array which holds values of
+         parity_exponent_, channel_l_values)
+         !! Prepares the channel_l_values array which holds values of
          !! orbital angular momentum, \\(l\\), a space-fixed-frame quantum number.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: total_angular_momentum_
             !! total angular momentum
          integer(int32), intent(in) :: parity_exponent_
             !! parity exponent of the block (0 if p = +1, 1 if p = -1)
-         integer(int32), intent(inout) :: channels_l_values(:)
+         integer(int32), intent(inout) :: channel_l_values(:)
             !! holds all values of l
          !---------------------------------------------------------------------!
          integer :: level_index_, l_min_, l_max_, l_, channel_index_
@@ -305,11 +305,11 @@ module channels_mod
             do l_ = l_min_, l_max_
                if (mod(l_ + j1array(level_index_), 2) == parity_exponent_) then
                   channel_index_ = channel_index_ + 1
-                  if (channel_index_ > size(channels_l_values)) then
+                  if (channel_index_ > size(channel_l_values)) then
                      call write_error("channel_index_ out of bounds of " //    &
-                        "channels_l_values in set_space_fixed_channels.")
+                        "channel_l_values in set_space_fixed_channels.")
                   end if
-                  channels_l_values(channel_index_) = l_
+                  channel_l_values(channel_index_) = l_
                endif
             enddo
          enddo
@@ -317,11 +317,11 @@ module channels_mod
       end subroutine set_space_fixed_channels
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
-      function count_open_channels_in_block(channels_level_indices)            &
+      function count_open_channels_in_block(channel_indices)            &
          result(number_of_open_channels_)
          !! counts the energetically accessible channels in the given block
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: channels_level_indices(:)
+         integer(int32), intent(in) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
          integer(int32) :: number_of_open_channels_
             !! (output) number of open channels
@@ -329,8 +329,8 @@ module channels_mod
          integer(int32) :: channel_index_
          !---------------------------------------------------------------------!
          number_of_open_channels_ = 0
-         do channel_index_ = 1, size(channels_level_indices)
-            if (is_open(elevel(channels_level_indices(channel_index_)))) then
+         do channel_index_ = 1, size(channel_indices)
+            if (is_open(elevel(channel_indices(channel_index_)))) then
                number_of_open_channels_ = number_of_open_channels_ + 1
             endif
          enddo
@@ -338,11 +338,11 @@ module channels_mod
       end function count_open_channels_in_block
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
-      function calculate_largest_wavenumber(channels_level_indices) result(largest_wavenumber_)
+      function calculate_largest_wavenumber(channel_indices) result(largest_wavenumber_)
          !! Calculates the largest wave number in the block;
          !! called only if there are any open channels
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: channels_level_indices(:)
+         integer(int32), intent(in) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
          real(dp) :: largest_wavenumber_
             !! (output) the largest wave number (wavmax) in the block
@@ -352,9 +352,9 @@ module channels_mod
          !---------------------------------------------------------------------!
          wavenumber_ = 0.0_dp
          !---------------------------------------------------------------------!
-         do channel_index_ = 1, size(channels_level_indices)
-            if (is_open(elevel(channels_level_indices(channel_index_)))) then
-               wavenumber_ = wavenumber_from_energy(elevel(channels_level_indices(channel_index_)))
+         do channel_index_ = 1, size(channel_indices)
+            if (is_open(elevel(channel_indices(channel_index_)))) then
+               wavenumber_ = wavenumber_from_energy(elevel(channel_indices(channel_index_)))
                largest_wavenumber_ = max(largest_wavenumber_, wavenumber_)
             endif
          enddo
@@ -362,13 +362,13 @@ module channels_mod
       end function calculate_largest_wavenumber
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
-      subroutine print_channels(parity_exponent_, channels_level_indices,      &
+      subroutine print_channels(parity_exponent_, channel_indices,      &
          channels_omega_values)
          !! prints information about body-fixed channels on screen
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: parity_exponent_
             !! parity exponent of the block (0 if p = +1, 1 if p = -1)
-         integer(int32), intent(inout) :: channels_level_indices(:)
+         integer(int32), intent(inout) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
          integer(int32), intent(inout) :: channels_omega_values(:)
             !! holds all values of \bar{\Omega}
@@ -379,12 +379,12 @@ module channels_mod
          call write_message("  v1      j1     omega      p" // repeat(" ", 10) &
             // "E_vj" // repeat(" ", 16) // "wv")
          !---------------------------------------------------------------------!
-         do channel_index_ = 1, size(channels_level_indices)
-            v_               = v1array(channels_level_indices(channel_index_))
-            j_               = j1array(channels_level_indices(channel_index_))
+         do channel_index_ = 1, size(channel_indices)
+            v_               = v1array(channel_indices(channel_index_))
+            j_               = j1array(channel_indices(channel_index_))
             omega_           = channels_omega_values(channel_index_)
             parity_          = (-1)**parity_exponent_
-            internal_energy_ = elevel(channels_level_indices(channel_index_))
+            internal_energy_ = elevel(channel_indices(channel_index_))
             !------------------------------------------------------------------!
             ! format for open channels:
             !------------------------------------------------------------------!

@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>set_space_fixed_channels &ndash; the SCATTERING code</title>
+    <title>print_largest_partial_cross_sections &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>set_space_fixed_channels
+    <h1>print_largest_partial_cross_sections
       <small>Subroutine</small>
       
     </h1>
@@ -89,18 +89,18 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.1% of total for procedures.">20 statements</a>
+               title=" 0.9% of total for procedures.">16 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/channels_mod.f90"> Source File</a>
+              <a href="../src/state_to_state_cross_sections_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/channels_mod.f90.html'>channels_mod.f90</a></li>
-              <li><a href='../module/channels_mod.html'>channels_mod</a></li>
-          <li class="active">set_space_fixed_channels</li>
+              <li><a href='../sourcefile/state_to_state_cross_sections_mod.f90.html'>state_to_state_cross_sections_mod.f90</a></li>
+              <li><a href='../module/state_to_state_cross_sections_mod.html'>state_to_state_cross_sections_mod</a></li>
+          <li class="active">print_largest_partial_cross_sections</li>
         </ol>
       </div>
     </div>
@@ -139,7 +139,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/set_space_fixed_channels.html#src">set_space_fixed_channels</a>
+        <a class="list-group-item" href="../proc/print_largest_partial_cross_sections.html#src">print_largest_partial_cross_sections</a>
       </div>
     </div>
 
@@ -149,12 +149,12 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine set_space_fixed_channels(total_angular_momentum_, parity_exponent_, channel_l_values)  
+    <h2>public  subroutine print_largest_partial_cross_sections(total_angular_momentum_, largest_elastic_xs_, largest_inelastic_xs_, elastic_index_, inelastic_index_1_, inelastic_index_2_, open_basis_levels_)  
 </h2>
     
 
-    <p>Prepares the channel_l_values array which holds values of
-orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
+    <p>Print the largest partial elastic and inelastic state-to-state
+cross-sections in a given block.</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -169,7 +169,7 @@ orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-total_angular_momentum_~9"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~12"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -184,7 +184,37 @@ orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-parity_exponent_~2"></span>
+              <span class="anchor" id="variable-largest_elastic_xs_"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>largest_elastic_xs_</strong></td>
+            <td>
+                <p>the largest partial elastic state-to-state XS in the block</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-largest_inelastic_xs_"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>largest_inelastic_xs_</strong></td>
+            <td>
+                <p>the largest partial inelastic state-to-state XS in the block</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-elastic_index_"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -192,24 +222,57 @@ orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
               
             </td>
             <td>::</td>
-            <td><strong>parity_exponent_</strong></td>
+            <td><strong>elastic_index_</strong></td>
             <td>
-                <p>parity exponent of the block (0 if p = +1, 1 if p = -1)</p>
+                <p>index pointing indirectly to quantum numbers associated with
+the largest partial elastic state-to-state XS in the block</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel_l_values~3"></span>
+              <span class="anchor" id="variable-inelastic_index_1_"></span>
               integer(kind=int32),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>channel_l_values</strong>(:)</td>
+            <td><strong>inelastic_index_1_</strong></td>
             <td>
-                <p>holds all values of l</p>
+                <p>indices pointing indirectly to quantum numbers associated with
+the largest partial inelastic state-to-state XS in the block</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-inelastic_index_2_"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>inelastic_index_2_</strong></td>
+            <td>
+                <p>indices pointing indirectly to quantum numbers associated with
+the largest partial inelastic state-to-state XS in the block</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-open_basis_levels_~3"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>open_basis_levels_</strong>(:)</td>
+            <td>
+                <p>holds indices to the basis arrays that correspond to open channels </p>
             </td>
         </tr>
     </tbody>
@@ -226,47 +289,32 @@ orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~set_space_fixed_channels~~CallsGraph Pages: 1 -->
-<svg id="procset_space_fixed_channelsCallsGraph" width="391pt" height="32pt"
- viewBox="0.00 0.00 391.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~set_space_fixed_channels~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~set_space_fixed_channels~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 387,-28 387,4 -4,4"/>
-<!-- proc~set_space_fixed_channels -->
-<g id="proc~~set_space_fixed_channels~~CallsGraph_node1" class="node">
-<title>proc~set_space_fixed_channels</title>
-<polygon fill="none" stroke="black" points="149,-24 0,-24 0,0 149,0 149,-24"/>
-<text text-anchor="middle" x="74.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_space_fixed_channels</text>
-</g>
-<!-- proc~write_error -->
-<g id="proc~~set_space_fixed_channels~~CallsGraph_node2" class="node">
-<title>proc~write_error</title>
-<g id="a_proc~~set_space_fixed_channels~~CallsGraph_node2"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
-<polygon fill="#d9534f" stroke="#d9534f" points="255,-24 185,-24 185,0 255,0 255,-24"/>
-<text text-anchor="middle" x="220" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
-</a>
-</g>
-</g>
-<!-- proc~set_space_fixed_channels&#45;&gt;proc~write_error -->
-<g id="proc~~set_space_fixed_channels~~CallsGraph_edge1" class="edge">
-<title>proc~set_space_fixed_channels&#45;&gt;proc~write_error</title>
-<path fill="none" stroke="#ff0000" d="M149.35,-12C157.95,-12 166.5,-12 174.52,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="174.72,-15.5 184.72,-12 174.72,-8.5 174.72,-15.5"/>
+<!-- Title: proc~~print_largest_partial_cross_sections~~CallsGraph Pages: 1 -->
+<svg id="procprint_largest_partial_cross_sectionsCallsGraph" width="336pt" height="32pt"
+ viewBox="0.00 0.00 336.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~print_largest_partial_cross_sections~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~print_largest_partial_cross_sections~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 332,-28 332,4 -4,4"/>
+<!-- proc~print_largest_partial_cross_sections -->
+<g id="proc~~print_largest_partial_cross_sections~~CallsGraph_node1" class="node">
+<title>proc~print_largest_partial_cross_sections</title>
+<polygon fill="none" stroke="black" points="200,-24 0,-24 0,0 200,0 200,-24"/>
+<text text-anchor="middle" x="100" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">print_largest_partial_cross_sections</text>
 </g>
 <!-- proc~write_message -->
-<g id="proc~~set_space_fixed_channels~~CallsGraph_node3" class="node">
+<g id="proc~~print_largest_partial_cross_sections~~CallsGraph_node2" class="node">
 <title>proc~write_message</title>
-<g id="a_proc~~set_space_fixed_channels~~CallsGraph_node3"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="383,-24 291,-24 291,0 383,0 383,-24"/>
-<text text-anchor="middle" x="337" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+<g id="a_proc~~print_largest_partial_cross_sections~~CallsGraph_node2"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="328,-24 236,-24 236,0 328,0 328,-24"/>
+<text text-anchor="middle" x="282" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
 </a>
 </g>
 </g>
-<!-- proc~write_error&#45;&gt;proc~write_message -->
-<g id="proc~~set_space_fixed_channels~~CallsGraph_edge2" class="edge">
-<title>proc~write_error&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#ff0000" d="M255.19,-12C263.19,-12 271.91,-12 280.56,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="280.65,-15.5 290.65,-12 280.65,-8.5 280.65,-15.5"/>
+<!-- proc~print_largest_partial_cross_sections&#45;&gt;proc~write_message -->
+<g id="proc~~print_largest_partial_cross_sections~~CallsGraph_edge1" class="edge">
+<title>proc~print_largest_partial_cross_sections&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M200.21,-12C208.92,-12 217.52,-12 225.67,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="225.72,-15.5 235.72,-12 225.72,-8.5 225.72,-15.5"/>
 </g>
 </g>
 </svg>
@@ -341,32 +389,32 @@ orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~set_space_fixed_channels~~CalledByGraph Pages: 1 -->
-<svg id="procset_space_fixed_channelsCalledByGraph" width="272pt" height="32pt"
- viewBox="0.00 0.00 272.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~set_space_fixed_channels~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~set_space_fixed_channels~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 268,-28 268,4 -4,4"/>
-<!-- proc~set_space_fixed_channels -->
-<g id="proc~~set_space_fixed_channels~~CalledByGraph_node1" class="node">
-<title>proc~set_space_fixed_channels</title>
-<polygon fill="none" stroke="black" points="264,-24 115,-24 115,0 264,0 264,-24"/>
-<text text-anchor="middle" x="189.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">set_space_fixed_channels</text>
+<!-- Title: proc~~print_largest_partial_cross_sections~~CalledByGraph Pages: 1 -->
+<svg id="procprint_largest_partial_cross_sectionsCalledByGraph" width="323pt" height="32pt"
+ viewBox="0.00 0.00 323.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~print_largest_partial_cross_sections~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~print_largest_partial_cross_sections~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 319,-28 319,4 -4,4"/>
+<!-- proc~print_largest_partial_cross_sections -->
+<g id="proc~~print_largest_partial_cross_sections~~CalledByGraph_node1" class="node">
+<title>proc~print_largest_partial_cross_sections</title>
+<polygon fill="none" stroke="black" points="315,-24 115,-24 115,0 315,0 315,-24"/>
+<text text-anchor="middle" x="215" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">print_largest_partial_cross_sections</text>
 </g>
 <!-- program~scattering -->
-<g id="proc~~set_space_fixed_channels~~CalledByGraph_node2" class="node">
+<g id="proc~~print_largest_partial_cross_sections~~CalledByGraph_node2" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~set_space_fixed_channels~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~print_largest_partial_cross_sections~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~set_space_fixed_channels -->
-<g id="proc~~set_space_fixed_channels~~CalledByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;proc~set_space_fixed_channels</title>
-<path fill="none" stroke="#ff0000" d="M79.39,-12C87.35,-12 96.02,-12 104.88,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="104.93,-15.5 114.93,-12 104.93,-8.5 104.93,-15.5"/>
+<!-- program~scattering&#45;&gt;proc~print_largest_partial_cross_sections -->
+<g id="proc~~print_largest_partial_cross_sections~~CalledByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;proc~print_largest_partial_cross_sections</title>
+<path fill="none" stroke="#ff0000" d="M79.01,-12C87,-12 95.79,-12 104.94,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.98,-15.5 114.98,-12 104.98,-8.5 104.98,-15.5"/>
 </g>
 </g>
 </svg>
@@ -457,7 +505,7 @@ orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/set_space_fixed_channels.html#src">set_space_fixed_channels</a>
+        <a class="list-group-item" href="../proc/print_largest_partial_cross_sections.html#src">print_largest_partial_cross_sections</a>
       </div>
     </div>
 
@@ -476,39 +524,44 @@ orbital angular momentum, \(l\), a space-fixed-frame quantum number.</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">set_space_fixed_channels</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">             </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">parity_exponent_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_l_values</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! Prepares the channel_l_values array which holds values of</span>
-<span class="w">         </span><span class="c">!! orbital angular momentum, \\(l\\), a space-fixed-frame quantum number.</span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">print_largest_partial_cross_sections</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">largest_elastic_xs_</span><span class="p">,</span><span class="w"> </span><span class="n">largest_inelastic_xs_</span><span class="p">,</span><span class="w"> </span><span class="n">elastic_index_</span><span class="p">,</span><span class="w">           </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">inelastic_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">inelastic_index_2_</span><span class="p">,</span><span class="w"> </span><span class="n">open_basis_levels_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! Print the largest partial elastic and inelastic state-to-state</span>
+<span class="w">         </span><span class="c">!! cross-sections in a given block.</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! total angular momentum</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">parity_exponent_</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! parity exponent of the block (0 if p = +1, 1 if p = -1)</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channel_l_values</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! holds all values of l</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">largest_elastic_xs_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! the largest partial elastic state-to-state XS in the block</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">largest_inelastic_xs_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! the largest partial inelastic state-to-state XS in the block</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">elastic_index_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! index pointing indirectly to quantum numbers associated with</span>
+<span class="w">            </span><span class="c">!! the largest partial elastic state-to-state XS in the block</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inelastic_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">inelastic_index_2_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! indices pointing indirectly to quantum numbers associated with</span>
+<span class="w">            </span><span class="c">!! the largest partial inelastic state-to-state XS in the block</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">open_basis_levels_</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! holds indices to the basis arrays that correspond to open channels </span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">level_index_</span><span class="p">,</span><span class="w"> </span><span class="n">l_min_</span><span class="p">,</span><span class="w"> </span><span class="n">l_max_</span><span class="p">,</span><span class="w"> </span><span class="n">l_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_</span><span class="w"></span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prntlvl</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            call </span><span class="n">print_basic_cross_section_info</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">       </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="n">largest_elastic_xs_</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;elastic&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">call </span><span class="n">print_basic_cross_section_info</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">       </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="n">largest_inelastic_xs_</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inelastic&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">prntlvl</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            call </span><span class="n">print_detailed_cross_section_info</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="n">largest_elastic_xs_</span><span class="p">,</span><span class="w"> </span><span class="n">elastic_index_</span><span class="p">,</span><span class="w"> </span><span class="n">elastic_index_</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="n">open_basis_levels_</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;elastic&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">call </span><span class="n">print_detailed_cross_section_info</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="n">largest_inelastic_xs_</span><span class="p">,</span><span class="w"> </span><span class="n">inelastic_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">inelastic_index_2_</span><span class="p">,</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="n">open_basis_levels_</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inelastic&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">endif</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-
-<span class="w">         </span><span class="k">do </span><span class="n">level_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nlevel</span><span class="w"></span>
-<span class="w">            </span><span class="n">l_min_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">level_index_</span><span class="p">))</span><span class="w"></span>
-<span class="w">            </span><span class="n">l_max_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">level_index_</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">do </span><span class="n">l_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l_min_</span><span class="p">,</span><span class="w"> </span><span class="n">l_max_</span><span class="w"></span>
-<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">l_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">level_index_</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parity_exponent_</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">                  </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel_index_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">channel_index_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">channel_l_values</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">                     call </span><span class="n">write_error</span><span class="p">(</span><span class="s2">&quot;channel_index_ out of bounds of &quot;</span><span class="w"> </span><span class="o">//</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                        </span><span class="s2">&quot;channel_l_values in set_space_fixed_channels.&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">                  </span><span class="k">end if</span>
-<span class="k">                  </span><span class="n">channel_l_values</span><span class="p">(</span><span class="n">channel_index_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l_</span><span class="w"></span>
-<span class="w">               </span><span class="k">endif</span>
-<span class="k">            enddo</span>
-<span class="k">         enddo</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">write_message</span><span class="p">(</span><span class="nb">repeat</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="s2">&quot;***&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="k">end subroutine </span><span class="n">set_space_fixed_channels</span><span class="w"></span>
+<span class="w">      </span><span class="k">end subroutine </span><span class="n">print_largest_partial_cross_sections</span><span class="w"></span>
 </pre></div>
 
     </section>

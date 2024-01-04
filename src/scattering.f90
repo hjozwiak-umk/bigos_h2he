@@ -11,7 +11,9 @@ program SCATTERING
    use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
       calculate_k_matrix, calculate_s_matrix
    use unitarity_check_mod, only: unitarity_check
-   use statetostateXS
+   use state_to_state_cross_sections_mod, only:                                &
+      calculate_state_to_state_cross_section,                                  &
+      print_largest_partial_cross_sections, check_cross_section_thresholds
    use utility_functions_mod, only: write_header, file_io_status,              &
       write_message, float_to_character, integer_to_character, time_count_summary
    use array_operations_mod, only: append
@@ -31,8 +33,8 @@ program SCATTERING
       time_jtot_stop, time_jtot, time_parity_start,time_parity_stop,           &
       time_parity, time_coupling_start, time_coupling_stop, time_coupling
    logical :: unitarity_block_check, terminate
-   integer, allocatable :: channels_level_indices(:), channels_omega_values(:),&
-      channels_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:),&
+   integer, allocatable :: channel_indices(:), channels_omega_values(:),&
+      channel_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:),&
       nonzero_legendre_indices(:), smatcheckarr(:)
    real(dp), allocatable :: wv(:), open_basis_wavevectors(:),                  &
       nonzero_coupling_coefficients(:), xs_total(:), xs_block(:), xs_jtot(:)
@@ -178,28 +180,28 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Prepare of the basis for each J/p block:
          ! channels_omega_values holds all values of omega (BF_)
-         ! channels_l_values holds all values of l (SF_)
-         ! channels_level_indices holds the indices which refer to the basis arrays:
+         ! channel_l_values holds all values of l (SF_)
+         ! channel_indices holds the indices which refer to the basis arrays:
          !   --   v1level/j1level/elevel
          !---------------------------------------------------------------------!
          call allocate_1d(channels_omega_values,number_of_channels)
-         call allocate_1d(channels_l_values,number_of_channels)
-         call allocate_1d(channels_level_indices,number_of_channels)
+         call allocate_1d(channel_l_values,number_of_channels)
+         call allocate_1d(channel_indices,number_of_channels)
          !---------------------------------------------------------------------!
-         ! Prepare channels_omega_values, channels_level_indices and channels_l_values
+         ! Prepare channels_omega_values, channel_indices and channel_l_values
          !---------------------------------------------------------------------!
-         call set_body_fixed_channels(jtot_, parity_exponent, channels_level_indices,   &
+         call set_body_fixed_channels(jtot_, parity_exponent, channel_indices,   &
             channels_omega_values)
-         call set_space_fixed_channels(jtot_, parity_exponent, channels_l_values)
+         call set_space_fixed_channels(jtot_, parity_exponent, channel_l_values)
          !---------------------------------------------------------------------!
          ! Print the BF quantum numbers on screen
          !---------------------------------------------------------------------!
          if (prntlvl.ge.1) call print_channels(parity_exponent,                &
-            channels_level_indices, channels_omega_values)
+            channel_indices, channels_omega_values)
          !---------------------------------------------------------------------!
          ! Determine the number of open (energetically accessible) channels
          !---------------------------------------------------------------------!
-         number_of_open_channels = count_open_channels_in_block(channels_level_indices)
+         number_of_open_channels = count_open_channels_in_block(channel_indices)
          !---------------------------------------------------------------------!
          ! If there are no open channels, skip this block
          !---------------------------------------------------------------------!
@@ -213,7 +215,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Determine the largest wavevector in the block
          !---------------------------------------------------------------------!
-         largest_wavevector = calculate_largest_wavenumber(channels_level_indices)
+         largest_wavevector = calculate_largest_wavenumber(channel_indices)
          !---------------------------------------------------------------------!
          ! Determine the number of steps on the intermolecular (R) grid
          ! This is done either directly (if dr > 0)
@@ -229,13 +231,13 @@ program SCATTERING
          ! Prepare the coupling matrix
          !---------------------------------------------------------------------!
          call cpu_time(time_coupling_start)
-         call check_nonzero_coupling_matrix_elements(channels_level_indices,   &
+         call check_nonzero_coupling_matrix_elements(channel_indices,   &
             channels_omega_values, number_of_nonzero_coupling_matrix_elements, &
             number_of_nonzero_coupling_coefficients)
          call allocate_1d(nonzero_terms_per_element,number_of_nonzero_coupling_matrix_elements)
          call allocate_1d(nonzero_coupling_coefficients,number_of_nonzero_coupling_coefficients)
          call allocate_1d(nonzero_legendre_indices,number_of_nonzero_coupling_coefficients)
-         call prepare_coupling_matrix_elements(channels_level_indices,         &
+         call prepare_coupling_matrix_elements(channel_indices,         &
             channels_omega_values, nonzero_terms_per_element,                  &
             nonzero_legendre_indices, nonzero_coupling_coefficients)
          if (prntlvl.ge.2) call print_coupling_matrix_elements_summary(        &
@@ -255,7 +257,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Call the propagator:
          !---------------------------------------------------------------------!
-         call numerov(channels_level_indices, channels_omega_values,           &
+         call numerov(channel_indices, channels_omega_values,           &
             number_of_nonzero_coupling_matrix_elements,                        &
             number_of_nonzero_coupling_coefficients, nonzero_terms_per_element,&
             nonzero_legendre_indices, nonzero_coupling_coefficients, nsteps,   &
@@ -270,13 +272,13 @@ program SCATTERING
          ! Transform the log-derivative matrix to the SF frame
          !---------------------------------------------------------------------!
          call calculate_sf_matrix_from_bf_matrix(number_of_channels, jtot_,               &
-            channels_level_indices, channels_omega_values, channels_l_values,  &
+            channel_indices, channels_omega_values, channel_l_values,  &
             BF_log_der_matrix, SF_log_der_matrix)
          !---------------------------------------------------------------------!
          ! Get the K-matrix from log-derivative matrix (Eq. 6.53)
          !---------------------------------------------------------------------!
          call calculate_k_matrix(number_of_channels, SF_log_der_matrix,        &
-            number_of_open_channels, channels_level_indices, channels_l_values,&
+            number_of_open_channels, channel_indices, channel_l_values,&
             rmax, k_matrix)
          !---------------------------------------------------------------------!
          ! Get the S-matrix from the K-matrix (Eq. 6.57)
@@ -290,13 +292,13 @@ program SCATTERING
          call allocate_1d(wv, number_of_open_channels)
          do iopen = 1, number_of_open_channels
             wv(iopen) = dsqrt((2*reducedmass*&
-               (ETOTAL()-elevel(channels_level_indices(iopen)))))/bohrtoangstrom
+               (ETOTAL()-elevel(channel_indices(iopen)))))/bohrtoangstrom
          enddo
          !---------------------------------------------------------------------!
          ! S-matrix is written to the binary S-matrix file
          !---------------------------------------------------------------------!
          write(11) jtot_, parity_exponent, number_of_open_channels
-         write(11) (channels_level_indices(iopen), channels_l_values(iopen),&
+         write(11) (channel_indices(iopen), channel_l_values(iopen),&
                     wv(iopen), iopen = 1, number_of_open_channels)
          write(11) ((s_matrix_real(iopen,iopen2), iopen2 = 1, iopen),&
                     iopen=1, number_of_open_channels)
@@ -315,10 +317,9 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Calculate all available cross-sections
          !---------------------------------------------------------------------!
-         call CROSSSECTION(jtot_,number_of_open_channels,number_of_channels,   &
-            number_of_open_basis_levels,open_basis_levels,                     &
-            open_basis_wavevectors,s_matrix_real,s_matrix_imag,channels_level_indices,   &
-            channels_l_values,xs_block)
+         call calculate_state_to_state_cross_section(jtot_, open_basis_levels, &
+            open_basis_wavevectors,s_matrix_real,s_matrix_imag,channel_indices,&
+            channel_l_values,xs_block)
          !---------------------------------------------------------------------!
          ! Print the results from this parity block to the partial XS file
          ! and add the calculated partial XS to the xs_jtot array
@@ -387,11 +388,11 @@ program SCATTERING
          enddo
       enddo
       !-----------------------------------------------------------------------!
-      call print_largest_partial_xs(jtot_, maxXSdiag, maxXSoff, jinddiag,     &
-         jindoff1, jindoff2, number_of_open_basis_levels, open_basis_levels)
+      call print_largest_partial_cross_sections(jtot_, maxXSdiag, maxXSoff, jinddiag,     &
+         jindoff1, jindoff2, open_basis_levels)
       !-----------------------------------------------------------------------!
       if (jtotmax == 999999) then
-         call check_dtol_otol(maxXSdiag, maxXSoff, ncacdiag, ncacoff, terminate)
+         call check_cross_section_thresholds(maxXSdiag, maxXSoff, ncacdiag, ncacoff, terminate)
       endif
       !------------------------------------------------------------------------!
       ! Check the time after each JTOT block:                                  
