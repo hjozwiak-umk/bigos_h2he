@@ -26,7 +26,6 @@ check_libs: wigxjpf
 wigxjpf:
 	@if [ ! -d "$(WIGXJPF_PATH)" ]; then \
 		echo "Installing wigxjpf..."; \
-		wget http://fy.chalmers.se/subatom/wigxjpf/wigxjpf-1.11.tar.gz; \
 		tar -xzf wigxjpf-1.11.tar.gz; \
 		cd wigxjpf-1.11; \
 		make fsimple.test FC=gfortran; \
@@ -37,7 +36,7 @@ wigxjpf:
 		cp -r lib/* $(PWD)/libs/wigxjpf-1.11/lib/; \
 		cp -r mod/* $(PWD)/libs/wigxjpf-1.11/mod/; \
 		cd ..; \
-		rm -rf wigxjpf-1.11 wigxjpf-1.11.tar.gz; \
+		rm -rf wigxjpf-1.11; \
 	fi
 
 scattering: $(OBJS)

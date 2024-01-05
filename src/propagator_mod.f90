@@ -165,7 +165,7 @@ module propagator_mod
          intermolecular_distance_, channel_indices_, channels_omega_values_,   &
          nonzero_terms_per_element_, nonzero_legendre_indices_,                &
          nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_, is_t_matrix_required_, t_matrix_returned_)
-         !! same as propagation step, but returns T-matrix
+         !! ...
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_channels_
             !! size of the basis
@@ -243,9 +243,11 @@ module propagator_mod
          step_numerov_, total_angular_momentum_,   &
          channel_indices_, channels_omega_values_,   &
          nonzero_terms_per_element_, nonzero_legendre_indices_,                &
-         nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,       &
+         nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,      &
          t_matrix_minus_, t_matrix_, t_matrix_plus_, r_matrix_rmax_, r_matrix_plus_)
-         !! ...
+         !! Handles propagation at the last two grid points:
+         !! R_{N-1} and R_{N}: provides T-matrix at N-1, N and N+1 points
+         !! and the Ratio matrix at N and N+1 points
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_channels_
             !! size of the basis
@@ -267,9 +269,9 @@ module propagator_mod
          real(dp), intent(in) :: nonzero_algebraic_coefficients_(:)
             !! holds the values of the non-zero algebraic coefficients
          real(dp), intent(in) :: centrifugal_matrix_(number_of_channels_,number_of_channels_)
-            !! (R**2)*centrifugal matrix -
+            !! \\(R^{2} \cdot\\) centrifugal matrix -
          real(dp), intent(inout) :: r_matrix_(number_of_channels_,number_of_channels_)
-            !! R-matrix at N-1 step
+            !! Ratio matrix at N-1 step
          real(dp), intent(out) :: t_matrix_minus_(number_of_channels_,number_of_channels_)
             !! T-matrix at N-1 step
          real(dp), intent(out) :: t_matrix_(number_of_channels_,number_of_channels_)
@@ -277,9 +279,9 @@ module propagator_mod
          real(dp), intent(out) :: t_matrix_plus_(number_of_channels_,number_of_channels_)
             !! T-matrix at N+1 step
          real(dp), intent(out) :: r_matrix_rmax_(number_of_channels_,number_of_channels_)
-            !! R-matrix at N step
+            !! Ratio matrix at N step
          real(dp), intent(out) :: r_matrix_plus_(number_of_channels_,number_of_channels_)
-            !! R-matrix at N+1 step
+            !! Ratio matrix at N+1 step
          !---------------------------------------------------------------------!
          logical :: is_t_matrix_required_
          real(dp) :: intermolecular_distance_
@@ -291,47 +293,53 @@ module propagator_mod
          ! N - 1 step
          !---------------------------------------------------------------------!
          intermolecular_distance_ = rmax - step_numerov_
-         call general_propagation_step(number_of_channels_, step_numerov_, &
-                  total_angular_momentum_, intermolecular_distance_, channel_indices_,    &
-                  channels_omega_values_, nonzero_terms_per_element_, nonzero_legendre_indices_, &
-                  nonzero_algebraic_coefficients_, centrifugal_matrix_,        &
-                  r_matrix_, is_t_matrix_required_, t_matrix_minus_)
+         call general_propagation_step(number_of_channels_, step_numerov_,     &
+            total_angular_momentum_, intermolecular_distance_,                 &
+            channel_indices_, channels_omega_values_,                          &
+            nonzero_terms_per_element_, nonzero_legendre_indices_,             &
+            nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,   &
+            is_t_matrix_required_, t_matrix_minus_)
          r_matrix_rmax_ = r_matrix_
          !---------------------------------------------------------------------!
          ! N  step
          !---------------------------------------------------------------------!
          intermolecular_distance_ = intermolecular_distance_ + step_numerov_
-         call general_propagation_step(number_of_channels_, step_numerov_, &
-                  total_angular_momentum_, intermolecular_distance_, channel_indices_,    &
-                  channels_omega_values_, nonzero_terms_per_element_, nonzero_legendre_indices_, &
-                  nonzero_algebraic_coefficients_, centrifugal_matrix_,        &
-                  r_matrix_, is_t_matrix_required_, t_matrix_)
+         call general_propagation_step(number_of_channels_, step_numerov_,     &
+            total_angular_momentum_, intermolecular_distance_,                 &
+            channel_indices_, channels_omega_values_,                          &
+            nonzero_terms_per_element_, nonzero_legendre_indices_,             &
+            nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,   &
+            is_t_matrix_required_, t_matrix_)
          r_matrix_plus_ = r_matrix_
          !---------------------------------------------------------------------!
          ! N + 1 step
          !---------------------------------------------------------------------!
          intermolecular_distance_ = intermolecular_distance_ + step_numerov_
-         call general_propagation_step(number_of_channels_, step_numerov_, &
-                  total_angular_momentum_, intermolecular_distance_, channel_indices_,    &
-                  channels_omega_values_, nonzero_terms_per_element_, nonzero_legendre_indices_, &
-                  nonzero_algebraic_coefficients_, centrifugal_matrix_,        &
-                  r_matrix_, is_t_matrix_required_, t_matrix_plus_)
+         call general_propagation_step(number_of_channels_, step_numerov_,     &
+            total_angular_momentum_, intermolecular_distance_,                 &
+            channel_indices_, channels_omega_values_,                          &
+            nonzero_terms_per_element_, nonzero_legendre_indices_,             &
+            nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,   &
+            is_t_matrix_required_, t_matrix_plus_)
       !---------------------------------------------------------------------!
       end subroutine handle_final_propagation_steps
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
       subroutine calculate_coupling_matrix(intermolecular_distance_,           &
          pes_matrix_, centrifugal_matrix_, coupling_matrix_)
-         !! combine the contribution from the interaction potential, total and
-         !! and internal energy (pes_matrix_) with centrifugal matrix 
+         !! Combines the contribution from the interaction potential, total and
+         !! and internal energy (pes_matrix_) with centrifugal matrix
+         !! \\( W_{\mathrm{N}} = V_{\mathrm{N}} + 1/R^{2} L^{2} \\)
          !---------------------------------------------------------------------!
          real(dp), intent(in) :: intermolecular_distance_
             !! intermolecular distance
          real(dp), intent(in) :: pes_matrix_(:,:)
-            !! ...
+            !! holds contribution from the interaction potential, total and
+            !! and internal energy
          real(dp), intent(in) :: centrifugal_matrix_(:,:)
-            !! ...
+            !! \\(R^{2}\\) centrifugal matrix
          real(dp), intent(inout) :: coupling_matrix_(:,:)
+            !! (output) Coupling (W) matrix
          !---------------------------------------------------------------------!
          coupling_matrix_ = pes_matrix_                                        &
             + (1.0_dp/intermolecular_distance_**2.0_dp) * centrifugal_matrix_
@@ -340,13 +348,15 @@ module propagator_mod
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
       subroutine calculate_t_matrix(step_, coupling_matrix_, t_matrix_)
-         !! ...
+         !! Calculates the T-matrix from the coupling matrix at grid point N:
+         !! \\( T_{\mathrm{N}} = h^{2}/12 W_{\mathrm{N}} \\)
          !---------------------------------------------------------------------!
          real(dp), intent(in) :: step_
             !! step of the propagator
          real(dp), intent(in) :: coupling_matrix_(:,:)
-            !!
+            !! Coupling (W) matrix v
          real(dp), intent(inout) :: t_matrix_(:,:)
+            !! (output) T-matrix at grid point N
          !---------------------------------------------------------------------!
          t_matrix_ = (step_**2.0_dp)/12.0_dp * coupling_matrix_
          !---------------------------------------------------------------------!
@@ -354,11 +364,13 @@ module propagator_mod
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
       subroutine calculate_u_matrix(t_matrix_, u_matrix_)
-         !! \\(U_{N} = 12(\mathbf{I} - 10 T_{N})^{-1} - 10 \mathbf{I}\\)
+         !! Calculates the U-matrix from T-matrix at grid point N:
+         !! \\(U_{\mathrm{N}} = 12(\mathbf{I} - 10 T_{\mathrm{N}})^{-1} - 10 \mathbf{I}\\)
          !---------------------------------------------------------------------!
          real(dp), intent(in) :: t_matrix_(:,:)
-            !!
+            !! T-matrix at grid point N
          real(dp), intent(inout) :: u_matrix_(:,:)
+            !! (output) U-matrix at grid point N
          !---------------------------------------------------------------------!
          integer(int32) :: channel_index_
          !---------------------------------------------------------------------!
@@ -366,9 +378,7 @@ module propagator_mod
          call add_scalar_to_diagonal(u_matrix_, 1.0_dp)
          call invert_symmetric_matrix(u_matrix_)
          call fill_symmetric_matrix(u_matrix_, 'u')
-
          u_matrix_ = 12.0_dp * u_matrix_
-
          call add_scalar_to_diagonal(u_matrix_, - 10.0_dp)
          !---------------------------------------------------------------------!
       end subroutine calculate_u_matrix
@@ -377,7 +387,14 @@ module propagator_mod
       subroutine calculate_log_der_matrix(step_, number_of_channels_,          &
          t_matrix_minus_, t_matrix_, t_matrix_plus_, r_matrix_, r_matrix_plus_,&
          log_der_matrix_)
-         !! calculates the log-derivative matrix from ....
+         !! calculates the log-derivative matrix from
+         !! \begin{equation}
+         !! {Y}_{\rm N} = \frac{1}{h} \Biggl(\Bigl(\frac{1}{2}\mathbf{I}-{T}_{\rm{N}+1}\Bigr)
+         !! \Bigl(\mathbf{I}-{T}_{\rm{N}+1}\Bigr)^{-1} {R}_{\rm{N}+1} -
+         !! \Bigl(\frac{1}{2}\mathbf{I}-{T}_{\rm{N}-1}\Bigr)
+         !! \Bigl(\mathbf{I}-\mathbf{T}_{\rm{N}-1}\Bigr)^{-1}\mathbf{R}_{\rm{N}}^{-1}
+         !! \Biggr)\Bigl(\mathbf{I}-{T}_{\rm{N}}\Bigr) 
+         !! \end{equation}
          !! called by numerov at the end of the propagation
          !---------------------------------------------------------------------!
          real(dp), intent(in) :: step_
