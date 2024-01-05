@@ -19,10 +19,8 @@ https://doi.org/10.48550/arXiv.2311.09890
 
 
 ## Installation
-----------------
 
 ### Prerequisites
-----------------
 
 * [Make](https://www.gnu.org/software/make/)
 * A modern Fortran compiler, such as [GNU Fortran Compiler](https://gcc.gnu.org/wiki/GFortran) (gfortran) or
@@ -31,7 +29,6 @@ https://doi.org/10.48550/arXiv.2311.09890
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (optional)
 
 ### Get the source code
--------------------
 
 #### Using git
 
@@ -48,7 +45,6 @@ Extract the contents to ``./bigos_dir`` and enter this directory.
 
 
 ### Building instructions
--------------------
 
 ##### Linux systems
 
