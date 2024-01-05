@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>check_nonzero_coupling_matrix_elements &ndash; the SCATTERING code</title>
+    <title>check_nonzero_pes_matrix_elements &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>check_nonzero_coupling_matrix_elements
+    <h1>check_nonzero_pes_matrix_elements
       <small>Subroutine</small>
       
     </h1>
@@ -89,18 +89,18 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.5% of total for procedures.">26 statements</a>
+               title=" 1.6% of total for procedures.">26 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/coupling_matrix_mod.f90"> Source File</a>
+              <a href="../src/pes_matrix_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/coupling_matrix_mod.f90.html'>coupling_matrix_mod.f90</a></li>
-              <li><a href='../module/coupling_matrix_mod.html'>coupling_matrix_mod</a></li>
-          <li class="active">check_nonzero_coupling_matrix_elements</li>
+              <li><a href='../sourcefile/pes_matrix_mod.f90.html'>pes_matrix_mod.f90</a></li>
+              <li><a href='../module/pes_matrix_mod.html'>pes_matrix_mod</a></li>
+          <li class="active">check_nonzero_pes_matrix_elements</li>
         </ol>
       </div>
     </div>
@@ -118,28 +118,7 @@
       <div id="sidebar">
       <h3>Contents</h3>
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#vars-0">Variables</a>
-        </h3>
-      </div>
-      <div id="vars-0" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-channel_index_1_~2">channel_index_1_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-channel_index_2_~2">channel_index_2_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-count_nonzero_coupling_coefficients~3">count_nonzero_coupling_coefficients</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-count_nonzero_coupling_matrix_elements">count_nonzero_coupling_matrix_elements</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-j_~14">j_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-j_prime_~6">j_prime_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-lambda_~5">lambda_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-legendre_term_index_">legendre_term_index_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-omega_~8">omega_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-omega_prime_~2">omega_prime_</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -160,7 +139,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#src">check_nonzero_coupling_matrix_elements</a>
+        <a class="list-group-item" href="../proc/check_nonzero_pes_matrix_elements.html#src">check_nonzero_pes_matrix_elements</a>
       </div>
     </div>
 
@@ -170,16 +149,16 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine check_nonzero_coupling_matrix_elements(channel_indices, channels_omega_values, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients)  
+    <h2>public  subroutine check_nonzero_pes_matrix_elements(channel_indices, channels_omega_values, number_of_nonzero_pes_matrix_elements, number_of_nonzero_algebraic_coefficients)  
 </h2>
     
 
-    <p>checks the number of non-zero coupling matrix elements due to
+    <p>checks the number of non-zero PES matrix elements due to
 the \bar{\Omega} = \bar{\Omega}' condition,
-"number_of_nonzero_coupling_matrix_elements",
+"number_of_nonzero_pes_matrix_elements",
 and the total number of non-zero algebraic coefficients,
 \( g_{{\lambda},\gamma,\gamma'}^{Jp} \), in the whole matrix,
-"number_of_nonzero_coupling_coefficients".</p>
+"number_of_nonzero_algebraic_coefficients".</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -224,7 +203,7 @@ and the total number of non-zero algebraic coefficients,
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_nonzero_coupling_matrix_elements"></span>
+              <span class="anchor" id="variable-number_of_nonzero_pes_matrix_elements"></span>
               integer(kind=int32),
             </td>
 <td>intent(out)</td>
@@ -232,14 +211,14 @@ and the total number of non-zero algebraic coefficients,
               
             </td>
             <td>::</td>
-            <td><strong>number_of_nonzero_coupling_matrix_elements</strong></td>
+            <td><strong>number_of_nonzero_pes_matrix_elements</strong></td>
             <td>
-                <p>number of non-zero terms in the sum () for each non-zero element of the coupling matrix</p>
+                <p>number of non-zero terms in the sum () for each non-zero element of the PES matrix</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_nonzero_coupling_coefficients"></span>
+              <span class="anchor" id="variable-number_of_nonzero_algebraic_coefficients"></span>
               integer(kind=int32),
             </td>
 <td>intent(out)</td>
@@ -247,9 +226,9 @@ and the total number of non-zero algebraic coefficients,
               
             </td>
             <td>::</td>
-            <td><strong>number_of_nonzero_coupling_coefficients</strong></td>
+            <td><strong>number_of_nonzero_algebraic_coefficients</strong></td>
             <td>
-                <p>number of all non-zero algberaix coefficients in the whole coupling matrix</p>
+                <p>number of all non-zero algberaix coefficients in the whole PES matrix</p>
             </td>
         </tr>
     </tbody>
@@ -266,62 +245,62 @@ and the total number of non-zero algebraic coefficients,
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~check_nonzero_coupling_matrix_elements~~CallsGraph Pages: 1 -->
-<svg id="proccheck_nonzero_coupling_matrix_elementsCallsGraph" width="632pt" height="74pt"
- viewBox="0.00 0.00 632.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
-<title>proc~~check_nonzero_coupling_matrix_elements~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 628,-70 628,4 -4,4"/>
-<!-- proc~check_nonzero_coupling_matrix_elements -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_node1" class="node">
-<title>proc~check_nonzero_coupling_matrix_elements</title>
-<polygon fill="none" stroke="black" points="238,-45 0,-45 0,-21 238,-21 238,-45"/>
-<text text-anchor="middle" x="119" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">check_nonzero_coupling_matrix_elements</text>
+<!-- Title: proc~~check_nonzero_pes_matrix_elements~~CallsGraph Pages: 1 -->
+<svg id="proccheck_nonzero_pes_matrix_elementsCallsGraph" width="605pt" height="74pt"
+ viewBox="0.00 0.00 605.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~check_nonzero_pes_matrix_elements~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<title>proc~~check_nonzero_pes_matrix_elements~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 601,-70 601,4 -4,4"/>
+<!-- proc~check_nonzero_pes_matrix_elements -->
+<g id="proc~~check_nonzero_pes_matrix_elements~~CallsGraph_node1" class="node">
+<title>proc~check_nonzero_pes_matrix_elements</title>
+<polygon fill="none" stroke="black" points="211,-45 0,-45 0,-21 211,-21 211,-45"/>
+<text text-anchor="middle" x="105.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">check_nonzero_pes_matrix_elements</text>
 </g>
 <!-- proc~zero_projections_3j_condition -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_node2" class="node">
+<g id="proc~~check_nonzero_pes_matrix_elements~~CallsGraph_node2" class="node">
 <title>proc~zero_projections_3j_condition</title>
-<g id="a_proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_node2"><a xlink:href=".././proc/zero_projections_3j_condition.html" xlink:title="zero_projections_3j_condition">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="443,-45 274,-45 274,-21 443,-21 443,-45"/>
-<text text-anchor="middle" x="358.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_projections_3j_condition</text>
+<g id="a_proc~~check_nonzero_pes_matrix_elements~~CallsGraph_node2"><a xlink:href=".././proc/zero_projections_3j_condition.html" xlink:title="zero_projections_3j_condition">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="416,-45 247,-45 247,-21 416,-21 416,-45"/>
+<text text-anchor="middle" x="331.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_projections_3j_condition</text>
 </a>
 </g>
 </g>
-<!-- proc~check_nonzero_coupling_matrix_elements&#45;&gt;proc~zero_projections_3j_condition -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_edge1" class="edge">
-<title>proc~check_nonzero_coupling_matrix_elements&#45;&gt;proc~zero_projections_3j_condition</title>
-<path fill="none" stroke="#ff0000" d="M238.05,-33C246.66,-33 255.27,-33 263.71,-33"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="263.9,-36.5 273.9,-33 263.9,-29.5 263.9,-36.5"/>
+<!-- proc~check_nonzero_pes_matrix_elements&#45;&gt;proc~zero_projections_3j_condition -->
+<g id="proc~~check_nonzero_pes_matrix_elements~~CallsGraph_edge1" class="edge">
+<title>proc~check_nonzero_pes_matrix_elements&#45;&gt;proc~zero_projections_3j_condition</title>
+<path fill="none" stroke="#ff0000" d="M211.29,-33C219.79,-33 228.34,-33 236.76,-33"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="236.94,-36.5 246.94,-33 236.94,-29.5 236.94,-36.5"/>
 </g>
 <!-- proc~triangle_inequality_holds -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_node3" class="node">
+<g id="proc~~check_nonzero_pes_matrix_elements~~CallsGraph_node3" class="node">
 <title>proc~triangle_inequality_holds</title>
-<g id="a_proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_node3"><a xlink:href=".././proc/triangle_inequality_holds.html" xlink:title="triangle_inequality_holds">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="624,-66 479,-66 479,-42 624,-42 624,-66"/>
-<text text-anchor="middle" x="551.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">triangle_inequality_holds</text>
+<g id="a_proc~~check_nonzero_pes_matrix_elements~~CallsGraph_node3"><a xlink:href=".././proc/triangle_inequality_holds.html" xlink:title="triangle_inequality_holds">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="597,-66 452,-66 452,-42 597,-42 597,-66"/>
+<text text-anchor="middle" x="524.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">triangle_inequality_holds</text>
 </a>
 </g>
 </g>
 <!-- proc~zero_projections_3j_condition&#45;&gt;proc~triangle_inequality_holds -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_edge2" class="edge">
+<g id="proc~~check_nonzero_pes_matrix_elements~~CallsGraph_edge2" class="edge">
 <title>proc~zero_projections_3j_condition&#45;&gt;proc~triangle_inequality_holds</title>
-<path fill="none" stroke="#ff0000" d="M443.28,-42.21C451.68,-43.14 460.22,-44.07 468.6,-45"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="468.43,-48.5 478.75,-46.11 469.19,-41.54 468.43,-48.5"/>
+<path fill="none" stroke="#ff0000" d="M416.28,-42.21C424.68,-43.14 433.22,-44.07 441.6,-45"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="441.43,-48.5 451.75,-46.11 442.19,-41.54 441.43,-48.5"/>
 </g>
 <!-- proc~is_sum_even -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_node4" class="node">
+<g id="proc~~check_nonzero_pes_matrix_elements~~CallsGraph_node4" class="node">
 <title>proc~is_sum_even</title>
-<g id="a_proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_node4"><a xlink:href=".././proc/is_sum_even.html" xlink:title="is_sum_even">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="591.5,-24 511.5,-24 511.5,0 591.5,0 591.5,-24"/>
-<text text-anchor="middle" x="551.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_sum_even</text>
+<g id="a_proc~~check_nonzero_pes_matrix_elements~~CallsGraph_node4"><a xlink:href=".././proc/is_sum_even.html" xlink:title="is_sum_even">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="564.5,-24 484.5,-24 484.5,0 564.5,0 564.5,-24"/>
+<text text-anchor="middle" x="524.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_sum_even</text>
 </a>
 </g>
 </g>
 <!-- proc~zero_projections_3j_condition&#45;&gt;proc~is_sum_even -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CallsGraph_edge3" class="edge">
+<g id="proc~~check_nonzero_pes_matrix_elements~~CallsGraph_edge3" class="edge">
 <title>proc~zero_projections_3j_condition&#45;&gt;proc~is_sum_even</title>
-<path fill="none" stroke="#ff0000" d="M443.28,-23.79C463.05,-21.61 483.5,-19.37 501.18,-17.42"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="501.68,-20.89 511.24,-16.32 500.92,-13.93 501.68,-20.89"/>
+<path fill="none" stroke="#ff0000" d="M416.28,-23.79C436.05,-21.61 456.5,-19.37 474.18,-17.42"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="474.68,-20.89 484.24,-16.32 473.92,-13.93 474.68,-20.89"/>
 </g>
 </g>
 </svg>
@@ -396,32 +375,32 @@ and the total number of non-zero algebraic coefficients,
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~check_nonzero_coupling_matrix_elements~~CalledByGraph Pages: 1 -->
-<svg id="proccheck_nonzero_coupling_matrix_elementsCalledByGraph" width="361pt" height="32pt"
- viewBox="0.00 0.00 361.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~check_nonzero_coupling_matrix_elements~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 357,-28 357,4 -4,4"/>
-<!-- proc~check_nonzero_coupling_matrix_elements -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CalledByGraph_node1" class="node">
-<title>proc~check_nonzero_coupling_matrix_elements</title>
-<polygon fill="none" stroke="black" points="353,-24 115,-24 115,0 353,0 353,-24"/>
-<text text-anchor="middle" x="234" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">check_nonzero_coupling_matrix_elements</text>
+<!-- Title: proc~~check_nonzero_pes_matrix_elements~~CalledByGraph Pages: 1 -->
+<svg id="proccheck_nonzero_pes_matrix_elementsCalledByGraph" width="334pt" height="32pt"
+ viewBox="0.00 0.00 334.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~check_nonzero_pes_matrix_elements~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~check_nonzero_pes_matrix_elements~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 330,-28 330,4 -4,4"/>
+<!-- proc~check_nonzero_pes_matrix_elements -->
+<g id="proc~~check_nonzero_pes_matrix_elements~~CalledByGraph_node1" class="node">
+<title>proc~check_nonzero_pes_matrix_elements</title>
+<polygon fill="none" stroke="black" points="326,-24 115,-24 115,0 326,0 326,-24"/>
+<text text-anchor="middle" x="220.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">check_nonzero_pes_matrix_elements</text>
 </g>
 <!-- program~scattering -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CalledByGraph_node2" class="node">
+<g id="proc~~check_nonzero_pes_matrix_elements~~CalledByGraph_node2" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~check_nonzero_coupling_matrix_elements~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~check_nonzero_pes_matrix_elements~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~check_nonzero_coupling_matrix_elements -->
-<g id="proc~~check_nonzero_coupling_matrix_elements~~CalledByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;proc~check_nonzero_coupling_matrix_elements</title>
-<path fill="none" stroke="#ff0000" d="M79.46,-12C87.2,-12 95.72,-12 104.66,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="104.9,-15.5 114.9,-12 104.9,-8.5 104.9,-15.5"/>
+<!-- program~scattering&#45;&gt;proc~check_nonzero_pes_matrix_elements -->
+<g id="proc~~check_nonzero_pes_matrix_elements~~CalledByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;proc~check_nonzero_pes_matrix_elements</title>
+<path fill="none" stroke="#ff0000" d="M79.34,-12C87.11,-12 95.64,-12 104.53,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.71,-15.5 114.71,-12 104.71,-8.5 104.71,-15.5"/>
 </g>
 </g>
 </svg>
@@ -491,28 +470,7 @@ and the total number of non-zero algebraic coefficients,
     <section class="visible-xs visible-sm hidden-md">
         <h3>Contents</h3>
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#vars-1">Variables</a>
-        </h3>
-      </div>
-      <div id="vars-1" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-channel_index_1_~2">channel_index_1_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-channel_index_2_~2">channel_index_2_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-count_nonzero_coupling_coefficients~3">count_nonzero_coupling_coefficients</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-count_nonzero_coupling_matrix_elements">count_nonzero_coupling_matrix_elements</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-j_~14">j_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-j_prime_~6">j_prime_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-lambda_~5">lambda_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-legendre_term_index_">legendre_term_index_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-omega_~8">omega_</a>
-            <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#variable-omega_prime_~2">omega_prime_</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -533,7 +491,7 @@ and the total number of non-zero algebraic coefficients,
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/check_nonzero_coupling_matrix_elements.html#src">check_nonzero_coupling_matrix_elements</a>
+        <a class="list-group-item" href="../proc/check_nonzero_pes_matrix_elements.html#src">check_nonzero_pes_matrix_elements</a>
       </div>
     </div>
 
@@ -542,193 +500,6 @@ and the total number of non-zero algebraic coefficients,
     <br class="visible-xs visible-sm hidden-md">
 
 
-    <section>    
-      <h2>Variables</h2>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Visibility</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-<th></th><th>Initial</th>        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel_index_1_~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel_index_1_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel_index_2_~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel_index_2_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-count_nonzero_coupling_coefficients~3"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>count_nonzero_coupling_coefficients</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-count_nonzero_coupling_matrix_elements"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>count_nonzero_coupling_matrix_elements</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-j_~14"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>j_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-j_prime_~6"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>j_prime_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-lambda_~5"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>lambda_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-legendre_term_index_"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>legendre_term_index_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omega_~8"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omega_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omega_prime_~2"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omega_prime_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    </section>
-    <br>
     
     
 
@@ -739,31 +510,31 @@ and the total number of non-zero algebraic coefficients,
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">check_nonzero_coupling_matrix_elements</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">,&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">channels_omega_values</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!! checks the number of non-zero coupling matrix elements due to</span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">check_nonzero_pes_matrix_elements</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">,&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">channels_omega_values</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_nonzero_pes_matrix_elements</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">number_of_nonzero_algebraic_coefficients</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! checks the number of non-zero PES matrix elements due to</span>
 <span class="w">         </span><span class="c">!! the \bar{\Omega} = \bar{\Omega}&#39; condition,</span>
-<span class="w">         </span><span class="c">!! &quot;number_of_nonzero_coupling_matrix_elements&quot;,</span>
+<span class="w">         </span><span class="c">!! &quot;number_of_nonzero_pes_matrix_elements&quot;,</span>
 <span class="w">         </span><span class="c">!! and the total number of non-zero algebraic coefficients,</span>
 <span class="w">         </span><span class="c">!! \\( g\_{{\lambda},\gamma,\gamma&#39;}^{Jp} \\), in the whole matrix,</span>
-<span class="w">         </span><span class="c">!! &quot;number_of_nonzero_coupling_coefficients&quot;.</span>
+<span class="w">         </span><span class="c">!! &quot;number_of_nonzero_algebraic_coefficients&quot;.</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channel_indices</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds the indices pointing to the basis arrays</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds all values of \bar{\Omega}</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of non-zero terms in the sum () for each non-zero element of the coupling matrix</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of all non-zero algberaix coefficients in the whole coupling matrix</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_nonzero_pes_matrix_elements</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! number of non-zero terms in the sum () for each non-zero element of the PES matrix</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_nonzero_algebraic_coefficients</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! number of all non-zero algberaix coefficients in the whole PES matrix</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="p">,</span><span class="w">             </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">count_nonzero_coupling_coefficients</span><span class="p">,</span><span class="w"> </span><span class="n">j_</span><span class="p">,</span><span class="w"> </span><span class="n">j_prime_</span><span class="p">,</span><span class="w"> </span><span class="n">omega_</span><span class="p">,</span><span class="w">         </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">count_nonzero_pes_matrix_elements</span><span class="p">,</span><span class="w">             </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">count_nonzero_algebraic_coefficients</span><span class="p">,</span><span class="w"> </span><span class="n">j_</span><span class="p">,</span><span class="w"> </span><span class="n">j_prime_</span><span class="p">,</span><span class="w"> </span><span class="n">omega_</span><span class="p">,</span><span class="w">         </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w">            </span><span class="n">omega_prime_</span><span class="p">,</span><span class="w"> </span><span class="n">lambda_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">,</span><span class="w"> </span><span class="n">legendre_term_index_</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">count_nonzero_coupling_coefficients</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">         </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">         </span><span class="n">count_nonzero_algebraic_coefficients</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">         </span><span class="n">count_nonzero_pes_matrix_elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 <span class="w">         </span><span class="k">do </span><span class="n">channel_index_1_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="n">j_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j1array</span><span class="p">(</span><span class="n">channel_indices</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">))</span><span class="w"></span>
 <span class="w">            </span><span class="n">omega_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channels_omega_values</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"></span>
@@ -773,21 +544,21 @@ and the total number of non-zero algebraic coefficients,
 <span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
 <span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">omega_</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">omega_prime_</span><span class="p">)</span><span class="w"> </span><span class="k">cycle</span><span class="w"></span>
 <span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
-<span class="w">               </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="w"> </span><span class="o">=</span><span class="w">                        </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">               </span><span class="n">count_nonzero_pes_matrix_elements</span><span class="w"> </span><span class="o">=</span><span class="w">                        </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">count_nonzero_pes_matrix_elements</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 <span class="w">               </span><span class="k">do </span><span class="n">legendre_term_index_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nterms</span><span class="w"></span>
 <span class="w">                  </span><span class="n">lambda_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l1tab</span><span class="p">(</span><span class="n">legendre_term_index_</span><span class="p">)</span><span class="w"></span>
 <span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="w"> </span><span class="n">zero_projections_3j_condition</span><span class="p">(</span><span class="n">j_</span><span class="p">,</span><span class="w"> </span><span class="n">j_prime_</span><span class="p">,</span><span class="w"> </span><span class="n">lambda_</span><span class="p">))</span><span class="w"> </span><span class="k">cycle</span>
-<span class="k">                  </span><span class="n">count_nonzero_coupling_coefficients</span><span class="w"> </span><span class="o">=</span><span class="w">                        </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                     </span><span class="n">count_nonzero_coupling_coefficients</span><span class="o">+</span><span class="mi">1</span><span class="w">            </span>
+<span class="k">                  </span><span class="n">count_nonzero_algebraic_coefficients</span><span class="w"> </span><span class="o">=</span><span class="w">                        </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                     </span><span class="n">count_nonzero_algebraic_coefficients</span><span class="o">+</span><span class="mi">1</span><span class="w">            </span>
 <span class="w">              </span><span class="k">enddo</span>
 <span class="k">            enddo</span>
 <span class="k">         enddo</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_nonzero_coupling_coefficients</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_nonzero_coupling_matrix_elements</span><span class="w"></span>
+<span class="w">         </span><span class="n">number_of_nonzero_algebraic_coefficients</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_nonzero_algebraic_coefficients</span><span class="w"></span>
+<span class="w">         </span><span class="n">number_of_nonzero_pes_matrix_elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_nonzero_pes_matrix_elements</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">      </span><span class="k">end subroutine </span><span class="n">check_nonzero_coupling_matrix_elements</span><span class="w"></span>
+<span class="w">      </span><span class="k">end subroutine </span><span class="n">check_nonzero_pes_matrix_elements</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -808,7 +579,7 @@ and the total number of non-zero algebraic coefficients,
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-04 15:34            </p>
+ on 2024-01-05 12:24            </p>
         </div>
       </div>
       <br>
