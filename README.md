@@ -48,7 +48,7 @@ Extract the contents to ``./bigos_dir`` and enter this directory.
 
 ##### Linux systems
 
-###### Before building the code, make sure that we have all the necessary compilers, libraries and apps installed
+###### Before building the code, make sure that all the necessary tools and libraries are installed
 
 ```
 sudo apt install make gfortran liblapack-dev libblas-dev git
@@ -63,7 +63,7 @@ sudo apt install make gfortran liblapack-dev libblas-dev git
 make all
 ```
 
-@note
+
 The script will extract the [wigxjpf](http://fy.chalmers.se/subatom/wigxjpf/) library in ``./libs`` directory, <br>
 and then build and compile the contents of ``./src`` directory.  <br>
 **The executable, ``scattering.x``, is located in the main directory.**
