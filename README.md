@@ -18,10 +18,11 @@ Rovibrational (de-)excitation of H<sub>2</sub> by He revisited <br>
 https://doi.org/10.48550/arXiv.2311.09890
 
 
-##Installation
+## Installation
+----------------
 
-###Prerequisites
--------------------
+### Prerequisites
+----------------
 
 * [Make](https://www.gnu.org/software/make/)
 * A modern Fortran compiler, such as [GNU Fortran Compiler](https://gcc.gnu.org/wiki/GFortran) (gfortran) or
@@ -29,10 +30,10 @@ https://doi.org/10.48550/arXiv.2311.09890
 * [LAPACK](https://www.netlib.org/lapack/) and [BLAS](https://www.netlib.org/blas/) libraries
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (optional)
 
-###Get the source code
+### Get the source code
 -------------------
 
-####Using git
+#### Using git
 
 ```
 git clone https://github.com/hjozwiak-umk/bigos_h2he.git ./bigos_dir
@@ -40,18 +41,18 @@ git clone https://github.com/hjozwiak-umk/bigos_h2he.git ./bigos_dir
 
 This will create a directory ``./bigos_dir`` on the local machine. Enter this directory.
 
-####Without git
+#### Without git
 
 Download the source code as a [zip file](https://github.com/hjozwiak-umk/bigos_h2he/archive/refs/heads/main.zip).<br>
 Extract the contents to ``./bigos_dir`` and enter this directory.
 
 
-###Building instructions
+### Building instructions
 -------------------
 
-#####Linux systems
+##### Linux systems
 
-#####Before building the code, make sure that we have all the necessary compilers, libraries and apps installed
+###### Before building the code, make sure that we have all the necessary compilers, libraries and apps installed
 
 ```
 sudo apt install make gfortran liblapack-dev libblas-dev git
@@ -77,6 +78,6 @@ make test
 ```
 to make sure that you recover reference outputs in the ``ref/`` directory.
 
-#####Windows
+##### Windows
 
-Check out detailed building instructions for Windows [here](doc/page/installation/windows11.html).
+Check out detailed building instructions for Windows [here](https://hjozwiak-umk.github.io/bigos_h2he/doc/page/installation/windows11.html).
