@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 5.4% of total for procedures.">96 statements</a>
+               title=" 1.7% of total for procedures.">28 statements</a>
           </li>
 
             <li id="source-file">
@@ -99,7 +99,7 @@
         </ul>
         <ol class="breadcrumb in-well text-right">
               <li><a href='../sourcefile/propagator_mod.f90.html'>propagator_mod.f90</a></li>
-              <li><a href='../module/propagators.html'>PROPAGATORS</a></li>
+              <li><a href='../module/propagator_mod.html'>propagator_mod</a></li>
           <li class="active">numerov</li>
         </ol>
       </div>
@@ -118,41 +118,7 @@
       <div id="sidebar">
       <h3>Contents</h3>
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#vars-0">Variables</a>
-        </h3>
-      </div>
-      <div id="vars-0" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../proc/numerov.html#variable-cent_mat">cent_mat</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-channel_index_1_~5">channel_index_1_</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-channel_index_2_~5">channel_index_2_</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-finish">finish</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-i~3">i</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-r~3">r</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-r_center">r_center</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-r_plus~2">r_plus</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-r_temp">r_temp</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-rmatrix">rmatrix</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-start">start</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-step_numerov">step_numerov</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-t_center">t_center</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-t_mat">t_mat</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-t_minus">t_minus</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-t_plus">t_plus</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-u_left">u_left</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-u_right">u_right</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-umatrix">umatrix</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-v_mat">v_mat</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-v_tmp">v_tmp</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-w_mat">w_mat</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-w_tmp">w_tmp</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -183,11 +149,12 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine numerov(channel_indices_, channels_omega_values_, number_of_nonzero_coupling_matrix_elements, number_of_nonzero_coupling_coefficients, nonzero_terms_per_element, nonzero_legendre_indices, nonzero_coupling_coefficients, nsteps, number_of_channels_, total_angular_momentum_, log_der_matrix)  
+    <h2>public  subroutine numerov(number_of_channels_, channel_indices_, channels_omega_values_, nonzero_terms_per_element_, nonzero_legendre_indices_, nonzero_algebraic_coefficients_, number_of_steps_, total_angular_momentum_, log_der_matrix_)  
 </h2>
     
 
-    <p>renormalized Numerov propagator</p>
+    <p>renormalized Numerov propagator
+...</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -200,6 +167,21 @@
         <th></th>
     </thead>
     <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-number_of_channels_"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>number_of_channels_</strong></td>
+            <td>
+                <p>size of the basis</p>
+            </td>
+        </tr>
         <tr>
             <td>
               <span class="anchor" id="variable-channel_indices_~4"></span>
@@ -232,7 +214,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-number_of_nonzero_coupling_matrix_elements~3"></span>
+              <span class="anchor" id="variable-nonzero_terms_per_element_~2"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -240,37 +222,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>number_of_nonzero_coupling_matrix_elements</strong></td>
-            <td>
-                <p>number of non-zero terms in the sum () for each non-zero element of the coupling matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-number_of_nonzero_coupling_coefficients~3"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>number_of_nonzero_coupling_coefficients</strong></td>
-            <td>
-                <p>number of all non-zero algberaix coefficients in the whole coupling matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nonzero_terms_per_element~3"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nonzero_terms_per_element</strong>(number_of_nonzero_coupling_matrix_elements)</td>
+            <td><strong>nonzero_terms_per_element_</strong>(:)</td>
             <td>
                 <p>keeps the number of non-zero terms in the sum (Eq. (6.21)) for
 each non-zero element of W/V</p>
@@ -278,7 +230,7 @@ each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nonzero_legendre_indices~5"></span>
+              <span class="anchor" id="variable-nonzero_legendre_indices_~3"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -286,7 +238,7 @@ each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>nonzero_legendre_indices</strong>(number_of_nonzero_coupling_coefficients)</td>
+            <td><strong>nonzero_legendre_indices_</strong>(:)</td>
             <td>
                 <p>holds the proper indices pointing to l1/l2/lltabs, which
 correspond to the non-vanishing elements of the sum  (Eq. (6.21))
@@ -295,7 +247,7 @@ for each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nonzero_coupling_coefficients~5"></span>
+              <span class="anchor" id="variable-nonzero_algebraic_coefficients_~3"></span>
               real(kind=dp),
             </td>
 <td>intent(in)</td>
@@ -303,14 +255,14 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>nonzero_coupling_coefficients</strong>(number_of_nonzero_coupling_coefficients)</td>
+            <td><strong>nonzero_algebraic_coefficients_</strong>(:)</td>
             <td>
                 <p>holds the values of the non-zero algebraic coefficients</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsteps"></span>
+              <span class="anchor" id="variable-number_of_steps_"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -318,24 +270,9 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>nsteps</strong></td>
+            <td><strong>number_of_steps_</strong></td>
             <td>
                 <p>number of steps from rmin to rmax</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-number_of_channels_"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>number_of_channels_</strong></td>
-            <td>
-                <p>size of the basis</p>
             </td>
         </tr>
         <tr>
@@ -355,7 +292,7 @@ for each non-zero element of W/V</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-log_der_matrix~3"></span>
+              <span class="anchor" id="variable-log_der_matrix_"></span>
               real(kind=dp),
             </td>
 <td>intent(inout)</td>
@@ -363,7 +300,7 @@ for each non-zero element of W/V</p>
               
             </td>
             <td>::</td>
-            <td><strong>log_der_matrix</strong>(:,:)</td>
+            <td><strong>log_der_matrix_</strong>(number_of_channels_,number_of_channels_)</td>
             <td>
                 <p>resulting log-derivative matrix at RMAX  </p>
             </td>
@@ -383,338 +320,50 @@ for each non-zero element of W/V</p>
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~numerov~~CallsGraph Pages: 1 -->
-<svg id="procnumerovCallsGraph" width="641pt" height="227pt"
- viewBox="0.00 0.00 641.00 226.65" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~numerov~~CallsGraph" class="graph" transform="scale(1.59 1.59) rotate(0) translate(4 355.24)">
+<svg id="procnumerovCallsGraph" width="359pt" height="32pt"
+ viewBox="0.00 0.00 359.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~numerov~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>proc~~numerov~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-355.24 1012,-355.24 1012,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 355,-28 355,4 -4,4"/>
 <!-- proc~numerov -->
 <g id="proc~~numerov~~CallsGraph_node1" class="node">
 <title>proc~numerov</title>
-<polygon fill="none" stroke="black" points="60,-203.03 0,-203.03 0,-179.03 60,-179.03 60,-203.03"/>
-<text text-anchor="middle" x="30" y="-188.63" font-family="Helvetica,sans-Serif" font-size="10.50">numerov</text>
+<polygon fill="none" stroke="black" points="60,-24 0,-24 0,0 60,0 60,-24"/>
+<text text-anchor="middle" x="30" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">numerov</text>
 </g>
-<!-- interface~invert_symmetric_matrix -->
+<!-- proc~time_count_summary -->
 <g id="proc~~numerov~~CallsGraph_node2" class="node">
-<title>interface~invert_symmetric_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node2"><a xlink:href=".././interface/invert_symmetric_matrix.html" xlink:title="invert_symmetric_matrix">
-<polygon fill="#a7506f" stroke="#a7506f" points="470.5,-345.03 325.5,-345.03 325.5,-321.03 470.5,-321.03 470.5,-345.03"/>
-<text text-anchor="middle" x="398" y="-330.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">invert_symmetric_matrix</text>
+<title>proc~time_count_summary</title>
+<g id="a_proc~~numerov~~CallsGraph_node2"><a xlink:href=".././proc/time_count_summary.html" xlink:title="time_count_summary">
+<polygon fill="#d9534f" stroke="#d9534f" points="223,-24 96,-24 96,0 223,0 223,-24"/>
+<text text-anchor="middle" x="159.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">time_count_summary</text>
 </a>
 </g>
 </g>
-<!-- proc~numerov&#45;&gt;interface~invert_symmetric_matrix -->
+<!-- proc~numerov&#45;&gt;proc~time_count_summary -->
 <g id="proc~~numerov~~CallsGraph_edge1" class="edge">
-<title>proc~numerov&#45;&gt;interface~invert_symmetric_matrix</title>
-<path fill="none" stroke="#ff0000" d="M33.48,-203.29C39.32,-228.62 56.55,-286.53 96,-312.03 164.18,-356.09 260.1,-354.5 325.21,-346.39"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="325.93,-349.82 335.38,-345.04 325.01,-342.88 325.93,-349.82"/>
-</g>
-<!-- interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_node3" class="node">
-<title>interface~fill_symmetric_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node3"><a xlink:href=".././interface/fill_symmetric_matrix.html" xlink:title="fill_symmetric_matrix">
-<polygon fill="#a7506f" stroke="#a7506f" points="461.5,-223.03 334.5,-223.03 334.5,-199.03 461.5,-199.03 461.5,-223.03"/>
-<text text-anchor="middle" x="398" y="-208.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fill_symmetric_matrix</text>
-</a>
-</g>
-</g>
-<!-- proc~numerov&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge2" class="edge">
-<title>proc~numerov&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#ff0000" d="M60.03,-192.62C116.61,-195.71 243.21,-202.63 324.11,-207.05"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="324.05,-210.55 334.23,-207.6 324.43,-203.56 324.05,-210.55"/>
-</g>
-<!-- proc~float_to_character -->
-<g id="proc~~numerov~~CallsGraph_node4" class="node">
-<title>proc~float_to_character</title>
-<g id="a_proc~~numerov~~CallsGraph_node4"><a xlink:href=".././proc/float_to_character.html" xlink:title="float_to_character">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="1008,-253.03 899,-253.03 899,-229.03 1008,-229.03 1008,-253.03"/>
-<text text-anchor="middle" x="953.5" y="-238.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">float_to_character</text>
-</a>
-</g>
-</g>
-<!-- proc~numerov&#45;&gt;proc~float_to_character -->
-<g id="proc~~numerov~~CallsGraph_edge5" class="edge">
-<title>proc~numerov&#45;&gt;proc~float_to_character</title>
-<path fill="none" stroke="#ff0000" d="M60.13,-201.7C71.23,-205.43 84.08,-209.36 96,-212.03 227.62,-241.56 262.1,-251.03 397,-251.03 397,-251.03 397,-251.03 656.5,-251.03 736.58,-251.03 828.77,-247.33 888.71,-244.43"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="888.96,-247.92 898.78,-243.94 888.62,-240.93 888.96,-247.92"/>
-</g>
-<!-- proc~pes_contribution -->
-<g id="proc~~numerov~~CallsGraph_node5" class="node">
-<title>proc~pes_contribution</title>
-<g id="a_proc~~numerov~~CallsGraph_node5"><a xlink:href=".././proc/pes_contribution.html" xlink:title="pes_contribution">
-<polygon fill="#d9534f" stroke="#d9534f" points="219.5,-183.03 118.5,-183.03 118.5,-159.03 219.5,-159.03 219.5,-183.03"/>
-<text text-anchor="middle" x="169" y="-168.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pes_contribution</text>
-</a>
-</g>
-</g>
-<!-- proc~numerov&#45;&gt;proc~pes_contribution -->
-<g id="proc~~numerov~~CallsGraph_edge3" class="edge">
-<title>proc~numerov&#45;&gt;proc~pes_contribution</title>
-<path fill="none" stroke="#ff0000" d="M60.05,-186.79C74.1,-184.74 91.51,-182.2 108.22,-179.76"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="109.1,-183.17 118.49,-178.26 108.09,-176.24 109.1,-183.17"/>
-</g>
-<!-- proc~calculate_log_der_matrix -->
-<g id="proc~~numerov~~CallsGraph_node6" class="node">
-<title>proc~calculate_log_der_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node6"><a xlink:href=".././proc/calculate_log_der_matrix.html" xlink:title="calculate_log_der_matrix">
-<polygon fill="#d9534f" stroke="#d9534f" points="242,-303.03 96,-303.03 96,-279.03 242,-279.03 242,-303.03"/>
-<text text-anchor="middle" x="169" y="-288.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_log_der_matrix</text>
-</a>
-</g>
-</g>
-<!-- proc~numerov&#45;&gt;proc~calculate_log_der_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge4" class="edge">
-<title>proc~numerov&#45;&gt;proc~calculate_log_der_matrix</title>
-<path fill="none" stroke="#ff0000" d="M38.79,-203.23C49.74,-219.46 71.13,-248.08 96,-265.03 101.61,-268.85 107.84,-272.18 114.23,-275.07"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="113.07,-278.38 123.65,-278.98 115.76,-271.91 113.07,-278.38"/>
-</g>
-<!-- proc~centrifugal_matrix -->
-<g id="proc~~numerov~~CallsGraph_node7" class="node">
-<title>proc~centrifugal_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node7"><a xlink:href=".././proc/centrifugal_matrix.html" xlink:title="centrifugal_matrix">
-<polygon fill="#d9534f" stroke="#d9534f" points="224,-140.03 114,-140.03 114,-116.03 224,-116.03 224,-140.03"/>
-<text text-anchor="middle" x="169" y="-125.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">centrifugal_matrix</text>
-</a>
-</g>
-</g>
-<!-- proc~numerov&#45;&gt;proc~centrifugal_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge6" class="edge">
-<title>proc~numerov&#45;&gt;proc~centrifugal_matrix</title>
-<path fill="none" stroke="#ff0000" d="M47.41,-178.95C60.15,-170.01 78.53,-158.03 96,-150.03 101.25,-147.62 106.84,-145.39 112.48,-143.35"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="113.67,-146.64 122,-140.08 111.4,-140.02 113.67,-146.64"/>
-</g>
-<!-- interface~allocate_2d -->
-<g id="proc~~numerov~~CallsGraph_node8" class="node">
-<title>interface~allocate_2d</title>
-<g id="a_proc~~numerov~~CallsGraph_node8"><a xlink:href=".././interface/allocate_2d.html" xlink:title="allocate_2d">
-<polygon fill="#a7506f" stroke="#a7506f" points="206,-98.03 132,-98.03 132,-74.03 206,-74.03 206,-98.03"/>
-<text text-anchor="middle" x="169" y="-83.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">allocate_2d</text>
-</a>
-</g>
-</g>
-<!-- proc~numerov&#45;&gt;interface~allocate_2d -->
-<g id="proc~~numerov~~CallsGraph_edge7" class="edge">
-<title>proc~numerov&#45;&gt;interface~allocate_2d</title>
-<path fill="none" stroke="#ff0000" d="M37.2,-178.77C47.11,-160.41 68.26,-125.92 96,-107.03 103.82,-101.7 113.01,-97.7 122.16,-94.71"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="123.37,-98 132,-91.85 121.42,-91.28 123.37,-98"/>
+<title>proc~numerov&#45;&gt;proc~time_count_summary</title>
+<path fill="none" stroke="#ff0000" d="M60.25,-12C68,-12 76.71,-12 85.68,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="85.86,-15.5 95.86,-12 85.86,-8.5 85.86,-15.5"/>
 </g>
 <!-- proc~write_message -->
-<g id="proc~~numerov~~CallsGraph_node9" class="node">
+<g id="proc~~numerov~~CallsGraph_node3" class="node">
 <title>proc~write_message</title>
-<g id="a_proc~~numerov~~CallsGraph_node9"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="999.5,-56.03 907.5,-56.03 907.5,-32.03 999.5,-32.03 999.5,-56.03"/>
-<text text-anchor="middle" x="953.5" y="-41.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+<g id="a_proc~~numerov~~CallsGraph_node3"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="351,-24 259,-24 259,0 351,0 351,-24"/>
+<text text-anchor="middle" x="305" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
 </a>
 </g>
 </g>
-<!-- proc~numerov&#45;&gt;proc~write_message -->
-<g id="proc~~numerov~~CallsGraph_edge8" class="edge">
-<title>proc~numerov&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#ff0000" d="M33.68,-178.79C39.9,-153.41 57.79,-94.89 96,-65.03 203.63,19.07 260.41,-3.03 397,-3.03 397,-3.03 397,-3.03 656.5,-3.03 741.22,-3.03 838.3,-19.71 897.5,-31.8"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="896.88,-35.24 907.38,-33.84 898.3,-28.39 896.88,-35.24"/>
-</g>
-<!-- proc~pes_contribution&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge10" class="edge">
-<title>proc~pes_contribution&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#00ff3f" d="M219.54,-179.76C250.17,-185.16 290.03,-192.18 324.22,-198.2"/>
-<polygon fill="#00ff3f" stroke="#00ff3f" points="323.7,-201.67 334.16,-199.96 324.92,-194.77 323.7,-201.67"/>
-</g>
-<!-- proc~calculate_single_pes_matrix_element -->
-<g id="proc~~numerov~~CallsGraph_node10" class="node">
-<title>proc~calculate_single_pes_matrix_element</title>
-<g id="a_proc~~numerov~~CallsGraph_node10"><a xlink:href=".././proc/calculate_single_pes_matrix_element.html" xlink:title="calculate_single_pes_matrix_element">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="503.5,-181.03 292.5,-181.03 292.5,-157.03 503.5,-157.03 503.5,-181.03"/>
-<text text-anchor="middle" x="398" y="-166.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_single_pes_matrix_element</text>
-</a>
-</g>
-</g>
-<!-- proc~pes_contribution&#45;&gt;proc~calculate_single_pes_matrix_element -->
-<g id="proc~~numerov~~CallsGraph_edge9" class="edge">
-<title>proc~pes_contribution&#45;&gt;proc~calculate_single_pes_matrix_element</title>
-<path fill="none" stroke="#00ff3f" d="M219.54,-170.59C238.09,-170.43 260.03,-170.24 282.04,-170.04"/>
-<polygon fill="#00ff3f" stroke="#00ff3f" points="282.18,-173.54 292.15,-169.95 282.12,-166.54 282.18,-173.54"/>
-</g>
-<!-- proc~calculate_log_der_matrix&#45;&gt;interface~invert_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge11" class="edge">
-<title>proc~calculate_log_der_matrix&#45;&gt;interface~invert_symmetric_matrix</title>
-<path fill="none" stroke="#00ffff" d="M230.8,-303.04C246.19,-306.03 262.69,-309.19 278,-312.03 290.82,-314.41 304.43,-316.87 317.69,-319.23"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="317.29,-322.72 327.75,-321.02 318.51,-315.82 317.29,-322.72"/>
-</g>
-<!-- proc~calculate_log_der_matrix&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge12" class="edge">
-<title>proc~calculate_log_der_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#00ffff" d="M204.48,-278.88C244.37,-264.82 310.13,-241.64 353.51,-226.36"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="354.67,-229.66 362.94,-223.03 352.35,-223.06 354.67,-229.66"/>
-</g>
-<!-- dgemm -->
-<g id="proc~~numerov~~CallsGraph_node13" class="node">
-<title>dgemm</title>
-<polygon fill="#777777" stroke="#777777" points="425,-303.03 371,-303.03 371,-279.03 425,-279.03 425,-303.03"/>
-<text text-anchor="middle" x="398" y="-288.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgemm</text>
-</g>
-<!-- proc~calculate_log_der_matrix&#45;&gt;dgemm -->
-<g id="proc~~numerov~~CallsGraph_edge13" class="edge">
-<title>proc~calculate_log_der_matrix&#45;&gt;dgemm</title>
-<path fill="none" stroke="#00ffff" d="M242.14,-291.03C281.68,-291.03 328.97,-291.03 360.81,-291.03"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="360.98,-294.53 370.98,-291.03 360.98,-287.53 360.98,-294.53"/>
-</g>
-<!-- proc~centrifugal_matrix&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge15" class="edge">
-<title>proc~centrifugal_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#003fff" d="M221.87,-140.13C228.91,-142.83 235.83,-146.1 242,-150.03 262.17,-162.88 257.08,-178.43 278,-190.03 292.13,-197.87 308.53,-202.89 324.55,-206.08"/>
-<polygon fill="#003fff" stroke="#003fff" points="324,-209.54 334.46,-207.84 325.22,-202.64 324,-209.54"/>
-</g>
-<!-- proc~calculate_offdiagonal_centrifugal_element -->
-<g id="proc~~numerov~~CallsGraph_node11" class="node">
-<title>proc~calculate_offdiagonal_centrifugal_element</title>
-<g id="a_proc~~numerov~~CallsGraph_node11"><a xlink:href=".././proc/calculate_offdiagonal_centrifugal_element.html" xlink:title="calculate_offdiagonal_centrifugal_element">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="518,-139.03 278,-139.03 278,-115.03 518,-115.03 518,-139.03"/>
-<text text-anchor="middle" x="398" y="-124.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_offdiagonal_centrifugal_element</text>
-</a>
-</g>
-</g>
-<!-- proc~centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element -->
-<g id="proc~~numerov~~CallsGraph_edge16" class="edge">
-<title>proc~centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element</title>
-<path fill="none" stroke="#003fff" d="M224.08,-127.79C237.42,-127.73 252.29,-127.67 267.54,-127.6"/>
-<polygon fill="#003fff" stroke="#003fff" points="267.63,-131.1 277.61,-127.56 267.6,-124.1 267.63,-131.1"/>
-</g>
-<!-- proc~calculate_diagonal_centrifugal_element -->
-<g id="proc~~numerov~~CallsGraph_node12" class="node">
-<title>proc~calculate_diagonal_centrifugal_element</title>
-<g id="a_proc~~numerov~~CallsGraph_node12"><a xlink:href=".././proc/calculate_diagonal_centrifugal_element.html" xlink:title="calculate_diagonal_centrifugal_element">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="511,-97.03 285,-97.03 285,-73.03 511,-73.03 511,-97.03"/>
-<text text-anchor="middle" x="398" y="-82.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_diagonal_centrifugal_element</text>
-</a>
-</g>
-</g>
-<!-- proc~centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element -->
-<g id="proc~~numerov~~CallsGraph_edge17" class="edge">
-<title>proc~centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element</title>
-<path fill="none" stroke="#003fff" d="M224.06,-116.73C241.28,-113.21 260.42,-109.37 278,-106.03 290.65,-103.63 304.07,-101.17 317.16,-98.82"/>
-<polygon fill="#003fff" stroke="#003fff" points="317.87,-102.25 327.1,-97.05 316.64,-95.36 317.87,-102.25"/>
-</g>
-<!-- proc~delta_for_zero_omega -->
-<g id="proc~~numerov~~CallsGraph_node14" class="node">
-<title>proc~delta_for_zero_omega</title>
-<g id="a_proc~~numerov~~CallsGraph_node14"><a xlink:href=".././proc/delta_for_zero_omega.html" xlink:title="delta_for_zero_omega">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="463,-55.03 333,-55.03 333,-31.03 463,-31.03 463,-55.03"/>
-<text text-anchor="middle" x="398" y="-40.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">delta_for_zero_omega</text>
-</a>
-</g>
-</g>
-<!-- proc~centrifugal_matrix&#45;&gt;proc~delta_for_zero_omega -->
-<g id="proc~~numerov~~CallsGraph_edge14" class="edge">
-<title>proc~centrifugal_matrix&#45;&gt;proc~delta_for_zero_omega</title>
-<path fill="none" stroke="#003fff" d="M224.25,-116.04C230.48,-113.56 236.55,-110.59 242,-107.03 262.87,-93.4 256.42,-76.51 278,-64.03 291.48,-56.23 307.15,-51.19 322.61,-47.97"/>
-<polygon fill="#003fff" stroke="#003fff" points="323.51,-51.36 332.71,-46.1 322.24,-44.48 323.51,-51.36"/>
-</g>
-<!-- proc~get_radial_coupling_term_value -->
-<g id="proc~~numerov~~CallsGraph_node15" class="node">
-<title>proc~get_radial_coupling_term_value</title>
-<g id="a_proc~~numerov~~CallsGraph_node15"><a xlink:href=".././proc/get_radial_coupling_term_value.html" xlink:title="get_radial_coupling_term_value">
-<polygon fill="#d9534f" stroke="#d9534f" points="746.5,-191.03 564.5,-191.03 564.5,-167.03 746.5,-167.03 746.5,-191.03"/>
-<text text-anchor="middle" x="655.5" y="-176.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_radial_coupling_term_value</text>
-</a>
-</g>
-</g>
-<!-- proc~calculate_single_pes_matrix_element&#45;&gt;proc~get_radial_coupling_term_value -->
-<g id="proc~~numerov~~CallsGraph_edge18" class="edge">
-<title>proc~calculate_single_pes_matrix_element&#45;&gt;proc~get_radial_coupling_term_value</title>
-<path fill="none" stroke="#ff0000" d="M503.66,-173.13C520.32,-173.78 537.53,-174.45 554.09,-175.1"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="554.18,-178.61 564.31,-175.5 554.45,-171.61 554.18,-178.61"/>
-</g>
-<!-- proc~wavenumber_squared_from_energy -->
-<g id="proc~~numerov~~CallsGraph_node16" class="node">
-<title>proc~wavenumber_squared_from_energy</title>
-<g id="a_proc~~numerov~~CallsGraph_node16"><a xlink:href=".././proc/wavenumber_squared_from_energy.html" xlink:title="wavenumber_squared_from_energy">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="757,-123.03 554,-123.03 554,-99.03 757,-99.03 757,-123.03"/>
-<text text-anchor="middle" x="655.5" y="-108.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">wavenumber_squared_from_energy</text>
-</a>
-</g>
-</g>
-<!-- proc~calculate_single_pes_matrix_element&#45;&gt;proc~wavenumber_squared_from_energy -->
-<g id="proc~~numerov~~CallsGraph_edge19" class="edge">
-<title>proc~calculate_single_pes_matrix_element&#45;&gt;proc~wavenumber_squared_from_energy</title>
-<path fill="none" stroke="#ff0000" d="M473.16,-157.01C488.06,-154.29 503.57,-151.25 518,-148.03 546.66,-141.63 578.34,-133.13 603.96,-125.89"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="605.16,-129.19 613.82,-123.09 603.25,-122.46 605.16,-129.19"/>
-</g>
-<!-- proc~ispline -->
-<g id="proc~~numerov~~CallsGraph_node17" class="node">
-<title>proc~ispline</title>
-<g id="a_proc~~numerov~~CallsGraph_node17"><a xlink:href=".././proc/ispline.html" xlink:title="ispline">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="855,-191.03 801,-191.03 801,-167.03 855,-167.03 855,-191.03"/>
-<text text-anchor="middle" x="828" y="-176.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ispline</text>
-</a>
-</g>
-</g>
-<!-- proc~get_radial_coupling_term_value&#45;&gt;proc~ispline -->
-<g id="proc~~numerov~~CallsGraph_edge20" class="edge">
-<title>proc~get_radial_coupling_term_value&#45;&gt;proc~ispline</title>
-<path fill="none" stroke="#ff0000" d="M746.74,-179.03C762.22,-179.03 777.48,-179.03 790.46,-179.03"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="790.79,-182.53 800.79,-179.03 790.79,-175.53 790.79,-182.53"/>
-</g>
-<!-- proc~write_error -->
-<g id="proc~~numerov~~CallsGraph_node18" class="node">
-<title>proc~write_error</title>
-<g id="a_proc~~numerov~~CallsGraph_node18"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
-<polygon fill="#d9534f" stroke="#d9534f" points="863,-123.03 793,-123.03 793,-99.03 863,-99.03 863,-123.03"/>
-<text text-anchor="middle" x="828" y="-108.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
-</a>
-</g>
-</g>
-<!-- proc~wavenumber_squared_from_energy&#45;&gt;proc~write_error -->
-<g id="proc~~numerov~~CallsGraph_edge22" class="edge">
-<title>proc~wavenumber_squared_from_energy&#45;&gt;proc~write_error</title>
-<path fill="none" stroke="#00ffff" d="M757.16,-111.03C766.08,-111.03 774.77,-111.03 782.82,-111.03"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="783,-114.53 793,-111.03 783,-107.53 783,-114.53"/>
-</g>
-<!-- proc~etotal -->
-<g id="proc~~numerov~~CallsGraph_node19" class="node">
-<title>proc~etotal</title>
-<g id="a_proc~~numerov~~CallsGraph_node19"><a xlink:href=".././proc/etotal.html" xlink:title="ETOTAL">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="855,-81.03 801,-81.03 801,-57.03 855,-57.03 855,-81.03"/>
-<text text-anchor="middle" x="828" y="-66.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ETOTAL</text>
-</a>
-</g>
-</g>
-<!-- proc~wavenumber_squared_from_energy&#45;&gt;proc~etotal -->
-<g id="proc~~numerov~~CallsGraph_edge21" class="edge">
-<title>proc~wavenumber_squared_from_energy&#45;&gt;proc~etotal</title>
-<path fill="none" stroke="#00ffff" d="M705.36,-98.99C732.69,-92.26 766.16,-84.02 791.07,-77.88"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="791.97,-81.26 800.84,-75.47 790.29,-74.47 791.97,-81.26"/>
-</g>
-<!-- proc~ispline&#45;&gt;proc~float_to_character -->
-<g id="proc~~numerov~~CallsGraph_edge23" class="edge">
-<title>proc~ispline&#45;&gt;proc~float_to_character</title>
-<path fill="none" stroke="#ff0000" d="M853.11,-191.13C871.98,-200.6 898.43,-213.89 919.31,-224.37"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="917.95,-227.6 928.46,-228.96 921.09,-221.34 917.95,-227.6"/>
-</g>
-<!-- proc~write_warning -->
-<g id="proc~~numerov~~CallsGraph_node20" class="node">
-<title>proc~write_warning</title>
-<g id="a_proc~~numerov~~CallsGraph_node20"><a xlink:href=".././proc/write_warning.html" xlink:title="write_warning">
-<polygon fill="#d9534f" stroke="#d9534f" points="997,-191.03 910,-191.03 910,-167.03 997,-167.03 997,-191.03"/>
-<text text-anchor="middle" x="953.5" y="-176.63" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_warning</text>
-</a>
-</g>
-</g>
-<!-- proc~ispline&#45;&gt;proc~write_warning -->
-<g id="proc~~numerov~~CallsGraph_edge24" class="edge">
-<title>proc~ispline&#45;&gt;proc~write_warning</title>
-<path fill="none" stroke="#ff0000" d="M855.19,-179.03C868.08,-179.03 884.1,-179.03 899.4,-179.03"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="899.83,-182.53 909.83,-179.03 899.83,-175.53 899.83,-182.53"/>
-</g>
-<!-- proc~write_error&#45;&gt;proc~write_message -->
-<g id="proc~~numerov~~CallsGraph_edge25" class="edge">
-<title>proc~write_error&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#00ff00" d="M851.36,-98.9C870.95,-88.27 899.61,-72.73 921.42,-60.89"/>
-<polygon fill="#00ff00" stroke="#00ff00" points="923.18,-63.92 930.3,-56.07 919.84,-57.77 923.18,-63.92"/>
+<!-- proc~time_count_summary&#45;&gt;proc~write_message -->
+<g id="proc~~numerov~~CallsGraph_edge2" class="edge">
+<title>proc~time_count_summary&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M223.02,-12C231.62,-12 240.39,-12 248.83,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="248.94,-15.5 258.94,-12 248.94,-8.5 248.94,-15.5"/>
 </g>
 </g>
 </svg>
-</div><script>var panprocnumerovCallsGraph = svgPanZoom('#procnumerovCallsGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
     <p>Nodes of different colours represent the following: </p>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -880,41 +529,7 @@ for each non-zero element of W/V</p>
     <section class="visible-xs visible-sm hidden-md">
         <h3>Contents</h3>
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#vars-1">Variables</a>
-        </h3>
-      </div>
-      <div id="vars-1" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../proc/numerov.html#variable-cent_mat">cent_mat</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-channel_index_1_~5">channel_index_1_</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-channel_index_2_~5">channel_index_2_</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-finish">finish</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-i~3">i</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-r~3">r</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-r_center">r_center</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-r_plus~2">r_plus</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-r_temp">r_temp</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-rmatrix">rmatrix</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-start">start</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-step_numerov">step_numerov</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-t_center">t_center</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-t_mat">t_mat</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-t_minus">t_minus</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-t_plus">t_plus</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-u_left">u_left</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-u_right">u_right</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-umatrix">umatrix</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-v_mat">v_mat</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-v_tmp">v_tmp</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-w_mat">w_mat</a>
-            <a class="list-group-item" href="../proc/numerov.html#variable-w_tmp">w_tmp</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -944,414 +559,6 @@ for each non-zero element of W/V</p>
     <br class="visible-xs visible-sm hidden-md">
 
 
-    <section>    
-      <h2>Variables</h2>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Visibility</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-<th></th><th>Initial</th>        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-cent_mat"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              dimension(number_of_channels_,number_of_channels_)
-            </td>
-            <td>::</td>
-            <td><strong>cent_mat</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel_index_1_~5"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel_index_1_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel_index_2_~5"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel_index_2_</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-finish"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>finish</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-i~3"></span>
-              integer(kind=int32),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>i</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-r~3"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>r</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-r_center"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>r_center</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-r_plus~2"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>r_plus</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-r_temp"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>r_temp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-rmatrix"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>rmatrix</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-start"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>start</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-step_numerov"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>step_numerov</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-t_center"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>t_center</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-t_mat"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              dimension(number_of_channels_,number_of_channels_)
-            </td>
-            <td>::</td>
-            <td><strong>t_mat</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-t_minus"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>t_minus</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-t_plus"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>t_plus</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-u_left"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              dimension(number_of_channels_,number_of_channels_)
-            </td>
-            <td>::</td>
-            <td><strong>u_left</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-u_right"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              dimension(number_of_channels_,number_of_channels_)
-            </td>
-            <td>::</td>
-            <td><strong>u_right</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-umatrix"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>umatrix</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-v_mat"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              dimension(number_of_channels_,number_of_channels_)
-            </td>
-            <td>::</td>
-            <td><strong>v_mat</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-v_tmp"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>v_tmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-w_mat"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              dimension(number_of_channels_,number_of_channels_)
-            </td>
-            <td>::</td>
-            <td><strong>w_mat</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-w_tmp"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable, dimension(:,:)
-            </td>
-            <td>::</td>
-            <td><strong>w_tmp</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    </section>
-    <br>
     
     
 
@@ -1362,12 +569,12 @@ for each non-zero element of W/V</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">numerov</span><span class="p">(</span><span class="n">channel_indices_</span><span class="p">,</span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w">         </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="p">,</span><span class="w">                           </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="p">,</span><span class="n">nonzero_terms_per_element</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="n">nonzero_coupling_coefficients</span><span class="p">,</span><span class="n">nsteps</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">         </span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="n">log_der_matrix</span><span class="p">)</span><span class="w"></span>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">numerov</span><span class="p">(</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_indices_</span><span class="p">,</span><span class="w">                </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_terms_per_element_</span><span class="p">,</span><span class="w">                   </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">nonzero_legendre_indices_</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_algebraic_coefficients_</span><span class="p">,</span><span class="w">           </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">number_of_steps_</span><span class="p">,</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="n">log_der_matrix_</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!! renormalized Numerov propagator</span>
+<span class="w">         </span><span class="c">!! ...</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! size of the basis</span>
@@ -1375,187 +582,69 @@ for each non-zero element of W/V</p>
 <span class="w">            </span><span class="c">!! holds the indices pointing to the basis arrays</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channels_omega_values_</span><span class="p">(</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds all values of \bar{\Omega}</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of non-zero terms in the sum () for each non-zero element of the coupling matrix</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="w"></span>
-<span class="w">            </span><span class="c">!! number of all non-zero algberaix coefficients in the whole coupling matrix</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_terms_per_element</span><span class="p">(</span><span class="n">number_of_nonzero_coupling_matrix_elements</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_terms_per_element_</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! keeps the number of non-zero terms in the sum (Eq. (6.21)) for</span>
 <span class="w">            </span><span class="c">!! each non-zero element of W/V</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_legendre_indices</span><span class="p">(</span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_legendre_indices_</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds the proper indices pointing to l1/l2/lltabs, which</span>
 <span class="w">            </span><span class="c">!! correspond to the non-vanishing elements of the sum  (Eq. (6.21))</span>
 <span class="w">            </span><span class="c">!! for each non-zero element of W/V</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_coupling_coefficients</span><span class="p">(</span><span class="n">number_of_nonzero_coupling_coefficients</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nonzero_algebraic_coefficients_</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! holds the values of the non-zero algebraic coefficients</span>
-<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nsteps</span><span class="w"></span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">number_of_steps_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! number of steps from rmin to rmax</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! total angular momentum</span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">log_der_matrix</span><span class="p">(:,:)</span><span class="w"></span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">log_der_matrix_</span><span class="p">(</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!! resulting log-derivative matrix at RMAX  </span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="w"></span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">step_numerov</span><span class="w"></span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,:)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">umatrix</span><span class="p">,</span><span class="w"> </span><span class="n">r_temp</span><span class="p">,</span><span class="w"> </span><span class="n">rmatrix</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">t_minus</span><span class="p">,</span><span class="w"> </span><span class="n">t_center</span><span class="p">,</span><span class="w"> </span><span class="n">t_plus</span><span class="p">,</span><span class="w"> </span><span class="n">r_center</span><span class="p">,</span><span class="w"> </span><span class="n">r_plus</span><span class="p">,</span><span class="w"> </span><span class="n">w_tmp</span><span class="p">,</span><span class="w"> </span><span class="n">v_tmp</span><span class="w"></span>
-<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w">         </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">cent_mat</span><span class="p">,</span><span class="w"> </span><span class="n">v_mat</span><span class="p">,</span><span class="w"> </span><span class="n">w_mat</span><span class="p">,</span><span class="w"> </span><span class="n">t_mat</span><span class="p">,</span><span class="w"> </span><span class="n">u_left</span><span class="p">,</span><span class="w"> </span><span class="n">u_right</span><span class="w"></span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span><span class="p">,</span><span class="w"> </span><span class="n">intermolecular_distance_</span><span class="p">,</span><span class="w"> </span><span class="n">step_numerov_</span><span class="p">,</span><span class="w"> </span><span class="n">calculation_time_</span><span class="w"></span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w">       </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">centrifugal_matrix_</span><span class="p">,</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">t_matrix_minus_</span><span class="p">,</span><span class="w"> </span><span class="n">t_matrix_</span><span class="p">,</span><span class="w"> </span><span class="n">t_matrix_plus_</span><span class="p">,</span><span class="w"> </span><span class="n">r_matrix_</span><span class="p">,</span><span class="w">             </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">r_matrix_rmax_</span><span class="p">,</span><span class="w"> </span><span class="n">r_matrix_plus_</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="k">CALL </span><span class="nb">CPU_TIME</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="n">step_numerov_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">rmin</span><span class="p">)</span><span class="o">/</span><span class="nb">dble</span><span class="p">(</span><span class="n">number_of_steps_</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="n">intermolecular_distance_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rmin</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! Calculate the centrifugal term</span>
+<span class="w">         </span><span class="c">! Initial setup: calculate centrifugal matrix and R_matrix at Rmin + 1</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">call </span><span class="n">centrifugal_matrix</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="n">channel_indices_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="n">cent_mat</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="n">step_numerov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">rmin</span><span class="p">)</span><span class="o">/</span><span class="nb">dble</span><span class="p">(</span><span class="n">nsteps</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">R_temp</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">initial_setup</span><span class="p">(</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="w"> </span><span class="n">step_numerov_</span><span class="p">,</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">      </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">intermolecular_distance_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_indices_</span><span class="p">,</span><span class="w"> </span><span class="n">channels_omega_values_</span><span class="p">,&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">nonzero_terms_per_element_</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_legendre_indices_</span><span class="p">,</span><span class="w">             </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">nonzero_algebraic_coefficients_</span><span class="p">,</span><span class="w"> </span><span class="n">centrifugal_matrix_</span><span class="p">,</span><span class="w"> </span><span class="n">r_matrix_</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! Calculate the PES contribution at rmin</span>
+<span class="w">         </span><span class="c">! Propagation loop</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">call </span><span class="n">pes_contribution</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="n">rmin</span><span class="p">,</span><span class="w">                     </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">channel_indices_</span><span class="p">,</span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w">                      </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">nonzero_terms_per_element</span><span class="p">,</span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="w">                </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">nonzero_coupling_coefficients</span><span class="p">,</span><span class="n">v_mat</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! Coupling matrix W at rmin</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">w_mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v_mat</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">rmin</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">cent_mat</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! T-matrix (Eq. 6.23)</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="n">t_mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">step_numerov</span><span class="o">**</span><span class="mf">2.0_dp</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="mf">2.0_dp</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w_mat</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! U-matrix (Eq. 6.25)</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">do </span><span class="n">channel_index_1_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
-<span class="w">            </span><span class="k">do </span><span class="n">channel_index_2_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
-<span class="w">               </span><span class="n">u_left</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t_mat</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">end do</span>
-<span class="k">            </span><span class="n">u_left</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u_left</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="k">end do</span>
-
-<span class="k">         call </span><span class="n">invert_symmetric_matrix</span><span class="p">(</span><span class="n">u_left</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="k">call </span><span class="n">fill_symmetric_matrix</span><span class="p">(</span><span class="n">u_left</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! R-matrix at rmin + 1 = U-matrix at rmin</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">do </span><span class="n">channel_index_1_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
-<span class="w">            </span><span class="k">do </span><span class="n">channel_index_2_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
-<span class="w">               </span><span class="n">r_temp</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="mf">2.d0</span><span class="o">*</span><span class="n">u_left</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">enddo</span>
-<span class="k">            </span><span class="n">r_temp</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_temp</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="mf">0.d0</span><span class="w"></span>
-<span class="w">         </span><span class="k">enddo</span><span class="w"></span>
-
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="c">! Continue the propagation to rmax</span>
-<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">nsteps</span><span class="w"></span>
+<span class="w">         </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_steps_</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
 <span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="c">! Coupling matrix W at R</span>
+<span class="w">            </span><span class="n">intermolecular_distance_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">step_numerov_</span><span class="w"></span>
 <span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">step_numerov</span><span class="w"></span>
-<span class="w">            </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">rmatrix</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">umatrix</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">call </span><span class="n">pes_contribution</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="w">                     </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="n">channel_indices_</span><span class="p">,</span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w">                   </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="n">nonzero_terms_per_element</span><span class="p">,</span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="w">             </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="n">nonzero_coupling_coefficients</span><span class="p">,</span><span class="n">v_mat</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">w_mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v_mat</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">R</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">cent_mat</span><span class="w"></span>
+<span class="w">            </span><span class="k">call </span><span class="n">general_propagation_step</span><span class="p">(</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="w"> </span><span class="n">step_numerov_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="n">intermolecular_distance_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_indices_</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_terms_per_element_</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_legendre_indices_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">nonzero_algebraic_coefficients_</span><span class="p">,</span><span class="w"> </span><span class="n">centrifugal_matrix_</span><span class="p">,</span><span class="w"> </span><span class="n">r_matrix_</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="c">! T-matrix at R (6.18)</span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="n">t_mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">step_numerov</span><span class="o">**</span><span class="mf">2.0_dp</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="mf">2.0_dp</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w_mat</span><span class="w"></span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="c">! U-matrix at R (6.20)</span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="k">do </span><span class="n">channel_index_1_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
-<span class="w">               </span><span class="k">do </span><span class="n">channel_index_2_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
-<span class="w">                  </span><span class="n">u_left</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t_mat</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">end do</span>
-<span class="k">               </span><span class="n">u_left</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u_left</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">end do</span>
-<span class="k">            call </span><span class="n">invert_symmetric_matrix</span><span class="p">(</span><span class="n">u_left</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">call </span><span class="n">fill_symmetric_matrix</span><span class="p">(</span><span class="n">u_left</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">do </span><span class="n">channel_index_1_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
-<span class="w">               </span><span class="k">do </span><span class="n">channel_index_2_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_channels_</span><span class="w"></span>
-<span class="w">                  </span><span class="n">umatrix</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="mf">2.d0</span><span class="o">*</span><span class="n">u_left</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_2_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">enddo</span>
-<span class="k">               </span><span class="n">umatrix</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">umatrix</span><span class="p">(</span><span class="n">channel_index_1_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_index_1_</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="mf">0.d0</span><span class="w"></span>
-<span class="w">            </span><span class="k">enddo</span>
-
-<span class="k">            call </span><span class="n">invert_symmetric_matrix</span><span class="p">(</span><span class="n">r_temp</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">call </span><span class="n">fill_symmetric_matrix</span><span class="p">(</span><span class="n">r_temp</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="c">! Prepare T at Rmax - 1 and R at Rmax</span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nsteps</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">               call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">v_tmp</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">w_tmp</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">t_minus</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">               </span><span class="k">call </span><span class="n">pes_contribution</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="w">                  </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">channel_indices_</span><span class="p">,</span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w">                </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">nonzero_terms_per_element</span><span class="p">,</span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="w">          </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">nonzero_coupling_coefficients</span><span class="p">,</span><span class="n">v_tmp</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="n">w_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v_tmp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">R</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">cent_mat</span><span class="w"></span>
-<span class="w">               </span><span class="n">t_minus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">step_numerov</span><span class="o">**</span><span class="mf">2.0_dp</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="mf">2.0_dp</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w_tmp</span><span class="w"></span>
-<span class="w">               </span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">r_center</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="n">r_center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">umatrix</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">r_temp</span><span class="w"></span>
-<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
-<span class="w">               </span><span class="c">! Prepare T at Rmax and R max + 1, and R at Rmax + 1</span>
-<span class="w">               </span><span class="c">!---------------------------------------------------------------!</span>
-<span class="w">            </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nsteps</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">               call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">v_tmp</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">w_tmp</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">t_center</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">               </span><span class="k">call </span><span class="n">pes_contribution</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="w">                  </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">channel_indices_</span><span class="p">,</span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w">                </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">nonzero_terms_per_element</span><span class="p">,</span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="w">          </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">nonzero_coupling_coefficients</span><span class="p">,</span><span class="n">v_tmp</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="n">w_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v_tmp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">R</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">cent_mat</span><span class="w"></span>
-<span class="w">               </span><span class="n">t_center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">step_numerov</span><span class="o">**</span><span class="mf">2.0_dp</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="mf">2.0_dp</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w_tmp</span><span class="w"></span>
-<span class="w">               </span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">r_plus</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="n">r_plus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">umatrix</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">r_temp</span><span class="w"></span>
-
-<span class="w">               </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rmax</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">step_numerov</span><span class="w"></span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">v_tmp</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">t_plus</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">w_tmp</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">               </span><span class="k">call </span><span class="n">pes_contribution</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="w">                  </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">channel_indices_</span><span class="p">,</span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w">                </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">nonzero_terms_per_element</span><span class="p">,</span><span class="n">nonzero_legendre_indices</span><span class="p">,</span><span class="w">          </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">                  </span><span class="n">nonzero_coupling_coefficients</span><span class="p">,</span><span class="n">v_tmp</span><span class="p">)</span><span class="w"></span>
-<span class="w">               </span><span class="n">w_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v_tmp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">R</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">cent_mat</span><span class="w"></span>
-<span class="w">               </span><span class="n">t_plus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">step_numerov</span><span class="o">**</span><span class="mf">2.0_dp</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="mf">2.0_dp</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w_tmp</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">end if</span><span class="w"></span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="c">! R-matrix at R_{n+1} (Eq. 6.28)</span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="n">rmatrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">umatrix</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">r_temp</span><span class="w"></span>
-<span class="w">            </span><span class="k">call </span><span class="n">allocate_2d</span><span class="p">(</span><span class="n">r_temp</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="c">! Move R_{n+1} to R_{n}</span>
-<span class="w">            </span><span class="c">!------------------------------------------------------------------!</span>
-<span class="w">            </span><span class="n">r_temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rmatrix</span><span class="w"></span>
-
-<span class="w">         </span><span class="k">end do</span>
-<span class="k">         CALL </span><span class="nb">CPU_TIME</span><span class="p">(</span><span class="n">finish</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">end do</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="k">call </span><span class="n">handle_final_propagation_steps</span><span class="p">(</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="w"> </span><span class="n">step_numerov_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w"> </span><span class="n">channel_indices_</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">channels_omega_values_</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_terms_per_element_</span><span class="p">,</span><span class="w"> </span><span class="n">nonzero_legendre_indices_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">nonzero_algebraic_coefficients_</span><span class="p">,</span><span class="w"> </span><span class="n">centrifugal_matrix_</span><span class="p">,</span><span class="w"> </span><span class="n">r_matrix_</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">                  </span><span class="n">t_matrix_minus_</span><span class="p">,</span><span class="w"> </span><span class="n">t_matrix_</span><span class="p">,</span><span class="w"> </span><span class="n">t_matrix_plus_</span><span class="p">,</span><span class="w"> </span><span class="n">r_matrix_rmax_</span><span class="p">,</span><span class="w"> </span><span class="n">r_matrix_plus_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="k">CALL </span><span class="nb">CPU_TIME</span><span class="p">(</span><span class="n">finish</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="c">! Eq. (6.29)</span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
-<span class="w">         </span><span class="k">call </span><span class="n">calculate_log_der_matrix</span><span class="p">(</span><span class="n">step_numerov</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">            </span><span class="n">t_minus</span><span class="p">,</span><span class="n">t_center</span><span class="p">,</span><span class="n">t_plus</span><span class="p">,</span><span class="n">r_center</span><span class="p">,</span><span class="n">r_plus</span><span class="p">,</span><span class="n">log_der_matrix</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">calculate_log_der_matrix</span><span class="p">(</span><span class="n">step_numerov_</span><span class="p">,</span><span class="n">number_of_channels_</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">t_matrix_minus_</span><span class="p">,</span><span class="n">t_matrix_</span><span class="p">,</span><span class="n">t_matrix_plus_</span><span class="p">,</span><span class="n">r_matrix_rmax_</span><span class="p">,</span><span class="n">r_matrix_plus_</span><span class="p">,</span><span class="n">log_der_matrix_</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prntlvl</span><span class="p">.</span><span class="n">ge</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            call </span><span class="n">write_message</span><span class="p">(</span><span class="s2">&quot;Numerov propagator took &quot;</span><span class="w"> </span><span class="o">//</span><span class="w">                   </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">float_to_character</span><span class="p">(</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;(E14.8)&quot;</span><span class="p">)))</span><span class="w"> </span><span class="o">//</span><span class="w">   </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">               </span><span class="s2">&quot; seconds&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="k">            call </span><span class="n">time_count_summary</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span><span class="p">,</span><span class="w"> </span><span class="n">calculation_time_</span><span class="p">,</span><span class="w">          </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="s2">&quot;Propagation completed in &quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="k">endif</span><span class="w"></span>
 <span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
 <span class="w">      </span><span class="k">end subroutine </span><span class="n">numerov</span><span class="w"></span>
@@ -1579,7 +668,7 @@ for each non-zero element of W/V</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-04 15:34            </p>
+ on 2024-01-05 12:24            </p>
         </div>
       </div>
       <br>

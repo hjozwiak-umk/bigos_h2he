@@ -1,4 +1,5 @@
 program SCATTERING
+   !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
    use radial_coupling_terms_mod, only: read_radial_coupling_terms,            &
@@ -6,8 +7,9 @@ program SCATTERING
    use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
       set_space_fixed_channels, count_open_channels_in_block,                  &
       calculate_largest_wavenumber, print_channels
-   use coupling_matrix_mod
-   use PROPAGATORS
+   use pes_matrix_mod, only: check_nonzero_pes_matrix_elements,                &
+      prepare_pes_matrix_elements, print_pes_matrix_elements_summary
+   use propagator_mod, only: numerov
    use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
       calculate_k_matrix, calculate_s_matrix
    use unitarity_check_mod, only: unitarity_check
@@ -21,8 +23,8 @@ program SCATTERING
    implicit none
    !---------------------------------------------------------------------------!
    character(len=200) :: err_message, partial_line, xs_line
-   integer(int32) :: number_of_nonzero_coupling_matrix_elements,               &
-      number_of_nonzero_coupling_coefficients, number_of_channels, size_even,  &
+   integer(int32) :: number_of_nonzero_pes_matrix_elements,               &
+      number_of_nonzero_algebraic_coefficients, number_of_channels, size_even,  &
       size_odd, number_of_open_basis_levels, iblock, jtot_, parity_exponent,      &
       parity_exponenttmp, nsteps, number_of_open_channels, ncacdiag, ncacoff,     &
       omegamax, lmin, lmax, ltmp, lmat_len, len_even, len_odd, jinddiag,       &
@@ -37,7 +39,7 @@ program SCATTERING
       channel_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:),&
       nonzero_legendre_indices(:), smatcheckarr(:)
    real(dp), allocatable :: wv(:), open_basis_wavevectors(:),                  &
-      nonzero_coupling_coefficients(:), xs_total(:), xs_block(:), xs_jtot(:)
+      nonzero_algebraic_coefficients(:), xs_total(:), xs_block(:), xs_jtot(:)
    real(dp), allocatable :: BF_log_der_matrix(:,:), SF_log_der_matrix(:,:),    &
       k_matrix(:,:), s_matrix_real(:,:), s_matrix_imag(:,:)
    !---------------------------------------------------------------------------!
@@ -228,21 +230,21 @@ program SCATTERING
             nsteps = nint((Rmax-Rmin)/dr)+1
          endif
          !---------------------------------------------------------------------!
-         ! Prepare the coupling matrix
+         ! Prepare the PES matrix
          !---------------------------------------------------------------------!
          call cpu_time(time_coupling_start)
-         call check_nonzero_coupling_matrix_elements(channel_indices,   &
-            channels_omega_values, number_of_nonzero_coupling_matrix_elements, &
-            number_of_nonzero_coupling_coefficients)
-         call allocate_1d(nonzero_terms_per_element,number_of_nonzero_coupling_matrix_elements)
-         call allocate_1d(nonzero_coupling_coefficients,number_of_nonzero_coupling_coefficients)
-         call allocate_1d(nonzero_legendre_indices,number_of_nonzero_coupling_coefficients)
-         call prepare_coupling_matrix_elements(channel_indices,         &
+         call check_nonzero_pes_matrix_elements(channel_indices,   &
+            channels_omega_values, number_of_nonzero_pes_matrix_elements, &
+            number_of_nonzero_algebraic_coefficients)
+         call allocate_1d(nonzero_terms_per_element,number_of_nonzero_pes_matrix_elements)
+         call allocate_1d(nonzero_algebraic_coefficients,number_of_nonzero_algebraic_coefficients)
+         call allocate_1d(nonzero_legendre_indices,number_of_nonzero_algebraic_coefficients)
+         call prepare_pes_matrix_elements(channel_indices,         &
             channels_omega_values, nonzero_terms_per_element,                  &
-            nonzero_legendre_indices, nonzero_coupling_coefficients)
-         if (prntlvl.ge.2) call print_coupling_matrix_elements_summary(        &
-            number_of_channels, number_of_nonzero_coupling_matrix_elements,    &
-            number_of_nonzero_coupling_coefficients)
+            nonzero_legendre_indices, nonzero_algebraic_coefficients)
+         if (prntlvl.ge.2) call print_pes_matrix_elements_summary(        &
+            number_of_channels, number_of_nonzero_pes_matrix_elements,    &
+            number_of_nonzero_algebraic_coefficients)
          call cpu_time(time_coupling_stop)
          if (prntlvl.ge.2) call write_message("Calculations of the coupling "//&
             "matrix took " //  trim(adjustl(float_to_character(                &
@@ -257,11 +259,10 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Call the propagator:
          !---------------------------------------------------------------------!
-         call numerov(channel_indices, channels_omega_values,           &
-            number_of_nonzero_coupling_matrix_elements,                        &
-            number_of_nonzero_coupling_coefficients, nonzero_terms_per_element,&
-            nonzero_legendre_indices, nonzero_coupling_coefficients, nsteps,   &
-            number_of_channels, jtot_, BF_log_der_matrix)
+         call numerov(number_of_channels, channel_indices, channels_omega_values,           &
+            nonzero_terms_per_element,&
+            nonzero_legendre_indices, nonzero_algebraic_coefficients, nsteps,   &
+            jtot_, BF_log_der_matrix)
          call write_message("Coupled equations were solved from " //           &
             trim(adjustl(float_to_character(Rmin, "(F10.4)")))// " a.u. to "// &
             trim(adjustl(float_to_character(Rmax, "(F10.4)")))// " a.u. in "// &

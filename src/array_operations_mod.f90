@@ -128,4 +128,22 @@ module array_operations_mod
       end subroutine fill_symmetric_matrix_dp
    end interface
    !---------------------------------------------------------------------------!
+   interface add_scalar_to_diagonal
+      module subroutine add_scalar_to_diagonal_int32(matrix_, scalar_)
+         !! add a scalar value to the matrix diagonal (integer version)
+         integer(int32), intent(inout) :: matrix_(:,:)
+         integer(int32), intent(in) :: scalar_
+      end subroutine add_scalar_to_diagonal_int32
+      module subroutine add_scalar_to_diagonal_sp(matrix_, scalar_)
+         !! add a scalar value to the matrix diagonal (single precision version)
+         real(sp), intent(inout) :: matrix_(:,:)
+         real(sp), intent(in) :: scalar_
+      end subroutine add_scalar_to_diagonal_sp
+      module subroutine add_scalar_to_diagonal_dp(matrix_, scalar_)
+         !!! add a scalar value to the matrix diagonal (double precision version)
+         real(dp), intent(inout) :: matrix_(:,:)
+         real(dp), intent(in) :: scalar_
+      end subroutine add_scalar_to_diagonal_dp
+   end interface
+   !---------------------------------------------------------------------------!
 end module array_operations_mod

@@ -12,8 +12,7 @@ module radial_coupling_terms_mod
    !!--------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use io_mod
-   use utility_functions_mod, only: file_io_status, write_error, write_message,&
-      time_count_summary
+   use utility_functions_mod, only: file_io_status, write_error, write_message
    use math_functions_mod, only: spline, ispline
    !---------------------------------------------------------------------------!
    implicit none
