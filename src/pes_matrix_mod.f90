@@ -29,6 +29,7 @@ module pes_matrix_mod
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_error, write_message, integer_to_character
+   use data_mod
    use io_mod
    use array_operations_mod, only: fill_symmetric_matrix
    use math_functions_mod, only: percival_seaton_coefficient,                  &
@@ -390,7 +391,7 @@ module pes_matrix_mod
             sum_over_lambda_ = sum_over_lambda_ + algebraic_coefficient_ * radial_term_
             !------------------------------------------------------------------!
          enddo
-         matrix_element_ =  2.0_dp * reducedmass * sum_over_lambda_
+         matrix_element_ =  2.0_dp * reduced_mass * sum_over_lambda_
          !---------------------------------------------------------------------!
          if (channel_index_1_ == channel_index_2_) then
             matrix_element_ = matrix_element_                                  &

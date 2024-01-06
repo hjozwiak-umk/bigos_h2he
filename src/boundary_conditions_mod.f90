@@ -4,6 +4,7 @@ module boundary_conditions_mod
    !! (see "Solution of coupled equations" section)
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use data_mod
    use io_mod
    use fwigxjpf, only: fwig3jj
    use math_functions_mod, only: riccati_bessel_j, riccati_bessel_y,           &

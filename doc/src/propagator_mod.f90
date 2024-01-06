@@ -3,6 +3,7 @@ module propagator_mod
    !! Numerov propagator.                                   
    !----------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use data_mod
    use io_mod
    use array_operations_mod, only: invert_symmetric_matrix, fill_symmetric_matrix, add_scalar_to_diagonal
    use centrifugal_matrix_mod, only: calculate_centrifugal_matrix
@@ -321,7 +322,7 @@ module propagator_mod
             nonzero_terms_per_element_, nonzero_legendre_indices_,             &
             nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,   &
             is_t_matrix_required_, t_matrix_plus_)
-      !---------------------------------------------------------------------!
+         !---------------------------------------------------------------------!
       end subroutine handle_final_propagation_steps
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
@@ -467,27 +468,33 @@ module propagator_mod
          ! The first term in the large bracket:
          ! (1/2 I - T_{N+1}) (I - T_{N+1})^{-1} R_{N+1}
          !---------------------------------------------------------------------!
-         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,number_of_channels_,1.0_dp,&
-                    matrix_a_,number_of_channels_,matrix_b_,number_of_channels_,0.0_dp,matrix_ab_,number_of_channels_)
-         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,number_of_channels_,1.0_dp,&
-                    matrix_ab_,number_of_channels_,r_matrix_plus_,number_of_channels_,0.0_dp,left_matrix_,number_of_channels_)
+         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,           &
+            number_of_channels_,1.0_dp,matrix_a_,number_of_channels_,matrix_b_,&
+            number_of_channels_,0.0_dp,matrix_ab_,number_of_channels_)
+         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,           &
+            number_of_channels_,1.0_dp,matrix_ab_,number_of_channels_,         &
+            r_matrix_plus_,number_of_channels_,0.0_dp,left_matrix_,number_of_channels_)
          !---------------------------------------------------------------------!
          ! The second term in the large bracket:
          ! (1/2 I - T_{N-1}) (I - T_{N-1})^{-1} R_{N}^{-1}
          !---------------------------------------------------------------------!
-         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,number_of_channels_,1.0_dp,&
-                    matrix_c_,number_of_channels_,matrix_d_,number_of_channels_,0.0_dp,matrix_cd_,number_of_channels_)
-         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,number_of_channels_,1.0_dp,&
-                    matrix_cd_,number_of_channels_,working_r_matrix_,number_of_channels_,0.0_dp,right_matrix_,number_of_channels_)
-        !----------------------------------------------------------------------!
-        ! Substract the two terms in the large bracket
-        !----------------------------------------------------------------------!
+         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,           &
+            number_of_channels_,1.0_dp,matrix_c_,number_of_channels_,matrix_d_,&
+            number_of_channels_,0.0_dp,matrix_cd_,number_of_channels_)
+         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,           &
+            number_of_channels_,1.0_dp,matrix_cd_,number_of_channels_,         &
+            working_r_matrix_,number_of_channels_,0.0_dp,right_matrix_,number_of_channels_)
+         !---------------------------------------------------------------------!
+         ! Substract the two terms in the large bracket
+         !---------------------------------------------------------------------!
          matrix_difference_ = left_matrix_ - right_matrix_
-        !----------------------------------------------------------------------!
-        ! Multiply the product by (I - T_{N})
-        !----------------------------------------------------------------------!
-        CALL DGEMM('N','N',number_of_channels_,number_of_channels_,number_of_channels_,1.0_dp/step_,matrix_difference_,&
-                    number_of_channels_,matrix_e_,number_of_channels_,0.0_dp,log_der_matrix_,number_of_channels_)
+         !---------------------------------------------------------------------!
+         ! Multiply the product by (I - T_{N})
+         !---------------------------------------------------------------------!
+         CALL DGEMM('N','N',number_of_channels_,number_of_channels_,           &
+            number_of_channels_,1.0_dp/step_,matrix_difference_,               &
+            number_of_channels_,matrix_e_,number_of_channels_,0.0_dp,          &
+            log_der_matrix_,number_of_channels_)
          !---------------------------------------------------------------------!
       end subroutine calculate_log_der_matrix
 !------------------------------------------------------------------------------!

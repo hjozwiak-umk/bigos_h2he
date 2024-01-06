@@ -4,6 +4,7 @@ module channels_mod
    !! cases) and print quantum numbers on screen
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use data_mod
    use io_mod
    use utility_functions_mod, only: write_error, write_message, write_warning, &
       integer_to_character, float_to_character

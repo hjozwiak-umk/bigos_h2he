@@ -15,6 +15,7 @@ module state_to_state_cross_sections_mod
    !!    ("check_cross_section_thresholds")
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use data_mod
    use io_mod
    use utility_functions_mod, only: write_message, time_count_summary
    !---------------------------------------------------------------------------!
@@ -363,7 +364,7 @@ module state_to_state_cross_sections_mod
       subroutine check_cross_section_thresholds(largest_elastic_xs_,           &
          largest_inelastic_xs_, consecutive_elastic_, consecutive_inelastic_,  &
          terminate_)
-         !! Checks if the dtol (threshold for elastic XS) and otol
+         !! Checks if the elastic_xs_threshold (threshold for elastic XS) and inelastic_xs_threshold
          !! (threshold for inelastic XS) conditions are already fulfilled.
          !---------------------------------------------------------------------!
          real(dp), intent(in) :: largest_elastic_xs_
@@ -381,8 +382,8 @@ module state_to_state_cross_sections_mod
          !---------------------------------------------------------------------!
          terminate_ = .false.
 
-         is_elastic_xs_within_threshold = (largest_elastic_xs_ <= dtol)
-         is_inelastic_xs_within_threshold = (largest_inelastic_xs_ <= otol)
+         is_elastic_xs_within_threshold = (largest_elastic_xs_ <= elastic_xs_threshold)
+         is_inelastic_xs_within_threshold = (largest_inelastic_xs_ <= inelastic_xs_threshold)
 
          if (is_elastic_xs_within_threshold) then
             consecutive_elastic_ = consecutive_elastic_ + 1
@@ -396,7 +397,8 @@ module state_to_state_cross_sections_mod
             consecutive_inelastic_ = 0
          endif
 
-         if ((consecutive_elastic_ >= ncac).and.(consecutive_inelastic_ >= ncac)) then
+         if ((consecutive_elastic_ >= consecutive_blocks_threshold).and.       &
+            (consecutive_inelastic_ >= consecutive_blocks_threshold)) then
             terminate_ = .true.
          endif
          !---------------------------------------------------------------------!
