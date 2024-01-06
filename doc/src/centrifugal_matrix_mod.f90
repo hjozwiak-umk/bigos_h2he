@@ -3,6 +3,7 @@ module centrifugal_matrix_mod
    !! in Eq. 3 in "What are coupled equations?" section.
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use data_mod
    use io_mod
    use array_operations_mod, only: invert_symmetric_matrix, fill_symmetric_matrix
    !---------------------------------------------------------------------------!

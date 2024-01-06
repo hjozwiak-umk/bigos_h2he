@@ -1,6 +1,7 @@
 program SCATTERING
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use data_mod
    use io_mod
    use radial_coupling_terms_mod, only: read_radial_coupling_terms,            &
       reduce_radial_coupling_terms, interpolate_radial_coupling_terms
@@ -26,7 +27,7 @@ program SCATTERING
    integer(int32) :: number_of_nonzero_pes_matrix_elements,               &
       number_of_nonzero_algebraic_coefficients, number_of_channels, size_even,  &
       size_odd, number_of_open_basis_levels, iblock, jtot_, parity_exponent,      &
-      parity_exponenttmp, nsteps, number_of_open_channels, ncacdiag, ncacoff,     &
+      parity_exponenttmp, nsteps, number_of_open_channels, consecutive_blocks_thresholddiag, consecutive_blocks_thresholdoff,     &
       omegamax, lmin, lmax, ltmp, lmat_len, len_even, len_odd, jinddiag,       &
       jindoff1, jindoff2, ij, ilevel, iomega, iopen, iopen2, isize_, isize_2,  &
       icheck, icount, icount2, io_status
@@ -67,7 +68,7 @@ program SCATTERING
       iomsg = err_message)
    call file_io_status(io_status, err_message, 11, "o")
    !---------------------------------------------------------------------------!
-   write(11) label, 2, nlevel, reducedmass
+   write(11) label, 2, nlevel, reduced_mass
    write(11) (v1array(ilevel), j1array(ilevel), ilevel = 1, nlevel)
    write(11) (elevel(ilevel), ilevel = 1, nlevel)
    write(11) initial, energy
@@ -134,10 +135,10 @@ program SCATTERING
    ! Prepare J-blocks
    !---------------------------------------------------------------------------!
    ! If JTOTMAX=-1 is called, iterate until convergence is achieved:
-   ! this is managed by ncacdiag and ncacoff
+   ! this is managed by consecutive_blocks_thresholddiag and consecutive_blocks_thresholdoff
    !---------------------------------------------------------------------------!
-   ncacdiag  = 0
-   ncacoff   = 0
+   consecutive_blocks_thresholddiag  = 0
+   consecutive_blocks_thresholdoff   = 0
    iblock    = 0
    terminate = .false.
    !---------------------------------------------------------------------------!
@@ -223,7 +224,7 @@ program SCATTERING
          ! This is done either directly (if dr > 0)
          ! or through the number of steps per half de Broglie wavelength
          !---------------------------------------------------------------------!
-         wavvdepth = dsqrt(2*reducedmass*vdepth)
+         wavvdepth = dsqrt(2*reduced_mass*vdepth)
          if (dr <= 0) then
             nsteps = nint((Rmax-Rmin)/PI*((largest_wavevector+wavvdepth)*steps))
          else
@@ -292,7 +293,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          call allocate_1d(wv, number_of_open_channels)
          do iopen = 1, number_of_open_channels
-            wv(iopen) = dsqrt((2*reducedmass*&
+            wv(iopen) = dsqrt((2*reduced_mass*&
                (ETOTAL()-elevel(channel_indices(iopen)))))/bohrtoangstrom
          enddo
          !---------------------------------------------------------------------!
@@ -393,7 +394,8 @@ program SCATTERING
          jindoff1, jindoff2, open_basis_levels)
       !-----------------------------------------------------------------------!
       if (jtotmax == 999999) then
-         call check_cross_section_thresholds(maxXSdiag, maxXSoff, ncacdiag, ncacoff, terminate)
+         call check_cross_section_thresholds(maxXSdiag, maxXSoff,              &
+            consecutive_blocks_thresholddiag, consecutive_blocks_thresholdoff, terminate)
       endif
       !------------------------------------------------------------------------!
       ! Check the time after each JTOT block:                                  
@@ -426,7 +428,7 @@ program SCATTERING
       if (prntlvl.ge.2) call time_count_summary(time_jtot_start,               &
          time_jtot_stop, time_jtot, "JTOT block completed in ")
       !------------------------------------------------------------------------!
-      ! terminate the loop if dtol/otol condition is satisfied
+      ! terminate the loop if elastic_xs_threshold/inelastic_xs_threshold condition is satisfied
       !------------------------------------------------------------------------!
       if (terminate) exit
    enddo

@@ -1,7 +1,7 @@
  &INPUT
  label = 'ortho-H2-He, test at 4900 cm-1'
- reducedmass = 1.34056d0,
- ietoterel = 0,
+ reduced_mass = 1.34056d0,
+ relative_energy_flag = 0,
  energy = 4900.0000d0,
  initial = 1,
  jtotmin = 0, jtotmax = 50, jtotstep = 1,
@@ -9,11 +9,11 @@
  nlevel = 7,
  nr = 1991,
  nterms = 4,
- totalcol = 990,
+ total_number_of_coupling_terms = 990,
  n_skip_lines = 17, iunits = 0,
  potentialfile = 'oH2-He-radialterms.dat',
  smatrixfile = 'smatrixH2He.dat',
- ipart = 1,
+ print_partial_cross_sections = true,
  partialfile = 'partialH2He.dat',
  prntlvl = 2,
 &end

@@ -11,6 +11,7 @@ module radial_coupling_terms_mod
    !! 4. providing value of the interpolated radial coupling term ("get_radial_coupling_term_value")
    !!--------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use data_mod
    use io_mod
    use utility_functions_mod, only: file_io_status, write_error, write_message
    use math_functions_mod, only: spline, ispline
@@ -78,7 +79,7 @@ module radial_coupling_terms_mod
          if (lambda_.ne.l1tab(lambda_index_)) then
             close(pes_file_unit)
             close(s_matrix_unit)
-            if (ipart.eq.1) close(partial_file_unit)
+            if (print_partial_cross_sections) close(partial_file_unit)
             call write_error("read_radial_coupling_terms: lambda = " //                    &
                trim(adjustl(integer_to_character(lambda_))) //                 &
                " differs from expected value in l1tab (" //                    &
@@ -96,13 +97,13 @@ module radial_coupling_terms_mod
          integer(int32), intent(in) :: lambda_index_
          !---------------------------------------------------------------------!
          integer(int32) :: r_index_, column_index_
-         real(dp) :: read_line(totalcol + 1)
+         real(dp) :: read_line(total_number_of_coupling_terms + 1)
          !---------------------------------------------------------------------!
          do r_index_ = 1, nr
             read(pes_file_unit, *) (read_line(column_index_),                  &
-               column_index_ = 1, totalcol + 1)
+               column_index_ = 1, total_number_of_coupling_terms + 1)
             rmat(r_index_) = read_line(1) * radial_term_distance_converter
-            do column_index_ = 1, totalcol
+            do column_index_ = 1, total_number_of_coupling_terms
                read_vmat3D(r_index_, lambda_index_, column_index_)             &
                   = read_line(column_index_ + 1) * radial_term_energy_converter
             enddo
@@ -115,7 +116,7 @@ module radial_coupling_terms_mod
          !---------------------------------------------------------------------!
          if (rmin < rmat(1)) then
             close(s_matrix_unit)
-            if (ipart.eq.1) close(partial_file_unit)
+            if (print_partial_cross_sections) close(partial_file_unit)
             call write_error("rmin value provided by the user (" //            &
                trim(adjustl(float_to_character(rmin, "(F10.4)"))) //           &
                ") is smaller than rmin supplied in " //                        &
@@ -125,7 +126,7 @@ module radial_coupling_terms_mod
          !---------------------------------------------------------------------!
          if (rmax > rmat(nr)) then
             close(s_matrix_unit)
-            if (ipart.eq.1) close(partial_file_unit)
+            if (print_partial_cross_sections) close(partial_file_unit)
             call write_error("rmax value provided by the user (" //            &
                trim(adjustl(float_to_character(rmax, "(F10.4)"))) //           &
                ") is larger than rmax supplied in " //                         &
@@ -142,14 +143,14 @@ module radial_coupling_terms_mod
          !---------------------------------------------------------------------!
          integer(int32) :: lambda_index_, radial_index_, coupling_index_
          !---------------------------------------------------------------------!
-         if (totalcol /= ncoupl) then
+         if (total_number_of_coupling_terms /= minimal_number_of_coupling_terms) then
             call write_message("Reducing the number of the radial coupling terms...")
-            call print_pes_quantum_numbers("Original", totalcol)
+            call print_pes_quantum_numbers("Original", total_number_of_coupling_terms)
             call reduce_coupling_terms()
-            call print_pes_quantum_numbers("Reduced", ncoupl)
+            call print_pes_quantum_numbers("Reduced", minimal_number_of_coupling_terms)
             call write_message("Reduced "//                                    &
-               trim(adjustl(integer_to_character(totalcol))) //                &
-               " radial terms to "// trim(adjustl(integer_to_character(ncoupl))))
+               trim(adjustl(integer_to_character(total_number_of_coupling_terms))) //                &
+               " radial terms to "// trim(adjustl(integer_to_character(minimal_number_of_coupling_terms))))
          else
             !------------------------------------------------------------------!
             ! if there is nothing to be reduced, copy read_vmat3d to vmat3d
@@ -168,7 +169,7 @@ module radial_coupling_terms_mod
          !---------------------------------------------------------------------!
          do lambda_index_ = 1, nterms
             do r_index_ = 1, nr
-               do coupling_index_ = 1, ncoupl
+               do coupling_index_ = 1, minimal_number_of_coupling_terms
                   vmat3D(r_index_, lambda_index_, coupling_index_) =           &
                      find_reduced_term(r_index_, lambda_index_, coupling_index_)
                enddo
@@ -193,7 +194,7 @@ module radial_coupling_terms_mod
          integer(int32) :: column_index_
          !---------------------------------------------------------------------!
          reduced_term = 0.0_dp
-         do column_index_ = 1, totalcol
+         do column_index_ = 1, total_number_of_coupling_terms
          !---------------------------------------------------------------------!
          ! iterate over quantum numbers describing all couplings
          ! (v1/j1/v1p/j1ppes) until necessary couplings are found
@@ -253,9 +254,10 @@ module radial_coupling_terms_mod
          !! are stored in bmat3D, cmat3D, and dmat3D matrices.
          !---------------------------------------------------------------------!
          integer(int32) :: lambda_index_, coupling_index_
+         real(dp) :: spline_coeff_b(nr), spline_coeff_c(nr), spline_coeff_d(nr)
          !---------------------------------------------------------------------!
          do lambda_index_ = 1, nterms
-            do coupling_index_ = 1, ncoupl
+            do coupling_index_ = 1, minimal_number_of_coupling_terms
                !---------------------------------------------------------------!
                ! Compute spline coefficients for each coupling term
                !---------------------------------------------------------------!
@@ -368,7 +370,7 @@ module radial_coupling_terms_mod
          integer(int32) :: coupling_index_
          !---------------------------------------------------------------------!
          result_index_ = 0
-         do coupling_index_ = 1, ncoupl
+         do coupling_index_ = 1, minimal_number_of_coupling_terms
             if ((((reduced_v1pes(coupling_index_) == v_).and.                  &
                (reduced_j1pes(coupling_index_).eq.j_).and.                     &
                (reduced_v1ppes(coupling_index_).eq.v_prime_).and.              &
