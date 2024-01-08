@@ -273,12 +273,15 @@ module io_mod
       !------------------------------------------------------------------------!
       integer(int32), intent(in) :: number_of_open_basis_levels
          !! number of energetically accessible levels in the basis
-      integer(int32), intent(inout) :: open_basis_levels(number_of_open_basis_levels)
+      integer(int32), intent(inout), allocatable :: open_basis_levels(:)
          !! array holding indices to energetically accessible levels in the basis
-      real(dp), intent(inout) :: open_basis_wavevectors(number_of_open_basis_levels)
+      real(dp), intent(inout), allocatable :: open_basis_wavevectors(:)
          !! array holding wavevectors calculated w.r.t energetically accessible levels in the basis
       !------------------------------------------------------------------------!
       integer(int32) :: count_, ilevel
+      !------------------------------------------------------------------------!
+      call allocate_1d(open_basis_levels, number_of_open_basis_levels)
+      call allocate_1d(open_basis_wavevectors, number_of_open_basis_levels)
       !------------------------------------------------------------------------!
       count_ = 0
       do ilevel = 1, nlevel

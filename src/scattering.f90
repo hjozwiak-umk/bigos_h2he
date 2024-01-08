@@ -14,9 +14,11 @@ program SCATTERING
    use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
       calculate_k_matrix, calculate_s_matrix
    use unitarity_check_mod, only: unitarity_check
+   use save_s_matrix_mod, only: save_s_matrix_file_header, save_s_matrix_block_info
    use state_to_state_cross_sections_mod, only:                                &
       calculate_state_to_state_cross_section,                                  &
-      print_largest_partial_cross_sections, check_cross_section_thresholds
+      print_largest_partial_cross_sections, check_cross_section_thresholds,    &
+      save_partial_xs_file_header, save_partial_xs_single_block
    use utility_functions_mod, only: write_header, file_io_status,              &
       write_message, float_to_character, integer_to_character, time_count_summary
    use array_operations_mod, only: append
@@ -64,25 +66,12 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    ! S-matrix file: write input parameters and basis levels
    !---------------------------------------------------------------------------!
-   open(11, file=trim(smatrixfile), form='unformatted', iostat = io_status,    &
-      iomsg = err_message)
-   call file_io_status(io_status, err_message, 11, "o")
-   !---------------------------------------------------------------------------!
-   write(11) label, 2, nlevel, reduced_mass
-   write(11) (v1array(ilevel), j1array(ilevel), ilevel = 1, nlevel)
-   write(11) (elevel(ilevel), ilevel = 1, nlevel)
-   write(11) initial, energy
+   call save_s_matrix_file_header
    !---------------------------------------------------------------------------!
    ! Prepare the file with the partial XS
    !---------------------------------------------------------------------------!
-   if (parity_exponent == 1) then
-      open(12, file=trim(partialfile),form='formatted',status='unknown',       &
-         iostat = io_status, iomsg = err_message)
-      call file_io_status(io_status, err_message, 12, "o")
-      !------------------------------------------------------------------------!
-      call write_message( "  jtot  iblock  v1_f  j1_f  <-  v1_i  j1_i'" //     &
-         repeat(" ", 14) // "K.E." // repeat(" ", 16) // "XS", unit_ = 12)
-      !------------------------------------------------------------------------!
+   if (print_partial_cross_sections) then
+      call save_partial_xs_file_header
    endif
    !---------------------------------------------------------------------------!
    ! Convert units: starting now, everything is in atomic units
@@ -105,8 +94,6 @@ program SCATTERING
    ! needed in the calculations of the state-to-state XS                       
    !---------------------------------------------------------------------------!
    number_of_open_basis_levels = count_open_basis_levels()
-   call allocate_1d(open_basis_levels, number_of_open_basis_levels)
-   call allocate_1d(open_basis_wavevectors, number_of_open_basis_levels)
    call save_open_basis_levels(number_of_open_basis_levels, open_basis_levels, &
       open_basis_wavevectors)
    !---------------------------------------------------------------------------!
@@ -299,13 +286,9 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! S-matrix is written to the binary S-matrix file
          !---------------------------------------------------------------------!
-         write(11) jtot_, parity_exponent, number_of_open_channels
-         write(11) (channel_indices(iopen), channel_l_values(iopen),&
-                    wv(iopen), iopen = 1, number_of_open_channels)
-         write(11) ((s_matrix_real(iopen,iopen2), iopen2 = 1, iopen),&
-                    iopen=1, number_of_open_channels)
-         write(11) ((s_matrix_imag(iopen,iopen2), iopen2 = 1, iopen),&
-                    iopen=1, number_of_open_channels)
+         call save_s_matrix_block_info(jtot_, parity_exponent,                 &
+            number_of_open_channels, channel_indices, channel_l_values, wv,    &
+            s_matrix_real, s_matrix_imag)
          !---------------------------------------------------------------------!
          ! Check if the S-matrices are unitary
          !---------------------------------------------------------------------!
@@ -326,19 +309,12 @@ program SCATTERING
          ! Print the results from this parity block to the partial XS file
          ! and add the calculated partial XS to the xs_jtot array
          !---------------------------------------------------------------------!
+         if (print_partial_cross_sections) then
+            call save_partial_xs_single_block(jtot_, iblock,                   &
+            number_of_open_basis_levels, open_basis_levels, xs_block)
+         endif
          do icount = 1, number_of_open_basis_levels
             do icount2 = 1, number_of_open_basis_levels
-               if (parity_exponent == 1) then
-                  write(partial_line,                                          &
-                     "(I6,2X,I6,2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")   &
-                     jtot_,iblock,v1array(open_basis_levels(icount2)),         &
-                     j1array(open_basis_levels(icount2)),                      &
-                     v1array(open_basis_levels(icount)),                       &
-                     j1array(open_basis_levels(icount)),                       &
-                     (etotal()-elevel(open_basis_levels(icount)))*hartreetocm, &
-                     xs_block((icount-1)*number_of_open_basis_levels+icount2)
-                  call write_message(partial_line, unit_ = 12)
-               endif
                xs_jtot((icount-1)*number_of_open_basis_levels+icount2) =       &
                   xs_jtot((icount-1)*number_of_open_basis_levels+icount2)      &
                   + xs_block((icount-1)*number_of_open_basis_levels+icount2)

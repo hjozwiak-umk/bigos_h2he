@@ -23,7 +23,8 @@ module state_to_state_cross_sections_mod
    !---------------------------------------------------------------------------!
    private
    public :: calculate_state_to_state_cross_section,                           &
-      print_largest_partial_cross_sections, check_cross_section_thresholds
+      print_largest_partial_cross_sections, save_partial_xs_file_header,       &
+      save_partial_xs_single_block, check_cross_section_thresholds
    !---------------------------------------------------------------------------!
    contains
    !---------------------------------------------------------------------------!
@@ -358,6 +359,58 @@ module state_to_state_cross_sections_mod
          call write_message(line_)
          !---------------------------------------------------------------------!
       end subroutine print_detailed_cross_section_info
+   !---------------------------------------------------------------------------!
+   !                        Saving partial cross-sections
+   !---------------------------------------------------------------------------!
+      subroutine save_partial_xs_file_header
+         !! save "header" of the partial cross-sections file:
+         !! -- label, "itype", number of levels in the basis, reduced mass of the system
+         !! -- vibrational and rotational quantum numbers
+         !! -- rovibrational energies
+         !! -- index pointing to the initial level and the kinetic/total energy
+         !---------------------------------------------------------------------!
+         character(len=200) :: err_message
+         integer(int32) :: io_status, ilevel
+         !---------------------------------------------------------------------!
+         open(partial_file_unit, file=trim(partialfile),form='formatted',      &
+            status='unknown', iostat = io_status, iomsg = err_message)
+         call file_io_status(io_status, err_message, partial_file_unit, "o")
+         !---------------------------------------------------------------------!
+         call write_message( "  jtot  iblock  v1_f  j1_f  <-  v1_i  j1_i'" //  &
+            repeat(" ", 13) // "K.E." // repeat(" ", 16) // "XS",              &
+            unit_ = partial_file_unit)
+         !---------------------------------------------------------------------!
+      end subroutine save_partial_xs_file_header
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+      subroutine save_partial_xs_single_block(jtot_, block_number_,              &
+         number_of_open_basis_levels, open_basis_levels, xs_block)
+         !! ...
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: jtot_
+         integer(int32), intent(in) :: block_number_
+         integer(int32), intent(in) :: number_of_open_basis_levels
+         integer(int32), intent(in) :: open_basis_levels(number_of_open_basis_levels)
+         real(dp), intent(in) :: xs_block(number_of_open_basis_levels*number_of_open_basis_levels)
+         !---------------------------------------------------------------------!
+         character(len=200) :: partial_line
+         integer(int32) :: level_index_, level_index_2_
+         !---------------------------------------------------------------------!
+         do level_index_ = 1, number_of_open_basis_levels
+            do level_index_2_ = 1, number_of_open_basis_levels
+               write(partial_line,                                             &
+                  "(I6,2X,I6,2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")      &
+                  jtot_, block_number_, v1array(open_basis_levels(level_index_)),       &
+                  j1array(open_basis_levels(level_index_)),                      &
+                  v1array(open_basis_levels(level_index_)),                       &
+                  j1array(open_basis_levels(level_index_)),                       &
+                  (etotal()-elevel(open_basis_levels(level_index_)))*hartreetocm, &
+                  xs_block((level_index_-1)*number_of_open_basis_levels+level_index_2_)
+               call write_message(partial_line, unit_ = 12)
+            enddo
+         enddo
+         !---------------------------------------------------------------------!
+      end subroutine save_partial_xs_single_block
    !---------------------------------------------------------------------------!
    !                           Threshold checking
    !---------------------------------------------------------------------------!

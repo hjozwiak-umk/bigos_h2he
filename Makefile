@@ -16,7 +16,7 @@ OBJS = src/utility_functions_mod.o src/array_operations_mod.o src/array_operatio
        src/special_functions_mod.o src/math_functions_mod.o src/data_mod.o src/input_validation_mod.o src/input_reader_mod.o \
        src/radial_coupling_terms_mod.o src/channels_mod.o src/pes_matrix_mod.o src/centrifugal_matrix_mod.o \
        src/propagator_mod.o src/boundary_conditions_mod.o src/unitarity_check_mod.o src/state_to_state_cross_sections_mod.o \
-       src/scattering.o
+       src/save_s_matrix_mod.o src/scattering.o
 
 .PHONY: all check_libs wigxjpf scattering test
 
@@ -66,6 +66,16 @@ test:
 	@tail -n 37 ref/test/test-orthoH2-He/output.dat | head -n 36 > tmp2.txt
 	@diff tmp1.txt tmp2.txt && echo "test-orthoH2-He passed" || echo "test-orthoH2-He failed"
 	@rm tmp1.txt tmp2.txt test/test-orthoH2-He/oH2-He-radialterms* test/test-orthoH2-He/scattering.x
+	
+	@echo "Running test for test-paraH2-He..."
+	@cp scattering.x test/test-paraH2-He/
+	@cp ref/pH2-He-radialterms.zip test/test-paraH2-He/
+	@cd test/test-paraH2-He/ && unzip pH2-He-radialterms.zip
+	@cd test/test-paraH2-He/ && ./scattering.x < input.dat > output.dat
+	@tail -n 226 test/test-paraH2-He/output.dat | head -n 225 > tmp1.txt
+	@tail -n 226 ref/test/test-paraH2-He/output.dat | head -n 225 > tmp2.txt
+	@diff tmp1.txt tmp2.txt && echo "test-paraH2-He passed" || echo "test-paraH2-He failed"
+	@rm tmp1.txt tmp2.txt test/test-paraH2-He/pH2-He-radialterms* test/test-paraH2-He/scattering.x
 
 $(OBJS) : src/%.o : src/%.f90
 	$(F90) $(CFLAGS) $(FCFLAGS) $(INCFLAGS) -Jsrc -c $< -o $@
