@@ -61,7 +61,7 @@ implicit none
          !! invert a symmetric matrix using DSYTRI method (double precision version)
          real(dp), intent(inout) :: matrix_(:,:)
          !---------------------------------------------------------------------!
-         integer(int32) :: size_1_, size_2_, size_, lwork_, nb_, ok_, ILAENV
+         integer(int32) :: size_1_, size_2_, size_, lwork_, nb_, ok_, ILAENV, i_size_, i_size_2_
          integer(int32), allocatable :: pivot_(:)
          real(dp), allocatable :: work_(:)
          !---------------------------------------------------------------------!

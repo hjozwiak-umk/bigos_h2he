@@ -11,7 +11,7 @@ module math_functions_mod
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_error, write_warning,                &
       integer_to_character, float_to_character, time_count_summary
-   use special_functions_mod, only: rctj, rcty, envj, msta1, msta2, ikv, gamma
+   use special_functions_mod, only: rctj, rcty
    !---------------------------------------------------------------------------!
    implicit none
 	contains
@@ -174,8 +174,12 @@ module math_functions_mod
    !---------------------------------------------------------------------------!
    subroutine modified_bessel_k_ratio(l_, x_, ratio_)
       !! calculates the ratio of the modified Bessel function of the second
-      !! kind K_{l_ + 1/2}(x) and its first derivative (Eq. ...)
-      !! Uses ikv function from special_functions.f90
+      !! kind K_{l_ + 1/2}(x) and its first derivative (Eq. 8 in the
+      !! "Solution of the coupled equations" section)
+      !! Uses Temme's algorithm [N. M. Temme, J. Comput. Phys. 19 (1975) 324],
+      !! implemented in "modified_bessel_temme_algorithm" subroutine;
+      !! Unfortunately, the "ikv" function from special_functions
+      !! library failed at large x_ values.
       !------------------------------------------------------------------------!
       integer(int32), intent(in) :: l_
          !! l - order of the function (without the 1/2 factor!)
@@ -184,26 +188,169 @@ module math_functions_mod
       real(dp), intent(inout) :: ratio_
          !! ratio of the modified Bessel function of the second kind to its derivative
       !------------------------------------------------------------------------!
-      integer(int32) :: highest_order_
-      real(dp) :: order_, highest_order_real_
-      real(dp), dimension(l_+1) :: bi_arr_, di_arr_, bk_arr_, dk_arr_
-		!------------------------------------------------------------------------!
-      order_ = real(l_, dp) + 0.5_dp
-      call ikv(order_, x_, highest_order_real_, bi_arr_, di_arr_, bk_arr_, dk_arr_)
-      highest_order_ = nint(highest_order_real_ - 0.5_dp)
+      real(dp) :: order_, ck_, dk_, ek_
       !------------------------------------------------------------------------!
-      if (highest_order_ < l_) then
-         !---------------------------------------------------------------------!
-         call write_warning("modified_bessel_k_ratio: maximum order of modified Bessel function:"&
-         // trim(adjustl(integer_to_character(highest_order_))) // "is smaller than " //  &
-         "requested order l = " // trim(adjustl(integer_to_character(l_))) )
-         !---------------------------------------------------------------------!
-         ratio_ = dk_arr_(highest_order_) / bk_arr_(highest_order_)
-      else 
-         ratio_ = dk_arr_(l_ + 1) / bk_arr_(l_ + 1)
-      endif
+      order_ = real(l_, dp) + 0.5_dp
+      call modified_bessel_temme_algorithm(order_, x_, ck_, dk_, ek_)
+      ratio_ = dk_/ck_
       !------------------------------------------------------------------------!
    end subroutine modified_bessel_k_ratio
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+   subroutine modified_bessel_temme_algorithm(v, x, ck, dk, ek)
+      !! Implementation of the Temme's algorithm
+      !! [N. M. Temme, J. Comput. Phys. 19 (1975) 324] to calculating
+      !! modified Bessel functions of the second kind.
+      !! This is a direct modernization of the "mbessk" subroutine
+      !! in MOLSCAT:
+      !! https://github.com/molscat/molscat/blob/master/source_code/rbessk.f
+      !------------------------------------------------------------------------!
+      real(dp), intent(in) :: v, x
+      real(dp), intent(out) :: ck, dk, ek
+      real(dp) :: a, b, c, d, e, f, g, h, p, q, s, sk, y, ak, ak1, ex, pi
+      integer :: n, m, na, maxit
+      real(dp), parameter :: eps = 1.0e-15_dp, xmin = 1.0_dp
+      !------------------------------------------------------------------------!
+      pi = acos(-1.0_dp)
+      if (v < 0.0_dp .or. x <= 0.0_dp) then
+         call write_error("modified_bessel_temme_algorithm: Invalid input values for v or x")
+      endif
+
+      na = int(v + 0.5_dp)
+      a = v - na
+      if (x < xmin) then
+      ! Small x: Temme's series for small x
+         b = x / 2.0_dp
+         d = -log(b)
+         e = a * d
+         c = a * pi
+         if (abs(c) < eps) then
+          c = 1.0_dp
+         else
+          c = c / sin(c)
+         endif
+         if (abs(e) < eps) then
+          s = 1.0_dp
+         else
+          s = sinh(e) / e
+         endif
+         e = exp(e)
+         ! Compute the gamma function and its derivatives P and Q
+         ! Replace RGAMMA(A,P,Q) with a modern equivalent if necessary
+         g = e * rgamma(a, p, q)
+         e = (e + 1.0_dp / e) / 2.0_dp
+         f = c * (p * e + q * s * d)
+         e = a * a
+         p = 0.5_dp * g * c
+         q = 0.5_dp / g
+         c = 1.0_dp
+         d = b * b
+         ak = f
+         ak1 = p
+         do n = 1, maxit
+          f = (f * n + p + q) / (n * n - e)
+          c = c * d / n
+          p = p / (n - a)
+          q = q / (n + a)
+          g = c * (p - n * f)
+          h = c * f
+          ak = ak + h
+          ak1 = ak1 + g
+          if (abs(h / ak) + abs(g / ak1) < eps) exit
+         end do
+         f = ak
+         g = ak1 / b
+         ex = 0.0_dp
+      else
+      ! Large x: Temme's PQ method for large x
+         c = 0.25_dp - a * a
+         g = 1.0_dp
+         f = 0.0_dp
+         e = x * cos(a * pi) / pi / eps
+         do n = 1, maxit
+          h = (2 * (n + x) * g - (n - 1 + c / n) * f) / (n + 1)
+          f = g
+          g = h
+          if (h * n > e) exit
+         end do
+
+         p = f / g
+         q = p
+         b = x + x
+         e = b - 2.0_dp
+         do m = n, 1, -1
+          p = (m - 1 + c / m) / (e + (m + 1) * (2.0_dp - p))
+          q = p * (q + 1.0_dp)
+         end do
+         f = sqrt(pi / b) / (1.0_dp + q)
+         g = f * (a + x + 0.5_dp - p) / x
+         ex = x
+      endif
+
+      ! Upward recursion
+      p = 0.0_dp
+      if (na > 0) then
+         y = 2.0_dp / x
+         do n = 1, na
+           h = y * (a + n) * g + f
+           f = g
+           g = h
+           if (abs(f) > 4.0_dp) then
+             p = p + 1.0_dp
+             f = 0.0625_dp * f
+             g = 0.0625_dp * g
+           endif
+         end do
+      endif
+
+      ck = f
+      dk = (v / x) * f - g
+      sk = sqrt(ck * ck + dk * dk)
+      ck = ck / sk
+      dk = dk / sk
+      ek = log(sk) + p * log(16.0_dp) - ex
+   end subroutine modified_bessel_temme_algorithm
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+   function rgamma(x, odd, even) result(rgamma_val)
+      !! Calculates 1/Gamma(1-X); modernized version of Molscat's
+      !! rgamma function; see:
+      !! https://github.com/molscat/molscat/blob/36fa8f93a92f851e9d84245dd6a972e2910541c5/source_code/rbesjy.f
+      !!-----------------------------------------------------------------------!
+      real(dp), intent(in) :: x
+      real(dp), intent(out) :: odd, even
+      real(dp) :: rgamma_val, x2, alfa, beta
+      integer :: i
+      real(dp), dimension(12), save :: b = [ &
+      -0.283876542276024_dp, -0.076852840844786_dp, &
+       0.001706305071096_dp,  0.001271927136655_dp, &
+       0.000076309597586_dp, -0.000004971736704_dp, &
+      -0.000000865920800_dp, -0.000000033126120_dp, &
+       0.000000001745136_dp,  0.000000000242310_dp, &
+       0.000000000009161_dp, -0.000000000000170_dp ]
+
+      x2 = x * x * 8.0_dp
+      alfa = -0.000000000000001_dp
+      beta = 0.0_dp
+
+      do i = 12, 2, -2
+      beta = -(2 * alfa + beta)
+      alfa = -beta * x2 - alfa + b(i)
+      end do
+
+      even = (beta / 2.0_dp + alfa) * x2 - alfa + 0.921870293650453_dp
+
+      alfa = -0.000000000000034_dp
+      beta = 0.0_dp
+
+      do i = 11, 1, -2
+      beta = -(2 * alfa + beta)
+      alfa = -beta * x2 - alfa + b(i)
+      end do
+
+      odd = 2 * (alfa + beta)
+      rgamma_val = odd * x + even
+   end function rgamma
    !---------------------------------------------------------------------------!
    !                          Interpolation procedures
    !---------------------------------------------------------------------------!

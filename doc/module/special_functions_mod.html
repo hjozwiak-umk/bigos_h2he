@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title="16.0% of total for modules and submodules.">433 statements</a>
+               title=" 7.5% of total for modules and submodules.">198 statements</a>
           </li>
 
             <li id="source-file">
@@ -150,8 +150,6 @@
       </div>
       <div id="subs-0" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../module/special_functions_mod.html#proc-gamma">gamma</a>
-            <a class="list-group-item" href="../module/special_functions_mod.html#proc-ikv">ikv</a>
             <a class="list-group-item" href="../module/special_functions_mod.html#proc-rctj">rctj</a>
             <a class="list-group-item" href="../module/special_functions_mod.html#proc-rcty">rcty</a>
         </div>
@@ -429,8 +427,6 @@ LC: QA351.C45.
       </div>
       <div id="subs-1" class="panel-collapse collapse">
         <div class="list-group">
-            <a class="list-group-item" href="../module/special_functions_mod.html#proc-gamma">gamma</a>
-            <a class="list-group-item" href="../module/special_functions_mod.html#proc-ikv">ikv</a>
             <a class="list-group-item" href="../module/special_functions_mod.html#proc-rctj">rctj</a>
             <a class="list-group-item" href="../module/special_functions_mod.html#proc-rcty">rcty</a>
         </div>
@@ -658,191 +654,6 @@ LC: QA351.C45.
     <section>
     <h2>Subroutines</h2>
       <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-gamma"></span><h3>public  subroutine <a href='../proc/gamma.html'>gamma</a>(x, ga)  
-</h3></div>
-    <div class="panel-body">
-          
-  <p>evaluates the Gamma function.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>ga</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-      <div class="panel panel-default">
-    <div class="panel-heading codesum"><span class="anchor" id="proc-ikv"></span><h3>public  subroutine <a href='../proc/ikv.html'>ikv</a>(v, x, vm, bi, di, bk, dk)  
-</h3></div>
-    <div class="panel-body">
-          
-  <p>computes modified Bessel function Iv(x) and Kv(x) and their derivatives.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>v</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>x</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>vm</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>bi</strong>(0:*)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>di</strong>(0:*)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>bk</strong>(0:*)</td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              real(kind=8)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>dk</strong>(0:*)</td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-      <div class="panel panel-default">
     <div class="panel-heading codesum"><span class="anchor" id="proc-rctj"></span><h3>public  subroutine <a href='../proc/rctj.html'>rctj</a>(n, x, nm, rj, dj)  
 </h3></div>
     <div class="panel-body">
@@ -1062,7 +873,7 @@ LC: QA351.C45.
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-06 18:51            </p>
+ on 2024-01-08 14:29            </p>
         </div>
       </div>
       <br>

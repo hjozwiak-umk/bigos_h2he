@@ -271,6 +271,7 @@ module boundary_conditions_mod
          s_matrix_real = 0
          s_matrix_imag = 0
          !---------------------------------------------------------------------!
+         !---------------------------------------------------------------------!
          call DGEMM('N','N',number_of_open_channels,number_of_open_channels,   &
             number_of_open_channels,0.5d0,k_matrix,number_of_open_channels,    &
             k_matrix,number_of_open_channels,0.d0,s_tmp_matrix,number_of_open_channels)
