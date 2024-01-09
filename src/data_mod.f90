@@ -80,7 +80,7 @@ module data_mod
    real(dp), parameter :: bohrtoangstrom    = 0.5291772109d0
    real(dp), parameter :: hartreetocm       = 219474.631363d0
    real(dp), parameter :: pi                = dacos(-1.d0)
-   real(dp), parameter :: unitary_tolerance = 1e-6_dp
+   real(dp), parameter :: unitary_tolerance = 1e-4_dp
    !---------------------------------------------------------------------------!
    integer(int32), allocatable :: v1array(:)
       !! array holding vibrational quantum numbers, of nlevel size

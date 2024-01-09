@@ -35,9 +35,9 @@ module save_s_matrix_mod
       end subroutine save_s_matrix_file_header
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
-      subroutine save_s_matrix_block_info(total_angular_momentum, parity_exponent,              &
-         number_of_open_channels, channel_indices, channel_l_values, wv,       &
-         s_matrix_real, s_matrix_imag)
+      subroutine save_s_matrix_block_info(total_angular_momentum,              &
+         parity_exponent, number_of_open_channels, channel_indices,            &
+         channel_l_values, wv, s_matrix_real, s_matrix_imag)
          !! save information about current block
          !! -- total angular momentum, parity exponent, number of open channels
          !!    in the current block
