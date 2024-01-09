@@ -1,6 +1,6 @@
 ******************************************************************************************
 ******************************************************************************************
-*                         BIGOS quantum scattering package, vs. 0.00.                    *
+*                         BIGOS quantum scattering package, vs. 0.01.                    *
 *                                    the SCATTERING code                                 *
 *                             adjusted for H2-He calculations                            *
 *                                     by Hubert Jozwiak                                  *
@@ -24,7 +24,7 @@ Partial cross sections will be saved into partialH2He.dat
 S-matrix elements will be saved into smatrixH2He.dat
 Reducing the number of the radial coupling terms...
 Reduced 990 radial terms to 28
--- Initialization completed in 3.0845E+00 s
+-- Initialization completed in 3.1930E+00 s
 ******************************************************************************************
                             *** Loop over JTOT: ***
 ******************************************************************************************
@@ -46,21 +46,18 @@ Number of scattering channels: 7
      Number of non-zero elements of the potential matrix: 28
      Number of non-zero elements  of the PES matrix: 64
 ******************************************************************************************
-Calculations of the coupling matrix took 0.53000000E-04 seconds
--- Propagation completed in 3.9733E-01 s
+Calculations of the coupling matrix took 0.58000000E-04 seconds
+-- Propagation completed in 3.6005E-01 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 8.0000E-06 s
--- Parity block completed in 3.9933E-01 s
+-- Cross-sections calculations completed in 6.0000E-06 s
+-- Parity block completed in 3.6204E-01 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 0: .302152
 Largest partial inelastic state-to-state for JTOT = 0: .001432
                                            ***
--- JTOT block completed in 3.9934E-01 s
+-- JTOT block completed in 3.6205E-01 s
 ******************************************************************************************
 *                              JTOT =          1                                         *
 ******************************************************************************************
@@ -80,16 +77,13 @@ Number of scattering channels: 7
      Number of non-zero elements of the potential matrix: 28
      Number of non-zero elements  of the PES matrix: 64
 ******************************************************************************************
-Calculations of the coupling matrix took 0.56000000E-04 seconds
--- Propagation completed in 3.5337E-01 s
+Calculations of the coupling matrix took 0.46000000E-04 seconds
+-- Propagation completed in 3.2734E-01 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.0000E-06 s
--- Parity block completed in 3.5377E-01 s
+-- Cross-sections calculations completed in 6.0000E-06 s
+-- Parity block completed in 3.2770E-01 s
                                            ***
 Block number: 3
 jtot: 1 parity: -1
@@ -114,21 +108,18 @@ Number of scattering channels: 14
      Number of non-zero elements of the potential matrix: 56
      Number of non-zero elements  of the PES matrix: 128
 ******************************************************************************************
-Calculations of the coupling matrix took 0.75000000E-04 seconds
--- Propagation completed in 7.0481E-01 s
+Calculations of the coupling matrix took 0.82000000E-04 seconds
+-- Propagation completed in 6.8259E-01 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
 -- Cross-sections calculations completed in 8.0000E-06 s
--- Parity block completed in 7.0551E-01 s
+-- Parity block completed in 6.8331E-01 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 1: 1.661206
 Largest partial inelastic state-to-state for JTOT = 1: .007920
                                            ***
--- JTOT block completed in 1.0593E+00 s
+-- JTOT block completed in 1.0110E+00 s
 ******************************************************************************************
 *                              JTOT =          2                                         *
 ******************************************************************************************
@@ -160,16 +151,13 @@ Number of scattering channels: 19
      Number of non-zero elements of the potential matrix: 71
      Number of non-zero elements  of the PES matrix: 172
 ******************************************************************************************
-Calculations of the coupling matrix took 0.10100000E-03 seconds
--- Propagation completed in 9.6176E-01 s
+Calculations of the coupling matrix took 0.13400000E-03 seconds
+-- Propagation completed in 9.4426E-01 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 9.0000E-06 s
--- Parity block completed in 9.6300E-01 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 9.4556E-01 s
                                            ***
 Block number: 5
 jtot: 2 parity: -1
@@ -192,21 +180,18 @@ Number of scattering channels: 12
      Number of non-zero elements of the potential matrix: 43
      Number of non-zero elements  of the PES matrix: 108
 ******************************************************************************************
-Calculations of the coupling matrix took 0.76000000E-04 seconds
--- Propagation completed in 5.9748E-01 s
+Calculations of the coupling matrix took 0.75000000E-04 seconds
+-- Propagation completed in 5.8099E-01 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
 -- Cross-sections calculations completed in 7.0000E-06 s
--- Parity block completed in 5.9811E-01 s
+-- Parity block completed in 5.8165E-01 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 2: 4.075159
 Largest partial inelastic state-to-state for JTOT = 2: .013154
                                            ***
--- JTOT block completed in 1.5611E+00 s
+-- JTOT block completed in 1.5272E+00 s
 ******************************************************************************************
 *                              JTOT =          3                                         *
 ******************************************************************************************
@@ -236,16 +221,13 @@ Number of scattering channels: 17
      Number of non-zero elements of the potential matrix: 58
      Number of non-zero elements  of the PES matrix: 152
 ******************************************************************************************
-Calculations of the coupling matrix took 0.10500000E-03 seconds
--- Propagation completed in 8.4147E-01 s
+Calculations of the coupling matrix took 0.13400000E-03 seconds
+-- Propagation completed in 8.3336E-01 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
 -- Cross-sections calculations completed in 9.0000E-06 s
--- Parity block completed in 8.4257E-01 s
+-- Parity block completed in 8.3451E-01 s
                                            ***
 Block number: 7
 jtot: 3 parity: -1
@@ -280,21 +262,18 @@ Number of scattering channels: 24
      Number of non-zero elements of the potential matrix: 86
      Number of non-zero elements  of the PES matrix: 216
 ******************************************************************************************
-Calculations of the coupling matrix took 0.13100000E-03 seconds
--- Propagation completed in 1.4084E+00 s
+Calculations of the coupling matrix took 0.12400000E-03 seconds
+-- Propagation completed in 1.2334E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
 -- Cross-sections calculations completed in 1.1000E-05 s
--- Parity block completed in 1.4107E+00 s
+-- Parity block completed in 1.2359E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 3: 6.788535
 Largest partial inelastic state-to-state for JTOT = 3: .018319
                                            ***
--- JTOT block completed in 2.2533E+00 s
+-- JTOT block completed in 2.0705E+00 s
 ******************************************************************************************
 *                              JTOT =          4                                         *
 ******************************************************************************************
@@ -334,16 +313,13 @@ Number of scattering channels: 27
      Number of non-zero elements of the potential matrix: 92
      Number of non-zero elements  of the PES matrix: 236
 ******************************************************************************************
-Calculations of the coupling matrix took 0.13700000E-03 seconds
--- Propagation completed in 1.4246E+00 s
+Calculations of the coupling matrix took 0.15100000E-03 seconds
+-- Propagation completed in 1.3822E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.2000E-05 s
--- Parity block completed in 1.4288E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.3866E+00 s
                                            ***
 Block number: 9
 jtot: 4 parity: -1
@@ -374,21 +350,18 @@ Number of scattering channels: 20
      Number of non-zero elements of the potential matrix: 64
      Number of non-zero elements  of the PES matrix: 172
 ******************************************************************************************
-Calculations of the coupling matrix took 0.11700000E-03 seconds
--- Propagation completed in 9.5421E-01 s
+Calculations of the coupling matrix took 0.13700000E-03 seconds
+-- Propagation completed in 9.9317E-01 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 9.0000E-06 s
--- Parity block completed in 9.5599E-01 s
+-- Cross-sections calculations completed in 1.0000E-05 s
+-- Parity block completed in 9.9506E-01 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 4: 7.609700
 Largest partial inelastic state-to-state for JTOT = 4: .023387
                                            ***
--- JTOT block completed in 2.3848E+00 s
+-- JTOT block completed in 2.3816E+00 s
 ******************************************************************************************
 *                              JTOT =          5                                         *
 ******************************************************************************************
@@ -424,16 +397,13 @@ Number of scattering channels: 23
      Number of non-zero elements of the potential matrix: 70
      Number of non-zero elements  of the PES matrix: 192
 ******************************************************************************************
-Calculations of the coupling matrix took 0.12300000E-03 seconds
--- Propagation completed in 1.1008E+00 s
+Calculations of the coupling matrix took 0.13500000E-03 seconds
+-- Propagation completed in 1.1660E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 1.1045E+00 s
+-- Cross-sections calculations completed in 1.1000E-05 s
+-- Parity block completed in 1.1694E+00 s
                                            ***
 Block number: 11
 jtot: 5 parity: -1
@@ -474,21 +444,18 @@ Number of scattering channels: 30
      Number of non-zero elements of the potential matrix: 98
      Number of non-zero elements  of the PES matrix: 256
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17900000E-03 seconds
--- Propagation completed in 1.6326E+00 s
+Calculations of the coupling matrix took 0.16400000E-03 seconds
+-- Propagation completed in 1.6050E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 1.6400E+00 s
+-- Cross-sections calculations completed in 1.2000E-05 s
+-- Parity block completed in 1.6126E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 5: 7.175473
 Largest partial inelastic state-to-state for JTOT = 5: .028331
                                            ***
--- JTOT block completed in 2.7446E+00 s
+-- JTOT block completed in 2.7820E+00 s
 ******************************************************************************************
 *                              JTOT =          6                                         *
 ******************************************************************************************
@@ -533,16 +500,13 @@ Number of scattering channels: 32
      Number of non-zero elements of the potential matrix: 101
      Number of non-zero elements  of the PES matrix: 267
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16500000E-03 seconds
--- Propagation completed in 1.8861E+00 s
+Calculations of the coupling matrix took 0.16800000E-03 seconds
+-- Propagation completed in 1.6728E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.5000E-05 s
--- Parity block completed in 1.9459E+00 s
+-- Cross-sections calculations completed in 5.3000E-05 s
+-- Parity block completed in 1.7164E+00 s
                                            ***
 Block number: 13
 jtot: 6 parity: -1
@@ -578,21 +542,18 @@ Number of scattering channels: 25
      Number of non-zero elements of the potential matrix: 73
      Number of non-zero elements  of the PES matrix: 203
 ******************************************************************************************
-Calculations of the coupling matrix took 0.74800000E-03 seconds
--- Propagation completed in 1.8671E+00 s
+Calculations of the coupling matrix took 0.57200000E-03 seconds
+-- Propagation completed in 1.9297E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 1.8741E+00 s
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 1.9365E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 6: 8.338598
 Largest partial inelastic state-to-state for JTOT = 6: .033123
                                            ***
--- JTOT block completed in 3.8200E+00 s
+-- JTOT block completed in 3.6529E+00 s
 ******************************************************************************************
 *                              JTOT =          7                                         *
 ******************************************************************************************
@@ -632,16 +593,13 @@ Number of scattering channels: 27
      Number of non-zero elements of the potential matrix: 76
      Number of non-zero elements  of the PES matrix: 214
 ******************************************************************************************
-Calculations of the coupling matrix took 0.14700000E-03 seconds
--- Propagation completed in 1.3798E+00 s
+Calculations of the coupling matrix took 0.16700000E-03 seconds
+-- Propagation completed in 1.5170E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 1.3879E+00 s
+-- Cross-sections calculations completed in 2.9000E-05 s
+-- Parity block completed in 1.5275E+00 s
                                            ***
 Block number: 15
 jtot: 7 parity: -1
@@ -686,21 +644,18 @@ Number of scattering channels: 34
      Number of non-zero elements of the potential matrix: 104
      Number of non-zero elements  of the PES matrix: 278
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17300000E-03 seconds
--- Propagation completed in 1.8485E+00 s
+Calculations of the coupling matrix took 0.26000000E-03 seconds
+-- Propagation completed in 2.0769E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.5000E-05 s
--- Parity block completed in 1.9124E+00 s
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.1528E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 7: 5.249893
 Largest partial inelastic state-to-state for JTOT = 7: .037734
                                            ***
--- JTOT block completed in 3.3004E+00 s
+-- JTOT block completed in 3.6804E+00 s
 ******************************************************************************************
 *                              JTOT =          8                                         *
 ******************************************************************************************
@@ -748,16 +703,13 @@ Number of scattering channels: 35
      Number of non-zero elements of the potential matrix: 105
      Number of non-zero elements  of the PES matrix: 282
 ******************************************************************************************
-Calculations of the coupling matrix took 0.77700000E-03 seconds
--- Propagation completed in 2.4743E+00 s
+Calculations of the coupling matrix took 0.79700000E-03 seconds
+-- Propagation completed in 2.6310E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.6000E-05 s
--- Parity block completed in 2.5539E+00 s
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.7206E+00 s
                                            ***
 Block number: 17
 jtot: 8 parity: -1
@@ -796,21 +748,18 @@ Number of scattering channels: 28
      Number of non-zero elements of the potential matrix: 77
      Number of non-zero elements  of the PES matrix: 218
 ******************************************************************************************
-Calculations of the coupling matrix took 0.62500000E-03 seconds
--- Propagation completed in 2.0165E+00 s
+Calculations of the coupling matrix took 0.62200000E-03 seconds
+-- Propagation completed in 2.0908E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.0283E+00 s
+-- Cross-sections calculations completed in 2.2000E-05 s
+-- Parity block completed in 2.1054E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 8: 2.271587
 Largest partial inelastic state-to-state for JTOT = 8: .042137
                                            ***
--- JTOT block completed in 4.5822E+00 s
+-- JTOT block completed in 4.8260E+00 s
 ******************************************************************************************
 *                              JTOT =          9                                         *
 ******************************************************************************************
@@ -852,16 +801,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.15800000E-03 seconds
--- Propagation completed in 1.6186E+00 s
+Calculations of the coupling matrix took 0.25200000E-03 seconds
+-- Propagation completed in 1.6329E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 1.6347E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.6476E+00 s
                                            ***
 Block number: 19
 jtot: 9 parity: -1
@@ -908,21 +854,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.22400000E-03 seconds
--- Propagation completed in 2.0518E+00 s
+Calculations of the coupling matrix took 0.19500000E-03 seconds
+-- Propagation completed in 1.9883E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.9000E-05 s
--- Parity block completed in 2.1745E+00 s
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.0901E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 9: 2.994966
 Largest partial inelastic state-to-state for JTOT = 9: .046304
                                            ***
--- JTOT block completed in 3.8094E+00 s
+-- JTOT block completed in 3.7378E+00 s
 ******************************************************************************************
 *                              JTOT =         10                                         *
 ******************************************************************************************
@@ -971,16 +914,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.89900000E-03 seconds
--- Propagation completed in 3.0039E+00 s
+Calculations of the coupling matrix took 0.92400000E-03 seconds
+-- Propagation completed in 2.5635E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.5000E-05 s
--- Parity block completed in 3.1154E+00 s
+-- Cross-sections calculations completed in 7.2000E-05 s
+-- Parity block completed in 2.6741E+00 s
                                            ***
 Block number: 21
 jtot: 10 parity: -1
@@ -1020,21 +960,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.75800000E-03 seconds
--- Propagation completed in 2.4208E+00 s
+Calculations of the coupling matrix took 0.66200000E-03 seconds
+-- Propagation completed in 2.1335E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.4396E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.1494E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 10: 2.440909
 Largest partial inelastic state-to-state for JTOT = 10: .050206
                                            ***
--- JTOT block completed in 5.5551E+00 s
+-- JTOT block completed in 4.8235E+00 s
 ******************************************************************************************
 *                              JTOT =         11                                         *
 ******************************************************************************************
@@ -1076,16 +1013,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.21100000E-03 seconds
--- Propagation completed in 1.6895E+00 s
+Calculations of the coupling matrix took 0.16100000E-03 seconds
+-- Propagation completed in 1.4719E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.0000E-05 s
--- Parity block completed in 1.7079E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.4871E+00 s
                                            ***
 Block number: 23
 jtot: 11 parity: -1
@@ -1132,21 +1066,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.30300000E-03 seconds
--- Propagation completed in 2.4721E+00 s
+Calculations of the coupling matrix took 0.19100000E-03 seconds
+-- Propagation completed in 2.0689E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.8000E-05 s
--- Parity block completed in 2.6232E+00 s
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.1820E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 11: 1.610382
 Largest partial inelastic state-to-state for JTOT = 11: .053816
                                            ***
--- JTOT block completed in 4.3312E+00 s
+-- JTOT block completed in 3.6692E+00 s
 ******************************************************************************************
 *                              JTOT =         12                                         *
 ******************************************************************************************
@@ -1195,16 +1126,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.92100000E-03 seconds
--- Propagation completed in 3.3737E+00 s
+Calculations of the coupling matrix took 0.83200000E-03 seconds
+-- Propagation completed in 2.7638E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.9000E-05 s
--- Parity block completed in 3.5568E+00 s
+-- Cross-sections calculations completed in 5.5000E-05 s
+-- Parity block completed in 2.8767E+00 s
                                            ***
 Block number: 25
 jtot: 12 parity: -1
@@ -1244,21 +1172,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.10030000E-02 seconds
--- Propagation completed in 2.4187E+00 s
+Calculations of the coupling matrix took 0.97900000E-03 seconds
+-- Propagation completed in 2.0800E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
 -- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.4363E+00 s
+-- Parity block completed in 2.0973E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 12: 2.751756
 Largest partial inelastic state-to-state for JTOT = 12: .057108
                                            ***
--- JTOT block completed in 5.9932E+00 s
+-- JTOT block completed in 4.9741E+00 s
 ******************************************************************************************
 *                              JTOT =         13                                         *
 ******************************************************************************************
@@ -1300,17 +1225,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16300000E-03 seconds
--- Propagation completed in 1.6243E+00 s
+Calculations of the coupling matrix took 0.15700000E-03 seconds
+-- Propagation completed in 1.6259E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
-Warning: Unitary condition is not fulfilled for one or more channels
-Consider increasing the STEPS parameter
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 1.6415E+00 s
+Check of the unitarity of the S-matrix...
+S-matrix unitary condition fulfilled
+-- Cross-sections calculations completed in 1.7000E-05 s
+-- Parity block completed in 1.6460E+00 s
                                            ***
 Block number: 27
 jtot: 13 parity: -1
@@ -1357,21 +1278,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20700000E-03 seconds
--- Propagation completed in 2.3047E+00 s
+Calculations of the coupling matrix took 0.21400000E-03 seconds
+-- Propagation completed in 2.0143E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 2.4992E+00 s
+-- Cross-sections calculations completed in 5.5000E-05 s
+-- Parity block completed in 2.1299E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 13: 5.098144
 Largest partial inelastic state-to-state for JTOT = 13: .060056
                                            ***
--- JTOT block completed in 4.1408E+00 s
+-- JTOT block completed in 3.7759E+00 s
 ******************************************************************************************
 *                              JTOT =         14                                         *
 ******************************************************************************************
@@ -1420,16 +1338,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.13210000E-02 seconds
--- Propagation completed in 3.2157E+00 s
+Calculations of the coupling matrix took 0.82000000E-03 seconds
+-- Propagation completed in 2.6034E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.1000E-04 s
--- Parity block completed in 3.3773E+00 s
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.7286E+00 s
                                            ***
 Block number: 29
 jtot: 14 parity: -1
@@ -1469,21 +1384,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.10450000E-02 seconds
--- Propagation completed in 2.7773E+00 s
+Calculations of the coupling matrix took 0.72100000E-03 seconds
+-- Propagation completed in 2.2125E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 3.0000E-05 s
--- Parity block completed in 2.8163E+00 s
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.2313E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 14: 6.173539
 Largest partial inelastic state-to-state for JTOT = 14: .062635
                                            ***
--- JTOT block completed in 6.1937E+00 s
+-- JTOT block completed in 4.9599E+00 s
 ******************************************************************************************
 *                              JTOT =         15                                         *
 ******************************************************************************************
@@ -1525,16 +1437,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.38900000E-03 seconds
--- Propagation completed in 2.2116E+00 s
+Calculations of the coupling matrix took 0.16700000E-03 seconds
+-- Propagation completed in 1.8085E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.7000E-05 s
--- Parity block completed in 2.2367E+00 s
+-- Cross-sections calculations completed in 1.8000E-05 s
+-- Parity block completed in 1.8293E+00 s
                                            ***
 Block number: 31
 jtot: 15 parity: -1
@@ -1581,21 +1490,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.29100000E-03 seconds
--- Propagation completed in 2.9785E+00 s
+Calculations of the coupling matrix took 0.21000000E-03 seconds
+-- Propagation completed in 2.1209E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.0900E-04 s
--- Parity block completed in 3.1780E+00 s
+-- Cross-sections calculations completed in 9.2000E-05 s
+-- Parity block completed in 2.2506E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 15: 5.182572
 Largest partial inelastic state-to-state for JTOT = 15: .064822
                                            ***
--- JTOT block completed in 5.4148E+00 s
+-- JTOT block completed in 4.0799E+00 s
 ******************************************************************************************
 *                              JTOT =         16                                         *
 ******************************************************************************************
@@ -1644,16 +1550,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.13030000E-02 seconds
--- Propagation completed in 3.4078E+00 s
+Calculations of the coupling matrix took 0.87500000E-03 seconds
+-- Propagation completed in 2.7892E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 7.4000E-05 s
--- Parity block completed in 3.6207E+00 s
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.9412E+00 s
                                            ***
 Block number: 33
 jtot: 16 parity: -1
@@ -1693,21 +1596,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.88200000E-03 seconds
--- Propagation completed in 2.8948E+00 s
+Calculations of the coupling matrix took 0.71400000E-03 seconds
+-- Propagation completed in 2.2631E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.0000E-05 s
--- Parity block completed in 2.9198E+00 s
+-- Cross-sections calculations completed in 1.6000E-05 s
+-- Parity block completed in 2.2852E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 16: 3.194712
 Largest partial inelastic state-to-state for JTOT = 16: .066597
                                            ***
--- JTOT block completed in 6.5406E+00 s
+-- JTOT block completed in 5.2264E+00 s
 ******************************************************************************************
 *                              JTOT =         17                                         *
 ******************************************************************************************
@@ -1749,16 +1649,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.21700000E-03 seconds
--- Propagation completed in 1.9867E+00 s
+Calculations of the coupling matrix took 0.17700000E-03 seconds
+-- Propagation completed in 1.6670E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.0082E+00 s
+-- Cross-sections calculations completed in 1.7000E-05 s
+-- Parity block completed in 1.6865E+00 s
                                            ***
 Block number: 35
 jtot: 17 parity: -1
@@ -1805,22 +1702,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.23000000E-03 seconds
--- Propagation completed in 2.4387E+00 s
+Calculations of the coupling matrix took 0.18900000E-03 seconds
+-- Propagation completed in 2.1997E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
-Warning: Unitary condition is not fulfilled for one or more channels
-Consider increasing the STEPS parameter
--- Cross-sections calculations completed in 6.5000E-05 s
--- Parity block completed in 2.6033E+00 s
+Check of the unitarity of the S-matrix...
+S-matrix unitary condition fulfilled
+-- Cross-sections calculations completed in 8.3000E-05 s
+-- Parity block completed in 2.3934E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 17: 1.790879
 Largest partial inelastic state-to-state for JTOT = 17: .067943
                                            ***
--- JTOT block completed in 4.6115E+00 s
+-- JTOT block completed in 4.0800E+00 s
 ******************************************************************************************
 *                              JTOT =         18                                         *
 ******************************************************************************************
@@ -1869,16 +1762,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.94800000E-03 seconds
--- Propagation completed in 3.3920E+00 s
+Calculations of the coupling matrix took 0.11230000E-02 seconds
+-- Propagation completed in 3.0703E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 7.4000E-05 s
--- Parity block completed in 3.5653E+00 s
+-- Cross-sections calculations completed in 7.8000E-05 s
+-- Parity block completed in 3.2618E+00 s
                                            ***
 Block number: 37
 jtot: 18 parity: -1
@@ -1918,21 +1808,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.83600000E-03 seconds
--- Propagation completed in 2.6875E+00 s
+Calculations of the coupling matrix took 0.80500000E-03 seconds
+-- Propagation completed in 2.5779E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.8000E-05 s
--- Parity block completed in 2.7128E+00 s
+-- Cross-sections calculations completed in 3.3000E-05 s
+-- Parity block completed in 2.6021E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 18: 1.863434
 Largest partial inelastic state-to-state for JTOT = 18: .068842
                                            ***
--- JTOT block completed in 6.2781E+00 s
+-- JTOT block completed in 5.8639E+00 s
 ******************************************************************************************
 *                              JTOT =         19                                         *
 ******************************************************************************************
@@ -1974,16 +1861,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20300000E-03 seconds
--- Propagation completed in 1.7735E+00 s
+Calculations of the coupling matrix took 0.19200000E-03 seconds
+-- Propagation completed in 2.1167E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.7930E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1378E+00 s
                                            ***
 Block number: 39
 jtot: 19 parity: -1
@@ -2030,21 +1914,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20800000E-03 seconds
--- Propagation completed in 2.0459E+00 s
+Calculations of the coupling matrix took 0.20600000E-03 seconds
+-- Propagation completed in 2.1483E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.6000E-05 s
--- Parity block completed in 2.1771E+00 s
+-- Cross-sections calculations completed in 1.1000E-04 s
+-- Parity block completed in 2.2961E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 19: 2.052029
 Largest partial inelastic state-to-state for JTOT = 19: .069285
                                            ***
--- JTOT block completed in 3.9701E+00 s
+-- JTOT block completed in 4.4340E+00 s
 ******************************************************************************************
 *                              JTOT =         20                                         *
 ******************************************************************************************
@@ -2093,16 +1974,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.77900000E-03 seconds
--- Propagation completed in 2.7532E+00 s
+Calculations of the coupling matrix took 0.15450000E-02 seconds
+-- Propagation completed in 2.8033E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 7.3000E-05 s
--- Parity block completed in 2.9276E+00 s
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.9426E+00 s
                                            ***
 Block number: 41
 jtot: 20 parity: -1
@@ -2142,21 +2020,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.80400000E-03 seconds
--- Propagation completed in 2.4172E+00 s
+Calculations of the coupling matrix took 0.71300000E-03 seconds
+-- Propagation completed in 2.0970E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.4398E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1173E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 20: 2.118196
 Largest partial inelastic state-to-state for JTOT = 20: .069266
                                            ***
--- JTOT block completed in 5.3674E+00 s
+-- JTOT block completed in 5.0599E+00 s
 ******************************************************************************************
 *                              JTOT =         21                                         *
 ******************************************************************************************
@@ -2198,16 +2073,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18400000E-03 seconds
--- Propagation completed in 1.7120E+00 s
+Calculations of the coupling matrix took 0.15800000E-03 seconds
+-- Propagation completed in 1.5742E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.2000E-05 s
--- Parity block completed in 1.7337E+00 s
+-- Cross-sections calculations completed in 2.3000E-05 s
+-- Parity block completed in 1.5972E+00 s
                                            ***
 Block number: 43
 jtot: 21 parity: -1
@@ -2254,21 +2126,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.22300000E-03 seconds
--- Propagation completed in 2.1753E+00 s
+Calculations of the coupling matrix took 0.22900000E-03 seconds
+-- Propagation completed in 2.0012E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.5000E-05 s
--- Parity block completed in 2.3127E+00 s
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.1418E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 21: 1.999954
 Largest partial inelastic state-to-state for JTOT = 21: .068781
                                            ***
--- JTOT block completed in 4.0464E+00 s
+-- JTOT block completed in 3.7390E+00 s
 ******************************************************************************************
 *                              JTOT =         22                                         *
 ******************************************************************************************
@@ -2317,16 +2186,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.75300000E-03 seconds
--- Propagation completed in 2.8035E+00 s
+Calculations of the coupling matrix took 0.76200000E-03 seconds
+-- Propagation completed in 2.5441E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.4000E-05 s
--- Parity block completed in 2.9690E+00 s
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.6851E+00 s
                                            ***
 Block number: 45
 jtot: 22 parity: -1
@@ -2366,21 +2232,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.74800000E-03 seconds
--- Propagation completed in 2.5334E+00 s
+Calculations of the coupling matrix took 0.64900000E-03 seconds
+-- Propagation completed in 2.0680E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.3000E-05 s
--- Parity block completed in 2.5582E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.0888E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 22: 1.982126
 Largest partial inelastic state-to-state for JTOT = 22: .067836
                                            ***
--- JTOT block completed in 5.5272E+00 s
+-- JTOT block completed in 4.7740E+00 s
 ******************************************************************************************
 *                              JTOT =         23                                         *
 ******************************************************************************************
@@ -2422,16 +2285,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19600000E-03 seconds
--- Propagation completed in 1.8401E+00 s
+Calculations of the coupling matrix took 0.15800000E-03 seconds
+-- Propagation completed in 1.5686E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.1000E-05 s
--- Parity block completed in 1.8648E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 1.5887E+00 s
                                            ***
 Block number: 47
 jtot: 23 parity: -1
@@ -2478,21 +2338,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.22100000E-03 seconds
--- Propagation completed in 2.2710E+00 s
+Calculations of the coupling matrix took 0.19300000E-03 seconds
+-- Propagation completed in 2.0401E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.6000E-05 s
--- Parity block completed in 2.4713E+00 s
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.1821E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 23: 2.047439
 Largest partial inelastic state-to-state for JTOT = 23: .066439
                                            ***
--- JTOT block completed in 4.3361E+00 s
+-- JTOT block completed in 3.7708E+00 s
 ******************************************************************************************
 *                              JTOT =         24                                         *
 ******************************************************************************************
@@ -2541,16 +2398,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.11520000E-02 seconds
--- Propagation completed in 2.9376E+00 s
+Calculations of the coupling matrix took 0.78000000E-03 seconds
+-- Propagation completed in 2.5895E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 9.3000E-05 s
--- Parity block completed in 3.1419E+00 s
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.7367E+00 s
                                            ***
 Block number: 49
 jtot: 24 parity: -1
@@ -2590,21 +2444,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.91500000E-03 seconds
--- Propagation completed in 2.4029E+00 s
+Calculations of the coupling matrix took 0.68800000E-03 seconds
+-- Propagation completed in 2.0865E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.4263E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1080E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 24: 1.959106
 Largest partial inelastic state-to-state for JTOT = 24: .064607
                                            ***
--- JTOT block completed in 5.5683E+00 s
+-- JTOT block completed in 4.8448E+00 s
 ******************************************************************************************
 *                              JTOT =         25                                         *
 ******************************************************************************************
@@ -2646,16 +2497,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16800000E-03 seconds
--- Propagation completed in 1.9008E+00 s
+Calculations of the coupling matrix took 0.19100000E-03 seconds
+-- Propagation completed in 1.5095E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 1.9236E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 1.5305E+00 s
                                            ***
 Block number: 51
 jtot: 25 parity: -1
@@ -2702,21 +2550,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20800000E-03 seconds
--- Propagation completed in 2.2133E+00 s
+Calculations of the coupling matrix took 0.19200000E-03 seconds
+-- Propagation completed in 1.9645E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.3000E-05 s
--- Parity block completed in 2.3887E+00 s
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.1131E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 25: 1.733729
 Largest partial inelastic state-to-state for JTOT = 25: .062363
                                            ***
--- JTOT block completed in 4.3124E+00 s
+-- JTOT block completed in 3.6437E+00 s
 ******************************************************************************************
 *                              JTOT =         26                                         *
 ******************************************************************************************
@@ -2765,16 +2610,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.10060000E-02 seconds
--- Propagation completed in 2.8188E+00 s
+Calculations of the coupling matrix took 0.77200000E-03 seconds
+-- Propagation completed in 2.6432E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
 -- Cross-sections calculations completed in 5.6000E-05 s
--- Parity block completed in 2.9724E+00 s
+-- Parity block completed in 2.8088E+00 s
                                            ***
 Block number: 53
 jtot: 26 parity: -1
@@ -2814,21 +2656,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.64300000E-03 seconds
--- Propagation completed in 2.1100E+00 s
+Calculations of the coupling matrix took 0.64400000E-03 seconds
+-- Propagation completed in 2.1217E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.1322E+00 s
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.1439E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 26: 1.581789
 Largest partial inelastic state-to-state for JTOT = 26: .059736
                                            ***
--- JTOT block completed in 5.1046E+00 s
+-- JTOT block completed in 4.9527E+00 s
 ******************************************************************************************
 *                              JTOT =         27                                         *
 ******************************************************************************************
@@ -2870,16 +2709,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16300000E-03 seconds
--- Propagation completed in 1.5703E+00 s
+Calculations of the coupling matrix took 0.16600000E-03 seconds
+-- Propagation completed in 1.5805E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.7000E-05 s
--- Parity block completed in 1.5938E+00 s
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 1.6045E+00 s
                                            ***
 Block number: 55
 jtot: 27 parity: -1
@@ -2926,21 +2762,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.21300000E-03 seconds
--- Propagation completed in 2.4743E+00 s
+Calculations of the coupling matrix took 0.20700000E-03 seconds
+-- Propagation completed in 2.1371E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 8.5000E-05 s
--- Parity block completed in 2.7368E+00 s
+-- Cross-sections calculations completed in 6.0000E-05 s
+-- Parity block completed in 2.2982E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 27: 1.594183
 Largest partial inelastic state-to-state for JTOT = 27: .056764
                                            ***
--- JTOT block completed in 4.3306E+00 s
+-- JTOT block completed in 3.9027E+00 s
 ******************************************************************************************
 *                              JTOT =         28                                         *
 ******************************************************************************************
@@ -2989,16 +2822,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17750000E-02 seconds
--- Propagation completed in 3.0017E+00 s
+Calculations of the coupling matrix took 0.80800000E-03 seconds
+-- Propagation completed in 2.7236E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 8.7000E-05 s
--- Parity block completed in 3.1660E+00 s
+-- Cross-sections calculations completed in 6.0000E-05 s
+-- Parity block completed in 2.8957E+00 s
                                            ***
 Block number: 57
 jtot: 28 parity: -1
@@ -3038,21 +2868,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.70900000E-03 seconds
--- Propagation completed in 2.1539E+00 s
+Calculations of the coupling matrix took 0.68200000E-03 seconds
+-- Propagation completed in 2.2580E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
 -- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.1774E+00 s
+-- Parity block completed in 2.2836E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 28: 1.807298
 Largest partial inelastic state-to-state for JTOT = 28: .053491
                                            ***
--- JTOT block completed in 5.3435E+00 s
+-- JTOT block completed in 5.1793E+00 s
 ******************************************************************************************
 *                              JTOT =         29                                         *
 ******************************************************************************************
@@ -3094,17 +2921,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16700000E-03 seconds
--- Propagation completed in 1.6459E+00 s
+Calculations of the coupling matrix took 0.17600000E-03 seconds
+-- Propagation completed in 1.5508E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
-Warning: Unitary condition is not fulfilled for one or more channels
-Consider increasing the STEPS parameter
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.6689E+00 s
+Check of the unitarity of the S-matrix...
+S-matrix unitary condition fulfilled
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 1.5747E+00 s
                                            ***
 Block number: 59
 jtot: 29 parity: -1
@@ -3151,21 +2974,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20200000E-03 seconds
--- Propagation completed in 2.0761E+00 s
+Calculations of the coupling matrix took 0.20000000E-03 seconds
+-- Propagation completed in 2.0043E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.0900E-04 s
--- Parity block completed in 2.2390E+00 s
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.1738E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 29: 1.847947
 Largest partial inelastic state-to-state for JTOT = 29: .049966
                                            ***
--- JTOT block completed in 3.9080E+00 s
+-- JTOT block completed in 3.7486E+00 s
 ******************************************************************************************
 *                              JTOT =         30                                         *
 ******************************************************************************************
@@ -3214,16 +3034,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.15900000E-02 seconds
--- Propagation completed in 2.7043E+00 s
+Calculations of the coupling matrix took 0.81100000E-03 seconds
+-- Propagation completed in 2.6158E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.3000E-05 s
--- Parity block completed in 2.9262E+00 s
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.7851E+00 s
                                            ***
 Block number: 61
 jtot: 30 parity: -1
@@ -3263,21 +3080,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.90200000E-03 seconds
--- Propagation completed in 2.1940E+00 s
+Calculations of the coupling matrix took 0.66200000E-03 seconds
+-- Propagation completed in 2.1400E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.7000E-05 s
--- Parity block completed in 2.2202E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1647E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 30: 1.782045
 Largest partial inelastic state-to-state for JTOT = 30: .046244
                                            ***
--- JTOT block completed in 5.1464E+00 s
+-- JTOT block completed in 4.9498E+00 s
 ******************************************************************************************
 *                              JTOT =         31                                         *
 ******************************************************************************************
@@ -3319,16 +3133,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18400000E-03 seconds
--- Propagation completed in 1.7068E+00 s
+Calculations of the coupling matrix took 0.16300000E-03 seconds
+-- Propagation completed in 1.4946E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.7306E+00 s
+-- Cross-sections calculations completed in 1.6000E-05 s
+-- Parity block completed in 1.5187E+00 s
                                            ***
 Block number: 63
 jtot: 31 parity: -1
@@ -3375,21 +3186,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.22300000E-03 seconds
--- Propagation completed in 2.0451E+00 s
+Calculations of the coupling matrix took 0.20900000E-03 seconds
+-- Propagation completed in 2.0471E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 9.0000E-05 s
--- Parity block completed in 2.2126E+00 s
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.2181E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 31: 1.734685
 Largest partial inelastic state-to-state for JTOT = 31: .042387
                                            ***
--- JTOT block completed in 3.9433E+00 s
+-- JTOT block completed in 3.7369E+00 s
 ******************************************************************************************
 *                              JTOT =         32                                         *
 ******************************************************************************************
@@ -3438,16 +3246,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.81200000E-03 seconds
--- Propagation completed in 2.6813E+00 s
+Calculations of the coupling matrix took 0.82600000E-03 seconds
+-- Propagation completed in 2.6337E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.8000E-05 s
--- Parity block completed in 2.8624E+00 s
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.8104E+00 s
                                            ***
 Block number: 65
 jtot: 32 parity: -1
@@ -3487,21 +3292,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.66000000E-03 seconds
--- Propagation completed in 2.2719E+00 s
+Calculations of the coupling matrix took 0.67800000E-03 seconds
+-- Propagation completed in 2.0985E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.7000E-05 s
--- Parity block completed in 2.2960E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1239E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 32: 1.753582
 Largest partial inelastic state-to-state for JTOT = 32: .038456
                                            ***
--- JTOT block completed in 5.1584E+00 s
+-- JTOT block completed in 4.9343E+00 s
 ******************************************************************************************
 *                              JTOT =         33                                         *
 ******************************************************************************************
@@ -3543,16 +3345,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16400000E-03 seconds
--- Propagation completed in 1.4932E+00 s
+Calculations of the coupling matrix took 0.16900000E-03 seconds
+-- Propagation completed in 1.5174E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.5170E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.5420E+00 s
                                            ***
 Block number: 67
 jtot: 33 parity: -1
@@ -3599,21 +3398,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.18700000E-03 seconds
--- Propagation completed in 1.9767E+00 s
+Calculations of the coupling matrix took 0.22000000E-03 seconds
+-- Propagation completed in 1.9902E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.1000E-04 s
--- Parity block completed in 2.1723E+00 s
+-- Cross-sections calculations completed in 5.9000E-05 s
+-- Parity block completed in 2.1675E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 33: 1.789591
 Largest partial inelastic state-to-state for JTOT = 33: .034514
                                            ***
--- JTOT block completed in 3.6893E+00 s
+-- JTOT block completed in 3.7095E+00 s
 ******************************************************************************************
 *                              JTOT =         34                                         *
 ******************************************************************************************
@@ -3662,16 +3458,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.78200000E-03 seconds
--- Propagation completed in 2.7383E+00 s
+Calculations of the coupling matrix took 0.80900000E-03 seconds
+-- Propagation completed in 2.5834E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 8.3000E-05 s
--- Parity block completed in 2.9309E+00 s
+-- Cross-sections calculations completed in 5.9000E-05 s
+-- Parity block completed in 2.7655E+00 s
                                            ***
 Block number: 69
 jtot: 34 parity: -1
@@ -3711,21 +3504,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.73800000E-03 seconds
--- Propagation completed in 2.1929E+00 s
+Calculations of the coupling matrix took 0.66000000E-03 seconds
+-- Propagation completed in 2.0980E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.2210E+00 s
+-- Cross-sections calculations completed in 1.5000E-05 s
+-- Parity block completed in 2.1246E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 34: 1.763967
 Largest partial inelastic state-to-state for JTOT = 34: .030627
                                            ***
--- JTOT block completed in 5.1519E+00 s
+-- JTOT block completed in 4.8902E+00 s
 ******************************************************************************************
 *                              JTOT =         35                                         *
 ******************************************************************************************
@@ -3767,16 +3557,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17200000E-03 seconds
--- Propagation completed in 1.5660E+00 s
+Calculations of the coupling matrix took 0.16700000E-03 seconds
+-- Propagation completed in 1.4809E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.5924E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.5064E+00 s
                                            ***
 Block number: 71
 jtot: 35 parity: -1
@@ -3823,21 +3610,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20600000E-03 seconds
--- Propagation completed in 2.1046E+00 s
+Calculations of the coupling matrix took 0.19300000E-03 seconds
+-- Propagation completed in 1.9781E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.7000E-05 s
--- Parity block completed in 2.2895E+00 s
+-- Cross-sections calculations completed in 7.9000E-05 s
+-- Parity block completed in 2.2183E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 35: 1.982721
 Largest partial inelastic state-to-state for JTOT = 35: .026852
                                            ***
--- JTOT block completed in 3.8819E+00 s
+-- JTOT block completed in 3.7248E+00 s
 ******************************************************************************************
 *                              JTOT =         36                                         *
 ******************************************************************************************
@@ -3886,16 +3670,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.76300000E-03 seconds
--- Propagation completed in 2.6475E+00 s
+Calculations of the coupling matrix took 0.11200000E-02 seconds
+-- Propagation completed in 2.6080E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.6000E-05 s
--- Parity block completed in 2.8227E+00 s
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.7931E+00 s
                                            ***
 Block number: 73
 jtot: 36 parity: -1
@@ -3935,21 +3716,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.64100000E-03 seconds
--- Propagation completed in 2.2185E+00 s
+Calculations of the coupling matrix took 0.70500000E-03 seconds
+-- Propagation completed in 2.0947E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.0000E-05 s
--- Parity block completed in 2.2450E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1213E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 36: 2.140570
 Largest partial inelastic state-to-state for JTOT = 36: .023248
                                            ***
--- JTOT block completed in 5.0677E+00 s
+-- JTOT block completed in 4.9145E+00 s
 ******************************************************************************************
 *                              JTOT =         37                                         *
 ******************************************************************************************
@@ -3991,16 +3769,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17100000E-03 seconds
--- Propagation completed in 1.4979E+00 s
+Calculations of the coupling matrix took 0.16200000E-03 seconds
+-- Propagation completed in 1.4760E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.5232E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.5018E+00 s
                                            ***
 Block number: 75
 jtot: 37 parity: -1
@@ -4047,21 +3822,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.24000000E-03 seconds
--- Propagation completed in 2.0454E+00 s
+Calculations of the coupling matrix took 0.19600000E-03 seconds
+-- Propagation completed in 1.9796E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 7.1000E-05 s
--- Parity block completed in 2.2252E+00 s
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.1685E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 37: 2.235933
 Largest partial inelastic state-to-state for JTOT = 37: .019861
                                            ***
--- JTOT block completed in 3.7484E+00 s
+-- JTOT block completed in 3.6703E+00 s
 ******************************************************************************************
 *                              JTOT =         38                                         *
 ******************************************************************************************
@@ -4110,16 +3882,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.76200000E-03 seconds
--- Propagation completed in 2.6632E+00 s
+Calculations of the coupling matrix took 0.92900000E-03 seconds
+-- Propagation completed in 2.5890E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.7000E-05 s
--- Parity block completed in 2.8648E+00 s
+-- Cross-sections calculations completed in 5.9000E-05 s
+-- Parity block completed in 2.7943E+00 s
                                            ***
 Block number: 77
 jtot: 38 parity: -1
@@ -4159,21 +3928,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.68800000E-03 seconds
--- Propagation completed in 2.2494E+00 s
+Calculations of the coupling matrix took 0.96100000E-03 seconds
+-- Propagation completed in 2.1618E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.6000E-05 s
--- Parity block completed in 2.2803E+00 s
+-- Cross-sections calculations completed in 1.9000E-05 s
+-- Parity block completed in 2.1901E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 38: 2.399438
 Largest partial inelastic state-to-state for JTOT = 38: .016732
                                            ***
--- JTOT block completed in 5.1452E+00 s
+-- JTOT block completed in 4.9845E+00 s
 ******************************************************************************************
 *                              JTOT =         39                                         *
 ******************************************************************************************
@@ -4215,16 +3981,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17900000E-03 seconds
--- Propagation completed in 1.5208E+00 s
+Calculations of the coupling matrix took 0.22100000E-03 seconds
+-- Propagation completed in 1.5006E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.5483E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.5272E+00 s
                                            ***
 Block number: 79
 jtot: 39 parity: -1
@@ -4272,20 +4035,17 @@ Number of scattering channels: 36
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
 Calculations of the coupling matrix took 0.19300000E-03 seconds
--- Propagation completed in 2.0981E+00 s
+-- Propagation completed in 2.1144E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.2000E-05 s
--- Parity block completed in 2.3181E+00 s
+-- Cross-sections calculations completed in 1.0400E-04 s
+-- Parity block completed in 2.3196E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 39: 2.319644
 Largest partial inelastic state-to-state for JTOT = 39: .013892
                                            ***
--- JTOT block completed in 3.8666E+00 s
+-- JTOT block completed in 3.8468E+00 s
 ******************************************************************************************
 *                              JTOT =         40                                         *
 ******************************************************************************************
@@ -4334,16 +4094,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.82800000E-03 seconds
--- Propagation completed in 2.8631E+00 s
+Calculations of the coupling matrix took 0.12750000E-02 seconds
+-- Propagation completed in 2.8731E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.7000E-05 s
--- Parity block completed in 3.0608E+00 s
+-- Cross-sections calculations completed in 7.4000E-05 s
+-- Parity block completed in 3.0679E+00 s
                                            ***
 Block number: 81
 jtot: 40 parity: -1
@@ -4383,21 +4140,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.67200000E-03 seconds
--- Propagation completed in 2.1471E+00 s
+Calculations of the coupling matrix took 0.67600000E-03 seconds
+-- Propagation completed in 2.1228E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.1744E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.1510E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 40: 2.066566
 Largest partial inelastic state-to-state for JTOT = 40: .011358
                                            ***
--- JTOT block completed in 5.2352E+00 s
+-- JTOT block completed in 5.2190E+00 s
 ******************************************************************************************
 *                              JTOT =         41                                         *
 ******************************************************************************************
@@ -4439,16 +4193,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.16300000E-03 seconds
--- Propagation completed in 1.5484E+00 s
+Calculations of the coupling matrix took 0.16100000E-03 seconds
+-- Propagation completed in 1.4987E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
 -- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 1.5756E+00 s
+-- Parity block completed in 1.5257E+00 s
                                            ***
 Block number: 83
 jtot: 41 parity: -1
@@ -4495,21 +4246,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19300000E-03 seconds
--- Propagation completed in 2.1878E+00 s
+Calculations of the coupling matrix took 0.21900000E-03 seconds
+-- Propagation completed in 2.0040E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.7000E-05 s
--- Parity block completed in 2.3714E+00 s
+-- Cross-sections calculations completed in 5.6000E-05 s
+-- Parity block completed in 2.1996E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 41: 1.722603
 Largest partial inelastic state-to-state for JTOT = 41: .009140
                                            ***
--- JTOT block completed in 3.9470E+00 s
+-- JTOT block completed in 3.7253E+00 s
 ******************************************************************************************
 *                              JTOT =         42                                         *
 ******************************************************************************************
@@ -4558,16 +4306,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.22209000E-01 seconds
--- Propagation completed in 2.6232E+00 s
+Calculations of the coupling matrix took 0.82800000E-03 seconds
+-- Propagation completed in 2.6355E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.5000E-05 s
--- Parity block completed in 2.8341E+00 s
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.8499E+00 s
                                            ***
 Block number: 85
 jtot: 42 parity: -1
@@ -4607,21 +4352,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.64600000E-03 seconds
--- Propagation completed in 2.1106E+00 s
+Calculations of the coupling matrix took 0.72000000E-03 seconds
+-- Propagation completed in 2.1670E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.8000E-05 s
--- Parity block completed in 2.1968E+00 s
+-- Cross-sections calculations completed in 1.6000E-05 s
+-- Parity block completed in 2.1964E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 42: 1.357442
 Largest partial inelastic state-to-state for JTOT = 42: .007234
                                            ***
--- JTOT block completed in 5.0309E+00 s
+-- JTOT block completed in 5.0463E+00 s
 ******************************************************************************************
 *                              JTOT =         43                                         *
 ******************************************************************************************
@@ -4663,16 +4405,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19400000E-03 seconds
--- Propagation completed in 1.8772E+00 s
+Calculations of the coupling matrix took 0.16900000E-03 seconds
+-- Propagation completed in 1.6949E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.9000E-05 s
--- Parity block completed in 1.9310E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.7213E+00 s
                                            ***
 Block number: 87
 jtot: 43 parity: -1
@@ -4719,21 +4458,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.30500000E-03 seconds
--- Propagation completed in 2.9690E+00 s
+Calculations of the coupling matrix took 0.19000000E-03 seconds
+-- Propagation completed in 2.1659E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 6.2000E-05 s
--- Parity block completed in 3.1866E+00 s
+-- Cross-sections calculations completed in 8.3000E-05 s
+-- Parity block completed in 2.4040E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 43: 1.018248
 Largest partial inelastic state-to-state for JTOT = 43: .005628
                                            ***
--- JTOT block completed in 5.1177E+00 s
+-- JTOT block completed in 4.1254E+00 s
 ******************************************************************************************
 *                              JTOT =         44                                         *
 ******************************************************************************************
@@ -4782,16 +4518,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.86500000E-03 seconds
--- Propagation completed in 2.8003E+00 s
+Calculations of the coupling matrix took 0.86800000E-03 seconds
+-- Propagation completed in 2.9364E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 8.7000E-05 s
--- Parity block completed in 3.0143E+00 s
+-- Cross-sections calculations completed in 5.9000E-05 s
+-- Parity block completed in 3.1468E+00 s
                                            ***
 Block number: 89
 jtot: 44 parity: -1
@@ -4831,21 +4564,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.69500000E-03 seconds
--- Propagation completed in 2.3360E+00 s
+Calculations of the coupling matrix took 0.67200000E-03 seconds
+-- Propagation completed in 2.2611E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 2.3671E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 2.2927E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 44: .730104
 Largest partial inelastic state-to-state for JTOT = 44: .004301
                                            ***
--- JTOT block completed in 5.3815E+00 s
+-- JTOT block completed in 5.4395E+00 s
 ******************************************************************************************
 *                              JTOT =         45                                         *
 ******************************************************************************************
@@ -4887,16 +4617,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17200000E-03 seconds
--- Propagation completed in 1.9343E+00 s
+Calculations of the coupling matrix took 0.24400000E-03 seconds
+-- Propagation completed in 1.5484E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.9640E+00 s
+-- Cross-sections calculations completed in 2.3000E-05 s
+-- Parity block completed in 1.5808E+00 s
                                            ***
 Block number: 91
 jtot: 45 parity: -1
@@ -4943,21 +4670,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19800000E-03 seconds
--- Propagation completed in 2.1410E+00 s
+Calculations of the coupling matrix took 0.24200000E-03 seconds
+-- Propagation completed in 2.1938E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 9.2000E-05 s
--- Parity block completed in 2.3858E+00 s
+-- Cross-sections calculations completed in 6.0000E-05 s
+-- Parity block completed in 2.4400E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 45: .501230
 Largest partial inelastic state-to-state for JTOT = 45: .003228
                                            ***
--- JTOT block completed in 4.3498E+00 s
+-- JTOT block completed in 4.0208E+00 s
 ******************************************************************************************
 *                              JTOT =         46                                         *
 ******************************************************************************************
@@ -5006,16 +4730,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.14550000E-02 seconds
--- Propagation completed in 2.6573E+00 s
+Calculations of the coupling matrix took 0.84600000E-03 seconds
+-- Propagation completed in 2.7112E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.6000E-05 s
--- Parity block completed in 2.8598E+00 s
+-- Cross-sections calculations completed in 6.0000E-05 s
+-- Parity block completed in 2.9287E+00 s
                                            ***
 Block number: 93
 jtot: 46 parity: -1
@@ -5055,21 +4776,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.64500000E-03 seconds
--- Propagation completed in 2.1995E+00 s
+Calculations of the coupling matrix took 0.74100000E-03 seconds
+-- Propagation completed in 2.1977E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.3000E-05 s
--- Parity block completed in 2.2286E+00 s
+-- Cross-sections calculations completed in 1.8000E-05 s
+-- Parity block completed in 2.2285E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 46: .329167
 Largest partial inelastic state-to-state for JTOT = 46: .002378
                                            ***
--- JTOT block completed in 5.0885E+00 s
+-- JTOT block completed in 5.1572E+00 s
 ******************************************************************************************
 *                              JTOT =         47                                         *
 ******************************************************************************************
@@ -5111,16 +4829,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.17000000E-03 seconds
--- Propagation completed in 1.4979E+00 s
+Calculations of the coupling matrix took 0.16600000E-03 seconds
+-- Propagation completed in 1.6551E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 1.5267E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 1.6849E+00 s
                                            ***
 Block number: 95
 jtot: 47 parity: -1
@@ -5167,21 +4882,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.19400000E-03 seconds
--- Propagation completed in 2.0052E+00 s
+Calculations of the coupling matrix took 0.20000000E-03 seconds
+-- Propagation completed in 2.0837E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.7000E-05 s
--- Parity block completed in 2.2394E+00 s
+-- Cross-sections calculations completed in 6.0000E-05 s
+-- Parity block completed in 2.2964E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 47: .205964
 Largest partial inelastic state-to-state for JTOT = 47: .001718
                                            ***
--- JTOT block completed in 3.7663E+00 s
+-- JTOT block completed in 3.9813E+00 s
 ******************************************************************************************
 *                              JTOT =         48                                         *
 ******************************************************************************************
@@ -5230,16 +4942,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.81500000E-03 seconds
--- Propagation completed in 2.6049E+00 s
+Calculations of the coupling matrix took 0.81400000E-03 seconds
+-- Propagation completed in 2.7559E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.6000E-05 s
--- Parity block completed in 2.8156E+00 s
+-- Cross-sections calculations completed in 9.8000E-05 s
+-- Parity block completed in 2.9967E+00 s
                                            ***
 Block number: 97
 jtot: 48 parity: -1
@@ -5279,21 +4988,18 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.64500000E-03 seconds
--- Propagation completed in 2.2159E+00 s
+Calculations of the coupling matrix took 0.70200000E-03 seconds
+-- Propagation completed in 2.2059E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.8000E-05 s
--- Parity block completed in 2.2537E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.2359E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 48: .121786
 Largest partial inelastic state-to-state for JTOT = 48: .001217
                                            ***
--- JTOT block completed in 5.0694E+00 s
+-- JTOT block completed in 5.2326E+00 s
 ******************************************************************************************
 *                              JTOT =         49                                         *
 ******************************************************************************************
@@ -5335,16 +5041,13 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.20900000E-03 seconds
--- Propagation completed in 1.6418E+00 s
+Calculations of the coupling matrix took 0.15900000E-03 seconds
+-- Propagation completed in 1.6264E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5000E-05 s
--- Parity block completed in 1.6716E+00 s
+-- Cross-sections calculations completed in 1.4000E-05 s
+-- Parity block completed in 1.6569E+00 s
                                            ***
 Block number: 99
 jtot: 49 parity: -1
@@ -5391,21 +5094,18 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.22000000E-03 seconds
--- Propagation completed in 2.0014E+00 s
+Calculations of the coupling matrix took 0.19600000E-03 seconds
+-- Propagation completed in 2.1310E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.6000E-05 s
--- Parity block completed in 2.2102E+00 s
+-- Cross-sections calculations completed in 5.8000E-05 s
+-- Parity block completed in 2.3700E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 49: .067053
 Largest partial inelastic state-to-state for JTOT = 49: .000844
                                            ***
--- JTOT block completed in 3.8819E+00 s
+-- JTOT block completed in 4.0269E+00 s
 ******************************************************************************************
 *                              JTOT =         50                                         *
 ******************************************************************************************
@@ -5454,16 +5154,13 @@ Number of scattering channels: 36
      Number of non-zero elements of the potential matrix: 106
      Number of non-zero elements  of the PES matrix: 286
 ******************************************************************************************
-Calculations of the coupling matrix took 0.75600000E-03 seconds
--- Propagation completed in 2.6905E+00 s
+Calculations of the coupling matrix took 0.78200000E-03 seconds
+-- Propagation completed in 2.6873E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.6000E-05 s
--- Parity block completed in 2.9100E+00 s
+-- Cross-sections calculations completed in 5.7000E-05 s
+-- Parity block completed in 2.9091E+00 s
                                            ***
 Block number: 101
 jtot: 50 parity: -1
@@ -5503,36 +5200,23 @@ Number of scattering channels: 29
      Number of non-zero elements of the potential matrix: 78
      Number of non-zero elements  of the PES matrix: 222
 ******************************************************************************************
-Calculations of the coupling matrix took 0.64200000E-03 seconds
--- Propagation completed in 2.1318E+00 s
+Calculations of the coupling matrix took 0.70200000E-03 seconds
+-- Propagation completed in 2.1181E+00 s
 Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 34004 steps (dr = 0.29115078E-02 a.u.)
-                                           ***
-Check of the unitarity of the S-matrix:
-                                  *** S-matrix elements: ***
-   ROW   COL               S**2                 RE (S)                 IM (S)
+Check of the unitarity of the S-matrix...
 S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.4000E-05 s
--- Parity block completed in 2.1634E+00 s
+-- Cross-sections calculations completed in 1.3000E-05 s
+-- Parity block completed in 2.1490E+00 s
                                            ***
 Largest partial elastic state-to-state for JTOT = 50: .033488
 Largest partial inelastic state-to-state for JTOT = 50: .000573
                                            ***
--- JTOT block completed in 5.0734E+00 s
+-- JTOT block completed in 5.0582E+00 s
 ******************************************************************************************
                                Loop over JTOT finished
 ******************************************************************************************
 *                                        SUMMARY                                         *
 ******************************************************************************************
-
-------------------------------------------------------------------------------------------
-                                     *** WARNING ***
-------------------------------------------------------------------------------------------
-Check unitarity of the S-matrix in the following JTOT blocks:
-JTOT:        13
-JTOT:        17
-JTOT:        29
-------------------------------------------------------------------------------------------
-
 Final state-to-state XS
   v1_f  j1_f  <-  v1_i  j1_i              K.E.                XS
      0     1         0     1    0.47815131E+04    0.35183310E+02
@@ -5571,4 +5255,4 @@ Final state-to-state XS
      0     7         1     3    0.68608500E+02    0.16366472E-05
      1     1         1     3    0.68608500E+02    0.30560666E-01
      1     3         1     3    0.68608500E+02    0.50023557E+02
--- Total CPU time: 2.2661E+02 s
+-- Total CPU time: 2.1312E+02 s

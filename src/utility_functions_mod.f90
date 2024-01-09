@@ -98,7 +98,7 @@ module utility_functions_mod
                call write_message(header_star)
                call write_message(header_star)
                write(header_str, fmt = '(a,25x,a43,20x,a)')                    &
-                       '*','BIGOS quantum scattering package, vs. 0.00.','*'
+                       '*','BIGOS quantum scattering package, vs. 0.01.','*'
                call write_message(header_str)
                write(header_str, fmt = '(a,36x,a19,33x,a)')                    &
                        '*', 'the SCATTERING code','*'
@@ -125,157 +125,11 @@ module utility_functions_mod
                   call write_error("**** JTOT value not provided in " //       &
                      "write_header_block ****")
                endif
-            case('unitarity')
-               call write_message(repeat(" ", 43) // "***")
-               call write_message("Check of the unitarity of the S-matrix:")
-               call write_message(repeat(" ", 34) // "*** S-matrix elements: ***")
-               call write_message("   ROW   COL" // repeat(" ", 15) // "S**2"//&
-                  repeat(" ", 17) // "RE (S)" // repeat(" ", 17) // "IM (S)")
             case default
                call incorrect_value('header_type (write_header)', header_type)
          end select
          !---------------------------------------------------------------------!
       end subroutine write_header
-!   !---------------------------------------------------------------------------!
-!   !---------------------------------------------------------------------------!
-!      subroutine write_summary(total_, inp_read_, inp_check_, inp_summary_,    &
-!          units_, grids_, system_, normalization_, pes_save_, basis_save_,     &
-!          radterm_calcs_, radterm_save_, reconstruct_)
-!         !! writes the summary on screen
-!         !---------------------------------------------------------------------!
-!         real(dp), intent(in)           :: total_, inp_read_, inp_check_,      &
-!           inp_summary_, units_, grids_, system_, normalization_, pes_save_,   &
-!           basis_save_, radterm_calcs_, radterm_save_, reconstruct_
-!            !! total time of the run & time intervals for smaller tasks
-!            !! completed by the code; if a task wasn't invoked, print '---'
-!            !! on screen
-!         !---------------------------------------------------------------------!
-!         real(dp), parameter  :: zero_tolerance = 1.0e-12_dp
-!         !---------------------------------------------------------------------!
-!         character(len = 100) :: header_star, header_str, line
-!         !---------------------------------------------------------------------!
-!         call write_message('')
-!         write(header_star, fmt = '(a72)') repeat('*', 72)
-!         call write_message(header_star)
-!         write(header_str, fmt = '(a,23x,a,x,es11.4,x,a,22x,a)')               &
-!                 '*','Finished in',total_,'s','*'
-!         call write_message(header_str)
-!         call write_message(header_star)
-
-!         if (inp_read_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,24x,es11.4,x,a,22x,a)')                      &
-!                    '* Input read', inp_read_, 's', '*'
-!         else
-!            write(line, fmt = '(a,24x,6x,a,26x,a)')                            &
-!                    '* Input read', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (inp_check_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,23x,es11.4,x,a,22x,a)')                      &
-!                    '* Input check', inp_check_, 's', '*'
-!         else
-!            write(line, fmt = '(a,23x,6x,a,26x,a)')                            &
-!                    '* Input check', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (inp_summary_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,21x,es11.4,x,a,22x,a)')                      &
-!                    '* Input summary', inp_summary_, 's', '*'
-!         else
-!            write(line, fmt = '(a,21x,6x,a,26x,a)')                            &
-!                    '* Input summary', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (units_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,17x,es11.4,x,a,22x,a)')                      &
-!                    '* Units preparation', units_, 's', '*'
-!         else
-!            write(line, fmt = '(a,17x,6x,a,26x,a)')                            &
-!                    '* Units preparation', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (grids_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,17x,es11.4,x,a,22x,a)')                      &
-!                    '* Grids preparation', grids_, 's', '*'
-!         else
-!            write(line, fmt = '(a,17x,6x,a,26x,a)')                            &
-!                    '* Grids preparation', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (system_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,11x,es11.4,x,a,22x,a)')                      &
-!                    '* PES & basis preparation', system_, 's', '*'
-!         else
-!            write(line, fmt = '(a,11x,6x,a,26x,a)')                            &
-!                    '* PES & basis preparation', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (normalization_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,15x,es11.4,x,a,22x,a)')                      &
-!                    '* Normalization check', normalization_, 's', '*'
-!         else
-!            write(line, fmt = '(a,15x,6x,a,26x,a)')                            &
-!                    '* Normalization check', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (pes_save_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,24x,es11.4,x,a,22x,a)')                      &
-!                    '* Saving PES', pes_save_, 's', '*'
-!         else
-!            write(line, fmt = '(a,24x,6x,a,26x,a)')                            &
-!                    '* Saving PES', '---', '*'
-!         endif
-!         call write_message(line)         
-
-!         if (basis_save_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,22x,es11.4,x,a,22x,a)')                      &
-!                    '* Saving basis', basis_save_, 's', '*'
-!         else
-!            write(line, fmt = '(a,22x,6x,a,26x,a)')                            &
-!                    '* Saving basis', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (radterm_calcs_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,9x,es11.4,x,a,22x,a)')                       &
-!                    '* Radial terms calculations', radterm_calcs_, 's', '*'
-!         else
-!            write(line, fmt = '(a,9x,6x,a,26x,a)')                             &
-!                    '* Radial terms calculations', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (radterm_save_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,15x,es11.4,x,a,22x,a)')                      &
-!                    '* Saving radial terms', radterm_save_, 's', '*'
-!         else
-!            write(line, fmt = '(a,15x,6x,a,26x,a)')                            &
-!                    '* Saving radial terms', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         if (reconstruct_.gt.zero_tolerance) then
-!            write(line, fmt = '(a,9x,es11.4,x,a,22x,a)')                       &
-!                    '* Reconstruction of the PES', reconstruct_, 's', '*'
-!         else
-!            write(line, fmt = '(a,9x,6x,a,26x,a)')                             &
-!                    '* Reconstruction of the PES', '---', '*'
-!         endif
-!         call write_message(line)
-
-!         write(line, fmt = '(a,24x,es11.4,x,a,22x,a)')                         &
-!                 '* Total time', total_, 's', '*'
-!         call write_message(line)
-!         call write_message(header_star)
-!         !---------------------------------------------------------------------!
-!      end subroutine write_summary
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine time_count_summary(start_, stop_, time_, message_)
@@ -509,15 +363,29 @@ module utility_functions_mod
       end function char_to_lowercase
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
-      function integer_to_character(i) result(res)
+      function integer_to_character(i, format_string) result(res)
          !! transfers integer to a character
          !---------------------------------------------------------------------!
          integer, intent(in) :: i
             !! input integer
+         character(len=*), intent(in), optional :: format_string
+            !! Optional format string.
          character(len=32) :: res
             !! output character
          !---------------------------------------------------------------------!
-         write (res, '(i0)') i
+         character(len=32) :: default_format, user_format
+         !---------------------------------------------------------------------!
+         ! Deafult format
+         !---------------------------------------------------------------------!
+         default_format =  '(i0)'
+         !---------------------------------------------------------------------!
+         if (present(format_string)) then
+            user_format = trim(format_string)
+         else
+            user_format = default_format
+         endif
+         !---------------------------------------------------------------------!
+         write (res, user_format) i
          res = adjustl(res)
          !---------------------------------------------------------------------!
       end function integer_to_character

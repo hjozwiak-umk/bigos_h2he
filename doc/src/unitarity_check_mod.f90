@@ -4,7 +4,8 @@ module unitarity_check_mod
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use data_mod, only: unitary_tolerance
-   use utility_functions_mod, only: write_warning, write_header, write_message
+   use utility_functions_mod, only: integer_to_character, float_to_character,  &
+      write_warning, write_message
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
@@ -29,7 +30,7 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
          is_unitary  = .true.
          !---------------------------------------------------------------------!
-         call write_header("unitarity")
+         call write_message("Check of the unitarity of the S-matrix...")
          !---------------------------------------------------------------------!
          ! Calculating sum of squares for each channel
          !---------------------------------------------------------------------!
@@ -42,7 +43,7 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
          ! Handling the output message based on unitarity check
          !---------------------------------------------------------------------!
-         call handle_unitarity_output_message(is_unitary)
+         call handle_unitarity_output_message(is_unitary, sum_of_squares)
          !---------------------------------------------------------------------!
       end subroutine unitarity_check
       !------------------------------------------------------------------------!
@@ -90,19 +91,48 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
       end function check_unitarity_for_each_channel
       !------------------------------------------------------------------------!
-      subroutine handle_unitarity_output_message(is_unitary)
+      subroutine handle_unitarity_output_message(is_unitary, sum_of_squares)
          !! handle printing messages depending on the outcome of unitarity check
          !---------------------------------------------------------------------!
          logical, intent(in) :: is_unitary
             !! if .true. unitarity is fulfilled, .false. otherwise
+         real(dp), intent(in) :: sum_of_squares(:)
+            !! array holding
+            !! \\(\sum\_{\gamma^{\prime}}|S\_{\gamma,\gamma^{\prime}}|^{2}\\)
+            !! for each \\(\gamma\\)
          !---------------------------------------------------------------------!
          if (is_unitary) then
             call write_message("S-matrix unitary condition fulfilled")
          else
             call write_warning("Unitary condition is not fulfilled for one or more channels")
             call write_message("Consider increasing the STEPS parameter")
+            call print_sum_of_squares(sum_of_squares)
          endif
          !---------------------------------------------------------------------!
       end subroutine handle_unitarity_output_message
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+      subroutine print_sum_of_squares(sum_of_squares)
+         !! print S-matrix on screen
+         !---------------------------------------------------------------------!
+         real(dp), intent(in) :: sum_of_squares(:)
+            !! array holding
+            !! \\(\sum\_{\gamma^{\prime}}|S\_{\gamma,\gamma^{\prime}}|^{2}\\)
+            !! for each \\(\gamma\\)
+         !---------------------------------------------------------------------!
+         integer(int32) :: channel_index_
+         !---------------------------------------------------------------------!
+         call write_message(repeat(" ", 3)// "row" // repeat(" ", 12)//        &
+            "sum(S**2)")
+         !---------------------------------------------------------------------!
+         do channel_index_ = 1, size(sum_of_squares)
+            call write_message(" " //                                          &
+               trim(adjustl(integer_to_character(channel_index_, "(i5)"))) //  &
+               repeat(" ", 8) //                                               &
+               trim(adjustl(float_to_character(sum_of_squares(channel_index_), &
+               "(E15.8)"))))
+         enddo
+         !---------------------------------------------------------------------!
+      end subroutine print_sum_of_squares
    !---------------------------------------------------------------------------!
 end module unitarity_check_mod
