@@ -1,11 +1,11 @@
  &INPUT
  label = 'ortho-H2-He, test at 4900 cm-1'
- reduced_mass = 1.34056d0,
+ reduced_mass = 1.34056,
  relative_energy_flag = 0,
- energy = 4900.0000d0,
+ energy = 4900.0000,
  initial = 1,
  jtotmin = 0, jtotmax = 50, jtotstep = 1,
- rmin = 1.0d0, rmax = 100.0d0, steps = 100, vdepth = 10.,
+ rmin = 1.0, rmax = 100.0, steps = 100, vdepth = 10.,
  nlevel = 7,
  nr = 1991,
  nterms = 4,
@@ -21,7 +21,7 @@
  &BASIS
  v1array = 0, 0, 0, 0, 1, 1, 0,
  j1array = 1, 3, 5, 7, 1, 3, 9,
- elevel = 118.4869d0, 705.5189d0, 1740.1896d0, 3187.4705d0, 4273.7406d0, 4831.3915d0, 5001.9629d0
+ elevel = 118.4869, 705.5189, 1740.1896, 3187.4705, 4273.7406, 4831.3915, 5001.9629
 &end
 
  &POTENTIAL
