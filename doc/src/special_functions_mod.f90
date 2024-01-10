@@ -1,5 +1,5 @@
 module special_functions_mod
-   !! This module holds rctj, rcty, envj, msta1, msta2, ikv, gamma from
+   !! This module holds rctj, rcty, envj, msta1, msta2, from
    !! special_functions library, donwloaded from:
    !! https://people.sc.fsu.edu/~jburkardt/f_src/special_functions/special_functions.html
    !!  Author:

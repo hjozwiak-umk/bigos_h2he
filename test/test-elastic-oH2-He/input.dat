@@ -5,7 +5,7 @@
  energy = 100.000,
  initial = 1,
  jtotmin = 0, jtotmax = -1, jtotstep = 1,
- rmin = 1.0, rmax = 100.0, steps = 100, vdepth = 10.,
+ rmin = 1.0, rmax = 100.0, steps = 30, vdepth = 10.,
  consecutive_blocks_threshold = 4, elastic_xs_threshold = 1.d-4, inelastic_xs_threshold = 1.d-4,
  nlevel = 3,
  nr = 1991,
