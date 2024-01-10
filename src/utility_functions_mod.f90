@@ -113,6 +113,9 @@ module utility_functions_mod
                        '*', '20/12/2023 ','*'
                call write_message(header_str)
                call write_message(header_star)
+            case('jtot_loop')
+               call write_message(repeat("*", 90))
+               call write_message(repeat(" ", 28) // "*** Loop over JTOT: ***")
             case('block')
                call write_message(repeat('*', 90))
                if (present(opt_integer_)) then

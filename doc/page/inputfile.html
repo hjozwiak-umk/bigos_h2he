@@ -97,58 +97,57 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <h1 id="input-file">Input file</h1>
-<p><a id="inputfile"></a></p>
-<div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 600px; margin-left: auto; margin-right: auto;">
+      <div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 600px; margin-left: auto; margin-right: auto;">
 The input file is read at the beginning of the calculations by subroutine <a href="../proc/read_input_file.html">read_input_file</a> from the <a href="../module/io_mod.html">io_mod</a> module. 
 </div>
 
 <p>This subroutine uses namelist method of reading input files into the source code. Each input file should consist of three groups: INPUT, BASIS and POTENTIAL.
-Note that the names of the groups correspond to the ones used by MOLSCAT. </p>
+Wherever it's possible, we provide MOLSCAT's analogue names. </p>
 <p>The INPUT group defines the most important information about each run:</p>
 <ul>
 <li><a href="../module/data_mod.html#variable-label">label</a> (character) - 80-character string describing the code run.</li>
-<li><a href="../module/data_mod.html#variable-reduced_mass">reduced_mass</a> (double precision) - value of the reduced mass of the collisional system, in atomic mass units.</li>
-<li>
-<p><a href="../module/data_mod.html#variable-relative_energy_flag">relative_energy_flag</a> (integer) - can only take two values:</p>
-<ul>
+<li><a href="../module/data_mod.html#variable-reduced_mass">reduced_mass</a> (double precision) - value of the reduced mass of the collisional system, in atomic mass units. <br> MOLSCAT's analogue: <strong>ured</strong>.</li>
+<li><a href="../module/data_mod.html#variable-relative_energy_flag">relative_energy_flag</a> (integer) - can only take two values:<ul>
 <li>relative_energy_flag = 0 (default), <a href="../module/data_mod.html#variable-energy">energy</a> is interpreted as the total energy of the colliding system; <a href="../module/data_mod.html#variable-initial">initial</a> is ignored,</li>
-<li>relative_energy_flag = 1, <a href="../module/data_mod.html#variable-energy">energy</a> is interpreted as the relative kinetic energy, calculated with respect to the <a href="../module/data_mod.html#variable-initial">initial</a> level in the basis.</li>
+<li>relative_energy_flag = 1, <a href="../module/data_mod.html#variable-energy">energy</a> is interpreted as the relative kinetic energy, calculated with respect to the <a href="../module/data_mod.html#variable-initial">initial</a> level in the basis.
+<br> MOLSCAT's analogue (to some extent): <strong>ifegen</strong>.</li>
 </ul>
 </li>
-<li>
-<p><a href="../module/data_mod.html#variable-energy">energy</a> (double precision) - its interpretation depends on <a href="../module/data_mod.html#variable-relative_energy_flag">relative_energy_flag</a>.</p>
-</li>
+<li><a href="../module/data_mod.html#variable-energy">energy</a> (double precision) - its interpretation depends on <a href="../module/data_mod.html#variable-relative_energy_flag">relative_energy_flag</a>.</li>
 <li><a href="../module/data_mod.html#variable-initial">initial</a> (integer) - see <a href="../module/data_mod.html#variable-relative_energy_flag">relative_energy_flag</a>.</li>
 <li><a href="../module/data_mod.html#variable-jtotmin">jtotmin</a>, <a href="../module/data_mod.html#variable-jtotmax">jtotmax</a>, <a href="../module/data_mod.html#variable-jtotstep">jtotstep</a> (integers) - the calculations are performed from
  \( J_{min} = \) <a href="../module/data_mod.html#variable-jtotmin">jtotmin</a> to  \( J_{max} = \) <a href="../module/data_mod.html#variable-jtotmax">jtotmax</a> with \( \Delta J = \) <a href="../module/data_mod.html#variable-jtotstep">jtotstep</a>.
   If <a href="../module/data_mod.html#variable-jtotmax">jtotmax</a> = -1, calculations are performed until <a href="../module/data_mod.html#variable-consecutive_blocks_threshold">consecutive_blocks_threshold</a> consecutive values of total angular momentum contribute less than 
-  <a href="../module/data_mod.html#variable-elastic_xs_threshold">elastic_xs_threshold</a> to the elastic state-to-state cross sections, and less than <a href="../module/data_mod.html#variable-inelastic_xs_threshold">inelastic_xs_threshold</a> to the inelastic state-to-state cross sections.</li>
+  <a href="../module/data_mod.html#variable-elastic_xs_threshold">elastic_xs_threshold</a> to the elastic state-to-state cross sections, and less than <a href="../module/data_mod.html#variable-inelastic_xs_threshold">inelastic_xs_threshold</a> to the inelastic state-to-state cross sections.
+   <br> MOLSCAT's analogues: <strong>jtotl, jtotu, jstep</strong>.</li>
 <li><a href="../module/data_mod.html#variable-rmin">rmin</a>, <a href="../module/data_mod.html#variable-rmax">rmax</a> (double precision) - the propagation is performed from \( R_{min} = \) <a href="../module/data_mod.html#variable-rmin">rmin</a> to
 \( R_{max} = \) <a href="../module/data_mod.html#variable-rmax">rmax</a>. Note that there are no subroutines responsible for the extrapolation of the radial terms implemented in the code.</li>
 <li><a href="../module/data_mod.html#variable-dr">dr</a> (double precision) - if positive, it corresponds to the step of the propagator (in \( a_{0} \) ).</li>
-<li><a href="../module/data_mod.html#variable-steps">steps</a> (integer) - number of steps per half-wavelength of de Broglie's wavefunction of the system (see Sec.~\ref{sec:Scattering-Details-Scattering}).</li>
+<li><a href="../module/data_mod.html#variable-steps">steps</a> (integer) - number of steps per half-wavelength of de Broglie's wavefunction of the system (see <a href="../module/data_mod.html#variable-steps">variable documentation</a> for details).</li>
 <li><a href="../module/data_mod.html#variable-vdepth">vdepth</a> (double precision, 0 by default) - the user is advised to specify the absolute value of the depth of the potential energy surface, 
-which is included in the determination of the step size of the propagator (see Sec.~\ref{sec:Scattering-Details-Scattering}).</li>
+which is included in the determination of the step size of the propagator (see <a href="../module/data_mod.html#variable-vdepth">variable documentation</a> for details).
+<br> MOLSCAT's analogue: <strong>eps</strong>.</li>
 <li><a href="../module/data_mod.html#variable-consecutive_blocks_threshold">consecutive_blocks_threshold</a> (integer), <a href="../module/data_mod.html#variable-elastic_xs_threshold">elastic_xs_threshold</a>, <a href="../module/data_mod.html#variable-inelastic_xs_threshold">inelastic_xs_threshold</a> (double precision), see (<a href="../module/data_mod.html#variable-jtotmin">jtotmin</a>,
-<a href="../module/data_mod.html#variable-jtotmax">jtotmax</a> and <a href="../module/data_mod.html#variable-jtotstep">jtotstep</a>).</li>
+<a href="../module/data_mod.html#variable-jtotmax">jtotmax</a> and <a href="../module/data_mod.html#variable-jtotstep">jtotstep</a>).
+<br> MOLSCAT's analogues: <strong>ncac, dtol, otol</strong>.</li>
 <li><a href="../module/data_mod.html#variable-nlevel">nlevel</a> (integer) - number of levels in the basis set.</li>
 <li><a href="../module/data_mod.html#variable-nr">nr</a> (integer) - number of the grid points for the radial coupling terms in the potential expansion.</li>
 <li><a href="../module/data_mod.html#variable-nterms">nterms</a> (integer) - number of \( \lambda \) terms in the potential expansion, see Eq. (3) in <a href="background/coupling_matrix.html">Coupling Matrix</a> section.</li>
 <li><a href="../module/data_mod.html#variable-total_number_of_coupling_terms">total_number_of_coupling_terms</a> (integer) - determines the total number of columns containing the radial coupling terms (see <a href="radialterms.html">Supplying radial coupling terms</a>).</li>
 <li><a href="../module/data_mod.html#variable-n_skip_lines">n_skip_lines</a> (integer) - number of lines at the beginning of the radial coupling terms file, which will be ignored while reading (see <a href="radialterms.html">Supplying radial coupling terms</a>).</li>
-<li><a href="../module/data_mod.html#variable-iunits">iunits</a> (integer) - if the \( R \) grid in the radial coupling terms file is given in atomic units ( \( a_{0} \) ), choose <a href="../module/data_mod.html#variable-iunits">iunits</a> =0.
- If the radial distance is given in \AA, put <a href="../module/data_mod.html#variable-iunits">iunits</a> = 1.</li>
+<li><a href="../module/data_mod.html#variable-iunits">iunits</a> (integer) - if the \( R \) grid in the radial coupling terms file is given in atomic units (\( a_{0} \)), choose <a href="../module/data_mod.html#variable-iunits">iunits</a> =0.
+ If the radial distance is given in Å, put <a href="../module/data_mod.html#variable-iunits">iunits</a> = 1.</li>
 <li><a href="../module/data_mod.html#variable-potentialfile">potentialfile</a> (character, RadialTerms.dat by default) - the name of the file with the radial coupling terms.</li>
 <li><a href="../module/data_mod.html#variable-smatrixfile">smatrixfile</a> (character, SmatrixFile.dat by default) - the name of the s-matrix file.</li>
-<li><a href="../module/data_mod.html#variable-print_partial_cross_sections">print_partial_cross_sections</a> (integer) - if partial cross sections (for each parity block, within each $J$-block) are needed, put <a href="../module/data_mod.html#variable-print_partial_cross_sections">print_partial_cross_sections</a> = 1. Otherwise, put <a href="../module/data_mod.html#variable-print_partial_cross_sections">print_partial_cross_sections</a> = 0.</li>
+<li><a href="../module/data_mod.html#variable-print_partial_cross_sections">print_partial_cross_sections</a> (integer) - if partial cross sections (for each parity block, within each \(J\)-block) are needed, put <a href="../module/data_mod.html#variable-print_partial_cross_sections">print_partial_cross_sections</a> = 1. Otherwise, put <a href="../module/data_mod.html#variable-print_partial_cross_sections">print_partial_cross_sections</a> = 0.</li>
 <li><a href="../module/data_mod.html#variable-partialfile">partialfile</a> (character, PartialFile.dat by default) - the name of the file with partial cross sections.</li>
 <li><a href="../module/data_mod.html#variable-prntlvl">prntlvl</a> (integer, 2 by default):<ul>
 <li><a href="../module/data_mod.html#variable-prntlvl">prntlvl</a> = 0, basic information about a run,</li>
 <li><a href="../module/data_mod.html#variable-prntlvl">prntlvl</a> = 1, information about each block is printed on screen,</li>
 <li><a href="../module/data_mod.html#variable-prntlvl">prntlvl</a> = 2, information about the calculation time of some of the important parts of the code is printed,</li>
 <li><a href="../module/data_mod.html#variable-prntlvl">prntlvl</a> = 3, accumulated state-to-state cross sections are printed on screen after each total angular momentum block,</li>
-<li><a href="../module/data_mod.html#variable-prntlvl">prntlvl</a> \( &gt; \) 4, S-matrices are printed on screen.</li>
+<li><a href="../module/data_mod.html#variable-prntlvl">prntlvl</a> \( &gt; \) 4, S-matrices are printed on screen.
+<br> MOLSCAT's analogue: <strong>iprint</strong>.</li>
 </ul>
 </li>
 </ul>
@@ -158,6 +157,7 @@ which is included in the determination of the step size of the propagator (see S
 <li><a href="../module/data_mod.html#variable-j1array">j1array</a> (integer array of <a href="../module/data_mod.html#variable-nlevel">nlevel</a> size) - keeps values of the rotational (\( j \)) quantum numbers that describe the levels of a diatomic molecule.</li>
 <li><a href="../module/data_mod.html#variable-elevel">elevel</a> (double precision array of <a href="../module/data_mod.html#variable-nlevel">nlevel</a> size) - keeps energies of the rovibrational levels of a diatomic molecule, in cm\( ^{-1} \).</li>
 </ul>
+<p>Note that in MOLSCAT's itype = 7, pairs of rotational and vibrational quantum numbers are provided in <strong>jlevel</strong> array.</p>
 <p>POTENTIAL group describes the quantum numbers of the radial coupling terms, \( v_{\boldsymbol{\lambda},\gamma,\gamma'} (R) \), see Eq. (3) in <a href="background/coupling_matrix.html">Coupling Matrix</a> section.
 This group of variables involves:</p>
 <ul>
@@ -165,6 +165,7 @@ This group of variables involves:</p>
 <li><a href="../module/data_mod.html#variable-v1pes">v1pes</a>, <a href="../module/data_mod.html#variable-j1pes">j1pes</a>, <a href="../module/data_mod.html#variable-v1ppes">v1ppes</a>, <a href="../module/data_mod.html#variable-j1ppes">j1ppes</a> (integer arrays of <a href="../module/data_mod.html#variable-total_number_of_coupling_terms">total_number_of_coupling_terms</a> size)</li>
 <li>keep values of \( v, j, v', j' \) indices of the radial coupling terms of the potential.</li>
 </ul>
+<p>Note that in MOLSCAT \(\lambda\) indices and quantum numbers identifying coupling terms are provided by <strong>nterm</strong> and <strong>lambda</strong> variables.</p>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <hr class="visible-xs visible-sm">
@@ -208,7 +209,7 @@ This group of variables involves:</p>
             </ul>
             </li>
             <li role="presentation">
-            <a href='../page/./radialterms.html'>Supplying radial terms</a>
+            <a href='../page/./radialterms.html'>Supplying radial coupling terms of the PES</a>
             </li>
             <li role="presentation">
             <a href='../page/./smatrixfile.html'>S-matrix file</a>
@@ -244,7 +245,7 @@ This group of variables involves:</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-09 15:09            </p>
+ on 2024-01-10 09:53            </p>
         </div>
       </div>
       <br>

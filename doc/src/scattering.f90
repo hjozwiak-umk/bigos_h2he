@@ -7,7 +7,7 @@ program SCATTERING
       reduce_radial_coupling_terms, interpolate_radial_coupling_terms
    use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
       set_space_fixed_channels, count_open_channels_in_block,                  &
-      calculate_largest_wavenumber, print_channels
+      calculate_largest_wavenumber, print_short_block_summary, print_channels
    use pes_matrix_mod, only: check_nonzero_pes_matrix_elements,                &
       prepare_pes_matrix_elements, print_pes_matrix_elements_summary
    use propagator_mod, only: numerov
@@ -25,19 +25,25 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
-   character(len=200) :: err_message, partial_line, xs_line
+   character(len=200) :: xs_line
    integer(int32) :: number_of_nonzero_pes_matrix_elements,               &
       number_of_nonzero_algebraic_coefficients, number_of_channels, size_even,  &
-      size_odd, number_of_open_basis_levels, iblock, jtot_, parity_exponent,      &
-      parity_exponenttmp, nsteps, number_of_open_channels, consecutive_blocks_thresholddiag, consecutive_blocks_thresholdoff,     &
+      size_odd, number_of_open_basis_levels, jtot_, parity_exponent,      &
+      parity_exponenttmp, nsteps, number_of_open_channels,     &
       omegamax, lmin, lmax, ltmp, lmat_len, len_even, len_odd, jinddiag,       &
       jindoff1, jindoff2, ij, ilevel, iomega, iopen, iopen2, isize_, isize_2,  &
       icheck, icount, icount2, io_status
+   !---------------------------------------------------------------------------!
+   integer(int32) :: count_blocks = 0
+   integer(int32) :: consecutive_blocks_thresholddiag = 0
+   integer(int32) :: consecutive_blocks_thresholdoff = 0
+   !---------------------------------------------------------------------------!
    real(dp) :: largest_wavevector, wavvdepth, maxXSdiag, maxXSoff, time_total_start,       &
       time_total_stop, time_total, time_init_stop, time_init, time_jtot_start, &
       time_jtot_stop, time_jtot, time_parity_start,time_parity_stop,           &
       time_parity, time_coupling_start, time_coupling_stop, time_coupling
-   logical :: unitarity_block_check, terminate
+   logical :: unitarity_block_check
+   logical :: terminate = .false.
    integer, allocatable :: channel_indices(:), channels_omega_values(:),&
       channel_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:),&
       nonzero_legendre_indices(:), smatcheckarr(:)
@@ -97,18 +103,12 @@ program SCATTERING
    call save_open_basis_levels(number_of_open_basis_levels, open_basis_levels, &
       open_basis_wavevectors)
    !---------------------------------------------------------------------------!
-   ! xs array summed over all blocks
+   ! Initialize arrays that save the state-to-state cross-sections
    !---------------------------------------------------------------------------!
    call allocate_1d(xs_total,                                                  &
       number_of_open_basis_levels*number_of_open_basis_levels)
-   !---------------------------------------------------------------------------!
-   ! xs array a single JTOT value
-   !---------------------------------------------------------------------------!
    call allocate_1d(xs_jtot,                                                   &
       number_of_open_basis_levels*number_of_open_basis_levels)
-   !---------------------------------------------------------------------------!
-   ! xs array a single parity block
-   !---------------------------------------------------------------------------!
    call allocate_1d(xs_block,                                                  &
       number_of_open_basis_levels*number_of_open_basis_levels)
    !---------------------------------------------------------------------------!
@@ -118,21 +118,9 @@ program SCATTERING
    if (prntlvl.ge.2) call time_count_summary(time_total_start, time_init_stop, &
       time_init, "Initialization completed in ")
    !---------------------------------------------------------------------------!
-   !---------------------------------------------------------------------------!
-   ! Prepare J-blocks
-   !---------------------------------------------------------------------------!
-   ! If JTOTMAX=-1 is called, iterate until convergence is achieved:
-   ! this is managed by consecutive_blocks_thresholddiag and consecutive_blocks_thresholdoff
-   !---------------------------------------------------------------------------!
-   consecutive_blocks_thresholddiag  = 0
-   consecutive_blocks_thresholdoff   = 0
-   iblock    = 0
-   terminate = .false.
-   !---------------------------------------------------------------------------!
    ! Loop over total angular momentum
    !---------------------------------------------------------------------------!
-   call write_message(repeat("*", 90))
-   call write_message(repeat(" ", 28) // "*** Loop over JTOT: ***")
+   call write_header("jtot_loop")
    !---------------------------------------------------------------------------!
    do jtot_ = jtotmin,jtotmax,jtotstep
       !------------------------------------------------------------------------!
@@ -158,14 +146,10 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Summary of the current block
          !---------------------------------------------------------------------!
-         iblock = iblock+1
+         count_blocks = count_blocks+1
          if (prntlvl.ge.1) then
-            call write_message("Block number: " // integer_to_character(iblock))
-            call write_message("jtot: " //                                     &
-               trim(adjustl(integer_to_character(jtot_))) // " parity: " //    &
-               trim(adjustl(integer_to_character((-1)**parity_exponent) )))
-            call write_message("Number of scattering channels: " //            &
-               integer_to_character(number_of_channels))
+            call print_short_block_summary(jtot_, parity_exponent, count_blocks,&
+               number_of_channels)
          endif
          !---------------------------------------------------------------------!
          ! Prepare of the basis for each J/p block:
@@ -198,7 +182,7 @@ program SCATTERING
          if (number_of_open_channels == 0) then
             call write_message(repeat('-', 90))
             call write_message("No open channels for block no." //             &
-               integer_to_character(iblock) )
+               integer_to_character(count_blocks) )
             call write_message(repeat('-', 90))
             cycle
          endif
@@ -310,7 +294,7 @@ program SCATTERING
          ! and add the calculated partial XS to the xs_jtot array
          !---------------------------------------------------------------------!
          if (print_partial_cross_sections) then
-            call save_partial_xs_single_block(jtot_, iblock,                   &
+            call save_partial_xs_single_block(jtot_, count_blocks,                   &
             number_of_open_basis_levels, open_basis_levels, xs_block)
          endif
          do icount = 1, number_of_open_basis_levels

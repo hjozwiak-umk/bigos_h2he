@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>Supplying radial terms &ndash; the SCATTERING code</title>
+    <title>Supplying radial coupling terms of the PES &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>Supplying radial terms</h1>
+    <h1>Supplying radial coupling terms of the PES</h1>
     <div class="row">
     <div class="col-lg-12">
     <div class="well well-sm" style="min-height: 40px;">
@@ -88,7 +88,7 @@
       </ul>
         <ol class="breadcrumb in-well">
          <li><a href='../page/index.html'>Program Description</a></li>
-         <li class="active">Supplying radial terms</li>
+         <li class="active">Supplying radial coupling terms of the PES</li>
       </ol>
     </div>
     </div>
@@ -97,21 +97,49 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <h1 id="supplying-the-radial-coupling-terms-of-the-potential-energy-surface">Supplying the radial coupling terms of the potential energy surface</h1>
-<p><a id="radialterms"></a></p>
-<p></p><div class="alert alert-warning" role="alert"><h4>Warning</h4><p>To be corrected</p></div>
-<p>The code reads radial coupling terms from a separate file. The reading process is controlled by both the input file and <a href="../sourcefile/pes_read_mod.f90.html">pes_read_mod.f90</a>.</p>
-<p>The radial terms file starts with <a href="../module/io_mod.html#variable-n_skip_lines">n_skip_lines</a> lines which describe the file and are ignored by the code.
-The reading procedure is continued using two loops: the first one over <a href="../module/io_mod.html#variable-nterms">nterms</a> (number of radial terms, which match the size of <a href="../module/io_mod.html#variable-l1tab">l1tab</a>),
- and the second one over<a href="../module/io_mod.html#variable-nr">nr</a> (the number of points on the \( R \)-grid).
-The code assumes that each loop over <a href="../module/io_mod.html#variable-nterms">nterms</a> begins with a current value of} \( \lambda \), and that the radial coupling terms are ordered in columns, where the first column corresponds to the \( R \)-grid.
-Additional loop over <a href="../module/io_mod.html#variable-totalcol">totalcol</a> reads radial terms which couple different \( v, j \) and \( v', j' \) states.
-The order of columns in the radial terms file must correspond to the values supplied in the <a href="../module/io_mod.html#variable-v1pes">v1pes</a>, <a href="../module/io_mod.html#variable-j1pes">j1pes</a>, <a href="../module/io_mod.html#variable-v1ppes">v1ppes</a>, <a href="../module/io_mod.html#variable-j1ppes">j1ppes</a> 
+      <div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 750px; margin-left: auto; margin-right: auto;">
+The code reads radial coupling terms, \(v_{{\lambda},\eta, \eta'} (R)\) 
+(see <a href="background/coupling_matrix.html">Eq. (2)</a>), from a separate file.<br> The reading process is controlled by both the <a href="inputfile.html">input file</a> and the <a href = "../module/radial_coupling_terms_mod.html">radial_coupling_terms_mod.f90</a> module.
+</div>
+
+<p>To avoid recompilation of the code whenever the radial coupling terms file is switched, we use a fixed format for radial coupling terms file.
+Below, we present a screenshot of the oH2-He-radialterms.dat file which can be found in the <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/ref/oH2-He-radialterms.zip">oH2-He-radialterms.zip</a> archive
+in the <a href="https://github.com/hjozwiak-umk/bigos_h2he/tree/main/ref">ref</a> directory:</p>
+<p><img src="media/radial_terms.jpg" alt="input" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;"></p>
+<p>The file starts with <a href="../module/data_mod.html#variable-n_skip_lines">n_skip_lines</a> = 17 lines which describe the file and are ignored by the code.
+The reading procedure is continued using two loops: the first one over <a href="../module/data_mod.html#variable-nterms">nterms</a>
+(number of radial terms, which match the size of <a href="../module/data_mod.html#variable-l1tab">l1tab</a>),
+ and the second one over<a href="../module/data_mod.html#variable-nr">nr</a> (the number of points on the \( R \)-grid).</p>
+<p>The code assumes that each loop over <a href="../module/data_mod.html#variable-nterms">nterms</a> begins with a current value of} \( \lambda \), and that the radial coupling terms are ordered in columns, where the first column corresponds to the \( R \)-grid.
+Additional loop over <a href="../module/data_mod.html#variable-total_number_of_coupling_terms">total_number_of_coupling_terms</a> reads radial terms which couple different
+\( v, j \) and \( v', j' \) states.</p>
+<div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 600px; margin-left: auto; margin-right: auto;">
+In the screenshot above, only the first 5 coupling terms for \(\lambda=0\) are presented. These correspond to the 
+\(v_{{\lambda=0},v,j, v',j'} (R)\) coupling terms with
+<ul>
+   <li> \(v=0,\,j=1,\,v'=0,\,j'=1\), </li>
+   <li> \(v=0,\,j=1,\,v'=0,\,j'=3\), </li>
+   <li> \(v=0,\,j=1,\,v'=0,\,j'=5\), </li>
+   <li> \(v=0,\,j=1,\,v'=0,\,j'=7\), </li>
+   <li> \(v=0,\,j=1,\,v'=1,\,j'=1\), </li>
+</ul>
+as defined by variables in POTENTIAL namelist in the corresponding <a href="tests/elastic.html">input file</a>. 
+</div>
+
+<p>The order of columns in the radial terms file corresponds to the values supplied in the <a href="../module/data_mod.html#variable-v1pes">v1pes</a>, <a href="../module/data_mod.html#variable-j1pes">j1pes</a>, <a href="../module/data_mod.html#variable-v1ppes">v1ppes</a>, <a href="../module/data_mod.html#variable-j1ppes">j1ppes</a> 
 arrays in the input file.</p>
-<p>Modify the <a href="../proc/potential_read.html">potential_read</a> subroutine in <a href="../sourcefile/pes_read_mod.f90.html">pes_read_mod.f90</a>, if the radial terms file has a different format. </p>
-<p>The user can supply a larger set of terms that describe the coupling between different rovibrational states (\( v, j \) and  \( v', j' \) ) than actually needed.
-The POTENTIALREDUCTION subroutine from <a href="../sourcefile/pes_read_mod.f90.html">pes_read_mod.f90</a> will only pick and interpolate the necessary terms.
-Note that the procedure will be skipped if totalcol \( &lt;= \) nlevel \( \cdot \) (nlevel+1)\(/2\).</p>
+<div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 600px; margin-left: auto; margin-right: auto;">
+If the radial terms file has a different format, please modify the <a href="../proc/read_radial_coupling_terms.html">read_radial_coupling_terms</a> subroutine 
+in the <a href="../module/radial_coupling_terms_mod.html">radial_coupling_terms_mod.f90</a>. 
+</div>
+
+<h3 id="reducing-the-number-of-radial-coupling-terms">Reducing the number of radial coupling terms</h3>
+<p>The user can supply a larger set of terms that describe the coupling between different rovibrational states (\( v, j \) and  \( v', j' \) ) than needed.<br>
+This is exactly the case here, as some of the terms in this file describe coupling off-diagonal with \(v\), although the corresponding <a href="test/elastic.html">input file</a>
+involves only three rotational levels from the \(v=0\) manifold.</p>
+<p>If this is the case, the <a href="../proc/reduce_radial_coupling_terms.html">reduce_radial_coupling_terms</a> subroutine from <a href="../module/radial_coupling_terms_mod.html">radial_coupling_terms_mod</a>
+module picks only the necessary terms, i.e. terms that describe couplings between all levels in the rovibrational basis set.</p>
+<p>Note that the procedure will be skipped if <a href="../module/data_mod.html#variable-total_number_of_coupling_terms">total_number_of_coupling_terms</a> \( &lt;= \) <a href="../module/data_mod.html#variable-nlevel">nlevel</a> \( \cdot \) (<a href="../module/data_mod.html#variable-nlevel">nlevel</a>+1)\(/2\).</p>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <hr class="visible-xs visible-sm">
@@ -155,7 +183,7 @@ Note that the procedure will be skipped if totalcol \( &lt;= \) nlevel \( \cdot 
             </ul>
             </li>
             <li role="presentation" class="disabled">
-            <a href='../page/./radialterms.html'>Supplying radial terms</a>
+            <a href='../page/./radialterms.html'>Supplying radial coupling terms of the PES</a>
             </li>
             <li role="presentation">
             <a href='../page/./smatrixfile.html'>S-matrix file</a>
@@ -191,7 +219,7 @@ Note that the procedure will be skipped if totalcol \( &lt;= \) nlevel \( \cdot 
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-09 15:09            </p>
+ on 2024-01-10 09:53            </p>
         </div>
       </div>
       <br>

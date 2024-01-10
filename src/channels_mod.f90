@@ -14,7 +14,7 @@ module channels_mod
    private
    public :: set_number_of_channels, set_body_fixed_channels,                  &
       set_space_fixed_channels, count_open_channels_in_block,                  &
-      calculate_largest_wavenumber, print_channels
+      calculate_largest_wavenumber, print_short_block_summary, print_channels
    !---------------------------------------------------------------------------!
    contains
       !------------------------------------------------------------------------!
@@ -361,6 +361,27 @@ module channels_mod
          enddo
          !---------------------------------------------------------------------!
       end function calculate_largest_wavenumber
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+      subroutine print_short_block_summary(jtot_, parity_exponent_,            &
+         count_blocks_, number_of_channels_)
+         integer(int32), intent(in) :: jtot_
+            !! total angular momentum
+         integer(int32), intent(in) :: parity_exponent_
+            !! parity exponent of the block (0 if p = +1, 1 if p = -1)
+         integer(int32), intent(in) :: count_blocks_
+            !! ...
+         integer(int32), intent(in) :: number_of_channels_
+            !! number of channels in the block
+         !---------------------------------------------------------------------!
+         call write_message("Block number: " // integer_to_character(count_blocks_))
+         call write_message("Total angular momentum: " //                      &
+            trim(adjustl(integer_to_character(jtot_))) // " parity: " //       &
+            trim(adjustl(integer_to_character((-1)**parity_exponent_) )))
+         call write_message("Number of scattering channels: " //               &
+            integer_to_character(number_of_channels_))
+         !---------------------------------------------------------------------!
+      end subroutine
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine print_channels(parity_exponent_, channel_indices,      &
