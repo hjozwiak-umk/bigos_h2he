@@ -49,31 +49,31 @@ scattering: $(OBJS)
 test:
 	@echo "Running test for test-elastic-oH2-He..."
 	@cp scattering.x test/test-elastic-oH2-He/
-	@cp ref/oH2-He-radialterms.zip test/test-elastic-oH2-He/
+	@cp data/ref/oH2-He-radialterms.zip test/test-elastic-oH2-He/
 	@cd test/test-elastic-oH2-He/ && unzip oH2-He-radialterms.zip
 	@cd test/test-elastic-oH2-He/ && ./scattering.x < input.dat > output.dat
 	@tail -n 2 test/test-elastic-oH2-He/output.dat | head -n 1 > tmp1.txt
-	@tail -n 2 ref/test/test-elastic-oH2-He/output.dat | head -n 1 > tmp2.txt
+	@tail -n 2 data/ref/test/test-elastic-oH2-He/output.dat | head -n 1 > tmp2.txt
 	@diff tmp1.txt tmp2.txt && echo "test-elastic-oH2-He passed" || echo "test-elastic-oH2-He failed"
 	@rm tmp1.txt tmp2.txt test/test-elastic-oH2-He/oH2-He-radialterms* test/test-elastic-oH2-He/scattering.x
 
 	@echo "Running test for test-orthoH2-He..."
 	@cp scattering.x test/test-orthoH2-He/
-	@cp ref/oH2-He-radialterms.zip test/test-orthoH2-He/
+	@cp data/ref/oH2-He-radialterms.zip test/test-orthoH2-He/
 	@cd test/test-orthoH2-He/ && unzip oH2-He-radialterms.zip
 	@cd test/test-orthoH2-He/ && ./scattering.x < input.dat > output.dat
 	@tail -n 37 test/test-orthoH2-He/output.dat | head -n 36 > tmp1.txt
-	@tail -n 37 ref/test/test-orthoH2-He/output.dat | head -n 36 > tmp2.txt
+	@tail -n 37 data/ref/test/test-orthoH2-He/output.dat | head -n 36 > tmp2.txt
 	@diff tmp1.txt tmp2.txt && echo "test-orthoH2-He passed" || echo "test-orthoH2-He failed"
 	@rm tmp1.txt tmp2.txt test/test-orthoH2-He/oH2-He-radialterms* test/test-orthoH2-He/scattering.x
 	
 	@echo "Running test for test-paraH2-He..."
 	@cp scattering.x test/test-paraH2-He/
-	@cp ref/pH2-He-radialterms.zip test/test-paraH2-He/
+	@cp data/ref/pH2-He-radialterms.zip test/test-paraH2-He/
 	@cd test/test-paraH2-He/ && unzip pH2-He-radialterms.zip
 	@cd test/test-paraH2-He/ && ./scattering.x < input.dat > output.dat
 	@tail -n 226 test/test-paraH2-He/output.dat | head -n 225 > tmp1.txt
-	@tail -n 226 ref/test/test-paraH2-He/output.dat | head -n 225 > tmp2.txt
+	@tail -n 226 data/ref/test/test-paraH2-He/output.dat | head -n 225 > tmp2.txt
 	@diff tmp1.txt tmp2.txt && echo "test-paraH2-He passed" || echo "test-paraH2-He failed"
 	@rm tmp1.txt tmp2.txt test/test-paraH2-He/pH2-He-radialterms* test/test-paraH2-He/scattering.x
 
