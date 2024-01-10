@@ -14,7 +14,7 @@
  runit  = 0.529177210903,
  rmin   = 1.1d0, rmax = 100.d0,
  iprops = 5, rvfac = 0, tolhil = 0,
- steps  = 15., eps = 10.,
+ steps  = 30., eps = 10.,
 ! powrl = 1.333  
 ! irmset = 9, irxset = 1,
  irmset = -9, irxset = -1,

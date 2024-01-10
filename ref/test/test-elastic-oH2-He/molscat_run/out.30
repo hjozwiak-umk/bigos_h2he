@@ -7,7 +7,7 @@
  |                                                                            |
  |                               Version 2022.0                               |
  |                                                                            |
- |                       Run on 10 Jan 2024   at 10:10:00                     |
+ |                       Run on 10 Jan 2024   at 10:48:56                     |
  |                                                                            |
   ---- MOLSCAT ------ MOLSCAT ------ MOLSCAT ------ MOLSCAT ------ MOLSCAT ---
 
@@ -15936,7 +15936,7 @@
  
   COUPLED EQUATIONS SOLVED BY LOG-DERIVATIVE PROPAGATOR OF JOHNSON
 
-  PROPAGATION STEP SIZE DETERMINED USING STEP =   15.0     (PER HALF WAVELENGTH)
+  PROPAGATION STEP SIZE DETERMINED USING STEP =   30.0     (PER HALF WAVELENGTH)
   WITH WAVELENGTH EVALUATED FOR POTENTIAL DEPTH EP =   10.     CM-1
   STEP SIZE CONSTANT THROUGHOUT RANGE
   STEP SIZE MAY BE ADJUSTED SLIGHTLY SO THAT RANGE IS A WHOLE NUMBER OF STEPS
@@ -15964,7 +15964,7 @@
 
   ======================================================================================================================
 
-  INITIALIZATION DONE.  TIME WAS   2.09 CPU SECS.      9936 WORDS OF STORAGE USED.
+  INITIALIZATION DONE.  TIME WAS   3.19 CPU SECS.      9936 WORDS OF STORAGE USED.
 
   ============================================ oH2-He <v j |VL(R,r)| vp jp> ============================================
 
@@ -15990,9 +15990,9 @@
                        FOR JTOT =  30 AND SYMMETRY BLOCK =   1 AT ENERGY(  1) =  218.4869     CM-1
 
     F  I =      1
-    1       4.18991E-05
+    1       3.91010E-05
 
-  FOR JTOT =   30, SYMMETRY BLOCK =  1, ENERGY(  1) =  218.4869    : MAX DIAG & OFF-DIAG =  4.19E-05 &   0.00E+00
+  FOR JTOT =   30, SYMMETRY BLOCK =  1, ENERGY(  1) =  218.4869    : MAX DIAG & OFF-DIAG =  3.91E-05 &   0.00E+00
 
   *****************************  ANGULAR MOMENTUM JTOT  =  30   AND SYMMETRY BLOCK  =    2  ****************************
 
@@ -16019,9 +16019,9 @@
                        FOR JTOT =  30 AND SYMMETRY BLOCK =   2 AT ENERGY(  1) =  218.4869     CM-1
 
     F  I =      1
-    1       9.41980E-05
+    1       8.82899E-05
 
-  FOR JTOT =   30, SYMMETRY BLOCK =  2, ENERGY(  1) =  218.4869    : MAX DIAG & OFF-DIAG =  9.42E-05 &   0.00E+00
+  FOR JTOT =   30, SYMMETRY BLOCK =  2, ENERGY(  1) =  218.4869    : MAX DIAG & OFF-DIAG =  8.83E-05 &   0.00E+00
 
   ============================================ oH2-He <v j |VL(R,r)| vp jp> ============================================
  
@@ -16033,7 +16033,7 @@
     1   118.486900000000
 
    ENERGY (CM-1)    JTOTL  JSTEP  JTOTU      F    I         SIG(F,I)
-   218.4869000         30      1     30      1    1         1.360971E-04  
+   218.4869000         30      1     30      1    1         1.273908E-04  
 
 
   ---- MOLSCAT ------ MOLSCAT ------ MOLSCAT ------ MOLSCAT ------ MOLSCAT ---
@@ -16045,7 +16045,7 @@
  |                                                                            |
  |                               Version 2022.0                               |
  |                                                                            |
- |                    This run used     598.25 cpu secs and                   |
+ |                    This run used    2385.92 cpu secs and                   |
  |              15282 of the allocated 100000000 words of storage             |
  |                                                                            |
   ---- MOLSCAT ------ MOLSCAT ------ MOLSCAT ------ MOLSCAT ------ MOLSCAT ---
