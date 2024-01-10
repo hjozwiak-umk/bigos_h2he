@@ -2,7 +2,7 @@
 allow the user to obtain various physical quantities related to the scattering problem involving diatomic molecules and
 atoms. The package is being developed at the Nicolaus Copernicus University in Toruń.
 
-![bigos_graph](doc/media/bigos_graph.jpg "Structure of the BIGOS project")
+![bigos_graph](data/media/bigos_graph.jpg "Structure of the BIGOS project")
 
 Here, we present the SCATTERING code, the central part of the BIGOS package.
 The purpose of the SCATTERING code is to solve the coupled equations for a given scattering system, provide the
