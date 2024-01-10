@@ -4,7 +4,7 @@
  relative_energy_flag = 0,
  energy = 9500.0000,
  jtotmin = 0, jtotmax = 3, jtotstep = 1,
- rmin = 1.0, rmax = 100.0, steps = 50, vdepth = 10.,
+ rmin = 1.0, rmax = 100.0, steps = 30, vdepth = 10.,
  consecutive_blocks_threshold = 4, elastic_xs_threshold = 1.d-4, inelastic_xs_threshold = 1.d-4,
  nlevel = 37,
  nr = 1991,

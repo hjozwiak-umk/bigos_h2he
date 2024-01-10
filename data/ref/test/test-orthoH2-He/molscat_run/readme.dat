@@ -1,0 +1,12 @@
+Due to MOLSCAT's large computational time for itype = 7 with a large number of coupling terms,
+I have run parallel calculations for each JTOT block.
+
+"pre_oH2He7.in" is a template input file. Each task in the job array modifies "jtotl" and "jtotu" values,
+to run one JTOT block at a time.
+
+"out.*", where * = 0, 1, ... 50, correspond to the output of each JTOT block.
+
+S-matrices resulting from parallel calculations were later combined into one file and 
+state-to-state cross-sections were calculated using one of MOLSCAT's post-processors.
+
+The output of the post-processor is given in "final_output.dat" file.
