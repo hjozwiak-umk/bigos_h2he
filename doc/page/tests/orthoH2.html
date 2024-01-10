@@ -98,82 +98,54 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 750px; margin-left: auto; margin-right: auto;">
+      <div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 800px; margin-left: auto; margin-right: auto;">
 This example illustrates the high-energy scattering of ortho-H<sub>2</sub> with helium, at the total energy \(E_{\mathrm{tot}} = 4900\) cm\(^{-1}\).
 </div>
 
 <h3 id="input-file">Input file</h3>
-<p>The input file can be found <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/input.dat">here</a>. <br>
+<p>The input file can be found <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/input.dat">here</a>.<br>
 Below, we provide the screenshot of this file.</p>
 <p><img src="media/he_inelastic_input.jpg" alt="input" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;"></p>
-<p>Here, we choose to define collision energy through total energy by setting <a href="../../module/data_mod.html#variable-relative_energy_flag">relative_energy_flag</a> 
-to 0: variable <a href="../../module/data_mod.html#variable-energy">energy</a> is thus interpreted as the total energy. <br></p>
-<p>In this test, we fix the range of total angular momenta by setting  <a href="../../module/data_mod.html#variable-jtotmin">jtotmin</a> to 0 and 
- <a href="../../module/data_mod.html#variable-jtotmax">jtotmax</a> to 50.
- Is this enough to converge the cross-sections with respect to \(J\) to, let's say, the level of \(10^{-2} Å^{2}\)? Let's find out.</p>
-<p>The basis in this test covers only <a href="../../module/data_mod.html#variable-nlevel">nlevel</a> = 7 rovibrational levels. Note that the energy of only one of these states,
-\(v=0, j=9\), is higher than the total energy of the collision system, meaning only one level in the basis is <em>closed</em>.
-This might be too low, but the test here is supposed to just present basic capabilities of the code. <br></p>
-<p>Vibrational and rotational quantum numbers, as well as corresponding internal energies of these levels are provided in the BASIS Namelist, through
-<a href="../../module/data_mod.html#variable-v1array">v1array</a>, <a href="../../module/data_mod.html#variable-j1array">j1array</a> and <a href="../../module/data_mod.html#variable-elevel">elevel</a> arrays.</p>
-<p>The next 6 variables provide information about the radial coupling terms file, and where already discussed in the <a href="elastic.html">Elastic scattering test</a>.
-Note that we keep the same name for S-matrix and partial state-to-state cross-sections files.</p>
-<p>Since we use exactly the same radial coupling terms file, namelist POTENTIAL provides the exact same variables as in the <a href="elastic.html">previous test</a>.<br></p>
+<p>Here, we choose to define collision energy through total energy by setting <a href="../../module/data_mod.html#variable-relative_energy_flag">relative_energy_flag</a> to 0: variable <a href="../../module/data_mod.html#variable-energy">energy</a> is thus interpreted as the total energy.  </p>
+<p>In this test, we fix the range of total angular momenta by setting <a href="../../module/data_mod.html#variable-jtotmin">jtotmin</a> to 0 and <a href="../../module/data_mod.html#variable-jtotmax">jtotmax</a> to 50. Is this enough to converge the cross-sections with respect to \(J\) to, let's say, the level of \(10^{-2} Å^{2}\)? Let's find out.</p>
+<p>The basis in this test covers only <a href="../../module/data_mod.html#variable-nlevel">nlevel</a> = 7 rovibrational levels. Note that the energy of only one of these states, \(v=0, j=9\), is higher than the total energy of the collision system, meaning only one level in the basis is <em>closed</em>. This might be too low, but the test here is supposed to just present basic capabilities of the code.  </p>
+<p>Vibrational and rotational quantum numbers, as well as corresponding internal energies of these levels are provided in the BASIS Namelist, through <a href="../../module/data_mod.html#variable-v1array">v1array</a>, <a href="../../module/data_mod.html#variable-j1array">j1array</a> and <a href="../../module/data_mod.html#variable-elevel">elevel</a> arrays.</p>
+<p>The next 6 variables provide information about the radial coupling terms file, and where already discussed in the <a href="elastic.html">Elastic scattering test</a>. Note that we keep the same name for S-matrix and partial state-to-state cross-sections files.</p>
+<p>Since we use exactly the same radial coupling terms file, namelist POTENTIAL provides the exact same variables as in the <a href="elastic.html">previous test</a>.  </p>
 <h3 id="output-file">Output file</h3>
 <p>The output file can be found <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/output.dat">here</a>.</p>
 <p>Input parameters are summarized at the beginning of the file:</p>
-<p><img src="media/he_inelastic_output_1.jpg" alt="output_1" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;">.</p>
-<div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 620px; margin-left: auto; margin-right: auto;">
-Note that out of the 990 coupling terms provided in the 'oH2-He-radialterms.dat' file, only 28 terms were actually used in the calculations
-(see <a href="../../proc/reduce_radial_coupling_terms.html">reduce_radial_coupling_terms</a> procedure).<br>
-The number 28 stems from the fact that we have 7 levels in the basis. <br>
-There are 49 \( (v,j) \leftrightarrow  (v',j') \) couplings possible, but
-the coupling terms (see Eq. (2) <a herf="../../page/background/coupling_matrix.html">here</a>) are symmetric with respect to the change of 
-\( (v,j) \), and \(  (v',j') \). <br>
-This limits the number of unique coupling terms to \( (7 \cdot 8) / 2 = 28\).
-</div>
-
-<p>The information about each block is presented in the same way as in the <a href="elastic.html">previous example</a>.
-Let's have a look at the last \(J\) block. The block comprises of 2 parity sub-blocks. The first one involves 36 scattering channels:</p>
-<p><img src="media/he_inelastic_output_2.jpg" alt="output_2" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;">.</p>
-<p>Note that the last 10 are <em>closed</em> - their energy is higher than the total energy of the system. All these 10 channels stem from the
-\(v=0, j=9\) basis level that we provided in the Input file.</p>
-<div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 620px; margin-left: auto; margin-right: auto;">
-The information at the bottom presents how much computational time and memory we save by using the body-fixed representation.<br>
+<p><img src="media/he_inelastic_output_1.jpg" alt="output_1" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;"></p>
+<p>Note that out of the 990 coupling terms provided in the 'oH2-He-radialterms.dat' file, only 28 terms were actually used in the calculations (see <a href="../../proc/reduce_radial_coupling_terms.html">reduce_radial_coupling_terms</a> procedure).<br>
+The number 28 stems from the fact that we have 7 levels in the basis.<br>
+There are 49 \( (v,j) \leftrightarrow (v',j') \) couplings possible, but the coupling terms (see Eq. (2) here) are symmetric with respect to the change of \( (v,j) \), and \( (v',j') \).<br>
+This limits the number of unique coupling terms to \( (7 \cdot 8) / 2 = 28\).</p>
+<p>The information about each block is presented in the same way as in the <a href="elastic.html">previous example</a>. Let's have a look at the last \(J\) block. The block comprises of 2 parity sub-blocks. The first one involves 36 scattering channels:</p>
+<p><img src="media/he_inelastic_output_2.jpg" alt="output_2" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;"></p>
+<p>Note that the last 10 are <em>closed</em> - their energy is higher than the total energy of the system. All these 10 channels stem from the \(v=0, j=9\) basis level that we provided in the Input file.</p>
+<p>The information at the bottom presents how much computational time and memory we save by using the body-fixed representation.<br>
 Since we have 36 channels, the <a href="../../page/background/coupling_matrix.html">coupling matrix</a> should have \(36 \cdot 36 = 1296\) elements.<br>
 Most of them stem from the contribution from the interaction potential - see Eq. (1) <a href="../../page/background/coupling_matrix.html">here</a>.<br>
-In the body-fixed frame, however, a lot of these elements are zero - since the PES does not couple different values of the 
-projection of the rotational angular momentum on the body-fixed Z-axis, \(\bar{\Omega}\), as indicated by
-the Kronecker delta in Eq. (3) in the <a href="../../page/background/coupling_matrix.html">"Coupling Matrix"</a> section. <br>
-</div>
-
+In the body-fixed frame, however, a lot of these elements are zero - since the PES does not couple different values of the projection of the rotational angular momentum on the body-fixed Z-axis, \(\bar{\Omega}\), as indicated by the Kronecker delta in Eq. (3) in the <a href="../../page/background/coupling_matrix.html">"Coupling Matrix"</a> section.  </p>
 <p>So how much matrix elements of the PES contribution are non-zero?<br>
 This is written in the output file: <strong>only 106 out of 1296</strong>.</p>
-<p>Note that each of these 106 terms involves a sum over \(\lambda\) (see Eq. (1) <a href="../../page/background/coupling_matrix.html">here</a>). <br>
-In the H<sub>2</sub>-He case, if <em>all</em> elements of the sum for <em>all</em> non-zero matrix elements were non-zero, we would have to store
-\(106 \cdot 4 = 424\) algebraic coefficients \( g_{{\lambda},\gamma,\gamma'}^{Jp} \) for this block.<br></p>
+<p>Note that each of these 106 terms involves a sum over \(\lambda\) (see Eq. (1) <a href="../../page/background/coupling_matrix.html">here</a>).<br>
+In the H2-He case, if <em>all</em> elements of the sum for <em>all</em> non-zero matrix elements were non-zero, we would have to store \(106 \cdot 4 = 424\) algebraic coefficients \( g_{{\lambda},\gamma,\gamma'}^{Jp} \) for this block.  </p>
 <p>This is, however, not the case, as lots of algebraic coefficients vanish due to symmetry properties of the 3-j symbols.<br>
 <strong>Ultimately, we need to save only 286 algebraic coefficients</strong>.</p>
-<p>Let's scroll down to the information about the other parity sub-block at \(J=50\):
-<img src="media/he_inelastic_output_3.jpg" alt="output_3" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;">.</p>
-<p>This block is slightly smaller - it involves 29 channels. <br>
+<p>Let's scroll down to the information about the other parity sub-block at \(J=50\): <img alt="output_3" src="media/he_inelastic_output_3.jpg">.</p>
+<p>This block is slightly smaller - it involves 29 channels.<br>
 This is because, in atom-molecule collisions, \(\bar{\Omega} = 0\) channels enter only blocks for which the \(p=(-1)^{J}\) block.<br>
 For a detailed discussion see Sec. III of the paper by <a href="https://doi.org/10.1063/1.434132">Alexander and DePristo</a>.</p>
-<p>Below the summary of the propagation and unitary check of the S-matrix, we find the following information:
-<img src="media/he_inelastic_output_4.jpg" alt="output_4" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;">.</p>
+<p>Below the summary of the propagation and unitary check of the S-matrix, we find the following information: <img alt="output_4" src="media/he_inelastic_output_4.jpg">.</p>
 <p>This short summary tells us that the largest contribution to the elastic cross-sections from the \(J=50\) block is \(0.033 Å^{2}\).<br>
-Comparing it to the total value of the largest elastic cross-section, \(\sigma = 50.024 Å^{2}\), we can say that the contribution is smaller than
-0.1%, and thus terminate the calculations. Sometimes, however, we can set a more stringent threshold on the contribution to the cross-sections,
-as we did in the <a href="elastic.html">previous test</a>.</p>
+Comparing it to the total value of the largest elastic cross-section, \(\sigma = 50.024 Å^{2}\), we can say that the contribution is smaller than 0.1%, and thus terminate the calculations. Sometimes, however, we can set a more stringent threshold on the contribution to the cross-sections, as we did in the <a href="elastic.html">previous test</a>.</p>
 <p>The largest inelastic cross-section was modified by \(\approx 5.7 \times 10^{-4} Å^{2} \). To say that it's enough depends on the context.<br>
-Here, the largest inelastic cross-section is \(\sigma = 1.8328 Å^{2}\), thus this level of convergence might be satisfactory.<br> 
+Here, the largest inelastic cross-section is \(\sigma = 1.8328 Å^{2}\), thus this level of convergence might be satisfactory.<br>
 Note that inelastic cross-sections converge faster than elastic counterparts.</p>
-<p>The end of the file provides a list of all state-to-state cross-sections calculated in this run:
-<img src="media/he_inelastic_output_5.jpg" alt="output_4" width="800" height="auto" style="box-shadow: 3px 3px 3px gray;">.</p>
+<p>The end of the file provides a list of all state-to-state cross-sections calculated in this run: <img alt="output_4" src="media/he_inelastic_output_5.jpg">.</p>
 <h3 id="other-files">Other files</h3>
-<p>In addition to the output file, the calculations produce a file containing partial state-to-state cross-sections,
-which is available <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/partialH2He.dat">here</a>,
-and the binary S-matrix file <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/smatrixH2He.dat">here</a>. The latter one needs a post-processor to read and interpret the saved data.</p>
+<p>In addition to the output file, the calculations produce a file containing partial state-to-state cross-sections, which is available <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/partialH2He.dat">here</a>, and the binary S-matrix file <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/smatrixH2He.dat">here</a>. The latter one needs a post-processor to read and interpret the saved data.</p>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <hr class="visible-xs visible-sm">
@@ -253,7 +225,7 @@ and the binary S-matrix file <a href="https://github.com/hjozwiak-umk/bigos_h2he
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-10 13:20            </p>
+ on 2024-01-10 14:25            </p>
         </div>
       </div>
       <br>
