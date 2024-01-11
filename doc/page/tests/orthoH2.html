@@ -146,6 +146,57 @@ Note that inelastic cross-sections converge faster than elastic counterparts.</p
 <p>The end of the file provides a list of all state-to-state cross-sections calculated in this run: <img alt="output_4" src="media/he_inelastic_output_5.jpg">.</p>
 <h3 id="other-files">Other files</h3>
 <p>In addition to the output file, the calculations produce a file containing partial state-to-state cross-sections, which is available <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/partialH2He.dat">here</a>, and the binary S-matrix file <a href="https://github.com/hjozwiak-umk/bigos_h2he/blob/main/test/test-orthoH2-He/smatrixH2He.dat">here</a>. The latter one needs a post-processor to read and interpret the saved data.</p>
+<<<<<<< HEAD
+=======
+<h3 id="comparison-with-molscat">Comparison with MOLSCAT</h3>
+<p>A correspodning MOLSCAT test is provided <a href="https://github.com/hjozwiak-umk/bigos_h2he/tree/main/data/ref/test/test-orthoH2-He/molscat_run">here</a>.</p>
+<p>Due to MOLSCAT's large computational time for itype = 7 with a large number of coupling terms,
+I have run parallel calculations for each JTOT block.</p>
+<p><a href="https://github.com/hjozwiak-umk/bigos_h2he/tree/main/data/ref/test/test-orthoH2-He/molscat_run/pre_oH2He7.in">pre_oH2He7.in</a> is a template input file. 
+Each task in the job array modifies "jtotl" and "jtotu" values, to run one JTOT block at a time.</p>
+<p><code>out.*</code>, where * = 0, 1, ... 50, provide the output of each JTOT block, see <a href="https://github.com/hjozwiak-umk/bigos_h2he/tree/main/data/ref/test/test-orthoH2-He/molscat_run/out.10">out.10</a> for example. </p>
+<p>S-matrices resulting from parallel calculations were later combined into one file and 
+state-to-state cross-sections were calculated using one of MOLSCAT's post-processors.</p>
+<p>The output of the post-processor is given in <a href="https://github.com/hjozwiak-umk/bigos_h2he/tree/main/data/ref/test/test-orthoH2-He/molscat_run/final_output.dat">final_output.dat</a> file.</p>
+<p>The results agree to the level better than 0.002%, as presented in the table below.</p>
+<div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 470px; margin-left: auto; margin-right: auto;">
+<table>
+<thead>
+<tr><th style='text-align: right;'>\(v_{f}\)</th><th style='text-align: right;'>\(j_{f}\)</th><th style='text-align: right;'>\(v_{i}\)</th><th style='text-align: right;'>\(j_{f}\)</th><th style='text-align: right;'>\(E_{\mathrm{kin}}\)</th><th style='text-align: right;'>BIGOS</th><th style='text-align: right;'>MOLSCAT</th><th style='text-align: right;'>Rel. Diff. (%)</th></tr>
+</thead>
+<tbody>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>1</td><td style='text-align: right;'>0</td><td style='text-align: right;'>1</td><td style='text-align: right;'>4781.51</td><td style='text-align: right;'>3.5183E+01</td><td style='text-align: right;'>3.5183E+01</td><td style='text-align: right;'>0.0018</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>0</td><td style='text-align: right;'>1</td><td style='text-align: right;'>4781.51</td><td style='text-align: right;'>1.8328E+00</td><td style='text-align: right;'>1.8328E+00</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>0</td><td style='text-align: right;'>1</td><td style='text-align: right;'>4781.51</td><td style='text-align: right;'>5.3204E-02</td><td style='text-align: right;'>5.3204E-02</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>0</td><td style='text-align: right;'>1</td><td style='text-align: right;'>4781.51</td><td style='text-align: right;'>8.5253E-05</td><td style='text-align: right;'>8.5253E-05</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>1</td><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>4194.48</td><td style='text-align: right;'>8.9543E-01</td><td style='text-align: right;'>8.9543E-01</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>4194.48</td><td style='text-align: right;'>3.6144E+01</td><td style='text-align: right;'>3.6144E+01</td><td style='text-align: right;'>0.0013</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>4194.48</td><td style='text-align: right;'>4.6606E-01</td><td style='text-align: right;'>4.6606E-01</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>4194.48</td><td style='text-align: right;'>1.0291E-03</td><td style='text-align: right;'>1.0291E-03</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>1</td><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>3159.81</td><td style='text-align: right;'>2.1957E-02</td><td style='text-align: right;'>2.1957E-02</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>3159.81</td><td style='text-align: right;'>3.9370E-01</td><td style='text-align: right;'>3.9370E-01</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>3159.81</td><td style='text-align: right;'>3.7972E+01</td><td style='text-align: right;'>3.7972E+01</td><td style='text-align: right;'>0.0005</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>3159.81</td><td style='text-align: right;'>3.4152E-02</td><td style='text-align: right;'>3.4152E-02</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>3159.81</td><td style='text-align: right;'>6.0255E-08</td><td style='text-align: right;'>6.0255E-08</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>1</td><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>1712.53</td><td style='text-align: right;'>4.7606E-05</td><td style='text-align: right;'>4.7606E-05</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>1712.53</td><td style='text-align: right;'>1.1762E-03</td><td style='text-align: right;'>1.1762E-03</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>1712.53</td><td style='text-align: right;'>4.6211E-02</td><td style='text-align: right;'>4.6211E-02</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>1712.53</td><td style='text-align: right;'>4.0296E+01</td><td style='text-align: right;'>4.0296E+01</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>1712.53</td><td style='text-align: right;'>1.7846E-07</td><td style='text-align: right;'>1.7846E-07</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>1</td><td style='text-align: right;'>3</td><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>1712.53</td><td style='text-align: right;'>3.0599E-08</td><td style='text-align: right;'>3.0599E-08</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>3</td><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>626.26</td><td style='text-align: right;'>1.0207E-07</td><td style='text-align: right;'>1.0207E-07</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>626.26</td><td style='text-align: right;'>1.1147E-06</td><td style='text-align: right;'>1.1147E-06</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>626.26</td><td style='text-align: right;'>2.4400E-06</td><td style='text-align: right;'>2.4400E-06</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>626.26</td><td style='text-align: right;'>4.3195E+01</td><td style='text-align: right;'>4.3195E+01</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>1</td><td style='text-align: right;'>3</td><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>626.26</td><td style='text-align: right;'>7.8120E-03</td><td style='text-align: right;'>7.8120E-03</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>5</td><td style='text-align: right;'>1</td><td style='text-align: right;'>3</td><td style='text-align: right;'>68.61</td><td style='text-align: right;'>4.0474E-08</td><td style='text-align: right;'>4.0474E-08</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>0</td><td style='text-align: right;'>7</td><td style='text-align: right;'>1</td><td style='text-align: right;'>3</td><td style='text-align: right;'>68.61</td><td style='text-align: right;'>1.6366E-06</td><td style='text-align: right;'>1.6366E-06</td><td style='text-align: right;'>0.0001</td></tr>
+<tr><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>1</td><td style='text-align: right;'>3</td><td style='text-align: right;'>68.61</td><td style='text-align: right;'>3.0561E-02</td><td style='text-align: right;'>3.0561E-02</td><td style='text-align: right;'>0.0000</td></tr>
+<tr><td style='text-align: right;'>1</td><td style='text-align: right;'>3</td><td style='text-align: right;'>1</td><td style='text-align: right;'>3</td><td style='text-align: right;'>68.61</td><td style='text-align: right;'>5.0024E+01</td><td style='text-align: right;'>5.0024E+01</td><td style='text-align: right;'>0.0000</td></tr>
+</tbody>
+</table>
+</div>
+>>>>>>> 1a10492 (Update documentation)
     </div>
     <div class="col-md-3 col-md-pull-9">
       <hr class="visible-xs visible-sm">
@@ -225,7 +276,11 @@ Note that inelastic cross-sections converge faster than elastic counterparts.</p
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+<<<<<<< HEAD
  on 2024-01-10 14:25            </p>
+=======
+ on 2024-01-11 10:43            </p>
+>>>>>>> 1a10492 (Update documentation)
         </div>
       </div>
       <br>
