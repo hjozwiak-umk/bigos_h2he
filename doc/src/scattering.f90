@@ -14,6 +14,7 @@ program SCATTERING
    use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
       calculate_k_matrix, calculate_s_matrix
 <<<<<<< HEAD
+<<<<<<< HEAD
    use unitarity_check_mod, only: unitarity_check
    use save_s_matrix_mod, only: save_s_matrix_file_header, save_s_matrix_block_info
    use state_to_state_cross_sections_mod, only:                                &
@@ -23,6 +24,8 @@ program SCATTERING
    use utility_functions_mod, only: write_header, file_io_status,              &
       write_message, float_to_character, integer_to_character, time_count_summary
 =======
+=======
+>>>>>>> 90b806d (Update documentation)
    use unitarity_check_mod, only: unitarity_check, print_final_unitarity_warning
    use save_s_matrix_mod, only: save_s_matrix_file_header, save_s_matrix_block_info
    use state_to_state_cross_sections_mod, only:                                &
@@ -33,7 +36,10 @@ program SCATTERING
    use utility_functions_mod, only: write_header, file_io_status,              &
       write_message, float_to_character, integer_to_character, time_count_summary, &
       no_open_channels_message
+<<<<<<< HEAD
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+>>>>>>> 90b806d (Update documentation)
    use array_operations_mod, only: append
    !---------------------------------------------------------------------------!
    implicit none
@@ -194,6 +200,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          if (number_of_open_channels == 0) then
 <<<<<<< HEAD
+<<<<<<< HEAD
             call write_message(repeat('-', 90))
             call write_message("No open channels for block no." //             &
                integer_to_character(count_blocks) )
@@ -201,6 +208,9 @@ program SCATTERING
 =======
             call no_open_channels_message(count_blocks)
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+            call no_open_channels_message(count_blocks)
+>>>>>>> 90b806d (Update documentation)
             cycle
          endif
          !---------------------------------------------------------------------!
@@ -383,6 +393,7 @@ program SCATTERING
       !------------------------------------------------------------------------!
       if (prntlvl.ge.3) then
 <<<<<<< HEAD
+<<<<<<< HEAD
          call write_message("Cross sections for J: "//                         &
             trim(adjustl(integer_to_character(jtot_))) // " and energy: " //   &
             trim(adjustl(float_to_character(ETOTAL()*hartreetocm, "(F10.4)"))) &
@@ -404,6 +415,9 @@ program SCATTERING
 =======
          call print_cross_sections_for_jtot(jtot_, open_basis_levels, xs_total)
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+         call print_cross_sections_for_jtot(jtot_, open_basis_levels, xs_total)
+>>>>>>> 90b806d (Update documentation)
       endif
       !------------------------------------------------------------------------!
       if (prntlvl.ge.2) call time_count_summary(time_jtot_start,               &
@@ -414,6 +428,7 @@ program SCATTERING
       if (terminate) exit
    enddo
 
+<<<<<<< HEAD
 <<<<<<< HEAD
    call write_message(repeat('*', 90))
    call write_message(repeat(" ", 31) // "Loop over JTOT finished")
@@ -426,11 +441,16 @@ program SCATTERING
    call write_header("loop_terminated")
    call write_header("summary")
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+   call write_header("loop_terminated")
+   call write_header("summary")
+>>>>>>> 90b806d (Update documentation)
    !---------------------------------------------------------------------------!
    ! if for some JTOTs the S-matrix did not fulfill the unitary check,
    ! these are listed here
    !---------------------------------------------------------------------------!
    if (allocated(smatcheckarr)) then
+<<<<<<< HEAD
 <<<<<<< HEAD
       print *
       call write_message(repeat("-", 90))
@@ -447,10 +467,14 @@ program SCATTERING
 =======
       call print_final_unitarity_warning(smatcheckarr)
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+      call print_final_unitarity_warning(smatcheckarr)
+>>>>>>> 90b806d (Update documentation)
    endif
    !---------------------------------------------------------------------------!
    ! Print all the calculated XS                                                
    !---------------------------------------------------------------------------!
+<<<<<<< HEAD
 <<<<<<< HEAD
    call write_message("Final state-to-state XS")
    call write_message("  v1_f  j1_f  <-  v1_i  j1_i" // repeat(" ", 14) //     &
@@ -470,6 +494,9 @@ program SCATTERING
 =======
    call print_final_cross_sections(open_basis_levels, xs_total)
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+   call print_final_cross_sections(open_basis_levels, xs_total)
+>>>>>>> 90b806d (Update documentation)
    !---------------------------------------------------------------------------!
    call fwig_temp_free();
    call fwig_table_free();
@@ -480,16 +507,22 @@ program SCATTERING
    call time_count_summary(time_total_start, time_total_stop, time_total,      &
       "Total CPU time: ")
 <<<<<<< HEAD
+<<<<<<< HEAD
    close(11)
    close(12)
 =======
+=======
+>>>>>>> 90b806d (Update documentation)
    !---------------------------------------------------------------------------!
    close(s_matrix_unit)
    !---------------------------------------------------------------------------!
    if (print_partial_cross_sections) then
       close(partial_file_unit)
    endif
+<<<<<<< HEAD
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+>>>>>>> 90b806d (Update documentation)
    !---------------------------------------------------------------------------!
 end program SCATTERING
 !------------------------------------------------------------------------------!

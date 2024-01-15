@@ -10,11 +10,17 @@ module unitarity_check_mod
    implicit none
    !---------------------------------------------------------------------------!
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
    private
    public :: unitarity_check, print_final_unitarity_warning
    !---------------------------------------------------------------------------!
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+   private
+   public :: unitarity_check, print_final_unitarity_warning
+   !---------------------------------------------------------------------------!
+>>>>>>> 90b806d (Update documentation)
    contains
       !------------------------------------------------------------------------!
       subroutine unitarity_check(number_of_open_channels, s_matrix_real,       &
@@ -142,7 +148,10 @@ module unitarity_check_mod
       end subroutine print_sum_of_squares
    !---------------------------------------------------------------------------!
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 90b806d (Update documentation)
    !---------------------------------------------------------------------------!
       subroutine print_final_unitarity_warning(list_of_blocks)
          !! print the final warning that the unitarity check failed in
@@ -167,5 +176,8 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
       end subroutine print_final_unitarity_warning
    !---------------------------------------------------------------------------!
+<<<<<<< HEAD
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+>>>>>>> 90b806d (Update documentation)
 end module unitarity_check_mod

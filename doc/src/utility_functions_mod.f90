@@ -9,6 +9,7 @@ module utility_functions_mod
    implicit none
    private
 <<<<<<< HEAD
+<<<<<<< HEAD
    public :: write_header, write_message, write_warning, write_error, time_count_summary,    &
              alloc_status, file_io_status, incorrect_value, to_lowercase,      &
 =======
@@ -16,6 +17,11 @@ module utility_functions_mod
              time_count_summary, no_open_channels_message, alloc_status,       &
              file_io_status, incorrect_value, to_lowercase,                    &
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+   public :: write_header, write_message, write_warning, write_error,          &
+             time_count_summary, no_open_channels_message, alloc_status,       &
+             file_io_status, incorrect_value, to_lowercase,                    &
+>>>>>>> 90b806d (Update documentation)
              integer_to_character, float_to_character
    !---------------------------------------------------------------------------!
    character(len=*), parameter :: letters   =                                  &
@@ -135,7 +141,10 @@ module utility_functions_mod
                      "write_header_block ****")
                endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 90b806d (Update documentation)
             case('loop_terminated')
                call write_message(repeat('*', 90))
                call write_message(repeat(" ", 31) // "Loop over JTOT finished")
@@ -144,7 +153,10 @@ module utility_functions_mod
                call write_message("*" // repeat(" ", 40) // "SUMMARY" //       &
                   repeat(" ", 41) // "*")
                call write_message(repeat('*', 90))
+<<<<<<< HEAD
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+>>>>>>> 90b806d (Update documentation)
             case default
                call incorrect_value('header_type (write_header)', header_type)
          end select
@@ -183,7 +195,10 @@ module utility_functions_mod
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 90b806d (Update documentation)
       subroutine no_open_channels_message(block_number_)
          !! print a short message that there are no open channels in given block
          !---------------------------------------------------------------------!
@@ -198,7 +213,10 @@ module utility_functions_mod
       end subroutine no_open_channels_message
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
+<<<<<<< HEAD
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+>>>>>>> 90b806d (Update documentation)
       subroutine alloc_status(istat_, message_, op_, unit_)
          !! check the status after allocation
          !---------------------------------------------------------------------!

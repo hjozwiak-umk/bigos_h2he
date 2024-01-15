@@ -24,11 +24,16 @@ module state_to_state_cross_sections_mod
    private
    public :: calculate_state_to_state_cross_section,                           &
 <<<<<<< HEAD
+<<<<<<< HEAD
       print_largest_partial_cross_sections, save_partial_xs_file_header,       &
 =======
       print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
       print_final_cross_sections, save_partial_xs_file_header,                 &
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+      print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
+      print_final_cross_sections, save_partial_xs_file_header,                 &
+>>>>>>> 90b806d (Update documentation)
       save_partial_xs_single_block, check_cross_section_thresholds
    !---------------------------------------------------------------------------!
    contains
@@ -365,7 +370,10 @@ module state_to_state_cross_sections_mod
          !---------------------------------------------------------------------!
       end subroutine print_detailed_cross_section_info
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 90b806d (Update documentation)
 !------------------------------------------------------------------------------!
 !------------------------------------------------------------------------------!
       subroutine print_cross_sections_for_jtot(total_angular_momentum_,        &
@@ -437,7 +445,10 @@ module state_to_state_cross_sections_mod
          enddo
          !---------------------------------------------------------------------!
       end subroutine print_all_cross_sections
+<<<<<<< HEAD
 >>>>>>> 3cf1c69 (Update documentation)
+=======
+>>>>>>> 90b806d (Update documentation)
    !---------------------------------------------------------------------------!
    !                        Saving partial cross-sections
    !---------------------------------------------------------------------------!
