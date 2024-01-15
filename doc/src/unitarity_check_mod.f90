@@ -9,6 +9,12 @@ module unitarity_check_mod
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
+<<<<<<< HEAD
+=======
+   private
+   public :: unitarity_check, print_final_unitarity_warning
+   !---------------------------------------------------------------------------!
+>>>>>>> 3cf1c69 (Update documentation)
    contains
       !------------------------------------------------------------------------!
       subroutine unitarity_check(number_of_open_channels, s_matrix_real,       &
@@ -135,4 +141,31 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
       end subroutine print_sum_of_squares
    !---------------------------------------------------------------------------!
+<<<<<<< HEAD
+=======
+   !---------------------------------------------------------------------------!
+      subroutine print_final_unitarity_warning(list_of_blocks)
+         !! print the final warning that the unitarity check failed in
+         !! given blocks
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: list_of_blocks(:)
+            !! array holding values of total angular momenta, for which
+            !! unitarity condition is not fulfilled            
+         !---------------------------------------------------------------------!
+         integer(int32) :: index_
+         !---------------------------------------------------------------------!
+         call write_message(repeat("-", 90))
+         call write_message(repeat(" ", 37) // "*** WARNING ***")
+         call write_message(repeat("-", 90))
+         call write_message("Check unitarity of the S-matrix in the following "&
+            // "JTOT blocks:")
+         do index_=1, size(list_of_blocks)
+            call write_message("JTOT:" // repeat(" ", 8) //                    &
+               integer_to_character(list_of_blocks(index_)))
+         enddo
+         call write_message(repeat("-", 90))
+         !---------------------------------------------------------------------!
+      end subroutine print_final_unitarity_warning
+   !---------------------------------------------------------------------------!
+>>>>>>> 3cf1c69 (Update documentation)
 end module unitarity_check_mod

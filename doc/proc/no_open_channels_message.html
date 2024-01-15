@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>calculate_state_to_state_cross_section &ndash; the SCATTERING code</title>
+    <title>no_open_channels_message &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>calculate_state_to_state_cross_section
+    <h1>no_open_channels_message
       <small>Subroutine</small>
       
     </h1>
@@ -89,18 +89,18 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.5% of total for procedures.">23 statements</a>
+               title=" 0.4% of total for procedures.">6 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/state_to_state_cross_sections_mod.f90"> Source File</a>
+              <a href="../src/utility_functions_mod.f90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/state_to_state_cross_sections_mod.f90.html'>state_to_state_cross_sections_mod.f90</a></li>
-              <li><a href='../module/state_to_state_cross_sections_mod.html'>state_to_state_cross_sections_mod</a></li>
-          <li class="active">calculate_state_to_state_cross_section</li>
+              <li><a href='../sourcefile/utility_functions_mod.f90.html'>utility_functions_mod.f90</a></li>
+              <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
+          <li class="active">no_open_channels_message</li>
         </ol>
       </div>
     </div>
@@ -136,6 +136,12 @@
   
   
   
+    <div class="panel panel-primary">
+      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/no_open_channels_message.html#src">no_open_channels_message</a>
+      </div>
+    </div>
 
 
   </div>
@@ -143,11 +149,11 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine calculate_state_to_state_cross_section(total_angular_momentum_, open_basis_levels_, open_basis_wavevectors_, s_matrix_real_, s_matrix_imag_, channel_indices_, channel_l_values_, cross_section_array_)  
+    <h2>public  subroutine no_open_channels_message(block_number_)  
 </h2>
     
 
-    <p>Calculates all state-to-state cross-sections.</p>
+    <p>print a short message that there are no open channels in given block</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -162,7 +168,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-total_angular_momentum_~19"></span>
+              <span class="anchor" id="variable-block_number_"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -170,114 +176,9 @@
               
             </td>
             <td>::</td>
-            <td><strong>total_angular_momentum_</strong></td>
+            <td><strong>block_number_</strong></td>
             <td>
-                <p>total angular momentum</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-open_basis_levels_~2"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>open_basis_levels_</strong>(:)</td>
-            <td>
-                <p>holds indices to the basis arrays which correspond to open channels </p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-open_basis_wavevectors_~2"></span>
-              real(kind=dp),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>open_basis_wavevectors_</strong>(:)</td>
-            <td>
-                <p>holds wavenumbers k_{i}</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-s_matrix_real_~4"></span>
-              real(kind=dp),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>s_matrix_real_</strong>(:,:)</td>
-            <td>
-                <p>real and imaginary parts of the S-matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-s_matrix_imag_~4"></span>
-              real(kind=dp),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>s_matrix_imag_</strong>(:,:)</td>
-            <td>
-                <p>real and imaginary parts of the S-matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel_indices_~10"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel_indices_</strong>(:)</td>
-            <td>
-                <p>holds the indices pointing to the basis arrays</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel_l_values_~3"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel_l_values_</strong>(:)</td>
-            <td>
-                <p>holds all values of l</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-cross_section_array_"></span>
-              real(kind=dp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>cross_section_array_</strong>(:)</td>
-            <td>
-                <p>array holding all XSs</p>
+                <p>block number</p>
             </td>
         </tr>
     </tbody>
@@ -294,47 +195,47 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~calculate_state_to_state_cross_section~~CallsGraph Pages: 1 -->
-<svg id="proccalculate_state_to_state_cross_sectionCallsGraph" width="515pt" height="32pt"
- viewBox="0.00 0.00 515.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~calculate_state_to_state_cross_section~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 511,-28 511,4 -4,4"/>
-<!-- proc~calculate_state_to_state_cross_section -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_node1" class="node">
-<title>proc~calculate_state_to_state_cross_section</title>
-<polygon fill="none" stroke="black" points="216,-24 0,-24 0,0 216,0 216,-24"/>
-<text text-anchor="middle" x="108" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">calculate_state_to_state_cross_section</text>
-</g>
-<!-- proc~time_count_summary -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_node2" class="node">
-<title>proc~time_count_summary</title>
-<g id="a_proc~~calculate_state_to_state_cross_section~~CallsGraph_node2"><a xlink:href=".././proc/time_count_summary.html" xlink:title="time_count_summary">
-<polygon fill="#d9534f" stroke="#d9534f" points="379,-24 252,-24 252,0 379,0 379,-24"/>
-<text text-anchor="middle" x="315.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">time_count_summary</text>
-</a>
-</g>
-</g>
-<!-- proc~calculate_state_to_state_cross_section&#45;&gt;proc~time_count_summary -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_edge1" class="edge">
-<title>proc~calculate_state_to_state_cross_section&#45;&gt;proc~time_count_summary</title>
-<path fill="none" stroke="#ff0000" d="M216.26,-12C224.82,-12 233.33,-12 241.56,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="241.82,-15.5 251.82,-12 241.82,-8.5 241.82,-15.5"/>
+<!-- Title: proc~~no_open_channels_message~~CallsGraph Pages: 1 -->
+<svg id="procno_open_channels_messageCallsGraph" width="333pt" height="74pt"
+ viewBox="0.00 0.00 333.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~no_open_channels_message~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<title>proc~~no_open_channels_message~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 329,-70 329,4 -4,4"/>
+<!-- proc~no_open_channels_message -->
+<g id="proc~~no_open_channels_message~~CallsGraph_node1" class="node">
+<title>proc~no_open_channels_message</title>
+<polygon fill="none" stroke="black" points="165,-45 0,-45 0,-21 165,-21 165,-45"/>
+<text text-anchor="middle" x="82.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">no_open_channels_message</text>
 </g>
 <!-- proc~write_message -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_node3" class="node">
+<g id="proc~~no_open_channels_message~~CallsGraph_node2" class="node">
 <title>proc~write_message</title>
-<g id="a_proc~~calculate_state_to_state_cross_section~~CallsGraph_node3"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="507,-24 415,-24 415,0 507,0 507,-24"/>
-<text text-anchor="middle" x="461" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+<g id="a_proc~~no_open_channels_message~~CallsGraph_node2"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="309,-66 217,-66 217,-42 309,-42 309,-66"/>
+<text text-anchor="middle" x="263" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
 </a>
 </g>
 </g>
-<!-- proc~time_count_summary&#45;&gt;proc~write_message -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_edge2" class="edge">
-<title>proc~time_count_summary&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#ff0000" d="M379.02,-12C387.62,-12 396.39,-12 404.83,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="404.94,-15.5 414.94,-12 404.94,-8.5 404.94,-15.5"/>
+<!-- proc~no_open_channels_message&#45;&gt;proc~write_message -->
+<g id="proc~~no_open_channels_message~~CallsGraph_edge1" class="edge">
+<title>proc~no_open_channels_message&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M165.18,-42.61C179.23,-44.26 193.53,-45.95 206.68,-47.49"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="206.61,-51.01 216.95,-48.7 207.43,-44.06 206.61,-51.01"/>
+</g>
+<!-- proc~integer_to_character -->
+<g id="proc~~no_open_channels_message~~CallsGraph_node3" class="node">
+<title>proc~integer_to_character</title>
+<g id="a_proc~~no_open_channels_message~~CallsGraph_node3"><a xlink:href=".././proc/integer_to_character.html" xlink:title="integer_to_character">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="325,-24 201,-24 201,0 325,0 325,-24"/>
+<text text-anchor="middle" x="263" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integer_to_character</text>
+</a>
+</g>
+</g>
+<!-- proc~no_open_channels_message&#45;&gt;proc~integer_to_character -->
+<g id="proc~~no_open_channels_message~~CallsGraph_edge2" class="edge">
+<title>proc~no_open_channels_message&#45;&gt;proc~integer_to_character</title>
+<path fill="none" stroke="#ff0000" d="M165.18,-23.39C173.72,-22.39 182.37,-21.37 190.79,-20.38"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="191.4,-23.83 200.92,-19.19 190.58,-16.88 191.4,-23.83"/>
 </g>
 </g>
 </svg>
@@ -409,32 +310,32 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~calculate_state_to_state_cross_section~~CalledByGraph Pages: 1 -->
-<svg id="proccalculate_state_to_state_cross_sectionCalledByGraph" width="339pt" height="32pt"
- viewBox="0.00 0.00 339.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~calculate_state_to_state_cross_section~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~calculate_state_to_state_cross_section~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 335,-28 335,4 -4,4"/>
-<!-- proc~calculate_state_to_state_cross_section -->
-<g id="proc~~calculate_state_to_state_cross_section~~CalledByGraph_node1" class="node">
-<title>proc~calculate_state_to_state_cross_section</title>
-<polygon fill="none" stroke="black" points="331,-24 115,-24 115,0 331,0 331,-24"/>
-<text text-anchor="middle" x="223" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">calculate_state_to_state_cross_section</text>
+<!-- Title: proc~~no_open_channels_message~~CalledByGraph Pages: 1 -->
+<svg id="procno_open_channels_messageCalledByGraph" width="288pt" height="32pt"
+ viewBox="0.00 0.00 288.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~no_open_channels_message~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~no_open_channels_message~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 284,-28 284,4 -4,4"/>
+<!-- proc~no_open_channels_message -->
+<g id="proc~~no_open_channels_message~~CalledByGraph_node1" class="node">
+<title>proc~no_open_channels_message</title>
+<polygon fill="none" stroke="black" points="280,-24 115,-24 115,0 280,0 280,-24"/>
+<text text-anchor="middle" x="197.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">no_open_channels_message</text>
 </g>
 <!-- program~scattering -->
-<g id="proc~~calculate_state_to_state_cross_section~~CalledByGraph_node2" class="node">
+<g id="proc~~no_open_channels_message~~CalledByGraph_node2" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~calculate_state_to_state_cross_section~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~no_open_channels_message~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~calculate_state_to_state_cross_section -->
-<g id="proc~~calculate_state_to_state_cross_section~~CalledByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;proc~calculate_state_to_state_cross_section</title>
-<path fill="none" stroke="#ff0000" d="M79.44,-12C87.23,-12 95.79,-12 104.73,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="104.96,-15.5 114.96,-12 104.96,-8.5 104.96,-15.5"/>
+<!-- program~scattering&#45;&gt;proc~no_open_channels_message -->
+<g id="proc~~no_open_channels_message~~CalledByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;proc~no_open_channels_message</title>
+<path fill="none" stroke="#ff0000" d="M79.06,-12C86.99,-12 95.66,-12 104.59,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.74,-15.5 114.74,-12 104.74,-8.5 104.74,-15.5"/>
 </g>
 </g>
 </svg>
@@ -522,6 +423,12 @@
   
   
   
+    <div class="panel panel-primary">
+      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/no_open_channels_message.html#src">no_open_channels_message</a>
+      </div>
+    </div>
 
 
     </section>
@@ -536,6 +443,24 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">no_open_channels_message</span><span class="p">(</span><span class="n">block_number_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! print a short message that there are no open channels in given block</span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">block_number_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! block number</span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="k">call </span><span class="n">write_message</span><span class="p">(</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">))</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">write_message</span><span class="p">(</span><span class="s2">&quot;No open channels for block no.&quot;</span><span class="w"> </span><span class="o">//</span><span class="w">                </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="n">integer_to_character</span><span class="p">(</span><span class="n">block_number_</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">write_message</span><span class="p">(</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">))</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">      </span><span class="k">end subroutine </span><span class="n">no_open_channels_message</span><span class="w"></span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>
@@ -552,15 +477,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
- on 2024-01-10 14:25            </p>
-=======
- on 2024-01-11 10:43            </p>
->>>>>>> 1a10492 (Update documentation)
-=======
  on 2024-01-15 14:33            </p>
->>>>>>> 3cf1c69 (Update documentation)
         </div>
       </div>
       <br>

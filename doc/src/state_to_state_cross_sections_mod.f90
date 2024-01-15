@@ -23,7 +23,12 @@ module state_to_state_cross_sections_mod
    !---------------------------------------------------------------------------!
    private
    public :: calculate_state_to_state_cross_section,                           &
+<<<<<<< HEAD
       print_largest_partial_cross_sections, save_partial_xs_file_header,       &
+=======
+      print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
+      print_final_cross_sections, save_partial_xs_file_header,                 &
+>>>>>>> 3cf1c69 (Update documentation)
       save_partial_xs_single_block, check_cross_section_thresholds
    !---------------------------------------------------------------------------!
    contains
@@ -359,6 +364,80 @@ module state_to_state_cross_sections_mod
          call write_message(line_)
          !---------------------------------------------------------------------!
       end subroutine print_detailed_cross_section_info
+<<<<<<< HEAD
+=======
+!------------------------------------------------------------------------------!
+!------------------------------------------------------------------------------!
+      subroutine print_cross_sections_for_jtot(total_angular_momentum_,        &
+         open_basis_levels_, cross_sections_)
+         !! Prints information about cross-sections at the end of each
+         !! total angular momentum (jtot) block
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: total_angular_momentum_
+            !! total angular momentum
+         integer(int32), intent(in) :: open_basis_levels_(:)
+            !! holds indices to the basis arrays that correspond to open channels
+         real(dp), intent(in) :: cross_sections_(:)
+            !! holds values of the cross-sections
+         !---------------------------------------------------------------------!
+         call write_message("Cross sections for J: "//                         &
+            trim(adjustl(integer_to_character(total_angular_momentum_))) //    &
+            " and energy: " //                                                 &
+            trim(adjustl(float_to_character(ETOTAL()*hartreetocm, "(F10.4)"))) &
+            // " cm-1")
+         !---------------------------------------------------------------------!
+         call print_all_cross_sections(open_basis_levels_, cross_sections_)
+         !---------------------------------------------------------------------!
+      end subroutine print_cross_sections_for_jtot
+!------------------------------------------------------------------------------!
+!------------------------------------------------------------------------------!
+      subroutine print_final_cross_sections(open_basis_levels_, cross_sections_)
+         !! Prints information about cross-sections at the end of the program
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: open_basis_levels_(:)
+            !! holds indices to the basis arrays that correspond to open channels
+         real(dp), intent(in) :: cross_sections_(:)
+            !! holds values of the cross-sections
+         !---------------------------------------------------------------------!
+         call write_message("Final state-to-state XS")
+         !---------------------------------------------------------------------!
+         call print_all_cross_sections(open_basis_levels_, cross_sections_)
+         !---------------------------------------------------------------------!
+      end subroutine print_final_cross_sections
+!------------------------------------------------------------------------------!
+!------------------------------------------------------------------------------!
+      subroutine print_all_cross_sections(open_basis_levels_, cross_sections_)
+         !! Prints information about cross-sections from provided
+         !! "cross_sections_" array
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: open_basis_levels_(:)
+            !! holds indices to the basis arrays that correspond to open channels
+         real(dp), intent(in) :: cross_sections_(:)
+            !! holds values of the cross-sections
+         !---------------------------------------------------------------------!
+         character(len=200) :: header_line_, line_
+         integer(int32) :: index_1_, index_2_, xs_index_
+         !---------------------------------------------------------------------!
+         write(header_line_, "(2x,a4,2x,a4,2x,a2,2x,a4,2x,a4,14x,a4,16x,a2)")  &
+            "v1_f", "j1_f", "<-", "v1_i", "j1_i", "Ekin", "XS"
+         call write_message(header_line_)
+         !---------------------------------------------------------------------!
+         do index_1_ = 1, size(open_basis_levels_)
+            do index_2_ = 1, size(open_basis_levels_)
+               xs_index_ = (index_1_ - 1) * size(open_basis_levels_) + index_2_
+               write(line_, "(2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")     &
+                  v1array(open_basis_levels_(index_2_)),                       &
+                  j1array(open_basis_levels_(index_2_)),                       &
+                  v1array(open_basis_levels_(index_1_)),                       &
+                  j1array(open_basis_levels_(index_1_)),                       &
+                  (etotal()-elevel(open_basis_levels_(index_1_)))*hartreetocm, &
+                  cross_sections_(xs_index_)
+               call write_message(line_)
+            enddo
+         enddo
+         !---------------------------------------------------------------------!
+      end subroutine print_all_cross_sections
+>>>>>>> 3cf1c69 (Update documentation)
    !---------------------------------------------------------------------------!
    !                        Saving partial cross-sections
    !---------------------------------------------------------------------------!

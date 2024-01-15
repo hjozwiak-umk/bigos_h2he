@@ -8,7 +8,7 @@
     <meta name="author" content="Hubert Jóźwiak" >
     <link rel="icon" href="../favicon.png">
 
-    <title>calculate_state_to_state_cross_section &ndash; the SCATTERING code</title>
+    <title>print_cross_sections_for_jtot &ndash; the SCATTERING code</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>calculate_state_to_state_cross_section
+    <h1>print_cross_sections_for_jtot
       <small>Subroutine</small>
       
     </h1>
@@ -89,7 +89,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.5% of total for procedures.">23 statements</a>
+               title=" 0.5% of total for procedures.">7 statements</a>
           </li>
 
             <li id="source-file">
@@ -100,7 +100,7 @@
         <ol class="breadcrumb in-well text-right">
               <li><a href='../sourcefile/state_to_state_cross_sections_mod.f90.html'>state_to_state_cross_sections_mod.f90</a></li>
               <li><a href='../module/state_to_state_cross_sections_mod.html'>state_to_state_cross_sections_mod</a></li>
-          <li class="active">calculate_state_to_state_cross_section</li>
+          <li class="active">print_cross_sections_for_jtot</li>
         </ol>
       </div>
     </div>
@@ -136,6 +136,12 @@
   
   
   
+    <div class="panel panel-primary">
+      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/print_cross_sections_for_jtot.html#src">print_cross_sections_for_jtot</a>
+      </div>
+    </div>
 
 
   </div>
@@ -143,11 +149,12 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine calculate_state_to_state_cross_section(total_angular_momentum_, open_basis_levels_, open_basis_wavevectors_, s_matrix_real_, s_matrix_imag_, channel_indices_, channel_l_values_, cross_section_array_)  
+    <h2>public  subroutine print_cross_sections_for_jtot(total_angular_momentum_, open_basis_levels_, cross_sections_)  
 </h2>
     
 
-    <p>Calculates all state-to-state cross-sections.</p>
+    <p>Prints information about cross-sections at the end of each
+total angular momentum (jtot) block</p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -162,7 +169,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-total_angular_momentum_~19"></span>
+              <span class="anchor" id="variable-total_angular_momentum_~23"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -177,7 +184,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-open_basis_levels_~2"></span>
+              <span class="anchor" id="variable-open_basis_levels_~5"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -187,12 +194,12 @@
             <td>::</td>
             <td><strong>open_basis_levels_</strong>(:)</td>
             <td>
-                <p>holds indices to the basis arrays which correspond to open channels </p>
+                <p>holds indices to the basis arrays that correspond to open channels</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-open_basis_wavevectors_~2"></span>
+              <span class="anchor" id="variable-cross_sections_"></span>
               real(kind=dp),
             </td>
 <td>intent(in)</td>
@@ -200,84 +207,9 @@
               
             </td>
             <td>::</td>
-            <td><strong>open_basis_wavevectors_</strong>(:)</td>
+            <td><strong>cross_sections_</strong>(:)</td>
             <td>
-                <p>holds wavenumbers k_{i}</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-s_matrix_real_~4"></span>
-              real(kind=dp),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>s_matrix_real_</strong>(:,:)</td>
-            <td>
-                <p>real and imaginary parts of the S-matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-s_matrix_imag_~4"></span>
-              real(kind=dp),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>s_matrix_imag_</strong>(:,:)</td>
-            <td>
-                <p>real and imaginary parts of the S-matrix</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel_indices_~10"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel_indices_</strong>(:)</td>
-            <td>
-                <p>holds the indices pointing to the basis arrays</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel_l_values_~3"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel_l_values_</strong>(:)</td>
-            <td>
-                <p>holds all values of l</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-cross_section_array_"></span>
-              real(kind=dp),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>cross_section_array_</strong>(:)</td>
-            <td>
-                <p>array holding all XSs</p>
+                <p>holds values of the cross-sections</p>
             </td>
         </tr>
     </tbody>
@@ -294,47 +226,77 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~calculate_state_to_state_cross_section~~CallsGraph Pages: 1 -->
-<svg id="proccalculate_state_to_state_cross_sectionCallsGraph" width="515pt" height="32pt"
- viewBox="0.00 0.00 515.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~calculate_state_to_state_cross_section~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 511,-28 511,4 -4,4"/>
-<!-- proc~calculate_state_to_state_cross_section -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_node1" class="node">
-<title>proc~calculate_state_to_state_cross_section</title>
-<polygon fill="none" stroke="black" points="216,-24 0,-24 0,0 216,0 216,-24"/>
-<text text-anchor="middle" x="108" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">calculate_state_to_state_cross_section</text>
+<!-- Title: proc~~print_cross_sections_for_jtot~~CallsGraph Pages: 1 -->
+<svg id="procprint_cross_sections_for_jtotCallsGraph" width="329pt" height="158pt"
+ viewBox="0.00 0.00 329.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
+<title>proc~~print_cross_sections_for_jtot~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 325,-154 325,4 -4,4"/>
+<!-- proc~print_cross_sections_for_jtot -->
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_node1" class="node">
+<title>proc~print_cross_sections_for_jtot</title>
+<polygon fill="none" stroke="black" points="161,-87 0,-87 0,-63 161,-63 161,-87"/>
+<text text-anchor="middle" x="80.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">print_cross_sections_for_jtot</text>
 </g>
-<!-- proc~time_count_summary -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_node2" class="node">
-<title>proc~time_count_summary</title>
-<g id="a_proc~~calculate_state_to_state_cross_section~~CallsGraph_node2"><a xlink:href=".././proc/time_count_summary.html" xlink:title="time_count_summary">
-<polygon fill="#d9534f" stroke="#d9534f" points="379,-24 252,-24 252,0 379,0 379,-24"/>
-<text text-anchor="middle" x="315.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">time_count_summary</text>
+<!-- proc~integer_to_character -->
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_node2" class="node">
+<title>proc~integer_to_character</title>
+<g id="a_proc~~print_cross_sections_for_jtot~~CallsGraph_node2"><a xlink:href=".././proc/integer_to_character.html" xlink:title="integer_to_character">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="321,-150 197,-150 197,-126 321,-126 321,-150"/>
+<text text-anchor="middle" x="259" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integer_to_character</text>
 </a>
 </g>
 </g>
-<!-- proc~calculate_state_to_state_cross_section&#45;&gt;proc~time_count_summary -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_edge1" class="edge">
-<title>proc~calculate_state_to_state_cross_section&#45;&gt;proc~time_count_summary</title>
-<path fill="none" stroke="#ff0000" d="M216.26,-12C224.82,-12 233.33,-12 241.56,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="241.82,-15.5 251.82,-12 241.82,-8.5 241.82,-15.5"/>
+<!-- proc~print_cross_sections_for_jtot&#45;&gt;proc~integer_to_character -->
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_edge1" class="edge">
+<title>proc~print_cross_sections_for_jtot&#45;&gt;proc~integer_to_character</title>
+<path fill="none" stroke="#ff0000" d="M114.3,-87.1C137.39,-95.57 169.04,-107.1 197,-117 202.21,-118.85 207.68,-120.76 213.12,-122.65"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="212.21,-126.04 222.8,-126 214.5,-119.42 212.21,-126.04"/>
 </g>
 <!-- proc~write_message -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_node3" class="node">
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_node3" class="node">
 <title>proc~write_message</title>
-<g id="a_proc~~calculate_state_to_state_cross_section~~CallsGraph_node3"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="507,-24 415,-24 415,0 507,0 507,-24"/>
-<text text-anchor="middle" x="461" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+<g id="a_proc~~print_cross_sections_for_jtot~~CallsGraph_node3"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="305,-108 213,-108 213,-84 305,-84 305,-108"/>
+<text text-anchor="middle" x="259" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
 </a>
 </g>
 </g>
-<!-- proc~time_count_summary&#45;&gt;proc~write_message -->
-<g id="proc~~calculate_state_to_state_cross_section~~CallsGraph_edge2" class="edge">
-<title>proc~time_count_summary&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#ff0000" d="M379.02,-12C387.62,-12 396.39,-12 404.83,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="404.94,-15.5 414.94,-12 404.94,-8.5 404.94,-15.5"/>
+<!-- proc~print_cross_sections_for_jtot&#45;&gt;proc~write_message -->
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_edge2" class="edge">
+<title>proc~print_cross_sections_for_jtot&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M161.23,-84.49C175.21,-86.15 189.49,-87.85 202.63,-89.41"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="202.55,-92.93 212.89,-90.63 203.38,-85.98 202.55,-92.93"/>
+</g>
+<!-- proc~float_to_character -->
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_node4" class="node">
+<title>proc~float_to_character</title>
+<g id="a_proc~~print_cross_sections_for_jtot~~CallsGraph_node4"><a xlink:href=".././proc/float_to_character.html" xlink:title="float_to_character">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="313.5,-66 204.5,-66 204.5,-42 313.5,-42 313.5,-66"/>
+<text text-anchor="middle" x="259" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">float_to_character</text>
+</a>
+</g>
+</g>
+<!-- proc~print_cross_sections_for_jtot&#45;&gt;proc~float_to_character -->
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_edge4" class="edge">
+<title>proc~print_cross_sections_for_jtot&#45;&gt;proc~float_to_character</title>
+<path fill="none" stroke="#ff0000" d="M161.23,-65.51C172.31,-64.2 183.56,-62.86 194.3,-61.58"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="194.88,-65.03 204.4,-60.38 194.06,-58.08 194.88,-65.03"/>
+</g>
+<!-- proc~etotal -->
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_node5" class="node">
+<title>proc~etotal</title>
+<g id="a_proc~~print_cross_sections_for_jtot~~CallsGraph_node5"><a xlink:href=".././proc/etotal.html" xlink:title="ETOTAL">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="286,-24 232,-24 232,0 286,0 286,-24"/>
+<text text-anchor="middle" x="259" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ETOTAL</text>
+</a>
+</g>
+</g>
+<!-- proc~print_cross_sections_for_jtot&#45;&gt;proc~etotal -->
+<g id="proc~~print_cross_sections_for_jtot~~CallsGraph_edge3" class="edge">
+<title>proc~print_cross_sections_for_jtot&#45;&gt;proc~etotal</title>
+<path fill="none" stroke="#ff0000" d="M114.3,-62.9C137.39,-54.43 169.04,-42.9 197,-33 205.2,-30.1 214.03,-27.03 222.36,-24.15"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="223.52,-27.46 231.84,-20.89 221.25,-20.84 223.52,-27.46"/>
 </g>
 </g>
 </svg>
@@ -409,32 +371,32 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~calculate_state_to_state_cross_section~~CalledByGraph Pages: 1 -->
-<svg id="proccalculate_state_to_state_cross_sectionCalledByGraph" width="339pt" height="32pt"
- viewBox="0.00 0.00 339.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~calculate_state_to_state_cross_section~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~calculate_state_to_state_cross_section~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 335,-28 335,4 -4,4"/>
-<!-- proc~calculate_state_to_state_cross_section -->
-<g id="proc~~calculate_state_to_state_cross_section~~CalledByGraph_node1" class="node">
-<title>proc~calculate_state_to_state_cross_section</title>
-<polygon fill="none" stroke="black" points="331,-24 115,-24 115,0 331,0 331,-24"/>
-<text text-anchor="middle" x="223" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">calculate_state_to_state_cross_section</text>
+<!-- Title: proc~~print_cross_sections_for_jtot~~CalledByGraph Pages: 1 -->
+<svg id="procprint_cross_sections_for_jtotCalledByGraph" width="284pt" height="32pt"
+ viewBox="0.00 0.00 284.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~print_cross_sections_for_jtot~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~print_cross_sections_for_jtot~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 280,-28 280,4 -4,4"/>
+<!-- proc~print_cross_sections_for_jtot -->
+<g id="proc~~print_cross_sections_for_jtot~~CalledByGraph_node1" class="node">
+<title>proc~print_cross_sections_for_jtot</title>
+<polygon fill="none" stroke="black" points="276,-24 115,-24 115,0 276,0 276,-24"/>
+<text text-anchor="middle" x="195.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">print_cross_sections_for_jtot</text>
 </g>
 <!-- program~scattering -->
-<g id="proc~~calculate_state_to_state_cross_section~~CalledByGraph_node2" class="node">
+<g id="proc~~print_cross_sections_for_jtot~~CalledByGraph_node2" class="node">
 <title>program~scattering</title>
-<g id="a_proc~~calculate_state_to_state_cross_section~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<g id="a_proc~~print_cross_sections_for_jtot~~CalledByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-24 0,-24 0,0 79,0 79,-24"/>
 <text text-anchor="middle" x="39.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
 </a>
 </g>
 </g>
-<!-- program~scattering&#45;&gt;proc~calculate_state_to_state_cross_section -->
-<g id="proc~~calculate_state_to_state_cross_section~~CalledByGraph_edge1" class="edge">
-<title>program~scattering&#45;&gt;proc~calculate_state_to_state_cross_section</title>
-<path fill="none" stroke="#ff0000" d="M79.44,-12C87.23,-12 95.79,-12 104.73,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="104.96,-15.5 114.96,-12 104.96,-8.5 104.96,-15.5"/>
+<!-- program~scattering&#45;&gt;proc~print_cross_sections_for_jtot -->
+<g id="proc~~print_cross_sections_for_jtot~~CalledByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;proc~print_cross_sections_for_jtot</title>
+<path fill="none" stroke="#ff0000" d="M79.36,-12C87.26,-12 95.87,-12 104.72,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.78,-15.5 114.78,-12 104.78,-8.5 104.78,-15.5"/>
 </g>
 </g>
 </svg>
@@ -522,6 +484,12 @@
   
   
   
+    <div class="panel panel-primary">
+      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/print_cross_sections_for_jtot.html#src">print_cross_sections_for_jtot</a>
+      </div>
+    </div>
 
 
     </section>
@@ -536,6 +504,33 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">print_cross_sections_for_jtot</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">open_basis_levels_</span><span class="p">,</span><span class="w"> </span><span class="n">cross_sections_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! Prints information about cross-sections at the end of each</span>
+<span class="w">         </span><span class="c">!! total angular momentum (jtot) block</span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">total_angular_momentum_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! total angular momentum</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">open_basis_levels_</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! holds indices to the basis arrays that correspond to open channels</span>
+<span class="w">         </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cross_sections_</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! holds values of the cross-sections</span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="k">call </span><span class="n">write_message</span><span class="p">(</span><span class="s2">&quot;Cross sections for J: &quot;</span><span class="o">//</span><span class="w">                         </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">integer_to_character</span><span class="p">(</span><span class="n">total_angular_momentum_</span><span class="p">)))</span><span class="w"> </span><span class="o">//</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot; and energy: &quot;</span><span class="w"> </span><span class="o">//</span><span class="w">                                                 </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">float_to_character</span><span class="p">(</span><span class="n">ETOTAL</span><span class="p">()</span><span class="o">*</span><span class="n">hartreetocm</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;(F10.4)&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="s2">&quot; cm-1&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="k">call </span><span class="n">print_all_cross_sections</span><span class="p">(</span><span class="n">open_basis_levels_</span><span class="p">,</span><span class="w"> </span><span class="n">cross_sections_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">      </span><span class="k">end subroutine </span><span class="n">print_cross_sections_for_jtot</span><span class="w"></span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>
@@ -552,15 +547,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
- on 2024-01-10 14:25            </p>
-=======
- on 2024-01-11 10:43            </p>
->>>>>>> 1a10492 (Update documentation)
-=======
  on 2024-01-15 14:33            </p>
->>>>>>> 3cf1c69 (Update documentation)
         </div>
       </div>
       <br>
