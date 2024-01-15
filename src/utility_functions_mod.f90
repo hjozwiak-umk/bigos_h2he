@@ -8,8 +8,9 @@ module utility_functions_mod
    !---------------------------------------------------------------------------!
    implicit none
    private
-   public :: write_header, write_message, write_warning, write_error, time_count_summary,    &
-             alloc_status, file_io_status, incorrect_value, to_lowercase,      &
+   public :: write_header, write_message, write_warning, write_error,          &
+             time_count_summary, no_open_channels_message, alloc_status,       &
+             file_io_status, incorrect_value, to_lowercase,                    &
              integer_to_character, float_to_character
    !---------------------------------------------------------------------------!
    character(len=*), parameter :: letters   =                                  &
@@ -128,6 +129,14 @@ module utility_functions_mod
                   call write_error("**** JTOT value not provided in " //       &
                      "write_header_block ****")
                endif
+            case('loop_terminated')
+               call write_message(repeat('*', 90))
+               call write_message(repeat(" ", 31) // "Loop over JTOT finished")
+            case('summary')
+               call write_message(repeat('*', 90))
+               call write_message("*" // repeat(" ", 40) // "SUMMARY" //       &
+                  repeat(" ", 41) // "*")
+               call write_message(repeat('*', 90))
             case default
                call incorrect_value('header_type (write_header)', header_type)
          end select
@@ -163,6 +172,20 @@ module utility_functions_mod
          call write_message(time_msg)
          !---------------------------------------------------------------------!
       end subroutine time_count_summary
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+      subroutine no_open_channels_message(block_number_)
+         !! print a short message that there are no open channels in given block
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in)  :: block_number_
+            !! block number
+         !---------------------------------------------------------------------!
+         call write_message(repeat('-', 90))
+         call write_message("No open channels for block no." //                &
+            integer_to_character(block_number_) )
+         call write_message(repeat('-', 90))
+         !---------------------------------------------------------------------!
+      end subroutine no_open_channels_message
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine alloc_status(istat_, message_, op_, unit_)

@@ -13,14 +13,16 @@ program SCATTERING
    use propagator_mod, only: numerov
    use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
       calculate_k_matrix, calculate_s_matrix
-   use unitarity_check_mod, only: unitarity_check
+   use unitarity_check_mod, only: unitarity_check, print_final_unitarity_warning
    use save_s_matrix_mod, only: save_s_matrix_file_header, save_s_matrix_block_info
    use state_to_state_cross_sections_mod, only:                                &
       calculate_state_to_state_cross_section,                                  &
-      print_largest_partial_cross_sections, check_cross_section_thresholds,    &
+      print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
+      print_final_cross_sections,  check_cross_section_thresholds,             &
       save_partial_xs_file_header, save_partial_xs_single_block
    use utility_functions_mod, only: write_header, file_io_status,              &
-      write_message, float_to_character, integer_to_character, time_count_summary
+      write_message, float_to_character, integer_to_character, time_count_summary, &
+      no_open_channels_message
    use array_operations_mod, only: append
    !---------------------------------------------------------------------------!
    implicit none
@@ -180,10 +182,7 @@ program SCATTERING
          ! If there are no open channels, skip this block
          !---------------------------------------------------------------------!
          if (number_of_open_channels == 0) then
-            call write_message(repeat('-', 90))
-            call write_message("No open channels for block no." //             &
-               integer_to_character(count_blocks) )
-            call write_message(repeat('-', 90))
+            call no_open_channels_message(count_blocks)
             cycle
          endif
          !---------------------------------------------------------------------!
@@ -365,24 +364,7 @@ program SCATTERING
       ! Print all the XS after current JTOT block                              
       !------------------------------------------------------------------------!
       if (prntlvl.ge.3) then
-         call write_message("Cross sections for J: "//                         &
-            trim(adjustl(integer_to_character(jtot_))) // " and energy: " //   &
-            trim(adjustl(float_to_character(ETOTAL()*hartreetocm, "(F10.4)"))) &
-            // " cm-1")
-         call write_message("  v1_f  j1_f  <-  v1_i  j1_i" // repeat(" ", 14)  &
-            // "K.E." // repeat(" ", 16) // "XS")
-         do icount = 1, number_of_open_basis_levels
-            do icount2 = 1, number_of_open_basis_levels
-               write(xs_line, "(2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")   &
-                  v1array(open_basis_levels(icount2)),                         &
-                  j1array(open_basis_levels(icount2)),                         &
-                  v1array(open_basis_levels(icount)),                          &
-                  j1array(open_basis_levels(icount)),                          &
-                  (etotal()-elevel(open_basis_levels(icount)))*hartreetocm,    &
-                  xs_total((icount-1)*number_of_open_basis_levels+icount2)
-               call write_message(xs_line)
-            enddo
-         enddo
+         call print_cross_sections_for_jtot(jtot_, open_basis_levels, xs_total)
       endif
       !------------------------------------------------------------------------!
       if (prntlvl.ge.2) call time_count_summary(time_jtot_start,               &
@@ -393,49 +375,19 @@ program SCATTERING
       if (terminate) exit
    enddo
 
-   call write_message(repeat('*', 90))
-   call write_message(repeat(" ", 31) // "Loop over JTOT finished")
-
-   call write_message(repeat('*', 90))
-   call write_message("*" // repeat(" ", 40) // "SUMMARY" // repeat(" ", 41)   &
-      // "*")
-   call write_message(repeat('*', 90))
+   call write_header("loop_terminated")
+   call write_header("summary")
    !---------------------------------------------------------------------------!
    ! if for some JTOTs the S-matrix did not fulfill the unitary check,
    ! these are listed here
    !---------------------------------------------------------------------------!
    if (allocated(smatcheckarr)) then
-      print *
-      call write_message(repeat("-", 90))
-      call write_message(repeat(" ", 37) // "*** WARNING ***")
-      call write_message(repeat("-", 90))
-      call write_message("Check unitarity of the S-matrix in the following "// &
-         "JTOT blocks:")
-      do icheck=1, size(smatcheckarr)
-         call write_message("JTOT:" // repeat(" ", 8) // integer_to_character( &
-            smatcheckarr(icheck)))
-      enddo
-      call write_message(repeat("-", 90))
-      print *
+      call print_final_unitarity_warning(smatcheckarr)
    endif
    !---------------------------------------------------------------------------!
    ! Print all the calculated XS                                                
    !---------------------------------------------------------------------------!
-   call write_message("Final state-to-state XS")
-   call write_message("  v1_f  j1_f  <-  v1_i  j1_i" // repeat(" ", 14) //     &
-      "K.E." // repeat(" ", 16) // "XS")
-   do icount = 1, number_of_open_basis_levels
-      do icount2 = 1, number_of_open_basis_levels
-         write(xs_line, "(2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")         &
-            v1array(open_basis_levels(icount2)),                               &
-            j1array(open_basis_levels(icount2)),                               &
-            v1array(open_basis_levels(icount)),                                &
-            j1array(open_basis_levels(icount)),                                &
-            (etotal()-elevel(open_basis_levels(icount)))*hartreetocm,          &
-            xs_total((icount-1)*number_of_open_basis_levels+icount2)
-         call write_message(xs_line)
-      enddo
-   enddo
+   call print_final_cross_sections(open_basis_levels, xs_total)
    !---------------------------------------------------------------------------!
    call fwig_temp_free();
    call fwig_table_free();
@@ -445,8 +397,12 @@ program SCATTERING
    call cpu_time(time_total_stop)
    call time_count_summary(time_total_start, time_total_stop, time_total,      &
       "Total CPU time: ")
-   close(11)
-   close(12)
+   !---------------------------------------------------------------------------!
+   close(s_matrix_unit)
+   !---------------------------------------------------------------------------!
+   if (print_partial_cross_sections) then
+      close(partial_file_unit)
+   endif
    !---------------------------------------------------------------------------!
 end program SCATTERING
 !------------------------------------------------------------------------------!
