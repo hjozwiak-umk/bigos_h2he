@@ -22,7 +22,7 @@ module state_to_state_cross_sections_mod
    implicit none
    !---------------------------------------------------------------------------!
    private
-   public :: calculate_state_to_state_cross_section,                           &
+   public :: calculate_state_to_state_cross_section, add_cross_sections,       &
       print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
       print_final_cross_sections, save_partial_xs_file_header,                 &
       save_partial_xs_single_block, check_cross_section_thresholds
@@ -262,6 +262,33 @@ module state_to_state_cross_sections_mod
          imag_contribution_ = -s_matrix_imag_(initial_index_, final_index_)
          !---------------------------------------------------------------------!
       end function compute_imag_component
+   !---------------------------------------------------------------------------!
+   !                         Adding cross-sections
+   !---------------------------------------------------------------------------!
+      subroutine add_cross_sections(number_of_open_basis_levels,               &
+         partial_cross_sections_, accumulated_cross_sections_)
+         !! Add partial cross-sections to accumulated cross-sections
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: number_of_open_basis_levels
+            !! number of open basis levels
+         real(dp), intent(in) :: partial_cross_sections_(:)
+            !! array holding partial cross-sections
+         real(dp), intent(inout) :: accumulated_cross_sections_(:)
+            !! array holding accumulated cross-sections
+         !---------------------------------------------------------------------!
+         integer(int32) :: level_index_1_, level_index_2_, cross_section_index_
+         !---------------------------------------------------------------------!
+         do level_index_1_ = 1, number_of_open_basis_levels
+            do level_index_2_ = 1, number_of_open_basis_levels
+               cross_section_index_ = (level_index_1_-1)                       &
+                  * number_of_open_basis_levels + level_index_2_
+               accumulated_cross_sections_(cross_section_index_) =             &
+                  accumulated_cross_sections_(cross_section_index_)            &
+                  + partial_cross_sections_(cross_section_index_)
+            enddo
+         enddo
+         !---------------------------------------------------------------------!
+      end subroutine add_cross_sections
    !---------------------------------------------------------------------------!
    !                        Printing cross-sections
    !---------------------------------------------------------------------------!
