@@ -90,6 +90,11 @@ module propagator_mod
          call calculate_log_der_matrix(step_numerov_,number_of_channels_,        &
             t_matrix_minus_,t_matrix_,t_matrix_plus_,r_matrix_rmax_,r_matrix_plus_,log_der_matrix_)
          !---------------------------------------------------------------------!
+<<<<<<< HEAD
+=======
+         call propagator_summary(rmin, rmax, number_of_steps_)
+         !---------------------------------------------------------------------!
+>>>>>>> 3087924 (Update documentation)
          if (prntlvl.ge.2) then
             call time_count_summary(start, finish, calculation_time_,          &
                "Propagation completed in ")
@@ -497,5 +502,30 @@ module propagator_mod
             log_der_matrix_,number_of_channels_)
          !---------------------------------------------------------------------!
       end subroutine calculate_log_der_matrix
+<<<<<<< HEAD
+=======
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      subroutine propagator_summary(r_min_, r_max_, number_of_steps_)
+         !! Print a simple message after the propagation is finished
+         !---------------------------------------------------------------------!
+         real(dp), intent(in) :: r_min_
+            !! initial point on the \\(R\\) grid
+         real(dp), intent(in) :: r_max_
+            !! final point on the \\(R\\) grid
+         integer(int32), intent(in) :: number_of_steps_
+            !! number of steps on the \\(R\\) grid
+         !---------------------------------------------------------------------!
+         call write_message("Coupled equations were solved from " //           &
+            trim(adjustl(float_to_character(r_min_, "(F10.4)")))// " a.u. to " &
+            // trim(adjustl(float_to_character(r_max_, "(F10.4)")))//          &
+            " a.u. in "// trim(adjustl(integer_to_character(number_of_steps_)))&
+            // " steps ")
+         call write_message("(constant dr = " //                               &
+            trim(adjustl(float_to_character((rmax - rmin) /                    &
+            real(number_of_steps_ - 1, dp), "(E14.8)"))) // " a.u.)")
+         !---------------------------------------------------------------------!
+      end subroutine propagator_summary
+>>>>>>> 3087924 (Update documentation)
 !------------------------------------------------------------------------------!
 end module propagator_mod

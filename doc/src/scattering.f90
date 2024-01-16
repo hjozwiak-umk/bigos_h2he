@@ -16,7 +16,11 @@ program SCATTERING
    use unitarity_check_mod, only: unitarity_check, print_final_unitarity_warning
    use save_s_matrix_mod, only: save_s_matrix_file_header, save_s_matrix_block_info
    use state_to_state_cross_sections_mod, only:                                &
+<<<<<<< HEAD
       calculate_state_to_state_cross_section,                                  &
+=======
+      calculate_state_to_state_cross_section,  add_cross_sections,             &
+>>>>>>> 3087924 (Update documentation)
       print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
       print_final_cross_sections,  check_cross_section_thresholds,             &
       save_partial_xs_file_header, save_partial_xs_single_block
@@ -50,7 +54,12 @@ program SCATTERING
       channel_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:),&
       nonzero_legendre_indices(:), smatcheckarr(:)
    real(dp), allocatable :: wv(:), open_basis_wavevectors(:),                  &
+<<<<<<< HEAD
       nonzero_algebraic_coefficients(:), xs_total(:), xs_block(:), xs_jtot(:)
+=======
+      nonzero_algebraic_coefficients(:), accumulated_cross_sections(:),        &
+      partial_cross_sections_block(:), partial_cross_sections_jtot(:)
+>>>>>>> 3087924 (Update documentation)
    real(dp), allocatable :: BF_log_der_matrix(:,:), SF_log_der_matrix(:,:),    &
       k_matrix(:,:), s_matrix_real(:,:), s_matrix_imag(:,:)
    !---------------------------------------------------------------------------!
@@ -107,11 +116,19 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    ! Initialize arrays that save the state-to-state cross-sections
    !---------------------------------------------------------------------------!
+<<<<<<< HEAD
    call allocate_1d(xs_total,                                                  &
       number_of_open_basis_levels*number_of_open_basis_levels)
    call allocate_1d(xs_jtot,                                                   &
       number_of_open_basis_levels*number_of_open_basis_levels)
    call allocate_1d(xs_block,                                                  &
+=======
+   call allocate_1d(accumulated_cross_sections,                                &
+      number_of_open_basis_levels*number_of_open_basis_levels)
+   call allocate_1d(partial_cross_sections_jtot,                               &
+      number_of_open_basis_levels*number_of_open_basis_levels)
+   call allocate_1d(partial_cross_sections_block,                              &
+>>>>>>> 3087924 (Update documentation)
       number_of_open_basis_levels*number_of_open_basis_levels)
    !---------------------------------------------------------------------------!
    ! Initialization is finished                                                
@@ -130,7 +147,11 @@ program SCATTERING
       !------------------------------------------------------------------------!
       call cpu_time(time_jtot_start)
       !------------------------------------------------------------------------!
+<<<<<<< HEAD
       xs_jtot = 0
+=======
+      partial_cross_sections_jtot = 0
+>>>>>>> 3087924 (Update documentation)
       call set_number_of_channels(jtot_, size_even, size_odd)
       !------------------------------------------------------------------------!
       do parity_exponent = 0,1
@@ -166,7 +187,11 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Prepare channels_omega_values, channel_indices and channel_l_values
          !---------------------------------------------------------------------!
+<<<<<<< HEAD
          call set_body_fixed_channels(jtot_, parity_exponent, channel_indices,   &
+=======
+         call set_body_fixed_channels(jtot_, parity_exponent, channel_indices, &
+>>>>>>> 3087924 (Update documentation)
             channels_omega_values)
          call set_space_fixed_channels(jtot_, parity_exponent, channel_l_values)
          !---------------------------------------------------------------------!
@@ -234,6 +259,7 @@ program SCATTERING
             nonzero_terms_per_element,&
             nonzero_legendre_indices, nonzero_algebraic_coefficients, nsteps,   &
             jtot_, BF_log_der_matrix)
+<<<<<<< HEAD
          call write_message("Coupled equations were solved from " //           &
             trim(adjustl(float_to_character(Rmin, "(F10.4)")))// " a.u. to "// &
             trim(adjustl(float_to_character(Rmax, "(F10.4)")))// " a.u. in "// &
@@ -244,6 +270,12 @@ program SCATTERING
          ! Transform the log-derivative matrix to the SF frame
          !---------------------------------------------------------------------!
          call calculate_sf_matrix_from_bf_matrix(number_of_channels, jtot_,               &
+=======
+         !---------------------------------------------------------------------!
+         ! Transform the log-derivative matrix to the SF frame
+         !---------------------------------------------------------------------!
+         call calculate_sf_matrix_from_bf_matrix(number_of_channels, jtot_,    &
+>>>>>>> 3087924 (Update documentation)
             channel_indices, channels_omega_values, channel_l_values,  &
             BF_log_der_matrix, SF_log_der_matrix)
          !---------------------------------------------------------------------!
@@ -287,6 +319,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          call calculate_state_to_state_cross_section(jtot_, open_basis_levels, &
             open_basis_wavevectors,s_matrix_real,s_matrix_imag,channel_indices,&
+<<<<<<< HEAD
             channel_l_values,xs_block)
          !---------------------------------------------------------------------!
          ! Print the results from this parity block to the partial XS file
@@ -303,6 +336,19 @@ program SCATTERING
                   + xs_block((icount-1)*number_of_open_basis_levels+icount2)
             enddo
          enddo
+=======
+            channel_l_values,partial_cross_sections_block)
+         !---------------------------------------------------------------------!
+         ! Print the results from this parity block to the partial XS file
+         ! and add the calculated partial XS to the partial_cross_sections_jtot array
+         !---------------------------------------------------------------------!
+         if (print_partial_cross_sections) then
+            call save_partial_xs_single_block(jtot_, count_blocks,                   &
+            number_of_open_basis_levels, open_basis_levels, partial_cross_sections_block)
+         endif
+         call add_cross_sections(number_of_open_basis_levels,                  &
+            partial_cross_sections_block, partial_cross_sections_jtot)
+>>>>>>> 3087924 (Update documentation)
          !---------------------------------------------------------------------!
          ! Check the time after each parity block:
          !---------------------------------------------------------------------!
@@ -317,6 +363,7 @@ program SCATTERING
       !------------------------------------------------------------------------!
       ! Add the cross-sections from this Jtot block:
       !------------------------------------------------------------------------!
+<<<<<<< HEAD
       do icount = 1, number_of_open_basis_levels
          do icount2 = 1, number_of_open_basis_levels
             xs_total((icount-1)*number_of_open_basis_levels+icount2) =         &
@@ -324,6 +371,10 @@ program SCATTERING
                + xs_jtot((icount-1)*number_of_open_basis_levels+icount2)
          enddo
       enddo
+=======
+      call add_cross_sections(number_of_open_basis_levels,                  &
+            partial_cross_sections_jtot, accumulated_cross_sections)
+>>>>>>> 3087924 (Update documentation)
       !------------------------------------------------------------------------!
       ! Determine the largest partial elastic/inelastic XS in this Jtot block:
       !------------------------------------------------------------------------!
@@ -335,6 +386,7 @@ program SCATTERING
       do icount = 1, number_of_open_basis_levels
          do icount2 = 1, number_of_open_basis_levels
             if (open_basis_levels(icount2) == open_basis_levels(icount)) then
+<<<<<<< HEAD
                if ((xs_jtot((icount-1)*number_of_open_basis_levels+icount2)).gt.maxXSdiag) then
                   maxXSdiag = xs_jtot((icount-1)*number_of_open_basis_levels+icount2)
                   jinddiag = icount
@@ -342,6 +394,15 @@ program SCATTERING
             else
                if ((xs_jtot((icount-1)*number_of_open_basis_levels+icount2)).gt.maxXSoff) then
                   maxXSoff = xs_jtot((icount-1)*number_of_open_basis_levels+icount2)
+=======
+               if ((partial_cross_sections_jtot((icount-1)*number_of_open_basis_levels+icount2)).gt.maxXSdiag) then
+                  maxXSdiag = partial_cross_sections_jtot((icount-1)*number_of_open_basis_levels+icount2)
+                  jinddiag = icount
+               endif
+            else
+               if ((partial_cross_sections_jtot((icount-1)*number_of_open_basis_levels+icount2)).gt.maxXSoff) then
+                  maxXSoff = partial_cross_sections_jtot((icount-1)*number_of_open_basis_levels+icount2)
+>>>>>>> 3087924 (Update documentation)
                   jindoff1 = icount
                   jindoff2 = icount2
                endif
@@ -364,7 +425,11 @@ program SCATTERING
       ! Print all the XS after current JTOT block                              
       !------------------------------------------------------------------------!
       if (prntlvl.ge.3) then
+<<<<<<< HEAD
          call print_cross_sections_for_jtot(jtot_, open_basis_levels, xs_total)
+=======
+         call print_cross_sections_for_jtot(jtot_, open_basis_levels, accumulated_cross_sections)
+>>>>>>> 3087924 (Update documentation)
       endif
       !------------------------------------------------------------------------!
       if (prntlvl.ge.2) call time_count_summary(time_jtot_start,               &
@@ -387,7 +452,11 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    ! Print all the calculated XS                                                
    !---------------------------------------------------------------------------!
+<<<<<<< HEAD
    call print_final_cross_sections(open_basis_levels, xs_total)
+=======
+   call print_final_cross_sections(open_basis_levels, accumulated_cross_sections)
+>>>>>>> 3087924 (Update documentation)
    !---------------------------------------------------------------------------!
    call fwig_temp_free();
    call fwig_table_free();
