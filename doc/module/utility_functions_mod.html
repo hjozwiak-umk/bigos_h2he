@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01">
+    <meta name="author" content="Hubert Jóźwiak" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>utility_functions_mod &ndash; the SCATTERING code</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">the SCATTERING code </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href='../page/index.html'>Program Description</a></li>
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="../lists/files.html">Source Files</a></li>
+            <li><a href="../lists/modules.html">Modules</a></li>
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+                   <li><a href="../program/scattering.html">Program</a></li>
+       
+            </ul>
+        
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../program/scattering.html">Program</a></li>
+          </ul>
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+  <div class="row">
+    <h1>utility_functions_mod 
+    <small>Module</small>
+    
+    </h1>
+      <div class="row" id="info-bar">
+    <div class="col-lg-12">
+      <div class="well well-sm">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+          <li id="statements"><i class="fa fa-list-ol"></i>
+            <a data-toggle="tooltip"
+               data-placement="bottom" data-html="true"
+               title=" 8.3% of total for modules and submodules.">231 statements</a>
+          </li>
+
+            <li id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/utility_functions_mod.f90"> Source File</a>
+            </li>
+        </ul>
+        <ol class="breadcrumb in-well text-right">
+              <li><a href='../sourcefile/utility_functions_mod.f90.html'>utility_functions_mod.f90</a></li>
+          <li class="active">utility_functions_mod</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#inters-0">Interfaces</a>
+        </h3>
+      </div>
+      <div id="inters-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/utility_functions_mod.html#interface-incorrect_value">incorrect_value</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#funcs-0">Functions</a>
+        </h3>
+      </div>
+      <div id="funcs-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-float_to_character">float_to_character</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-integer_to_character">integer_to_character</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-to_lowercase">to_lowercase</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#subs-0">Subroutines</a>
+        </h3>
+      </div>
+      <div id="subs-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-alloc_status">alloc_status</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-file_io_status">file_io_status</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-no_open_channels_message">no_open_channels_message</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-time_count_summary">time_count_summary</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-write_error">write_error</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-write_header">write_header</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-write_message">write_message</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-write_warning">write_warning</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <p>utility_functions_mod contains functions which handle writing 
+messages/errors/warnings on screen, formatting headers, summary of the 
+calculations and a few other supporting functions.</p>
+<br>        <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+            <ul class="list-inline">
+                <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~utility_functions_mod~~UsesGraph Pages: 1 -->
+<svg id="moduleutility_functions_modUsesGraph" width="263pt" height="32pt"
+ viewBox="0.00 0.00 263.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~utility_functions_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>module~~utility_functions_mod~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 259,-28 259,4 -4,4"/>
+<!-- module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsesGraph_node1" class="node">
+<title>module~utility_functions_mod</title>
+<polygon fill="none" stroke="black" points="255,-24 130,-24 130,0 255,0 255,-24"/>
+<text text-anchor="middle" x="192.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">utility_functions_mod</text>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~utility_functions_mod~~UsesGraph_node2" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~utility_functions_mod~~UsesGraph_node2"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="94,-24 0,-24 0,0 94,0 94,-24"/>
+<text text-anchor="middle" x="47" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~utility_functions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~utility_functions_mod~~UsesGraph_edge1" class="edge">
+<title>module~utility_functions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M129.81,-12C121.28,-12 112.55,-12 104.13,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.03,-8.5 94.03,-12 104.03,-15.5 104.03,-8.5"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="516pt" height="32pt"
+ viewBox="0.00 0.00 516.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 512,-28 512,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="385.5,-24 328.5,-24 328.5,0 385.5,0 385.5,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="508,-24 404,-24 404,0 508,0 508,-24"/>
+<text text-anchor="middle" x="456" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
+          </li>
+      </ul>
+    </div>
+
+        <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Used by</h3>
+      </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~utility_functions_mod~~UsedByGraph Pages: 1 -->
+<svg id="moduleutility_functions_modUsedByGraph" width="641pt" height="183pt"
+ viewBox="0.00 0.00 641.00 183.07" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~utility_functions_mod~~UsedByGraph" class="graph" transform="scale(2.01 2.01) rotate(0) translate(4 363.28)">
+<title>module~~utility_functions_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-363.28 1282,-363.28 1282,4 -4,4"/>
+<!-- module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node1" class="node">
+<title>module~utility_functions_mod</title>
+<polygon fill="none" stroke="black" points="125,-165.11 0,-165.11 0,-141.11 125,-141.11 125,-165.11"/>
+<text text-anchor="middle" x="62.5" y="-150.71" font-family="Helvetica,sans-Serif" font-size="10.50">utility_functions_mod</text>
+</g>
+<!-- module~input_validation -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node2" class="node">
+<title>module~input_validation</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node2"><a xlink:href=".././module/input_validation.html" xlink:title="input_validation">
+<polygon fill="#337ab7" stroke="#337ab7" points="350.5,-205.11 253.5,-205.11 253.5,-181.11 350.5,-181.11 350.5,-205.11"/>
+<text text-anchor="middle" x="302" y="-190.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">input_validation</text>
+</a>
+</g>
+</g>
+<!-- module~input_validation&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge1" class="edge">
+<title>module~input_validation&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M253.22,-185.07C219.4,-179.37 173.45,-171.63 135.24,-165.19"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="135.64,-161.71 125.19,-163.5 134.47,-168.62 135.64,-161.71"/>
+</g>
+<!-- module~channels_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node3" class="node">
+<title>module~channels_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node3"><a xlink:href=".././module/channels_mod.html" xlink:title="channels_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="782,-325.11 692,-325.11 692,-301.11 782,-301.11 782,-325.11"/>
+<text text-anchor="middle" x="737" y="-310.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">channels_mod</text>
+</a>
+</g>
+</g>
+<!-- module~channels_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge5" class="edge">
+<title>module~channels_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M691.7,-313.11C652.37,-313.11 593.36,-313.11 542,-313.11"/>
+</g>
+<!-- module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node9" class="node">
+<title>module~io_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node9"><a xlink:href=".././module/io_mod.html" xlink:title="io_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="568,-205.11 514,-205.11 514,-181.11 568,-181.11 568,-205.11"/>
+<text text-anchor="middle" x="541" y="-190.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io_mod</text>
+</a>
+</g>
+</g>
+<!-- module~channels_mod&#45;&gt;module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge24" class="edge">
+<title>module~channels_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M716.33,-300.95C681.75,-279.55 609.94,-235.14 570.12,-210.51"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="571.78,-207.42 561.43,-205.13 568.1,-213.37 571.78,-207.42"/>
+</g>
+<!-- module~propagator_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node4" class="node">
+<title>module~propagator_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node4"><a xlink:href=".././module/propagator_mod.html" xlink:title="propagator_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="1155,-225.11 1054,-225.11 1054,-201.11 1155,-201.11 1155,-225.11"/>
+<text text-anchor="middle" x="1104.5" y="-210.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">propagator_mod</text>
+</a>
+</g>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge4" class="edge">
+<title>module~propagator_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M939.5,-273.11C850.66,-284.4 825.77,-255.31 738,-273.11"/>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge22" class="edge">
+<title>module~propagator_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M1081.01,-225.21C1050.47,-240.74 993.72,-266.48 941.5,-273.11"/>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M939.5,-273.11C848.93,-284.62 829.19,-237.61 738,-233.11"/>
+</g>
+<!-- module~pes_matrix_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node11" class="node">
+<title>module~pes_matrix_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node11"><a xlink:href=".././module/pes_matrix_mod.html" xlink:title="pes_matrix_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="990.5,-203.11 890.5,-203.11 890.5,-179.11 990.5,-179.11 990.5,-203.11"/>
+<text text-anchor="middle" x="940.5" y="-188.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pes_matrix_mod</text>
+</a>
+</g>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~pes_matrix_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge32" class="edge">
+<title>module~propagator_mod&#45;&gt;module~pes_matrix_mod</title>
+<path fill="none" stroke="#0024ff" stroke-dasharray="5,2" d="M1053.57,-206.33C1036.86,-204.06 1018.08,-201.51 1000.73,-199.16"/>
+<polygon fill="#0024ff" stroke="#0024ff" points="1001.09,-195.67 990.71,-197.79 1000.14,-202.61 1001.09,-195.67"/>
+</g>
+<!-- module~centrifugal_matrix_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node16" class="node">
+<title>module~centrifugal_matrix_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node16"><a xlink:href=".././module/centrifugal_matrix_mod.html" xlink:title="centrifugal_matrix_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="1010,-245.11 871,-245.11 871,-221.11 1010,-221.11 1010,-245.11"/>
+<text text-anchor="middle" x="940.5" y="-230.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">centrifugal_matrix_mod</text>
+</a>
+</g>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~centrifugal_matrix_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge37" class="edge">
+<title>module~propagator_mod&#45;&gt;module~centrifugal_matrix_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M1053.57,-219.28C1042.93,-220.59 1031.45,-222.01 1020.03,-223.42"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1019.53,-219.95 1010.03,-224.65 1020.38,-226.9 1019.53,-219.95"/>
+</g>
+<!-- module~unitarity_check_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node5" class="node">
+<title>module~unitarity_check_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node5"><a xlink:href=".././module/unitarity_check_mod.html" xlink:title="unitarity_check_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="1002,-43.11 879,-43.11 879,-19.11 1002,-19.11 1002,-43.11"/>
+<text text-anchor="middle" x="940.5" y="-28.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">unitarity_check_mod</text>
+</a>
+</g>
+</g>
+<!-- module~unitarity_check_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge3" class="edge">
+<title>module~unitarity_check_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M878.74,-26.34C838.56,-24.35 784.85,-23.93 738,-31.11"/>
+</g>
+<!-- module~radial_coupling_terms_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node6" class="node">
+<title>module~radial_coupling_terms_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node6"><a xlink:href=".././module/radial_coupling_terms_mod.html" xlink:title="radial_coupling_terms_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="817,-205.11 657,-205.11 657,-181.11 817,-181.11 817,-205.11"/>
+<text text-anchor="middle" x="737" y="-190.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">radial_coupling_terms_mod</text>
+</a>
+</g>
+</g>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge2" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M667.52,-181.07C582.29,-167.4 432.17,-147.65 303,-153.11"/>
+</g>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge21" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M656.81,-193.11C629.62,-193.11 600.5,-193.11 578.38,-193.11"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="578.13,-189.61 568.13,-193.11 578.13,-196.61 578.13,-189.61"/>
+</g>
+<!-- module~math_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node10" class="node">
+<title>module~math_functions_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node10"><a xlink:href=".././module/math_functions_mod.html" xlink:title="math_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="603,-125.11 479,-125.11 479,-101.11 603,-101.11 603,-125.11"/>
+<text text-anchor="middle" x="541" y="-110.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">math_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~math_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge29" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~math_functions_mod</title>
+<path fill="none" stroke="#0091ff" stroke-dasharray="5,2" d="M676.15,-181.08C663.53,-177.45 650.55,-172.86 639,-167.11 620.85,-158.09 620.47,-149.39 603,-139.11 597.07,-135.62 590.58,-132.34 584.12,-129.37"/>
+<polygon fill="#0091ff" stroke="#0091ff" points="585.3,-126.06 574.74,-125.24 582.48,-132.47 585.3,-126.06"/>
+</g>
+<!-- module~array_operations_fill_symmetric_matrix_submod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node7" class="node">
+<title>module~array_operations_fill_symmetric_matrix_submod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node7"><a xlink:href=".././module/array_operations_fill_symmetric_matrix_submod.html" xlink:title="array_operations_fill_symmetric_matrix_submod">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="437.5,-125.11 166.5,-125.11 166.5,-101.11 437.5,-101.11 437.5,-125.11"/>
+<text text-anchor="middle" x="302" y="-110.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_fill_symmetric_matrix_submod</text>
+</a>
+</g>
+</g>
+<!-- module~array_operations_fill_symmetric_matrix_submod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge6" class="edge">
+<title>module~array_operations_fill_symmetric_matrix_submod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M229.74,-125.11C199.79,-130.16 165.01,-136.02 135.03,-141.07"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="134.34,-137.63 125.06,-142.74 135.5,-144.54 134.34,-137.63"/>
+</g>
+<!-- program~scattering -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node8" class="node">
+<title>program~scattering</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node8"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1278,-204.11 1199,-204.11 1199,-180.11 1278,-180.11 1278,-204.11"/>
+<text text-anchor="middle" x="1238.5" y="-189.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge7" class="edge">
+<title>program~scattering&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M939.5,-353.11C806.49,-367.81 771.55,-352.54 639,-334.11 595.31,-328.04 585.86,-317.83 542,-313.11"/>
+</g>
+<!-- program~scattering&#45;&gt;module~channels_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge16" class="edge">
+<title>program~scattering&#45;&gt;module~channels_mod</title>
+<path fill="none" stroke="#ff6d00" stroke-dasharray="5,2" d="M1226.31,-204.19C1189.37,-242.62 1066.54,-359.24 941.5,-353.11"/>
+<path fill="none" stroke="#ff6d00" stroke-dasharray="5,2" d="M939.5,-353.11C911.56,-356.2 841.62,-340.32 792.01,-327.66"/>
+<polygon fill="#ff6d00" stroke="#ff6d00" points="792.62,-324.2 782.06,-325.09 790.87,-330.98 792.62,-324.2"/>
+</g>
+<!-- program~scattering&#45;&gt;module~propagator_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge17" class="edge">
+<title>program~scattering&#45;&gt;module~propagator_mod</title>
+<path fill="none" stroke="#ffda00" stroke-dasharray="5,2" d="M1198.97,-198.24C1188.37,-199.93 1176.63,-201.8 1165.14,-203.62"/>
+<polygon fill="#ffda00" stroke="#ffda00" points="1164.48,-200.19 1155.15,-205.21 1165.58,-207.1 1164.48,-200.19"/>
+</g>
+<!-- program~scattering&#45;&gt;module~unitarity_check_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge18" class="edge">
+<title>program~scattering&#45;&gt;module~unitarity_check_mod</title>
+<path fill="none" stroke="#b6ff00" stroke-dasharray="5,2" d="M1203.41,-180.04C1176.97,-171.03 1139.27,-158.99 1105.5,-151.11"/>
+<path fill="none" stroke="#b6ff00" stroke-dasharray="5,2" d="M1103.5,-151.11C1040.87,-136.51 984.7,-81.06 957.97,-50.91"/>
+<polygon fill="#b6ff00" stroke="#b6ff00" points="960.43,-48.4 951.23,-43.14 955.14,-52.99 960.43,-48.4"/>
+</g>
+<!-- program~scattering&#45;&gt;module~radial_coupling_terms_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge20" class="edge">
+<title>program~scattering&#45;&gt;module~radial_coupling_terms_mod</title>
+<path fill="none" stroke="#48ff00" stroke-dasharray="5,2" d="M939.5,-151.11C885.03,-151.31 823.99,-166.17 783.51,-178.15"/>
+<polygon fill="#48ff00" stroke="#48ff00" points="782.49,-174.8 773.93,-181.05 784.52,-181.5 782.49,-174.8"/>
+</g>
+<!-- program~scattering&#45;&gt;module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge25" class="edge">
+<title>program~scattering&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M939.5,-151.11C907.91,-151.23 897.46,-152.86 871,-170.11 849.83,-183.91 856.68,-201.14 835,-214.11 797.3,-236.67 781.88,-235.27 738,-233.11"/>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M736,-233.11C679.88,-230.35 616.36,-214.82 577.76,-203.94"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="578.61,-200.54 568.03,-201.15 576.67,-207.27 578.61,-200.54"/>
+</g>
+<!-- program~scattering&#45;&gt;module~pes_matrix_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge33" class="edge">
+<title>program~scattering&#45;&gt;module~pes_matrix_mod</title>
+<path fill="none" stroke="#0024ff" stroke-dasharray="5,2" d="M1103.5,-151.11C1081.15,-145.9 1024.41,-162.46 984.42,-175.84"/>
+<polygon fill="#0024ff" stroke="#0024ff" points="983.24,-172.54 974.89,-179.07 985.49,-179.17 983.24,-172.54"/>
+</g>
+<!-- module~boundary_conditions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node12" class="node">
+<title>module~boundary_conditions_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node12"><a xlink:href=".././module/boundary_conditions_mod.html" xlink:title="boundary_conditions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="813.5,-125.11 660.5,-125.11 660.5,-101.11 813.5,-101.11 813.5,-125.11"/>
+<text text-anchor="middle" x="737" y="-110.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">boundary_conditions_mod</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;module~boundary_conditions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge34" class="edge">
+<title>program~scattering&#45;&gt;module~boundary_conditions_mod</title>
+<path fill="none" stroke="#4800ff" stroke-dasharray="5,2" d="M939.5,-151.11C892.13,-151.29 881.56,-138.87 835,-130.11 829.35,-129.05 823.51,-127.97 817.63,-126.9"/>
+<polygon fill="#4800ff" stroke="#4800ff" points="818.17,-123.45 807.71,-125.12 816.93,-130.33 818.17,-123.45"/>
+</g>
+<!-- module~save_s_matrix_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node13" class="node">
+<title>module~save_s_matrix_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node13"><a xlink:href=".././module/save_s_matrix_mod.html" xlink:title="save_s_matrix_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="1163,-63.11 1046,-63.11 1046,-39.11 1163,-39.11 1163,-63.11"/>
+<text text-anchor="middle" x="1104.5" y="-48.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_s_matrix_mod</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;module~save_s_matrix_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge35" class="edge">
+<title>program~scattering&#45;&gt;module~save_s_matrix_mod</title>
+<path fill="none" stroke="#b600ff" stroke-dasharray="5,2" d="M1226.25,-180.09C1203.47,-155.76 1151.71,-100.48 1123.94,-70.81"/>
+<polygon fill="#b600ff" stroke="#b600ff" points="1126.49,-68.41 1117.1,-63.51 1121.38,-73.2 1126.49,-68.41"/>
+</g>
+<!-- module~state_to_state_cross_sections_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node14" class="node">
+<title>module~state_to_state_cross_sections_mod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node14"><a xlink:href=".././module/state_to_state_cross_sections_mod.html" xlink:title="state_to_state_cross_sections_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="835,-83.11 639,-83.11 639,-59.11 835,-59.11 835,-83.11"/>
+<text text-anchor="middle" x="737" y="-68.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">state_to_state_cross_sections_mod</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;module~state_to_state_cross_sections_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge36" class="edge">
+<title>program~scattering&#45;&gt;module~state_to_state_cross_sections_mod</title>
+<path fill="none" stroke="#ff00da" stroke-dasharray="5,2" d="M1103.5,-151.11C1033.38,-134.76 1013.5,-150.85 941.5,-151.11"/>
+<path fill="none" stroke="#ff00da" stroke-dasharray="5,2" d="M939.5,-151.11C886.16,-151.31 884.85,-111.08 835,-92.11 828.83,-89.77 822.34,-87.65 815.76,-85.75"/>
+<polygon fill="#ff00da" stroke="#ff00da" points="816.64,-82.37 806.07,-83.12 814.81,-89.12 816.64,-82.37"/>
+</g>
+<!-- module~io_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge8" class="edge">
+<title>module~io_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M513.92,-185.04C470.52,-172.43 380.54,-149.83 303,-153.11"/>
+</g>
+<!-- module~io_mod&#45;&gt;module~input_validation -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge15" class="edge">
+<title>module~io_mod&#45;&gt;module~input_validation</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M513.73,-193.11C477.05,-193.11 409.52,-193.11 360.77,-193.11"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="360.67,-189.61 350.67,-193.11 360.67,-196.61 360.67,-189.61"/>
+</g>
+<!-- module~math_functions_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge9" class="edge">
+<title>module~math_functions_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M490.45,-125.19C442.76,-135.93 368.45,-150.34 303,-153.11"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge10" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M890.38,-203.04C883.64,-205.56 876.99,-208.56 871,-212.11 851.8,-223.48 854.4,-236.09 835,-247.11 796.19,-269.16 781.74,-264.24 738,-273.11"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M736,-273.11C692.95,-281.84 682.03,-283.24 639,-292.11 595.8,-301.02 586.11,-313.11 542,-313.11"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M540,-313.11C365.9,-313.11 320.86,-283.07 161,-214.11 134.57,-202.71 106.99,-184.8 87.93,-171.34"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="89.72,-168.31 79.56,-165.31 85.63,-173.99 89.72,-168.31"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~radial_coupling_terms_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge19" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~radial_coupling_terms_mod</title>
+<path fill="none" stroke="#48ff00" stroke-dasharray="5,2" d="M890.47,-191.6C871.46,-191.79 849.08,-192.01 827.41,-192.22"/>
+<polygon fill="#48ff00" stroke="#48ff00" points="827.15,-188.73 817.19,-192.33 827.22,-195.73 827.15,-188.73"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge27" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M895.07,-203.11C845.39,-216.04 767.98,-234.59 738,-233.11"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~math_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge31" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~math_functions_mod</title>
+<path fill="none" stroke="#0091ff" stroke-dasharray="5,2" d="M890.5,-182.22C830.95,-171.32 727.47,-152.08 639,-134.11 628.4,-131.96 617.16,-129.6 606.24,-127.26"/>
+<polygon fill="#0091ff" stroke="#0091ff" points="606.84,-123.81 596.33,-125.13 605.37,-130.66 606.84,-123.81"/>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge11" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M680.29,-101.09C623.59,-88.89 543.75,-71.82 542,-72.11"/>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge26" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M706.54,-125.26C671.9,-139.55 614.44,-163.24 577.41,-178.51"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="575.92,-175.34 568.01,-182.39 578.59,-181.81 575.92,-175.34"/>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~math_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge30" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~math_functions_mod</title>
+<path fill="none" stroke="#0091ff" stroke-dasharray="5,2" d="M660.44,-113.11C645.05,-113.11 628.91,-113.11 613.66,-113.11"/>
+<polygon fill="#0091ff" stroke="#0091ff" points="613.27,-109.61 603.27,-113.11 613.27,-116.61 613.27,-109.61"/>
+</g>
+<!-- module~save_s_matrix_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge12" class="edge">
+<title>module~save_s_matrix_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M1082.8,-39.05C1064.39,-29.06 1036.37,-15.64 1010,-10.11 891.33,14.76 857.85,-12.74 738,-31.11"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M736,-31.11C692.46,-36.97 681.98,-41.03 639,-50.11 595.75,-59.25 585.61,-64.88 542,-72.11"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M540,-72.11C511.85,-76.78 502.72,-76.25 479,-92.11 458.56,-105.78 464.59,-122.36 443,-134.11 387.85,-164.14 365.75,-150.82 303,-153.11"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M301,-153.11C245.34,-155.15 182.29,-155.03 135.14,-154.47"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="135.08,-150.97 125.03,-154.34 134.99,-157.97 135.08,-150.97"/>
+</g>
+<!-- module~state_to_state_cross_sections_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge13" class="edge">
+<title>module~state_to_state_cross_sections_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M638.78,-65.59C607.69,-65.43 573.23,-66.94 542,-72.11"/>
+</g>
+<!-- module~state_to_state_cross_sections_mod&#45;&gt;module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge28" class="edge">
+<title>module~state_to_state_cross_sections_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M658.01,-83.2C651.36,-85.64 644.92,-88.58 639,-92.11 617.88,-104.7 619.85,-116.21 603,-134.11 590.07,-147.84 574.83,-162.59 562.81,-173.9"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="560.35,-171.41 555.44,-180.8 565.13,-176.52 560.35,-171.41"/>
+</g>
+<!-- module~array_operations_add_scalar_to_diagonal_submod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_node15" class="node">
+<title>module~array_operations_add_scalar_to_diagonal_submod</title>
+<g id="a_module~~utility_functions_mod~~UsedByGraph_node15"><a xlink:href=".././module/array_operations_add_scalar_to_diagonal_submod.html" xlink:title="array_operations_add_scalar_to_diagonal_submod">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="443,-83.11 161,-83.11 161,-59.11 443,-59.11 443,-83.11"/>
+<text text-anchor="middle" x="302" y="-68.71" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_add_scalar_to_diagonal_submod</text>
+</a>
+</g>
+</g>
+<!-- module~array_operations_add_scalar_to_diagonal_submod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge14" class="edge">
+<title>module~array_operations_add_scalar_to_diagonal_submod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M190.99,-83.19C180.71,-85.64 170.57,-88.58 161,-92.11 133.39,-102.32 105.25,-121 86.34,-135.01"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="84.2,-132.24 78.34,-141.07 88.42,-137.82 84.2,-132.24"/>
+</g>
+<!-- module~centrifugal_matrix_mod&#45;&gt;module~io_mod -->
+<g id="module~~utility_functions_mod~~UsedByGraph_edge23" class="edge">
+<title>module~centrifugal_matrix_mod&#45;&gt;module~io_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M870.91,-234.78C831.92,-235.32 782.2,-235.29 738,-233.11"/>
+</g>
+</g>
+</svg>
+</div><script>var panmoduleutility_functions_modUsedByGraph = svgPanZoom('#moduleutility_functions_modUsedByGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="516pt" height="32pt"
+ viewBox="0.00 0.00 516.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 512,-28 512,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="385.5,-24 328.5,-24 328.5,0 385.5,0 385.5,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="508,-24 404,-24 404,0 508,0 508,-24"/>
+<text text-anchor="middle" x="456" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
+          </li>
+      </ul>
+    </div>
+
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+        <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#inters-1">Interfaces</a>
+        </h3>
+      </div>
+      <div id="inters-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/utility_functions_mod.html#interface-incorrect_value">incorrect_value</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#funcs-1">Functions</a>
+        </h3>
+      </div>
+      <div id="funcs-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-float_to_character">float_to_character</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-integer_to_character">integer_to_character</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-to_lowercase">to_lowercase</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#subs-1">Subroutines</a>
+        </h3>
+      </div>
+      <div id="subs-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-alloc_status">alloc_status</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-file_io_status">file_io_status</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-no_open_channels_message">no_open_channels_message</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-time_count_summary">time_count_summary</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-write_error">write_error</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-write_header">write_header</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-write_message">write_message</a>
+            <a class="list-group-item" href="../module/utility_functions_mod.html#proc-write_warning">write_warning</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+
+    
+    
+    <section>
+   <h2>Interfaces</h2>
+       <div class="panel panel-default">
+    <div class="panel-heading codesum">
+      <span class="anchor" id="interface-incorrect_value"></span>
+      <h3>public        interface <a href='../interface/incorrect_value.html'>incorrect_value</a> 
+      </h3>
+    </div>
+      <div class="panel-body">
+        <p>interface for the following message:
+<code>incorrect value encountered:
+  variable_name = variable_value</code></p>
+      </div>
+    <ul class="list-group">
+          <li class="list-group-item">
+                <h3>
+    private  subroutine incorrect_value_ch(name_, value_, unit_)  
+
+    </h3>
+  <p><code>incorrect value encountered:
+  variable_name = variable_value</code></p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name_</strong></td>
+            <td>
+                <p>name of the variable</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value_</strong></td>
+            <td>
+                <p>value of the variable</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+                <p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                <h3>
+    private  subroutine incorrect_value_int32(name_, value_, unit_)  
+
+    </h3>
+  <p><code>incorrect value encountered:
+  variable_name = variable_value</code></p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name_</strong></td>
+            <td>
+                <p>name of the variable</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value_</strong></td>
+            <td>
+                <p>value of the variable</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+                <p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                <h3>
+    private  subroutine incorrect_value_sp(name_, value_, unit_)  
+
+    </h3>
+  <p><code>incorrect value encountered:
+  variable_name = variable_value</code></p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name_</strong></td>
+            <td>
+                <p>name of the variable</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=sp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value_</strong></td>
+            <td>
+                <p>value of the variable</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+                <p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                <h3>
+    private  subroutine incorrect_value_dp(name_, value_, unit_)  
+
+    </h3>
+  <p><code>incorrect value encountered:
+  variable_name = variable_value</code></p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name_</strong></td>
+            <td>
+                <p>name of the variable</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value_</strong></td>
+            <td>
+                <p>value of the variable</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+                <p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+    </ul>
+  </div>
+
+    </section>
+  <br>
+
+    
+    
+ 
+    <section>
+    <h2>Functions</h2>
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-float_to_character"></span><h3>public  function <a href='../proc/float_to_character.html'>float_to_character</a>(f, format_string) result(res)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>Converts a floating-point number to a character string.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>f</strong></td>
+            <td>
+<p>input floating-point number</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>format_string</strong></td>
+            <td>
+<p>Optional format string.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=64)</small>
+    </h4>
+    <p>Output character string.</p>
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-integer_to_character"></span><h3>public  function <a href='../proc/integer_to_character.html'>integer_to_character</a>(i, format_string) result(res)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>transfers integer to a character</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>i</strong></td>
+            <td>
+<p>input integer</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>format_string</strong></td>
+            <td>
+<p>Optional format string.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=32)</small>
+    </h4>
+    <p>output character</p>
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-to_lowercase"></span><h3>public  function <a href='../proc/to_lowercase.html'>to_lowercase</a>(str) result(low_str)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>forces lowercase on given string</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>str</strong></td>
+            <td>
+<p>input string</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=len)</small>
+    </h4>
+    <p>output (lowercase) string</p>
+
+    </div>
+  </div>
+
+    </section>
+    <br>
+
+    <section>
+    <h2>Subroutines</h2>
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-alloc_status"></span><h3>public  subroutine <a href='../proc/alloc_status.html'>alloc_status</a>(istat_, message_, op_, unit_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>check the status after allocation</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>istat_</strong></td>
+            <td>
+<p>result of stat=istat in (de)allocate</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_</strong></td>
+            <td>
+<p>a message to be written</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=1),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>op_</strong></td>
+            <td>
+<p>'a' for allocation, 'd' for deallocation</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+<p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-file_io_status"></span><h3>public  subroutine <a href='../proc/file_io_status.html'>file_io_status</a>(istat_, iomsg_, channel_, op_, unit_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>check the status during various io operations on files</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>istat_</strong></td>
+            <td>
+<p>result of iostat in open/read/write/close</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iomsg_</strong></td>
+            <td>
+<p>result of iomsg in open/read/write/close</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel_</strong></td>
+            <td>
+<p>name of the file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=1),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>op_</strong></td>
+            <td>
+<p>'o' for opening of the file, 'r' for reading, 'w' for writing,
+'c' for closing</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+<p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-no_open_channels_message"></span><h3>public  subroutine <a href='../proc/no_open_channels_message.html'>no_open_channels_message</a>(block_number_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>print a short message that there are no open channels in given block</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>block_number_</strong></td>
+            <td>
+<p>block number</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-time_count_summary"></span><h3>public  subroutine <a href='../proc/time_count_summary.html'>time_count_summary</a>(start_, stop_, time_, message_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>print the message about the time it took to complete a single task</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>start_</strong></td>
+            <td>
+<p>initial time</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stop_</strong></td>
+            <td>
+<p>final time</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>time_</strong></td>
+            <td>
+<p>stop_ - start_</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_</strong></td>
+            <td>
+<p>(optional) a message to print instead of a default
+"Completed in ... s"</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-write_error"></span><h3>public  subroutine <a href='../proc/write_error.html'>write_error</a>(message_, unit_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>writes an error message on a chosen unit</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_</strong></td>
+            <td>
+<p>a message to be written</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+<p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-write_header"></span><h3>public  subroutine <a href='../proc/write_header.html'>write_header</a>(header_type, opt_integer_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>writes headers on screen</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>header_type</strong></td>
+            <td>
+<p>specifies the type of the header: 'main', 'input_read',
+'input_check', 'input_summary', 'initialization', 'check_norm',
+'save_basis', 'save_pes', 'radial_terms', 'save_radial_terms',
+'reconstruction'</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>opt_integer_</strong></td>
+            <td>
+<p>optional integer used in case "block" to pass jtot value</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-write_message"></span><h3>public  subroutine <a href='../proc/write_message.html'>write_message</a>(message_, unit_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>writes a message on a chosen unit</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_</strong></td>
+            <td>
+<p>a message to be written</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+<p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-write_warning"></span><h3>public  subroutine <a href='../proc/write_warning.html'>write_warning</a>(message_, unit_)  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>writes a warning message on a chosen unit</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_</strong></td>
+            <td>
+<p>a message to be written</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+<p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+    </section>
+    <br>
+
+
+
+    </div>
+  </div>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2024 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-01-17 10:22            </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+  </body>
+</html>
