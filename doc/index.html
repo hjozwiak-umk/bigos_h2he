@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01">
+    <meta name="author" content="Hubert Jóźwiak" >
+    <link rel="icon" href="./favicon.png">
+
+    <title> the SCATTERING code </title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/pygments.css" rel="stylesheet">
+    <link href="./css/font-awesome.min.css" rel="stylesheet">
+    <link href="./css/local.css" rel="stylesheet">
+    <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="./js/jquery-2.1.3.min.js"></script>
+    <script src="./js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">the SCATTERING code </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href='./page/index.html'>Program Description</a></li>
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="./lists/files.html">Source Files</a></li>
+            <li><a href="./lists/modules.html">Modules</a></li>
+            <li><a href="./lists/procedures.html">Procedures</a></li>
+                   <li><a href="./program/scattering.html">Program</a></li>
+       
+            </ul>
+        
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="./program/scattering.html">Program</a></li>
+          </ul>
+        <form action="./search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <p>BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01</p>
+	<p> Find us on&hellip;</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="https://github.com/hjozwiak-umk/bigos_h2he" role="button">GitHub</a>
+          <a class="btn btn-lg btn-danger" style="float:right" href="https://github.com/hjozwiak-umk/bigos_h2he.git" role="button">Download the Source</a>
+        </p>
+      </div>
+
+      <div class="row" id='text'>
+        <div class="col-md-8">
+          <h1>the SCATTERING code</h1>
+          <p><strong>BIGOS</strong> – <strong>B</strong>inary <strong>I</strong>nelastic scattering and <strong>G</strong>eneralized <strong>O</strong>ptical cross <strong>S</strong>ection package is a set of FORTRAN 90 codes that
+allow the user to obtain various physical quantities related to the scattering problem involving diatomic molecules and
+atoms. The package is being developed at the Nicolaus Copernicus University in Toruń.</p>
+<p><img alt="bigos_graph" src="./media/bigos_graph.jpg" title="Structure of the BIGOS project"></p>
+<p>Here, we present the SCATTERINC code, the central part of the BIGOS package.
+The purpose of the SCATTERING code is to solve the coupled equations for a given scattering system, provide the
+scattering S-matrix elements and calculate the state-to-state cross-sections.</p>
+<p><strong>Please read the <a href="page/index.html">Program Description</a>.</strong></p>
+<div style="border: 1px solid #d3d3d3; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9; font-family: Arial, sans-serif; color: #333; max-width: 600px; margin-left: auto; margin-right: auto;">
+This version of the code is adjusted for diatom - atom collision systems,<br>
+in particular the H<sub>2</sub> - He system. <br>
+<b>Please, refer to this version of the code by citing the following paper</b> <br>
+H. Jozwiak, F. Thibault, A. Viel, P. Wcislo, F. Lique, <br>
+Rovibrational (de-)excitation of H<sub>2</sub> by He revisited <br>
+<a href="https://doi.org/10.48550/arXiv.2311.09890">https://doi.org/10.48550/arXiv.2311.09890</a>
+</div>
+        </div>
+        <div class="col-md-4">
+	  <div class="well">
+          <h2>Developer Info</h2>
+          <h4>Hubert Jóźwiak</h4>
+          
+            <div class="text-center"><div class="btn-group" role="group">
+              <a class="btn btn-lg btn-primary" href="https://github.com/hjozwiak-umk"><i class="fa fa-github fa-lg"></i></a>
+            </div></div>
+       </div>
+       </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-4">
+              <h3>Source Files</h3>
+              <ul>                    <li><a href='./sourcefile/array_operations_add_scalar_to_diagonal_submod.f90.html'>array_operations_add_scalar_to_diagonal_submod.f90</a></li>
+                    <li><a href='./sourcefile/array_operations_allocate_submod.f90.html'>array_operations_allocate_submod.f90</a></li>
+                    <li><a href='./sourcefile/array_operations_append_submod.f90.html'>array_operations_append_submod.f90</a></li>
+                    <li><a href='./sourcefile/array_operations_fill_symmetric_matrix_submod.f90.html'>array_operations_fill_symmetric_matrix_submod.f90</a></li>
+                    <li><a href='./sourcefile/array_operations_invert_symmetric_matrix_submod.f90.html'>array_operations_invert_symmetric_matrix_submod.f90</a></li>
+                    <li><a href='./sourcefile/array_operations_mod.f90.html'>array_operations_mod.f90</a></li>
+                    <li><a href='./sourcefile/boundary_conditions_mod.f90.html'>boundary_conditions_mod.f90</a></li>
+                    <li><a href='./sourcefile/centrifugal_matrix_mod.f90.html'>centrifugal_matrix_mod.f90</a></li>
+                    <li><a href='./sourcefile/channels_mod.f90.html'>channels_mod.f90</a></li>
+                    <li><a href='./sourcefile/data_mod.f90.html'>data_mod.f90</a></li>
+</ul>
+          </div>
+		  <div class="col-xs-6 col-sm-4">
+              <h3>Modules</h3>
+              <ul>                    <li><a href='./module/array_operations_mod.html'>array_operations_mod</a></li>
+                    <li><a href='./module/boundary_conditions_mod.html'>boundary_conditions_mod</a></li>
+                    <li><a href='./module/centrifugal_matrix_mod.html'>centrifugal_matrix_mod</a></li>
+                    <li><a href='./module/channels_mod.html'>channels_mod</a></li>
+                    <li><a href='./module/data_mod.html'>data_mod</a></li>
+                    <li><a href='./module/input_validation.html'>input_validation</a></li>
+                    <li><a href='./module/io_mod.html'>io_mod</a></li>
+                    <li><a href='./module/math_functions_mod.html'>math_functions_mod</a></li>
+                    <li><a href='./module/pes_matrix_mod.html'>pes_matrix_mod</a></li>
+                    <li><a href='./module/propagator_mod.html'>propagator_mod</a></li>
+</ul>
+          </div>
+		  <div class="col-xs-6 col-sm-4">
+              <h3>Procedures</h3>
+              <ul>                    <li><a href='./proc/add_cross_sections.html'>add_cross_sections</a></li>
+                    <li><a href='./interface/add_scalar_to_diagonal.html'>add_scalar_to_diagonal</a></li>
+                    <li><a href='./proc/alloc_status.html'>alloc_status</a></li>
+                    <li><a href='./interface/allocate_1d.html'>allocate_1d</a></li>
+                    <li><a href='./interface/allocate_2d.html'>allocate_2d</a></li>
+                    <li><a href='./interface/allocate_3d.html'>allocate_3d</a></li>
+                    <li><a href='./interface/append.html'>append</a></li>
+                    <li><a href='./proc/calculate_centrifugal_matrix.html'>calculate_centrifugal_matrix</a></li>
+                    <li><a href='./proc/calculate_k_matrix.html'>calculate_k_matrix</a></li>
+                    <li><a href='./proc/calculate_largest_wavenumber.html'>calculate_largest_wavenumber</a></li>
+</ul>
+          </div>
+      </div>
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2024 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-01-17 11:23            </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="./js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="./tipuesearch/tipuesearch_content.js"></script>
+    <script src="./tipuesearch/tipuesearch_set.js"></script>
+    <script src="./tipuesearch/tipuesearch.js"></script>
+    
+  </body>
+</html>
