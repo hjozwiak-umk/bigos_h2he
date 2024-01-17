@@ -33,7 +33,7 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
          is_unitary  = .true.
          !---------------------------------------------------------------------!
-         call write_message("Check of the unitarity of the S-matrix...")
+         call write_message("-- Check of the unitarity of the S-matrix...")
          !---------------------------------------------------------------------!
          ! Calculating sum of squares for each channel
          !---------------------------------------------------------------------!
@@ -105,7 +105,7 @@ module unitarity_check_mod
             !! for each \\(\gamma\\)
          !---------------------------------------------------------------------!
          if (is_unitary) then
-            call write_message("S-matrix unitary condition fulfilled")
+            call write_message("-- S-matrix unitary condition fulfilled")
          else
             call write_warning("Unitary condition is not fulfilled for one or more channels")
             call write_message("Consider increasing the STEPS parameter")

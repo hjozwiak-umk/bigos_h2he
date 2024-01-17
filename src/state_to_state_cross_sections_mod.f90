@@ -25,7 +25,8 @@ module state_to_state_cross_sections_mod
    public :: calculate_state_to_state_cross_section, add_cross_sections,       &
       print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
       print_final_cross_sections, save_partial_xs_file_header,                 &
-      save_partial_xs_single_block, check_cross_section_thresholds
+      save_partial_xs_single_block, determine_largest_cross_sections,          &
+      check_cross_section_thresholds
    !---------------------------------------------------------------------------!
    contains
    !---------------------------------------------------------------------------!
@@ -53,7 +54,7 @@ module state_to_state_cross_sections_mod
             !! array holding all XSs
          !---------------------------------------------------------------------!
          integer(int32) :: number_of_open_basis_levels_, initial_state_,       &
-            final_state_
+            final_state_, cross_section_index_
          real(dp) :: start_time, finish_time, calculation_time
          !---------------------------------------------------------------------!
          call CPU_TIME(start_time)
@@ -61,9 +62,10 @@ module state_to_state_cross_sections_mod
          cross_section_array_ = 0
          !---------------------------------------------------------------------!
          do initial_state_ = 1, number_of_open_basis_levels_
-            do final_state_ = 1, number_of_open_basis_levels_
-               cross_section_array_((initial_state_-1)                         &
-                  * number_of_open_basis_levels_ + final_state_) =             &
+            do final_state_ = 1, number_of_open_basis_levels_                   
+               cross_section_index_ = (initial_state_-1)                       &
+                  * number_of_open_basis_levels_ + final_state_
+               cross_section_array_(cross_section_index_) =                    &
                   compute_individual_cross_section(initial_state_,final_state_,&
                      open_basis_levels_, open_basis_wavevectors_,              &
                      s_matrix_real_, s_matrix_imag_, channel_indices_,         &
@@ -271,17 +273,19 @@ module state_to_state_cross_sections_mod
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_open_basis_levels
             !! number of open basis levels
-         real(dp), intent(in) :: partial_cross_sections_(:)
+         real(dp), intent(in) :: partial_cross_sections_(                      &
+            number_of_open_basis_levels*number_of_open_basis_levels)
             !! array holding partial cross-sections
-         real(dp), intent(inout) :: accumulated_cross_sections_(:)
+         real(dp), intent(inout) :: accumulated_cross_sections_(               &
+            number_of_open_basis_levels*number_of_open_basis_levels)
             !! array holding accumulated cross-sections
          !---------------------------------------------------------------------!
-         integer(int32) :: level_index_1_, level_index_2_, cross_section_index_
+         integer(int32) :: index_1_, index_2_, cross_section_index_
          !---------------------------------------------------------------------!
-         do level_index_1_ = 1, number_of_open_basis_levels
-            do level_index_2_ = 1, number_of_open_basis_levels
-               cross_section_index_ = (level_index_1_-1)                       &
-                  * number_of_open_basis_levels + level_index_2_
+         do index_1_ = 1, number_of_open_basis_levels
+            do index_2_ = 1, number_of_open_basis_levels
+               cross_section_index_ = (index_1_-1)                             &
+                  * number_of_open_basis_levels + index_2_
                accumulated_cross_sections_(cross_section_index_) =             &
                   accumulated_cross_sections_(cross_section_index_)            &
                   + partial_cross_sections_(cross_section_index_)
@@ -311,7 +315,7 @@ module state_to_state_cross_sections_mod
             !! indices pointing indirectly to quantum numbers associated with
             !! the largest partial inelastic state-to-state XS in the block
          integer(int32), intent(in) :: open_basis_levels_(:)
-            !! holds indices to the basis arrays that correspond to open channels 
+            !! array holding indices to open basis levels 
          !---------------------------------------------------------------------!
          if (prntlvl <= 2) then
             call print_basic_cross_section_info(total_angular_momentum_,       &
@@ -326,8 +330,6 @@ module state_to_state_cross_sections_mod
                largest_inelastic_xs_, inelastic_index_1_, inelastic_index_2_,  &
                open_basis_levels_, "inelastic")
          endif
-         !---------------------------------------------------------------------!
-         call write_message(repeat(" ", 43) // "***")
          !---------------------------------------------------------------------!
       end subroutine print_largest_partial_cross_sections
 !------------------------------------------------------------------------------!
@@ -344,7 +346,7 @@ module state_to_state_cross_sections_mod
          character(len=*), intent(in) :: type_label_
             !! "elastic" or "inelastic"
          !---------------------------------------------------------------------!
-         call write_message("Largest partial " // trim(type_label_) //         &
+         call write_message(" - Largest partial " // trim(type_label_) //     &
             " state-to-state for JTOT = " //                                   &
             trim(adjustl(integer_to_character(total_angular_momentum_))) //    &
             ": " // trim(adjustl(float_to_character(cross_section_value_))))
@@ -366,7 +368,7 @@ module state_to_state_cross_sections_mod
          real(dp), intent(in) :: cross_section_value_
             !! value of the cross-section
          integer(int32), intent(in) :: open_basis_levels_(:)
-            !! holds indices to the basis arrays that correspond to open channels 
+            !! array holding indices to open basis levels 
          character(len=*), intent(in) :: type_label_
             !! "elastic" or "inelastic"
          !---------------------------------------------------------------------!
@@ -375,7 +377,7 @@ module state_to_state_cross_sections_mod
          call write_message("Largest partial " // trim(type_label_) //         &
             " state-to-state for JTOT = " //                                   &
             trim(adjustl(integer_to_character(total_angular_momentum_))))
-         write(header_line_, "(2x,a4,2x,a4,2x,a2,2x,a4,2x,a4,16x,a2)")          &
+         write(header_line_, "(2x,a4,2x,a4,2x,a2,2x,a4,2x,a4,16x,a2)")         &
             "v1_f", "j1_f", "<-", "v1_i", "j1_i", "XS"
          call write_message(header_line_)
          !---------------------------------------------------------------------!
@@ -397,7 +399,7 @@ module state_to_state_cross_sections_mod
          integer(int32), intent(in) :: total_angular_momentum_
             !! total angular momentum
          integer(int32), intent(in) :: open_basis_levels_(:)
-            !! holds indices to the basis arrays that correspond to open channels
+            !! array holding indices to open basis levels
          real(dp), intent(in) :: cross_sections_(:)
             !! holds values of the cross-sections
          !---------------------------------------------------------------------!
@@ -416,7 +418,7 @@ module state_to_state_cross_sections_mod
          !! Prints information about cross-sections at the end of the program
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: open_basis_levels_(:)
-            !! holds indices to the basis arrays that correspond to open channels
+            !! array holding indices to open basis levels
          real(dp), intent(in) :: cross_sections_(:)
             !! holds values of the cross-sections
          !---------------------------------------------------------------------!
@@ -432,27 +434,31 @@ module state_to_state_cross_sections_mod
          !! "cross_sections_" array
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: open_basis_levels_(:)
-            !! holds indices to the basis arrays that correspond to open channels
+            !! array holding indices to open basis levels
          real(dp), intent(in) :: cross_sections_(:)
             !! holds values of the cross-sections
          !---------------------------------------------------------------------!
          character(len=200) :: header_line_, line_
-         integer(int32) :: index_1_, index_2_, xs_index_
+         integer(int32) :: index_1_, index_2_, cross_section_index_,           &
+            number_of_open_basis_levels_
          !---------------------------------------------------------------------!
          write(header_line_, "(2x,a4,2x,a4,2x,a2,2x,a4,2x,a4,14x,a4,16x,a2)")  &
             "v1_f", "j1_f", "<-", "v1_i", "j1_i", "Ekin", "XS"
          call write_message(header_line_)
          !---------------------------------------------------------------------!
+         number_of_open_basis_levels_ = size(open_basis_levels_)
+         !---------------------------------------------------------------------!
          do index_1_ = 1, size(open_basis_levels_)
             do index_2_ = 1, size(open_basis_levels_)
-               xs_index_ = (index_1_ - 1) * size(open_basis_levels_) + index_2_
+               cross_section_index_ = (index_1_ - 1)                           &
+                  * number_of_open_basis_levels_ + index_2_
                write(line_, "(2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")     &
                   v1array(open_basis_levels_(index_2_)),                       &
                   j1array(open_basis_levels_(index_2_)),                       &
                   v1array(open_basis_levels_(index_1_)),                       &
                   j1array(open_basis_levels_(index_1_)),                       &
                   (etotal()-elevel(open_basis_levels_(index_1_)))*hartreetocm, &
-                  cross_sections_(xs_index_)
+                  cross_sections_(cross_section_index_)
                call write_message(line_)
             enddo
          enddo
@@ -483,28 +489,31 @@ module state_to_state_cross_sections_mod
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine save_partial_xs_single_block(jtot_, block_number_,              &
-         number_of_open_basis_levels, open_basis_levels, xs_block)
+         open_basis_levels_, xs_block)
          !! ...
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: jtot_
          integer(int32), intent(in) :: block_number_
-         integer(int32), intent(in) :: number_of_open_basis_levels
-         integer(int32), intent(in) :: open_basis_levels(number_of_open_basis_levels)
-         real(dp), intent(in) :: xs_block(number_of_open_basis_levels*number_of_open_basis_levels)
+         integer(int32), intent(in) :: open_basis_levels_(:)
+         real(dp), intent(in) :: xs_block(:)
          !---------------------------------------------------------------------!
          character(len=200) :: partial_line
-         integer(int32) :: level_index_, level_index_2_
+         integer(int32) :: number_of_open_basis_levels_, index_1_,       &
+            index_2_, cross_section_index_
          !---------------------------------------------------------------------!
-         do level_index_ = 1, number_of_open_basis_levels
-            do level_index_2_ = 1, number_of_open_basis_levels
+         number_of_open_basis_levels_ = size(open_basis_levels_)
+         do index_1_ = 1, number_of_open_basis_levels_
+            do index_2_ = 1, number_of_open_basis_levels_
+               cross_section_index_ = (index_1_-1)                       &
+                  * number_of_open_basis_levels_ + index_2_
                write(partial_line,                                             &
                   "(I6,2X,I6,2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")      &
-                  jtot_, block_number_, v1array(open_basis_levels(level_index_)),       &
-                  j1array(open_basis_levels(level_index_)),                      &
-                  v1array(open_basis_levels(level_index_)),                       &
-                  j1array(open_basis_levels(level_index_)),                       &
-                  (etotal()-elevel(open_basis_levels(level_index_)))*hartreetocm, &
-                  xs_block((level_index_-1)*number_of_open_basis_levels+level_index_2_)
+                  jtot_, block_number_, v1array(open_basis_levels_(index_1_)), &
+                  j1array(open_basis_levels_(index_1_)),                       &
+                  v1array(open_basis_levels_(index_1_)),                       &
+                  j1array(open_basis_levels_(index_1_)),                       &
+                  (etotal()-elevel(open_basis_levels_(index_1_)))*hartreetocm, &
+                  xs_block(cross_section_index_)
                call write_message(partial_line, unit_ = 12)
             enddo
          enddo
@@ -512,6 +521,75 @@ module state_to_state_cross_sections_mod
       end subroutine save_partial_xs_single_block
    !---------------------------------------------------------------------------!
    !                           Threshold checking
+   !---------------------------------------------------------------------------!
+      subroutine determine_largest_cross_sections(open_basis_levels_,          &
+         cross_sections_, max_elastic_cross_section_,                          &
+         max_inelastic_cross_section_, max_elastic_index_,                     &
+         max_inelastic_index_1_, max_inelastic_index_2_)
+         !! Determine the largest partial elastic and inelastic cross-sections
+         !! in a given set of cross-sections.
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: open_basis_levels_(:)
+            !! array holding indices to open basis levels
+         real(dp), intent(in) :: cross_sections_(:)
+            !! array holding partial cross-sections
+         real(dp), intent(out) :: max_elastic_cross_section_
+            !! largest elastic cross-section
+         real(dp), intent(out) :: max_inelastic_cross_section_
+            !! largest inelastic cross-section
+         integer(int32), intent(out) :: max_elastic_index_
+            !! index pointing to the largest elastic cross-section
+         integer(int32), intent(out) :: max_inelastic_index_1_
+            !! first index pointing to the largest inelastic cross-section
+         integer(int32), intent(out) :: max_inelastic_index_2_
+            !! second index pointing to the largest inelastic cross-section
+         !---------------------------------------------------------------------!
+         integer(int32) :: number_of_open_basis_levels_, index_1_, index_2_,   &
+            cross_section_index_
+         !---------------------------------------------------------------------!
+         number_of_open_basis_levels_ = size(open_basis_levels_)
+         !---------------------------------------------------------------------!
+         ! Initialize output values
+         !---------------------------------------------------------------------!
+         max_elastic_cross_section_ = 0.0_dp
+         max_inelastic_cross_section_ = 0.0_dp
+         max_elastic_index_ = 0
+         max_inelastic_index_1_ = 0
+         max_inelastic_index_2_ = 0
+         !---------------------------------------------------------------------!
+         ! Iterate over all combinations of open basis levels
+         !---------------------------------------------------------------------!
+         do index_1_ = 1, number_of_open_basis_levels_
+            do index_2_ = 1, number_of_open_basis_levels_
+               cross_section_index_ = (index_1_-1)                             &
+                  * number_of_open_basis_levels_ + index_2_
+               if (open_basis_levels_(index_2_) == open_basis_levels_(index_1_)) then
+                  !------------------------------------------------------------!
+                  ! Elastic cross-section
+                  !------------------------------------------------------------!
+                  if (cross_sections_(cross_section_index_)                    &
+                     > max_elastic_cross_section_) then
+                     max_elastic_cross_section_                                &
+                        = cross_sections_(cross_section_index_)
+                     max_elastic_index_ = index_1_
+                  endif
+               else
+                  !------------------------------------------------------------!
+                  ! Inelastic cross-section
+                  !------------------------------------------------------------!
+                  if (cross_sections_(cross_section_index_)                    &
+                     > max_inelastic_cross_section_) then
+                     max_inelastic_cross_section_                              &
+                        = cross_sections_(cross_section_index_)
+                     max_inelastic_index_1_ = index_1_
+                     max_inelastic_index_2_ = index_2_
+                  endif
+               endif
+            enddo
+         enddo
+         !---------------------------------------------------------------------!
+      end subroutine determine_largest_cross_sections
+   !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine check_cross_section_thresholds(largest_elastic_xs_,           &
          largest_inelastic_xs_, consecutive_elastic_, consecutive_inelastic_,  &

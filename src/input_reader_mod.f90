@@ -27,7 +27,7 @@ module io_mod
          !! the code uses 3 namelists: input, basis and potential
          !------------------------------------------------------------------------!
          character(len = 200):: err_message
-         integer(int32) :: ilevel, iilevel, icoupl, icol, il, io_status
+         integer(int32) :: level_index_1_, level_index_2_, icoupl, icol, il, io_status
          !------------------------------------------------------------------------!
          namelist / INPUT / label, reduced_mass, relative_energy_flag, energy, &
             jtotmin, jtotmax, jtotstep, rmin, rmax, dr, steps, vdepth,         &
@@ -42,6 +42,9 @@ module io_mod
          open(unit=5, action='read', form='formatted', access='sequential',    &
             status = 'old', iostat = io_status, iomsg = err_message)
          call file_io_status(io_status, err_message, 5, 'o')
+         !---------------------------------------------------------------------!
+         call write_message("-- Reading input file...")
+         !---------------------------------------------------------------------!
 !------------------------------------------------------------------------------!
 ! Read the input namelist:                                                     !
 !------------------------------------------------------------------------------!
@@ -92,13 +95,13 @@ module io_mod
 
          icoupl = 0
 
-         do ilevel = 1, nlevel
-            do iilevel = ilevel, nlevel
+         do level_index_1_ = 1, nlevel
+            do level_index_2_ = level_index_1_, nlevel
                icoupl = icoupl + 1
-               reduced_v1pes(icoupl)  = v1array(ilevel)
-               reduced_j1pes(icoupl)  = j1array(ilevel)
-               reduced_v1ppes(icoupl) = v1array(iilevel)
-               reduced_j1ppes(icoupl) = j1array(iilevel)
+               reduced_v1pes(icoupl)  = v1array(level_index_1_)
+               reduced_j1pes(icoupl)  = j1array(level_index_1_)
+               reduced_v1ppes(icoupl) = v1array(level_index_2_)
+               reduced_j1ppes(icoupl) = j1array(level_index_2_)
             enddo
          enddo
 !------------------------------------------------------------------------------!
@@ -131,73 +134,89 @@ module io_mod
    subroutine input_summary
       !! summarize the input parameters for the current run
       !------------------------------------------------------------------------!
-      integer(int32) :: ilevel
+      integer(int32) :: level_index_1_
       !------------------------------------------------------------------------!
-      call write_message("User-supplied label: " // label)
-      call write_message("Reduced mass: " //                                   &
+      call write_message(" - User-supplied label: " // label)
+      !------------------------------------------------------------------------!
+      call write_message(" - Reduced mass: " //                                &
          trim(adjustl(float_to_character(reduced_mass, "(F10.4)"))) // " a.m.u.")
-      call write_message("*** Energy levels in the basis set: ***")
-      
+      !------------------------------------------------------------------------!
+      call write_message(" - Energy levels in the basis set:")
+      !------------------------------------------------------------------------!
       call write_message("   v       j            Energy (cm^{-1})")
-      do ilevel = 1,nlevel
-         write(*,"(I4,4X,I4,16X,F12.4)") v1array(ilevel), j1array(ilevel), elevel(ilevel)
+      !------------------------------------------------------------------------!
+      do level_index_1_ = 1,nlevel
+         write(*,"(I4,4X,I4,16X,F12.4)") v1array(level_index_1_),              &
+            j1array(level_index_1_), elevel(level_index_1_)
       enddo
-
-      write(*,"(44X,A3)") "***"
-
+      !------------------------------------------------------------------------!
       if (jtotmax.ne.999999) then
-         call write_message("The equations will be solved " //                 &
+         !---------------------------------------------------------------------!
+         call write_message(" - The equations will be solved " //              &
             "for total angular momentum J from " //                            &
             trim(adjustl(integer_to_character(jtotmin))) // " to "             &
             // trim(adjustl(integer_to_character(jtotmax))) // " with step "// &
             trim(adjustl(integer_to_character(jtotstep))))
+         !---------------------------------------------------------------------!
       else
-         call write_message("The loop over JTOT will be performed from " //    &
+         !---------------------------------------------------------------------!
+         call write_message(" - The loop over JTOT will be performed from " // &
             trim(adjustl(integer_to_character(jtotmin))) // " with step " //   &
             trim(adjustl(integer_to_character(jtotstep))) // " until " //      &
-            trim(adjustl(integer_to_character(consecutive_blocks_threshold))) //                       &
-            " consecutive JTOT-blocks contribute less than " //                &
-            trim(adjustl(float_to_character(elastic_xs_threshold, "(E10.4)"))) //              &
-            " A^2 to the elastic XS and less than " //                         &
-            trim(adjustl(float_to_character(inelastic_xs_threshold, "(E10.4)"))) //              &
-            " A^2 to the inelastic XS")
+            trim(adjustl(integer_to_character(consecutive_blocks_threshold)))  &
+            // " consecutive")
+          call write_message("   total angular momentum blocks contribute less than")
+          call write_message("   - " //                                        &
+            trim(adjustl(float_to_character(elastic_xs_threshold, "(E10.4)"))) &
+            // " A^2 to the elastic XS")
+          call write_message("   - " //                                        &
+            trim(adjustl(float_to_character(inelastic_xs_threshold, "(E10.4)")))&
+            // " A^2 to the inelastic XS")
+         !---------------------------------------------------------------------!
       endif
-
+      !------------------------------------------------------------------------!
       if (relative_energy_flag.eq.0) then
-         call write_message("The calculations will be performed for the total energy equal to "&
+         !---------------------------------------------------------------------!
+         call write_message(" - The calculations will be performed for the total energy equal to "&
             // trim(adjustl(float_to_character(ETOTAL(), "(F10.4)")))//" cm-1")
+         !---------------------------------------------------------------------!
       else if(relative_energy_flag.eq.1) then
-         call write_message("Relative kinetic energy of the colliding system: " //&
+         !---------------------------------------------------------------------!
+         call write_message(" - Relative kinetic energy of the colliding system: " //&
             trim(adjustl(float_to_character(energy, "(F10.4)"))) // " cm-1")
-         call write_message("The kinetic energy is calculated with respect to the" //&
+         !---------------------------------------------------------------------!
+         call write_message(" - The kinetic energy is calculated with respect to the" //&
             " v = " // trim(adjustl(integer_to_character(v1array(initial)))) //&
             " j = " // trim(adjustl(integer_to_character(j1array(initial)))) //&
-            " level in the basis set with the rotational energy " //           &
+            " level")
+         call write_message("   with the internal energy of " //               &
             trim(adjustl(float_to_character(elevel(initial), "(F10.4)")))      &
             // " cm-1.")
-         call write_message("This gives the total energy equal to " // &
+         !---------------------------------------------------------------------!
+         call write_message(" - This gives the total energy equal to " // &
             trim(adjustl(float_to_character(ETOTAL(), "(F10.4)"))) // " cm-1")
+         !---------------------------------------------------------------------!
       endif
-
+      !------------------------------------------------------------------------!
       if (print_partial_cross_sections) then
-         call write_message("Partial cross sections will be saved into " // partialfile )
+         call write_message(" - Partial cross sections will be saved into " // partialfile )
       endif
-
-      call write_message("S-matrix elements will be saved into " // smatrixfile )
+      !------------------------------------------------------------------------!
+      call write_message(" - S-matrix elements will be saved into " // smatrixfile )
       !------------------------------------------------------------------------!
    end subroutine input_summary
 !------------------------------------------------------------------------------!
    subroutine units_conversion
       !! converts all physical quantities to atomic units
       !------------------------------------------------------------------------!
-      integer(int32) :: ilevel
+      integer(int32) :: level_index_1_
       !------------------------------------------------------------------------!
       reduced_mass = reduced_mass*amutoau
       energy=energy/hartreetocm
       vdepth=vdepth/hartreetocm
       !------------------------------------------------------------------------!
-      do ilevel=1,nlevel
-         elevel(ilevel)=elevel(ilevel)/hartreetocm
+      do level_index_1_=1,nlevel
+         elevel(level_index_1_)=elevel(level_index_1_)/hartreetocm
       enddo
       !------------------------------------------------------------------------!
       units_converted = .true.
@@ -257,11 +276,11 @@ module io_mod
    function count_open_basis_levels() result(open_)
       !! counts the energetically accessible levels in the basis
       !------------------------------------------------------------------------!
-      integer(int32) :: open_, ilevel
+      integer(int32) :: open_, level_index_1_
       !------------------------------------------------------------------------!
       open_ = 0
-      do ilevel = 1, nlevel
-         if (is_open(elevel(ilevel))) open_ = open_ + 1
+      do level_index_1_ = 1, nlevel
+         if (is_open(elevel(level_index_1_))) open_ = open_ + 1
       enddo
       !------------------------------------------------------------------------!
    end function count_open_basis_levels
@@ -278,18 +297,18 @@ module io_mod
       real(dp), intent(inout), allocatable :: open_basis_wavevectors(:)
          !! array holding wavevectors calculated w.r.t energetically accessible levels in the basis
       !------------------------------------------------------------------------!
-      integer(int32) :: count_, ilevel
+      integer(int32) :: count_, level_index_1_
       !------------------------------------------------------------------------!
       call allocate_1d(open_basis_levels, number_of_open_basis_levels)
       call allocate_1d(open_basis_wavevectors, number_of_open_basis_levels)
       !------------------------------------------------------------------------!
       count_ = 0
-      do ilevel = 1, nlevel
-         if (is_open(elevel(ilevel))) then
+      do level_index_1_ = 1, nlevel
+         if (is_open(elevel(level_index_1_))) then
             count_ = count_ + 1
-            open_basis_levels(count_) = ilevel
+            open_basis_levels(count_) = level_index_1_
             open_basis_wavevectors(count_) =                                   &
-               sqrt( wavenumber_squared_from_energy(elevel(ilevel)) ) / bohrtoangstrom 
+               sqrt( wavenumber_squared_from_energy(elevel(level_index_1_)) ) / bohrtoangstrom 
          endif
       enddo
       !------------------------------------------------------------------------!

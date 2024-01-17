@@ -95,48 +95,50 @@ module utility_functions_mod
          !---------------------------------------------------------------------!
          select case(trim(header_type))
             case('main')
-               write(header_star, fmt = "(a90)") repeat("*", 90)
+               write(header_star, fmt = "(a90)") repeat("-", 90)
                call write_message(header_star)
                call write_message(header_star)
                write(header_str, fmt = '(a,25x,a43,20x,a)')                    &
-                       '*','BIGOS quantum scattering package, vs. 0.01.','*'
+                       '|','BIGOS quantum scattering package, vs. 0.01.','|'
                call write_message(header_str)
                write(header_str, fmt = '(a,36x,a19,33x,a)')                    &
-                       '*', 'the SCATTERING code','*'
+                       '|', 'the SCATTERING code','|'
                call write_message(header_str)
                write(header_str, fmt = '(a,29x,a31,28x,a)')                    &
-                       '*', 'adjusted for H2-He calculations','*'
+                       '|', 'adjusted for H2-He calculations','|'
                call write_message(header_str)
                write(header_str, fmt = '(a,37x,a17,34x,a)')                    &
-                       '*', 'by Hubert Jozwiak','*'
+                       '|', 'by Hubert Jozwiak','|'
                call write_message(header_str)
                write(header_str, fmt = '(a,40x,a11,37x,a)')                    &
-                       '*', '20/12/2023 ','*'
-               call write_message(header_str)
+                       '|', '20/12/2023 ','|'
+               call write_message(header_star)
                call write_message(header_star)
             case('jtot_loop')
-               call write_message(repeat("*", 90))
-               call write_message(repeat(" ", 28) // "*** Loop over JTOT: ***")
+               call write_message(repeat("-", 90))
+               call write_message(repeat(" ", 20) // "-- " //                  &
+                  "Start the loop over total angular momentum" // " --")
             case('block')
-               call write_message(repeat('*', 90))
+               call write_message(repeat('=', 90))
                if (present(opt_integer_)) then
                   write(tmp_str_, "(i10)") opt_integer_
                   len_str_ = len_trim(tmp_str_)
-                  write(*, '("*", A, "JTOT = ", A, A, "*")')                   &
-                     repeat(' ', 40 - len_str_), tmp_str_, repeat(' ', 41)
-                  call write_message(repeat('*', 90))
+                  write(*, '("||", A, "JTOT = ", A, A, "||")')                 &
+                     repeat(' ', 39 - len_str_), tmp_str_, repeat(' ', 40)
+                  call write_message(repeat('=', 90))
                else
-                  call write_error("**** JTOT value not provided in " //       &
-                     "write_header_block ****")
+                  call write_error("JTOT value not provided in " //            &
+                     "write_header_block")
                endif
             case('loop_terminated')
-               call write_message(repeat('*', 90))
-               call write_message(repeat(" ", 31) // "Loop over JTOT finished")
+               call write_message(repeat('=', 90))
+               call write_message(repeat(" ", 20) // "-- " //                  &
+                  "Finished the loop over total angular momentum" // " --")
             case('summary')
-               call write_message(repeat('*', 90))
-               call write_message("*" // repeat(" ", 40) // "SUMMARY" //       &
-                  repeat(" ", 41) // "*")
-               call write_message(repeat('*', 90))
+               call write_message(repeat('-', 90))
+               call write_message("|" // repeat(" ", 40) // "SUMMARY" //       &
+                  repeat(" ", 41) // "|")
+               call write_message(repeat('-', 90))
             case default
                call incorrect_value('header_type (write_header)', header_type)
          end select

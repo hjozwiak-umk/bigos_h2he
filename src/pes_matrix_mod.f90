@@ -28,10 +28,11 @@ module pes_matrix_mod
    !!   array (which is of "number_of_nonzero_algebraic_coefficients" size)
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
-   use utility_functions_mod, only: write_error, write_message, integer_to_character
+   use utility_functions_mod, only: write_error, write_message,                &
+      integer_to_character, time_count_summary
    use data_mod
    use io_mod
-   use array_operations_mod, only: fill_symmetric_matrix
+   use array_operations_mod, only: allocate_1d, fill_symmetric_matrix
    use math_functions_mod, only: percival_seaton_coefficient,                  &
       triangle_inequality_holds, is_sum_even, zero_projections_3j_condition
    use radial_coupling_terms_mod, only: get_radial_coupling_term_value
@@ -39,14 +40,69 @@ module pes_matrix_mod
    implicit none
    !---------------------------------------------------------------------------!
    private
-   public :: check_nonzero_pes_matrix_elements, prepare_pes_matrix_elements,   &
-      print_pes_matrix_elements_summary, calculate_pes_matrix
+   public :: initialize_pes_matrix, calculate_pes_matrix
    !---------------------------------------------------------------------------!
    contains
    !---------------------------------------------------------------------------!
    ! Subroutines preparing algebraic coefficients and determining the number
    ! of non-zero terms of the PES matrix; these are called only once,
    ! before Numerov propagator is initialized
+   !---------------------------------------------------------------------------!
+      subroutine initialize_pes_matrix(channel_indices,                        &
+         channels_omega_values, nonzero_terms_per_element,                     &
+         nonzero_legendre_indices, nonzero_algebraic_coefficients)
+         !! launches "check_nonzero_pes_matrix_elements" and
+         !! "prepare_pes_matrix_elements" subroutines; called from the main program
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: channel_indices(:)
+            !! holds the indices pointing to the basis arrays
+         integer(int32), intent(in) :: channels_omega_values(:)
+            !! holds all values of \bar{\Omega}
+         integer(int32), intent(inout), allocatable :: nonzero_terms_per_element(:)
+            !! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)
+            !! for each non-zero element of the PES matrix
+         integer(int32), intent(inout), allocatable :: nonzero_legendre_indices(:)
+            !! holds indices pointing to l1tab, which correspond to
+            !! the non-vanishing elements of the sum over \\(\lambda\\)
+            !! for each non-zero element of the PES matrix;
+         real(dp), intent(inout), allocatable :: nonzero_algebraic_coefficients(:)
+            !! holds the values of the non-zero algebraic coefficients
+         !---------------------------------------------------------------------!
+         integer(int32) :: number_of_channels,                                 &
+            number_of_nonzero_pes_matrix_elements,                             &
+            number_of_nonzero_algebraic_coefficients
+         real(dp) :: time_start_, time_stop_, total_time_
+         !---------------------------------------------------------------------!
+         call cpu_time(time_start_)
+         !---------------------------------------------------------------------!
+         call check_nonzero_pes_matrix_elements(channel_indices,               &
+            channels_omega_values, number_of_nonzero_pes_matrix_elements,      &
+            number_of_nonzero_algebraic_coefficients)
+         !---------------------------------------------------------------------!
+         call allocate_1d(nonzero_terms_per_element,number_of_nonzero_pes_matrix_elements)
+         call allocate_1d(nonzero_algebraic_coefficients,number_of_nonzero_algebraic_coefficients)
+         call allocate_1d(nonzero_legendre_indices,number_of_nonzero_algebraic_coefficients)
+         !---------------------------------------------------------------------!
+         call prepare_pes_matrix_elements(channel_indices,         &
+            channels_omega_values, nonzero_terms_per_element,                  &
+            nonzero_legendre_indices, nonzero_algebraic_coefficients)
+         !---------------------------------------------------------------------!
+         call cpu_time(time_stop_)
+         !---------------------------------------------------------------------!
+         if (prntlvl.ge.2) then
+            !------------------------------------------------------------------!
+            number_of_channels = size(channel_indices)
+            call print_pes_matrix_elements_summary(                            &
+               number_of_channels, number_of_nonzero_pes_matrix_elements,      &
+               number_of_nonzero_algebraic_coefficients)
+            !------------------------------------------------------------------!
+            call time_count_summary(time_start_, time_stop_, total_time_,      &
+               "-- PES matrix initialization completed in ")
+            !------------------------------------------------------------------!
+         endif
+         !---------------------------------------------------------------------!
+      end subroutine initialize_pes_matrix
+   !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine check_nonzero_pes_matrix_elements(channel_indices,&
          channels_omega_values, number_of_nonzero_pes_matrix_elements,    &
@@ -245,16 +301,14 @@ module pes_matrix_mod
             !! number of all non-zero algberaix coefficients in the whole
             !! PES matrix
          !---------------------------------------------------------------------!
-         call write_message(repeat("*", 90))
-         call write_message(repeat(" ", 5) // "Size of the PES matrix: "//&
+         call write_message(" - Size of the PES matrix: "//                    &
             integer_to_character(number_of_channels))
-         call write_message(repeat(" ", 5) // "Number of non-zero elements " //&
+         call write_message(" - Number of non-zero elements " //               &
             "of the potential matrix: " // integer_to_character(               &
             number_of_nonzero_pes_matrix_elements))
-         call write_message(repeat(" ", 5) // "Number of non-zero elements " //&
-            " of the PES matrix: " // integer_to_character(               &
+         call write_message(" - Number of non-zero elements " //               &
+            " of the PES matrix: " // integer_to_character(                    &
             number_of_nonzero_algebraic_coefficients))
-         call write_message(repeat('*', 90))
          !---------------------------------------------------------------------!
       end subroutine print_pes_matrix_elements_summary
    !---------------------------------------------------------------------------!

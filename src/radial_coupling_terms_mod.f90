@@ -144,11 +144,11 @@ module radial_coupling_terms_mod
          integer(int32) :: lambda_index_, radial_index_, coupling_index_
          !---------------------------------------------------------------------!
          if (total_number_of_coupling_terms /= minimal_number_of_coupling_terms) then
-            call write_message("Reducing the number of the radial coupling terms...")
+            call write_message("-- Reducing the number of the radial coupling terms...")
             call print_pes_quantum_numbers("Original", total_number_of_coupling_terms)
             call reduce_coupling_terms()
             call print_pes_quantum_numbers("Reduced", minimal_number_of_coupling_terms)
-            call write_message("Reduced "//                                    &
+            call write_message("-- Reduced "//                                 &
                trim(adjustl(integer_to_character(total_number_of_coupling_terms))) //                &
                " radial terms to "// trim(adjustl(integer_to_character(minimal_number_of_coupling_terms))))
          else

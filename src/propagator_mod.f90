@@ -511,12 +511,12 @@ module propagator_mod
          integer(int32), intent(in) :: number_of_steps_
             !! number of steps on the \\(R\\) grid
          !---------------------------------------------------------------------!
-         call write_message("Coupled equations were solved from " //           &
+         call write_message("-- Coupled equations were solved from " //        &
             trim(adjustl(float_to_character(r_min_, "(F10.4)")))// " a.u. to " &
             // trim(adjustl(float_to_character(r_max_, "(F10.4)")))//          &
             " a.u. in "// trim(adjustl(integer_to_character(number_of_steps_)))&
             // " steps ")
-         call write_message("(constant dr = " //                               &
+         call write_message("   (constant dr = " //                            &
             trim(adjustl(float_to_character((rmax - rmin) /                    &
             real(number_of_steps_ - 1, dp), "(E14.8)"))) // " a.u.)")
          !---------------------------------------------------------------------!

@@ -8,8 +8,7 @@ program SCATTERING
    use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
       set_space_fixed_channels, count_open_channels_in_block,                  &
       calculate_largest_wavenumber, print_short_block_summary, print_channels
-   use pes_matrix_mod, only: check_nonzero_pes_matrix_elements,                &
-      prepare_pes_matrix_elements, print_pes_matrix_elements_summary
+   use pes_matrix_mod, only: initialize_pes_matrix
    use propagator_mod, only: numerov
    use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
       calculate_k_matrix, calculate_s_matrix
@@ -18,32 +17,30 @@ program SCATTERING
    use state_to_state_cross_sections_mod, only:                                &
       calculate_state_to_state_cross_section,  add_cross_sections,             &
       print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
-      print_final_cross_sections,  check_cross_section_thresholds,             &
-      save_partial_xs_file_header, save_partial_xs_single_block
-   use utility_functions_mod, only: write_header, file_io_status,              &
+      print_final_cross_sections,  determine_largest_cross_sections,           &
+      check_cross_section_thresholds, save_partial_xs_file_header,             &
+      save_partial_xs_single_block
+   use utility_functions_mod, only: write_header,               &
       write_message, float_to_character, integer_to_character, time_count_summary, &
       no_open_channels_message
    use array_operations_mod, only: append
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
-   character(len=200) :: xs_line
-   integer(int32) :: number_of_nonzero_pes_matrix_elements,               &
-      number_of_nonzero_algebraic_coefficients, number_of_channels, size_even,  &
-      size_odd, number_of_open_basis_levels, jtot_, parity_exponent,      &
-      parity_exponenttmp, nsteps, number_of_open_channels,     &
-      omegamax, lmin, lmax, ltmp, lmat_len, len_even, len_odd, jinddiag,       &
-      jindoff1, jindoff2, ij, ilevel, iomega, iopen, iopen2, isize_, isize_2,  &
-      icheck, icount, icount2, io_status
+   integer(int32) :: number_of_channels, size_even, size_odd,                  &
+      number_of_open_basis_levels, jtot_, parity_exponent, nsteps,             &
+      number_of_open_channels, max_elastic_index, max_inelastic_index_1,       &
+      max_inelastic_index_2, iopen, iopen2
    !---------------------------------------------------------------------------!
    integer(int32) :: count_blocks = 0
    integer(int32) :: consecutive_blocks_thresholddiag = 0
    integer(int32) :: consecutive_blocks_thresholdoff = 0
    !---------------------------------------------------------------------------!
-   real(dp) :: largest_wavevector, wavvdepth, maxXSdiag, maxXSoff, time_total_start,       &
-      time_total_stop, time_total, time_init_stop, time_init, time_jtot_start, &
+   real(dp) :: largest_wavevector, wavvdepth, max_elastic_cross_section,       &
+      max_inelastic_cross_section, time_total_start, time_total_stop,          &
+      time_total, time_init_stop, time_init, time_jtot_start,                  &
       time_jtot_stop, time_jtot, time_parity_start,time_parity_stop,           &
-      time_parity, time_coupling_start, time_coupling_stop, time_coupling
+      time_parity
    logical :: unitarity_block_check
    logical :: terminate = .false.
    integer, allocatable :: channel_indices(:), channels_omega_values(:),&
@@ -204,23 +201,9 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Prepare the PES matrix
          !---------------------------------------------------------------------!
-         call cpu_time(time_coupling_start)
-         call check_nonzero_pes_matrix_elements(channel_indices,   &
-            channels_omega_values, number_of_nonzero_pes_matrix_elements, &
-            number_of_nonzero_algebraic_coefficients)
-         call allocate_1d(nonzero_terms_per_element,number_of_nonzero_pes_matrix_elements)
-         call allocate_1d(nonzero_algebraic_coefficients,number_of_nonzero_algebraic_coefficients)
-         call allocate_1d(nonzero_legendre_indices,number_of_nonzero_algebraic_coefficients)
-         call prepare_pes_matrix_elements(channel_indices,         &
-            channels_omega_values, nonzero_terms_per_element,                  &
-            nonzero_legendre_indices, nonzero_algebraic_coefficients)
-         if (prntlvl.ge.2) call print_pes_matrix_elements_summary(        &
-            number_of_channels, number_of_nonzero_pes_matrix_elements,    &
-            number_of_nonzero_algebraic_coefficients)
-         call cpu_time(time_coupling_stop)
-         if (prntlvl.ge.2) call write_message("Calculations of the coupling "//&
-            "matrix took " //  trim(adjustl(float_to_character(                &
-            time_coupling_stop-time_coupling_start,"(E14.8)"))) // " seconds")
+         call initialize_pes_matrix(channel_indices, channels_omega_values,    &
+            nonzero_terms_per_element, nonzero_legendre_indices,               &
+            nonzero_algebraic_coefficients)
          !---------------------------------------------------------------------!
          ! Prepare the log-derivative matrix (Eqs. 6.29 and 6.43)
          ! and the K-matrix (Eq. 6.53)
@@ -231,9 +214,9 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Call the propagator:
          !---------------------------------------------------------------------!
-         call numerov(number_of_channels, channel_indices, channels_omega_values,           &
-            nonzero_terms_per_element,&
-            nonzero_legendre_indices, nonzero_algebraic_coefficients, nsteps,   &
+         call numerov(number_of_channels, channel_indices,                     &
+            channels_omega_values, nonzero_terms_per_element,                  &
+            nonzero_legendre_indices, nonzero_algebraic_coefficients, nsteps,  &
             jtot_, BF_log_der_matrix)
          !---------------------------------------------------------------------!
          ! Transform the log-derivative matrix to the SF frame
@@ -270,7 +253,8 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Check if the S-matrices are unitary
          !---------------------------------------------------------------------!
-         call unitarity_check(number_of_open_channels,s_matrix_real,s_matrix_imag,unitarity_block_check)
+         call unitarity_check(number_of_open_channels, s_matrix_real,          &
+            s_matrix_imag, unitarity_block_check)
          !---------------------------------------------------------------------!
          ! If the unitary is not fulfilled, keep the information about this block
          !---------------------------------------------------------------------!
@@ -288,8 +272,8 @@ program SCATTERING
          ! and add the calculated partial XS to the partial_cross_sections_jtot array
          !---------------------------------------------------------------------!
          if (print_partial_cross_sections) then
-            call save_partial_xs_single_block(jtot_, count_blocks,                   &
-            number_of_open_basis_levels, open_basis_levels, partial_cross_sections_block)
+            call save_partial_xs_single_block(jtot_, count_blocks,             &
+               open_basis_levels, partial_cross_sections_block)
          endif
          call add_cross_sections(number_of_open_basis_levels,                  &
             partial_cross_sections_block, partial_cross_sections_jtot)
@@ -302,44 +286,30 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! ... end of the loop over parity                                      
          !---------------------------------------------------------------------!
-         call write_message(repeat(" ", 43) // "***")
+         call write_message(repeat("-", 90))
       enddo
       !------------------------------------------------------------------------!
       ! Add the cross-sections from this Jtot block:
       !------------------------------------------------------------------------!
-      call add_cross_sections(number_of_open_basis_levels,                  &
+      call add_cross_sections(number_of_open_basis_levels,                     &
             partial_cross_sections_jtot, accumulated_cross_sections)
       !------------------------------------------------------------------------!
       ! Determine the largest partial elastic/inelastic XS in this Jtot block:
       !------------------------------------------------------------------------!
-      jinddiag  = 0
-      jindoff1  = 0
-      jindoff2  = 0
-      maxXSdiag = 0.0_dp
-      maxXSoff  = 0.0_dp
-      do icount = 1, number_of_open_basis_levels
-         do icount2 = 1, number_of_open_basis_levels
-            if (open_basis_levels(icount2) == open_basis_levels(icount)) then
-               if ((partial_cross_sections_jtot((icount-1)*number_of_open_basis_levels+icount2)).gt.maxXSdiag) then
-                  maxXSdiag = partial_cross_sections_jtot((icount-1)*number_of_open_basis_levels+icount2)
-                  jinddiag = icount
-               endif
-            else
-               if ((partial_cross_sections_jtot((icount-1)*number_of_open_basis_levels+icount2)).gt.maxXSoff) then
-                  maxXSoff = partial_cross_sections_jtot((icount-1)*number_of_open_basis_levels+icount2)
-                  jindoff1 = icount
-                  jindoff2 = icount2
-               endif
-            endif
-         enddo
-      enddo
-      !-----------------------------------------------------------------------!
-      call print_largest_partial_cross_sections(jtot_, maxXSdiag, maxXSoff, jinddiag,     &
-         jindoff1, jindoff2, open_basis_levels)
-      !-----------------------------------------------------------------------!
+      call determine_largest_cross_sections(open_basis_levels,                 &
+         partial_cross_sections_jtot, max_elastic_cross_section,               &
+         max_inelastic_cross_section, max_elastic_index,                       &
+         max_inelastic_index_1, max_inelastic_index_2)
+      !------------------------------------------------------------------------!
+      call print_largest_partial_cross_sections(jtot_,                         &
+         max_elastic_cross_section, max_inelastic_cross_section,               &
+         max_elastic_index, max_inelastic_index_1, max_inelastic_index_2,      &
+         open_basis_levels)
+      !------------------------------------------------------------------------!
       if (jtotmax == 999999) then
-         call check_cross_section_thresholds(maxXSdiag, maxXSoff,              &
-            consecutive_blocks_thresholddiag, consecutive_blocks_thresholdoff, terminate)
+         call check_cross_section_thresholds(max_elastic_cross_section,        &
+            max_inelastic_cross_section, consecutive_blocks_thresholddiag,     &
+            consecutive_blocks_thresholdoff, terminate)
       endif
       !------------------------------------------------------------------------!
       ! Check the time after each JTOT block:                                  
@@ -349,17 +319,19 @@ program SCATTERING
       ! Print all the XS after current JTOT block                              
       !------------------------------------------------------------------------!
       if (prntlvl.ge.3) then
-         call print_cross_sections_for_jtot(jtot_, open_basis_levels, accumulated_cross_sections)
+         call print_cross_sections_for_jtot(jtot_, open_basis_levels,          &
+            accumulated_cross_sections)
       endif
       !------------------------------------------------------------------------!
       if (prntlvl.ge.2) call time_count_summary(time_jtot_start,               &
-         time_jtot_stop, time_jtot, "JTOT block completed in ")
+         time_jtot_stop, time_jtot, "Total angular momentum block completed in ")
       !------------------------------------------------------------------------!
-      ! terminate the loop if elastic_xs_threshold/inelastic_xs_threshold condition is satisfied
+      ! terminate the loop if elastic_xs_threshold/inelastic_xs_threshold
+      ! condition is satisfied
       !------------------------------------------------------------------------!
       if (terminate) exit
    enddo
-
+   !---------------------------------------------------------------------------!
    call write_header("loop_terminated")
    call write_header("summary")
    !---------------------------------------------------------------------------!

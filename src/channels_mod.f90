@@ -374,11 +374,12 @@ module channels_mod
          integer(int32), intent(in) :: number_of_channels_
             !! number of channels in the block
          !---------------------------------------------------------------------!
-         call write_message("Block number: " // integer_to_character(count_blocks_))
-         call write_message("Total angular momentum: " //                      &
-            trim(adjustl(integer_to_character(jtot_))) // " parity: " //       &
+         call write_message(" - Block number: " // integer_to_character(count_blocks_))
+         call write_message(" - Total angular momentum: " //                   &
+            trim(adjustl(integer_to_character(jtot_))))
+         call write_message(" - Parity: " //                                   &
             trim(adjustl(integer_to_character((-1)**parity_exponent_) )))
-         call write_message("Number of scattering channels: " //               &
+         call write_message(" - Number of scattering channels: " //            &
             integer_to_character(number_of_channels_))
          !---------------------------------------------------------------------!
       end subroutine
@@ -398,7 +399,7 @@ module channels_mod
          integer(int32) :: channel_index_, v_, j_, omega_, parity_
          real(dp) :: internal_energy_, wavenumber_
          !---------------------------------------------------------------------!
-         call write_message("  v1      j1     omega      p" // repeat(" ", 10) &
+         call write_message("   v1      j1     omega      p" // repeat(" ", 10) &
             // "E_vj" // repeat(" ", 16) // "wv")
          !---------------------------------------------------------------------!
          do channel_index_ = 1, size(channel_indices)
@@ -448,11 +449,11 @@ module channels_mod
          ! Check if wavenumber is provided
          !---------------------------------------------------------------------!
          if (present(wavenumber_)) then
-            write(line_, "(I4,4X,I4,6X,I4,5X,I2,2X,F12.4,4X,F14.8)")           &
+            write(line_, "(X,I4,4X,I4,6X,I4,5X,I2,2X,F12.4,4X,F14.8)")         &
                v_, j_, omega_, parity_, internal_energy_*hartreetocm,          &
                wavenumber_/bohrtoangstrom
          else
-            write(line_, "(I4,4X,I4,6X,I4,5X,I2,2X,F12.4,4X,'--------------')")&
+            write(line_, "(X,I4,4X,I4,6X,I4,5X,I2,2X,F12.4,4X,'--------------')")&
                v_, j_, omega_, parity_, internal_energy_*hartreetocm
          endif
          !---------------------------------------------------------------------!
