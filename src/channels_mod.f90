@@ -4,17 +4,18 @@ module channels_mod
    !! cases) and print quantum numbers on screen
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
-   use data_mod
-   use io_mod
    use utility_functions_mod, only: write_error, write_message, write_warning, &
       integer_to_character, float_to_character
+   use data_mod
+   use physics_utilities_mod, only: is_open, wavevector_squared_from_energy
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
    private
    public :: set_number_of_channels, set_body_fixed_channels,                  &
       set_space_fixed_channels, count_open_channels_in_block,                  &
-      calculate_largest_wavenumber, print_short_block_summary, print_channels
+      prepare_wavevector_array, calculate_largest_wavevector,                  &
+      print_short_block_summary, print_channels
    !---------------------------------------------------------------------------!
    contains
       !------------------------------------------------------------------------!
@@ -318,7 +319,7 @@ module channels_mod
       end subroutine set_space_fixed_channels
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
-      function count_open_channels_in_block(channel_indices)            &
+      function count_open_channels_in_block(channel_indices)                   &
          result(number_of_open_channels_)
          !! counts the energetically accessible channels in the given block
          !---------------------------------------------------------------------!
@@ -337,30 +338,61 @@ module channels_mod
          enddo
          !---------------------------------------------------------------------!
       end function count_open_channels_in_block
-      !------------------------------------------------------------------------!
-      !------------------------------------------------------------------------!
-      function calculate_largest_wavenumber(channel_indices) result(largest_wavenumber_)
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+      subroutine prepare_wavevector_array(channel_indices_, wavevectors_)
+         !! Prepare an array of wavevectors in a given block (in A^2)
+         !! which are saved in the S-matrix file
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: channel_indices_(:)
+            !! holds the indices pointing to the basis arrays
+         real(dp), intent(inout) :: wavevectors_(:)
+            !! array of wavevectors (in A^2)
+         !---------------------------------------------------------------------!
+         integer(int32) :: index_, wv_index_
+         real(dp) :: internal_energy_
+         !---------------------------------------------------------------------!
+         wv_index_ = 0
+         do index_ = 1, size(channel_indices_)
+            internal_energy_ = elevel(channel_indices_(index_))
+            if (is_open(internal_energy_)) then
+               wv_index_ = wv_index_ + 1
+               wavevectors_ (wv_index_) =                                      &
+                  sqrt( wavevector_squared_from_energy(internal_energy_) )     &
+                  / bohrtoangstrom
+            endif
+         enddo
+         !---------------------------------------------------------------------!
+         if (wv_index_ /= size(wavevectors_)) then
+            call write_error("prepare_wavevector_array: mismatch between " //  &
+               "number of open channels and size of wavevectors array")
+         endif
+         !---------------------------------------------------------------------!
+      end subroutine prepare_wavevector_array
+   !---------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
+      function calculate_largest_wavevector(channel_indices) result(largest_wavevector_)
          !! Calculates the largest wave number in the block;
          !! called only if there are any open channels
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
-         real(dp) :: largest_wavenumber_
+         real(dp) :: largest_wavevector_
             !! (output) the largest wave number (wavmax) in the block
          !---------------------------------------------------------------------!
          integer(int32) :: channel_index_
-         real(dp) :: wavenumber_
+         real(dp) :: wavevector_
          !---------------------------------------------------------------------!
-         wavenumber_ = 0.0_dp
+         wavevector_ = 0.0_dp
          !---------------------------------------------------------------------!
          do channel_index_ = 1, size(channel_indices)
             if (is_open(elevel(channel_indices(channel_index_)))) then
-               wavenumber_ = sqrt( wavenumber_squared_from_energy(elevel(channel_indices(channel_index_))) )
-               largest_wavenumber_ = max(largest_wavenumber_, wavenumber_)
+               wavevector_ = sqrt( wavevector_squared_from_energy(elevel(channel_indices(channel_index_))) )
+               largest_wavevector_ = max(largest_wavevector_, wavevector_)
             endif
          enddo
          !---------------------------------------------------------------------!
-      end function calculate_largest_wavenumber
+      end function calculate_largest_wavevector
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine print_short_block_summary(jtot_, parity_exponent_,            &
@@ -385,7 +417,7 @@ module channels_mod
       end subroutine
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
-      subroutine print_channels(parity_exponent_, channel_indices,      &
+      subroutine print_channels(parity_exponent_, channel_indices,             &
          channels_omega_values)
          !! prints information about body-fixed channels on screen
          !---------------------------------------------------------------------!
@@ -397,7 +429,7 @@ module channels_mod
             !! holds all values of \bar{\Omega}
          !---------------------------------------------------------------------!
          integer(int32) :: channel_index_, v_, j_, omega_, parity_
-         real(dp) :: internal_energy_, wavenumber_
+         real(dp) :: internal_energy_, wavevector_
          !---------------------------------------------------------------------!
          call write_message("   v1      j1     omega      p" // repeat(" ", 10) &
             // "E_vj" // repeat(" ", 16) // "wv")
@@ -412,9 +444,9 @@ module channels_mod
             ! format for open channels:
             !------------------------------------------------------------------!
             if (is_open(internal_energy_)) then
-               wavenumber_ = sqrt( wavenumber_squared_from_energy(internal_energy_) )
+               wavevector_ = sqrt( wavevector_squared_from_energy(internal_energy_) )
                call write_channel_line(v_, j_, omega_, parity_,                &
-                  internal_energy_, wavenumber_)
+                  internal_energy_, wavevector_)
             !------------------------------------------------------------------!
             ! format for closed channels:
             !------------------------------------------------------------------!
@@ -428,7 +460,7 @@ module channels_mod
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
       subroutine write_channel_line(v_, j_, omega_, parity_, internal_energy_, & 
-         wavenumber_)
+         wavevector_)
          ! Subroutine arguments
          integer(int32), intent(in) :: v_
             !! vibrational quantum number
@@ -440,18 +472,18 @@ module channels_mod
             !! parity of the block
          real(dp), intent(in) :: internal_energy_
             !! \\(E_{vj}\\)
-         real(dp), intent(in), optional :: wavenumber_
+         real(dp), intent(in), optional :: wavevector_
             !! (optional) if the channel is open, print information
-            !! about the wavenumber
+            !! about the wavevector
          !---------------------------------------------------------------------!
          character(len=200) :: line_
          !---------------------------------------------------------------------!
-         ! Check if wavenumber is provided
+         ! Check if wavevector is provided
          !---------------------------------------------------------------------!
-         if (present(wavenumber_)) then
+         if (present(wavevector_)) then
             write(line_, "(X,I4,4X,I4,6X,I4,5X,I2,2X,F12.4,4X,F14.8)")         &
                v_, j_, omega_, parity_, internal_energy_*hartreetocm,          &
-               wavenumber_/bohrtoangstrom
+               wavevector_/bohrtoangstrom
          else
             write(line_, "(X,I4,4X,I4,6X,I4,5X,I2,2X,F12.4,4X,'--------------')")&
                v_, j_, omega_, parity_, internal_energy_*hartreetocm

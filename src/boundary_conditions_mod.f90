@@ -4,13 +4,13 @@ module boundary_conditions_mod
    !! (see "Solution of coupled equations" section)
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
-   use data_mod
-   use io_mod
    use fwigxjpf, only: fwig3jj
-   use math_functions_mod, only: riccati_bessel_j, riccati_bessel_y,           &
-      modified_bessel_k_ratio
    use utility_functions_mod, only: write_warning, write_header
    use array_operations_mod, only: invert_symmetric_matrix, fill_symmetric_matrix
+   use math_functions_mod, only: riccati_bessel_j, riccati_bessel_y,           &
+      modified_bessel_k_ratio
+   use data_mod
+   use physics_utilities_mod, only: is_open, wavevector_squared_from_energy
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
@@ -161,7 +161,7 @@ module boundary_conditions_mod
          !---------------------------------------------------------------------!
          integer(int32) :: open_channel_index_, closed_channel_index_,         &
             channel_index_, status_, l_
-         real(dp) :: wavenumber, x, j_element_, jp_element_, n_element_,       &
+         real(dp) :: wavevector, x, j_element_, jp_element_, n_element_,       &
             np_element_, ratio
          integer(int32) :: open_channels_indices(number_of_open_channels)
          integer(int32) :: closed_channels_indices(number_of_channels-number_of_open_channels)
@@ -200,31 +200,31 @@ module boundary_conditions_mod
          ! open channels:
          !---------------------------------------------------------------------!
          do open_channel_index_ = 1, number_of_open_channels
-            wavenumber = sqrt( wavenumber_squared_from_energy(                 &
+            wavevector = sqrt( wavevector_squared_from_energy(                 &
                elevel(channel_indices(open_channels_indices(open_channel_index_)))))
-            x  = wavenumber*r_
+            x  = wavevector*r_
             l_ = channel_l_values(open_channels_indices(open_channel_index_))
             call riccati_bessel_j(                                             &
                l_, x, j_element_, jp_element_)
             diag_j_matrix(open_channel_index_,open_channel_index_)             &
-               = (wavenumber)**(-0.5d0)*j_element_
+               = (wavevector)**(-0.5d0)*j_element_
             diag_jp_matrix(open_channel_index_,open_channel_index_)            &
-               = (wavenumber)**(0.5d0)*jp_element_
+               = (wavevector)**(0.5d0)*jp_element_
 
             call riccati_bessel_y(l_, x, n_element_, np_element_)
             diag_n_matrix(open_channel_index_,open_channel_index_)             &
-               = (wavenumber)**(-0.5d0)*n_element_
+               = (wavevector)**(-0.5d0)*n_element_
             diag_np_matrix(open_channel_index_,open_channel_index_)            &
-               = (wavenumber)**(0.5d0)*np_element_
+               = (wavevector)**(0.5d0)*np_element_
          enddo
          !---------------------------------------------------------------------!
          ! Prepare J, J', N and N' matrices (Eqs. 7-8)
          ! closed channels:
          !---------------------------------------------------------------------!
          do closed_channel_index_ = 1,number_of_channels-number_of_open_channels  
-            wavenumber = sqrt( abs( wavenumber_squared_from_energy(            &
+            wavevector = sqrt( abs( wavevector_squared_from_energy(            &
                elevel(channel_indices(closed_channels_indices(closed_channel_index_))))))
-            x  = wavenumber*r_
+            x  = wavevector*r_
             l_ = channel_l_values(closed_channels_indices(closed_channel_index_))
             call modified_bessel_k_ratio(l_,x,ratio)
             !------------------------------------------------------------------!
@@ -233,7 +233,7 @@ module boundary_conditions_mod
             diag_n_matrix(number_of_open_channels+closed_channel_index_,       &
                number_of_open_channels+closed_channel_index_) = 1.d0
             diag_np_matrix(number_of_open_channels+closed_channel_index_,      &
-               number_of_open_channels+closed_channel_index_) = wavenumber*ratio
+               number_of_open_channels+closed_channel_index_) = wavevector*ratio
          enddo
          !---------------------------------------------------------------------! -----------------------> consider a separate function
          call DGEMM('N','N',number_of_channels,number_of_channels,             &

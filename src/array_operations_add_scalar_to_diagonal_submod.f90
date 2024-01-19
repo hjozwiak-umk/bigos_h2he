@@ -1,6 +1,5 @@
 submodule (array_operations_mod) array_operations_add_scalar_to_diagonal_submod
    !! a submodule for add_scalar_to_diagonal subroutines
-   use utility_functions_mod, only: to_lowercase
 implicit none
 
    contains

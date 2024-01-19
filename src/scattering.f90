@@ -1,29 +1,32 @@
 program SCATTERING
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use utility_functions_mod, only: write_header,                              &
+      write_message, float_to_character, integer_to_character, time_count_summary, &
+      no_open_channels_message
+   use array_operations_mod, only: append
    use data_mod
-   use io_mod
+   use physics_utilities_mod, only: count_open_basis_levels,                   &
+      save_open_basis_levels, units_conversion
+   use input_reader_mod
    use radial_coupling_terms_mod, only: read_radial_coupling_terms,            &
       reduce_radial_coupling_terms, interpolate_radial_coupling_terms
    use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
       set_space_fixed_channels, count_open_channels_in_block,                  &
-      calculate_largest_wavenumber, print_short_block_summary, print_channels
+      calculate_largest_wavevector, prepare_wavevector_array,                  &
+      print_short_block_summary, print_channels
    use pes_matrix_mod, only: initialize_pes_matrix
    use propagator_mod, only: numerov
    use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
       calculate_k_matrix, calculate_s_matrix
    use unitarity_check_mod, only: unitarity_check, print_final_unitarity_warning
-   use save_s_matrix_mod, only: save_s_matrix_file_header, save_s_matrix_block_info
-   use state_to_state_cross_sections_mod, only:                                &
+   use state_to_state_cross_sections_mod, only:initialize_cross_section_arrays,&
       calculate_state_to_state_cross_section,  add_cross_sections,             &
       print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
       print_final_cross_sections,  determine_largest_cross_sections,           &
       check_cross_section_thresholds, save_partial_xs_file_header,             &
       save_partial_xs_single_block
-   use utility_functions_mod, only: write_header,               &
-      write_message, float_to_character, integer_to_character, time_count_summary, &
-      no_open_channels_message
-   use array_operations_mod, only: append
+   use save_s_matrix_mod, only: save_s_matrix_file_header, save_s_matrix_block_info
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
@@ -46,7 +49,7 @@ program SCATTERING
    integer, allocatable :: channel_indices(:), channels_omega_values(:),&
       channel_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:),&
       nonzero_legendre_indices(:), smatcheckarr(:)
-   real(dp), allocatable :: wv(:), open_basis_wavevectors(:),                  &
+   real(dp), allocatable :: basis_wavevectors(:), block_wavevectors(:),        &
       nonzero_algebraic_coefficients(:), accumulated_cross_sections(:),        &
       partial_cross_sections_block(:), partial_cross_sections_jtot(:)
    real(dp), allocatable :: BF_log_der_matrix(:,:), SF_log_der_matrix(:,:),    &
@@ -101,16 +104,13 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    number_of_open_basis_levels = count_open_basis_levels()
    call save_open_basis_levels(number_of_open_basis_levels, open_basis_levels, &
-      open_basis_wavevectors)
+      basis_wavevectors)
    !---------------------------------------------------------------------------!
    ! Initialize arrays that save the state-to-state cross-sections
    !---------------------------------------------------------------------------!
-   call allocate_1d(accumulated_cross_sections,                                &
-      number_of_open_basis_levels*number_of_open_basis_levels)
-   call allocate_1d(partial_cross_sections_jtot,                               &
-      number_of_open_basis_levels*number_of_open_basis_levels)
-   call allocate_1d(partial_cross_sections_block,                              &
-      number_of_open_basis_levels*number_of_open_basis_levels)
+   call initialize_cross_section_arrays(number_of_open_basis_levels,           &
+      partial_cross_sections_block, partial_cross_sections_jtot,               &
+      accumulated_cross_sections)
    !---------------------------------------------------------------------------!
    ! Initialization is finished                                                
    !---------------------------------------------------------------------------!
@@ -184,9 +184,14 @@ program SCATTERING
             cycle
          endif
          !---------------------------------------------------------------------!
+         ! Array of wavevectors in given block (to save in the S-matrix file)
+         !---------------------------------------------------------------------!
+         call allocate_1d(block_wavevectors, number_of_open_channels)
+         call prepare_wavevector_array(channel_indices, block_wavevectors)
+         !---------------------------------------------------------------------!
          ! Determine the largest wavevector in the block
          !---------------------------------------------------------------------!
-         largest_wavevector = calculate_largest_wavenumber(channel_indices)
+         largest_wavevector = calculate_largest_wavevector(channel_indices)
          !---------------------------------------------------------------------!
          ! Determine the number of steps on the intermolecular (R) grid
          ! This is done either directly (if dr > 0)
@@ -205,51 +210,43 @@ program SCATTERING
             nonzero_terms_per_element, nonzero_legendre_indices,               &
             nonzero_algebraic_coefficients)
          !---------------------------------------------------------------------!
-         ! Prepare the log-derivative matrix (Eqs. 6.29 and 6.43)
-         ! and the K-matrix (Eq. 6.53)
+         ! Allocate asymptotic body-fixed (BF) log-derivative matrix
+         ! and call the propagator
          !---------------------------------------------------------------------!
          call allocate_2d(BF_log_der_matrix, number_of_channels, number_of_channels)
-         call allocate_2d(SF_log_der_matrix, number_of_channels, number_of_channels)
-         call allocate_2d(k_matrix, number_of_open_channels, number_of_open_channels)
-         !---------------------------------------------------------------------!
-         ! Call the propagator:
-         !---------------------------------------------------------------------!
          call numerov(number_of_channels, channel_indices,                     &
             channels_omega_values, nonzero_terms_per_element,                  &
             nonzero_legendre_indices, nonzero_algebraic_coefficients, nsteps,  &
             jtot_, BF_log_der_matrix)
          !---------------------------------------------------------------------!
-         ! Transform the log-derivative matrix to the SF frame
+         ! Allocate asymptotic space-fixed (SF) log-derivative matrix and
+         ! transform the BF result to the SF frame
          !---------------------------------------------------------------------!
+         call allocate_2d(SF_log_der_matrix, number_of_channels, number_of_channels)
          call calculate_sf_matrix_from_bf_matrix(number_of_channels, jtot_,    &
             channel_indices, channels_omega_values, channel_l_values,  &
             BF_log_der_matrix, SF_log_der_matrix)
          !---------------------------------------------------------------------!
-         ! Get the K-matrix from log-derivative matrix (Eq. 6.53)
+         ! Get the K-matrix from log-derivative matrix
+         ! (Eq. 4 in "Solution of the coupled equations")
          !---------------------------------------------------------------------!
+         call allocate_2d(k_matrix, number_of_open_channels, number_of_open_channels)
          call calculate_k_matrix(number_of_channels, SF_log_der_matrix,        &
             number_of_open_channels, channel_indices, channel_l_values,&
             rmax, k_matrix)
          !---------------------------------------------------------------------!
-         ! Get the S-matrix from the K-matrix (Eq. 6.57)
+         ! Get the S-matrix from the K-matrix
+         ! (Eq. 12 in "Solution of the coupled equations")
          !---------------------------------------------------------------------!
          call allocate_2d(s_matrix_real,number_of_open_channels,number_of_open_channels)
          call allocate_2d(s_matrix_imag,number_of_open_channels,number_of_open_channels)
          call calculate_s_matrix(number_of_open_channels,k_matrix,s_matrix_real,s_matrix_imag)
          !---------------------------------------------------------------------!
-         ! Array of wavevectors (necessary for the XS calculations)
-         !---------------------------------------------------------------------!
-         call allocate_1d(wv, number_of_open_channels)
-         do iopen = 1, number_of_open_channels
-            wv(iopen) = dsqrt((2*reduced_mass*&
-               (ETOTAL()-elevel(channel_indices(iopen)))))/bohrtoangstrom
-         enddo
-         !---------------------------------------------------------------------!
          ! S-matrix is written to the binary S-matrix file
          !---------------------------------------------------------------------!
          call save_s_matrix_block_info(jtot_, parity_exponent,                 &
-            number_of_open_channels, channel_indices, channel_l_values, wv,    &
-            s_matrix_real, s_matrix_imag)
+            number_of_open_channels, channel_indices, channel_l_values,        &
+            block_wavevectors, s_matrix_real, s_matrix_imag)
          !---------------------------------------------------------------------!
          ! Check if the S-matrices are unitary
          !---------------------------------------------------------------------!
@@ -265,7 +262,7 @@ program SCATTERING
          ! Calculate all available cross-sections
          !---------------------------------------------------------------------!
          call calculate_state_to_state_cross_section(jtot_, open_basis_levels, &
-            open_basis_wavevectors,s_matrix_real,s_matrix_imag,channel_indices,&
+            basis_wavevectors,s_matrix_real,s_matrix_imag,channel_indices,     &
             channel_l_values,partial_cross_sections_block)
          !---------------------------------------------------------------------!
          ! Print the results from this parity block to the partial XS file

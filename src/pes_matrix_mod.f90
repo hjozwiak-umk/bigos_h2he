@@ -30,11 +30,11 @@ module pes_matrix_mod
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_error, write_message,                &
       integer_to_character, time_count_summary
-   use data_mod
-   use io_mod
    use array_operations_mod, only: allocate_1d, fill_symmetric_matrix
    use math_functions_mod, only: percival_seaton_coefficient,                  &
       triangle_inequality_holds, is_sum_even, zero_projections_3j_condition
+   use data_mod
+   use physics_utilities_mod, only: wavevector_squared_from_energy   
    use radial_coupling_terms_mod, only: get_radial_coupling_term_value
    !---------------------------------------------------------------------------!
    implicit none
@@ -449,7 +449,7 @@ module pes_matrix_mod
          !---------------------------------------------------------------------!
          if (channel_index_1_ == channel_index_2_) then
             matrix_element_ = matrix_element_                                  &
-               - wavenumber_squared_from_energy(internal_energy_)
+               - wavevector_squared_from_energy(internal_energy_)
          endif
          !---------------------------------------------------------------------!
       end function calculate_single_pes_matrix_element

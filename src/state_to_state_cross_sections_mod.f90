@@ -15,14 +15,17 @@ module state_to_state_cross_sections_mod
    !!    ("check_cross_section_thresholds")
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use utility_functions_mod, only: write_message, time_count_summary,         &
+      integer_to_character, float_to_character, file_io_status
+   use array_operations_mod, only: allocate_1d
    use data_mod
-   use io_mod
-   use utility_functions_mod, only: write_message, time_count_summary
+   use physics_utilities_mod, only: total_energy
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
    private
-   public :: calculate_state_to_state_cross_section, add_cross_sections,       &
+   public :: initialize_cross_section_arrays,                                  &
+      calculate_state_to_state_cross_section, add_cross_sections,              &
       print_largest_partial_cross_sections, print_cross_sections_for_jtot,     &
       print_final_cross_sections, save_partial_xs_file_header,                 &
       save_partial_xs_single_block, determine_largest_cross_sections,          &
@@ -30,10 +33,32 @@ module state_to_state_cross_sections_mod
    !---------------------------------------------------------------------------!
    contains
    !---------------------------------------------------------------------------!
+   !                   Initialization of cross-sections arrays
+   !---------------------------------------------------------------------------!
+      subroutine initialize_cross_section_arrays(size_, partial_block_,        &
+         partial_jtot_, accumulated_)
+         !! allocate arrays keeping accumulated and partial cross-sections
+         !! in each jtot and parity block
+         !---------------------------------------------------------------------!
+         integer(int32), intent(in) :: size_
+            !! number of open basis levels (defines the size of both arrays)
+         real(dp), intent(inout), allocatable :: partial_block_(:)
+            !! array holding partial cross-sections in a parity block
+         real(dp), intent(inout), allocatable :: partial_jtot_(:)
+            !! array holding partial cross-sections in a jtot block
+         real(dp), intent(inout), allocatable :: accumulated_(:)
+            !! array holding accumulated cross-sections
+         !---------------------------------------------------------------------!
+         call allocate_1d(partial_block_, size_*size_)
+         call allocate_1d(partial_jtot_, size_*size_)
+         call allocate_1d(accumulated_, size_*size_)
+         !---------------------------------------------------------------------!
+      end subroutine initialize_cross_section_arrays
+   !---------------------------------------------------------------------------!
    !                         Calculating cross-sections
    !---------------------------------------------------------------------------!
       subroutine calculate_state_to_state_cross_section(                       &
-         total_angular_momentum_, open_basis_levels_, open_basis_wavevectors_, &
+         total_angular_momentum_, open_basis_levels_, basis_wavevectors_,      &
          s_matrix_real_, s_matrix_imag_, channel_indices_, channel_l_values_,  &
          cross_section_array_)
          !! Calculates all state-to-state cross-sections.
@@ -42,8 +67,8 @@ module state_to_state_cross_sections_mod
             !! total angular momentum
          integer(int32), intent(in) :: open_basis_levels_(:)
             !! holds indices to the basis arrays which correspond to open channels 
-         real(dp), intent(in) :: open_basis_wavevectors_(:)
-            !! holds wavenumbers k_{i}
+         real(dp), intent(in) :: basis_wavevectors_(:)
+            !! holds wavevectors k_{i}
          real(dp), intent(in) :: s_matrix_real_(:,:), s_matrix_imag_(:,:)
             !! real and imaginary parts of the S-matrix
          integer(int32), intent(in) :: channel_indices_(:)
@@ -67,9 +92,9 @@ module state_to_state_cross_sections_mod
                   * number_of_open_basis_levels_ + final_state_
                cross_section_array_(cross_section_index_) =                    &
                   compute_individual_cross_section(initial_state_,final_state_,&
-                     open_basis_levels_, open_basis_wavevectors_,              &
-                     s_matrix_real_, s_matrix_imag_, channel_indices_,         &
-                     channel_l_values_, total_angular_momentum_)
+                     open_basis_levels_, basis_wavevectors_, s_matrix_real_,   &
+                     s_matrix_imag_, channel_indices_, channel_l_values_,      &
+                     total_angular_momentum_)
             enddo
          enddo
          !---------------------------------------------------------------------!
@@ -83,7 +108,7 @@ module state_to_state_cross_sections_mod
 !------------------------------------------------------------------------------!
 !------------------------------------------------------------------------------!
       function compute_individual_cross_section(initial_state_, final_state_,  &
-         open_basis_levels_, open_basis_wavevectors_, s_matrix_real_,          &
+         open_basis_levels_, basis_wavevectors_, s_matrix_real_,          &
          s_matrix_imag_, channel_indices_, channel_l_values_,                  &
          total_angular_momentum_) result(cross_section_)
          !! Calculates cross-section for a given initial and final state.
@@ -94,8 +119,8 @@ module state_to_state_cross_sections_mod
             !! index pointing to the final state in basis arrays
          integer(int32), intent(in) :: open_basis_levels_(:)
             !! holds indices to the basis arrays which correspond to open channels
-         real(dp), intent(in) :: open_basis_wavevectors_(:)
-            !! holds wavenumbers k_{i}
+         real(dp), intent(in) :: basis_wavevectors_(:)
+            !! holds wavevectors k_{i}
          real(dp), intent(in) :: s_matrix_real_(:,:), s_matrix_imag_(:,:)
             !! real and imaginary parts of the S-matrix
          integer(int32), intent(in) :: channel_indices_(:)
@@ -116,7 +141,7 @@ module state_to_state_cross_sections_mod
          initial_index_ = open_basis_levels_(initial_state_)
          v_initial_ = v1array(initial_index_)
          j_initial_ = j1array(initial_index_)
-         wavevector_initial_ = open_basis_wavevectors_(initial_state_)
+         wavevector_initial_ = basis_wavevectors_(initial_state_)
          !---------------------------------------------------------------------!
          final_index_ = open_basis_levels_(final_state_)
          v_final_ = v1array(final_index_)
@@ -267,28 +292,24 @@ module state_to_state_cross_sections_mod
    !---------------------------------------------------------------------------!
    !                         Adding cross-sections
    !---------------------------------------------------------------------------!
-      subroutine add_cross_sections(number_of_open_basis_levels,               &
-         partial_cross_sections_, accumulated_cross_sections_)
+      subroutine add_cross_sections(size_, partial_, accumulated_)
          !! Add partial cross-sections to accumulated cross-sections
          !---------------------------------------------------------------------!
-         integer(int32), intent(in) :: number_of_open_basis_levels
-            !! number of open basis levels
-         real(dp), intent(in) :: partial_cross_sections_(                      &
-            number_of_open_basis_levels*number_of_open_basis_levels)
+         integer(int32), intent(in) :: size_
+            !! number of open basis levels (defines the size of both arrays)
+         real(dp), intent(in) :: partial_(size_*size_)
             !! array holding partial cross-sections
-         real(dp), intent(inout) :: accumulated_cross_sections_(               &
-            number_of_open_basis_levels*number_of_open_basis_levels)
+         real(dp), intent(inout) :: accumulated_(size_*size_)
             !! array holding accumulated cross-sections
          !---------------------------------------------------------------------!
          integer(int32) :: index_1_, index_2_, cross_section_index_
          !---------------------------------------------------------------------!
-         do index_1_ = 1, number_of_open_basis_levels
-            do index_2_ = 1, number_of_open_basis_levels
-               cross_section_index_ = (index_1_-1)                             &
-                  * number_of_open_basis_levels + index_2_
-               accumulated_cross_sections_(cross_section_index_) =             &
-                  accumulated_cross_sections_(cross_section_index_)            &
-                  + partial_cross_sections_(cross_section_index_)
+         do index_1_ = 1, size_
+            do index_2_ = 1, size_
+               cross_section_index_ = (index_1_-1) * size_ + index_2_
+               accumulated_(cross_section_index_) =                            &
+                  accumulated_(cross_section_index_)                           &
+                  + partial_(cross_section_index_)
             enddo
          enddo
          !---------------------------------------------------------------------!
@@ -406,8 +427,8 @@ module state_to_state_cross_sections_mod
          call write_message("Cross sections for J: "//                         &
             trim(adjustl(integer_to_character(total_angular_momentum_))) //    &
             " and energy: " //                                                 &
-            trim(adjustl(float_to_character(ETOTAL()*hartreetocm, "(F10.4)"))) &
-            // " cm-1")
+            trim(adjustl(float_to_character(total_energy()*hartreetocm,        &
+            "(F10.4)"))) // " cm-1")
          !---------------------------------------------------------------------!
          call print_all_cross_sections(open_basis_levels_, cross_sections_)
          !---------------------------------------------------------------------!
@@ -457,8 +478,8 @@ module state_to_state_cross_sections_mod
                   j1array(open_basis_levels_(index_2_)),                       &
                   v1array(open_basis_levels_(index_1_)),                       &
                   j1array(open_basis_levels_(index_1_)),                       &
-                  (etotal()-elevel(open_basis_levels_(index_1_)))*hartreetocm, &
-                  cross_sections_(cross_section_index_)
+                  (total_energy()-elevel(open_basis_levels_(index_1_)))        &
+                     * hartreetocm, cross_sections_(cross_section_index_)
                call write_message(line_)
             enddo
          enddo
@@ -512,8 +533,8 @@ module state_to_state_cross_sections_mod
                   j1array(open_basis_levels_(index_1_)),                       &
                   v1array(open_basis_levels_(index_1_)),                       &
                   j1array(open_basis_levels_(index_1_)),                       &
-                  (etotal()-elevel(open_basis_levels_(index_1_)))*hartreetocm, &
-                  xs_block(cross_section_index_)
+                  (total_energy()-elevel(open_basis_levels_(index_1_)))        &
+                     * hartreetocm, xs_block(cross_section_index_)
                call write_message(partial_line, unit_ = 12)
             enddo
          enddo

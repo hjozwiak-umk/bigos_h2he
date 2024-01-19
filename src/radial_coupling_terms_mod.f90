@@ -11,10 +11,10 @@ module radial_coupling_terms_mod
    !! 4. providing value of the interpolated radial coupling term ("get_radial_coupling_term_value")
    !!--------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
-   use data_mod
-   use io_mod
-   use utility_functions_mod, only: file_io_status, write_error, write_message
+   use utility_functions_mod, only: file_io_status, write_error, write_message,&
+      integer_to_character, float_to_character
    use math_functions_mod, only: spline, ispline
+   use data_mod
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!

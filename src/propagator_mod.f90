@@ -1,14 +1,16 @@
 module propagator_mod
    !! This modules contains the subroutines used by the renormalized
    !! Numerov propagator.                                   
-   !----------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
+   use utility_functions_mod, only: integer_to_character, float_to_character,  &
+      time_count_summary, write_message
+   use array_operations_mod, only: invert_symmetric_matrix,                    &
+      fill_symmetric_matrix, add_scalar_to_diagonal
    use data_mod
-   use io_mod
-   use array_operations_mod, only: invert_symmetric_matrix, fill_symmetric_matrix, add_scalar_to_diagonal
-   use centrifugal_matrix_mod, only: calculate_centrifugal_matrix
+   use physics_utilities_mod, only: total_energy
    use pes_matrix_mod, only: calculate_pes_matrix
-   use utility_functions_mod, only: time_count_summary
+   use centrifugal_matrix_mod, only: calculate_centrifugal_matrix
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
