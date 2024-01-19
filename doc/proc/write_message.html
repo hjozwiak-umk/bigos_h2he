@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01">
+    <meta name="author" content="Hubert Jóźwiak" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>write_message &ndash; the SCATTERING code</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">the SCATTERING code </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href='../page/index.html'>Program Description</a></li>
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="../lists/files.html">Source Files</a></li>
+            <li><a href="../lists/modules.html">Modules</a></li>
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+                   <li><a href="../program/scattering.html">Program</a></li>
+       
+            </ul>
+        
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../program/scattering.html">Program</a></li>
+          </ul>
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+  <div class="row">
+    <h1>write_message
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="row" id="info-bar">
+    <div class="col-lg-12">
+      <div class="well well-sm">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+          <li id="statements"><i class="fa fa-list-ol"></i>
+            <a data-toggle="tooltip"
+               data-placement="bottom" data-html="true"
+               title=" 0.6% of total for procedures.">9 statements</a>
+          </li>
+
+            <li id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/utility_functions_mod.f90"> Source File</a>
+            </li>
+        </ul>
+        <ol class="breadcrumb in-well text-right">
+              <li><a href='../sourcefile/utility_functions_mod.f90.html'>utility_functions_mod.f90</a></li>
+              <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
+          <li class="active">write_message</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="panel panel-primary">
+      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/write_message.html#src">write_message</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  subroutine write_message(message_, unit_)  
+</h2>
+    
+
+    <p>writes a message on a chosen unit</p>
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_</strong></td>
+            <td>
+                <p>a message to be written</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-unit_"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit_</strong></td>
+            <td>
+                <p>optional, unit where the message will be written</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Called by</h3>
+      </div>
+      <div class="panel-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~write_message~~CalledByGraph Pages: 1 -->
+<svg id="procwrite_messageCalledByGraph" width="641pt" height="659pt"
+ viewBox="0.00 0.00 641.00 658.96" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~write_message~~CalledByGraph" class="graph" transform="scale(1.78 1.78) rotate(0) translate(4 1168.97)">
+<title>proc~~write_message~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1168.97 1137,-1168.97 1137,4 -4,4"/>
+<!-- proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_node1" class="node">
+<title>proc~write_message</title>
+<polygon fill="none" stroke="black" points="1133,-691 1041,-691 1041,-667 1133,-667 1133,-691"/>
+<text text-anchor="middle" x="1087" y="-676.6" font-family="Helvetica,sans-Serif" font-size="10.50">write_message</text>
+</g>
+<!-- proc~time_count_summary -->
+<g id="proc~~write_message~~CalledByGraph_node2" class="node">
+<title>proc~time_count_summary</title>
+<g id="a_proc~~write_message~~CalledByGraph_node2"><a xlink:href=".././proc/time_count_summary.html" xlink:title="time_count_summary">
+<polygon fill="#d9534f" stroke="#d9534f" points="528,-1022 401,-1022 401,-998 528,-998 528,-1022"/>
+<text text-anchor="middle" x="464.5" y="-1007.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">time_count_summary</text>
+</a>
+</g>
+</g>
+<!-- proc~time_count_summary&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge1" class="edge">
+<title>proc~time_count_summary&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M509.28,-1022.04C609.65,-1046.78 858.93,-1091.51 1005,-972 1047.77,-937.01 1074.77,-763.18 1083.18,-701.09"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1086.65,-701.54 1084.49,-691.17 1079.71,-700.62 1086.65,-701.54"/>
+</g>
+<!-- proc~print_final_unitarity_warning -->
+<g id="proc~~write_message~~CalledByGraph_node3" class="node">
+<title>proc~print_final_unitarity_warning</title>
+<g id="a_proc~~write_message~~CalledByGraph_node3"><a xlink:href=".././proc/print_final_unitarity_warning.html" xlink:title="print_final_unitarity_warning">
+<polygon fill="#d9534f" stroke="#d9534f" points="1000.5,-963 837.5,-963 837.5,-939 1000.5,-939 1000.5,-963"/>
+<text text-anchor="middle" x="919" y="-948.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_final_unitarity_warning</text>
+</a>
+</g>
+</g>
+<!-- proc~print_final_unitarity_warning&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge3" class="edge">
+<title>proc~print_final_unitarity_warning&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M992.37,-938.96C996.94,-936.48 1001.22,-933.52 1005,-930 1071.8,-867.72 1083.68,-750.11 1085.67,-701.21"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1089.17,-701.19 1085.97,-691.09 1082.17,-700.98 1089.17,-701.19"/>
+</g>
+<!-- proc~write_header -->
+<g id="proc~~write_message~~CalledByGraph_node4" class="node">
+<title>proc~write_header</title>
+<g id="a_proc~~write_message~~CalledByGraph_node4"><a xlink:href=".././proc/write_header.html" xlink:title="write_header">
+<polygon fill="#d9534f" stroke="#d9534f" points="738.5,-594 656.5,-594 656.5,-570 738.5,-570 738.5,-594"/>
+<text text-anchor="middle" x="697.5" y="-579.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_header</text>
+</a>
+</g>
+</g>
+<!-- proc~write_header&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge5" class="edge">
+<title>proc~write_header&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M738.8,-580.43C798.97,-579.48 914.87,-583.12 1005,-619 1028.32,-628.28 1050.94,-646 1066.32,-659.79"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1064.36,-662.74 1074.08,-666.96 1069.11,-657.6 1064.36,-662.74"/>
+</g>
+<!-- proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_node5" class="node">
+<title>proc~write_error</title>
+<g id="a_proc~~write_message~~CalledByGraph_node5"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
+<polygon fill="#d9534f" stroke="#d9534f" points="954,-371 884,-371 884,-347 954,-347 954,-371"/>
+<text text-anchor="middle" x="919" y="-356.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
+</a>
+</g>
+</g>
+<!-- proc~write_header&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge27" class="edge">
+<title>proc~write_header&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M711.05,-569.86C729.88,-551.6 766.48,-515.91 797,-485 833.73,-447.81 875.85,-403.59 899.45,-378.66"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="902.1,-380.94 906.43,-371.27 897.02,-376.13 902.1,-380.94"/>
+</g>
+<!-- proc~write_error&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge2" class="edge">
+<title>proc~write_error&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M934.23,-371.02C952.82,-387.4 985.32,-418.43 1005,-451 1046.97,-520.45 1071.72,-614.92 1081.34,-657.1"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1077.93,-657.87 1083.51,-666.87 1084.76,-656.35 1077.93,-657.87"/>
+</g>
+<!-- proc~unitarity_check -->
+<g id="proc~~write_message~~CalledByGraph_node6" class="node">
+<title>proc~unitarity_check</title>
+<g id="a_proc~~write_message~~CalledByGraph_node6"><a xlink:href=".././proc/unitarity_check.html" xlink:title="unitarity_check">
+<polygon fill="#d9534f" stroke="#d9534f" points="966,-921 872,-921 872,-897 966,-897 966,-921"/>
+<text text-anchor="middle" x="919" y="-906.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">unitarity_check</text>
+</a>
+</g>
+</g>
+<!-- proc~unitarity_check&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge4" class="edge">
+<title>proc~unitarity_check&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M966.15,-905.75C979.96,-902.78 994.27,-897.44 1005,-888 1061.59,-838.21 1078.91,-744.12 1084,-701.27"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1087.5,-701.39 1085.09,-691.08 1080.54,-700.65 1087.5,-701.39"/>
+</g>
+<!-- proc~print_short_block_summary -->
+<g id="proc~~write_message~~CalledByGraph_node7" class="node">
+<title>proc~print_short_block_summary</title>
+<g id="a_proc~~write_message~~CalledByGraph_node7"><a xlink:href=".././proc/print_short_block_summary.html" xlink:title="print_short_block_summary">
+<polygon fill="#d9534f" stroke="#d9534f" points="998.5,-879 839.5,-879 839.5,-855 998.5,-855 998.5,-879"/>
+<text text-anchor="middle" x="919" y="-864.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_short_block_summary</text>
+</a>
+</g>
+</g>
+<!-- proc~print_short_block_summary&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge6" class="edge">
+<title>proc~print_short_block_summary&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M990.59,-854.96C995.75,-852.49 1000.63,-849.54 1005,-846 1051.52,-808.32 1073.18,-737.38 1081.56,-701.3"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1085.03,-701.81 1083.75,-691.29 1078.19,-700.31 1085.03,-701.81"/>
+</g>
+<!-- proc~print_cross_sections_for_jtot -->
+<g id="proc~~write_message~~CalledByGraph_node8" class="node">
+<title>proc~print_cross_sections_for_jtot</title>
+<g id="a_proc~~write_message~~CalledByGraph_node8"><a xlink:href=".././proc/print_cross_sections_for_jtot.html" xlink:title="print_cross_sections_for_jtot">
+<polygon fill="#d9534f" stroke="#d9534f" points="999.5,-837 838.5,-837 838.5,-813 999.5,-813 999.5,-837"/>
+<text text-anchor="middle" x="919" y="-822.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_cross_sections_for_jtot</text>
+</a>
+</g>
+</g>
+<!-- proc~print_cross_sections_for_jtot&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge7" class="edge">
+<title>proc~print_cross_sections_for_jtot&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M988.85,-812.91C994.57,-810.47 1000.05,-807.53 1005,-804 1041.95,-777.67 1066.3,-728.72 1077.96,-700.52"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1081.25,-701.73 1081.69,-691.15 1074.74,-699.15 1081.25,-701.73"/>
+</g>
+<!-- proc~save_partial_xs_file_header -->
+<g id="proc~~write_message~~CalledByGraph_node9" class="node">
+<title>proc~save_partial_xs_file_header</title>
+<g id="a_proc~~write_message~~CalledByGraph_node9"><a xlink:href=".././proc/save_partial_xs_file_header.html" xlink:title="save_partial_xs_file_header">
+<polygon fill="#d9534f" stroke="#d9534f" points="544,-552 385,-552 385,-528 544,-528 544,-552"/>
+<text text-anchor="middle" x="464.5" y="-537.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_partial_xs_file_header</text>
+</a>
+</g>
+</g>
+<!-- proc~save_partial_xs_file_header&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge8" class="edge">
+<title>proc~save_partial_xs_file_header&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M538.16,-527.98C666.9,-508.24 928.72,-475.52 1005,-522 1053.66,-551.65 1074.35,-620.95 1082.04,-656.74"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1078.64,-657.56 1084.03,-666.68 1085.5,-656.19 1078.64,-657.56"/>
+</g>
+<!-- proc~file_io_status -->
+<g id="proc~~write_message~~CalledByGraph_node26" class="node">
+<title>proc~file_io_status</title>
+<g id="a_proc~~write_message~~CalledByGraph_node26"><a xlink:href=".././proc/file_io_status.html" xlink:title="file_io_status">
+<polygon fill="#d9534f" stroke="#d9534f" points="738,-434 657,-434 657,-410 738,-410 738,-434"/>
+<text text-anchor="middle" x="697.5" y="-419.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">file_io_status</text>
+</a>
+</g>
+</g>
+<!-- proc~save_partial_xs_file_header&#45;&gt;proc~file_io_status -->
+<g id="proc~~write_message~~CalledByGraph_edge57" class="edge">
+<title>proc~save_partial_xs_file_header&#45;&gt;proc~file_io_status</title>
+<path fill="none" stroke="#00ffc4" d="M485.72,-527.88C505.69,-515.61 536.82,-495.69 562,-476 579.1,-462.63 578.71,-452.95 598,-443 613.06,-435.24 630.83,-430.34 647.1,-427.26"/>
+<polygon fill="#00ffc4" stroke="#00ffc4" points="647.73,-430.7 657,-425.56 646.55,-423.8 647.73,-430.7"/>
+</g>
+<!-- proc~save_partial_xs_single_block -->
+<g id="proc~~write_message~~CalledByGraph_node10" class="node">
+<title>proc~save_partial_xs_single_block</title>
+<g id="a_proc~~write_message~~CalledByGraph_node10"><a xlink:href=".././proc/save_partial_xs_single_block.html" xlink:title="save_partial_xs_single_block">
+<polygon fill="#d9534f" stroke="#d9534f" points="1001,-795 837,-795 837,-771 1001,-771 1001,-795"/>
+<text text-anchor="middle" x="919" y="-780.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_partial_xs_single_block</text>
+</a>
+</g>
+</g>
+<!-- proc~save_partial_xs_single_block&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge9" class="edge">
+<title>proc~save_partial_xs_single_block&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M985.06,-770.96C992.01,-768.5 998.8,-765.55 1005,-762 1032.58,-746.21 1056.94,-718.34 1071.57,-699.29"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1074.41,-701.34 1077.58,-691.23 1068.8,-697.15 1074.41,-701.34"/>
+</g>
+<!-- proc~write_warning -->
+<g id="proc~~write_message~~CalledByGraph_node11" class="node">
+<title>proc~write_warning</title>
+<g id="a_proc~~write_message~~CalledByGraph_node11"><a xlink:href=".././proc/write_warning.html" xlink:title="write_warning">
+<polygon fill="#d9534f" stroke="#d9534f" points="741,-87 654,-87 654,-63 741,-63 741,-87"/>
+<text text-anchor="middle" x="697.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_warning</text>
+</a>
+</g>
+</g>
+<!-- proc~write_warning&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge10" class="edge">
+<title>proc~write_warning&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M741.06,-74C808.06,-74.92 937.43,-87.28 1005,-164 1070.97,-238.9 1083.39,-567.04 1085.57,-656.44"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1082.07,-656.64 1085.79,-666.56 1089.07,-656.48 1082.07,-656.64"/>
+</g>
+<!-- proc~input_summary -->
+<g id="proc~~write_message~~CalledByGraph_node12" class="node">
+<title>proc~input_summary</title>
+<g id="a_proc~~write_message~~CalledByGraph_node12"><a xlink:href=".././proc/input_summary.html" xlink:title="input_summary">
+<polygon fill="#d9534f" stroke="#d9534f" points="966.5,-711 871.5,-711 871.5,-687 966.5,-687 966.5,-711"/>
+<text text-anchor="middle" x="919" y="-696.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">input_summary</text>
+</a>
+</g>
+</g>
+<!-- proc~input_summary&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge11" class="edge">
+<title>proc~input_summary&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M966.68,-693.38C986.63,-690.97 1010.05,-688.15 1030.84,-685.65"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1031.3,-689.12 1040.81,-684.44 1030.47,-682.17 1031.3,-689.12"/>
+</g>
+<!-- proc~reduce_radial_coupling_terms -->
+<g id="proc~~write_message~~CalledByGraph_node13" class="node">
+<title>proc~reduce_radial_coupling_terms</title>
+<g id="a_proc~~write_message~~CalledByGraph_node13"><a xlink:href=".././proc/reduce_radial_coupling_terms.html" xlink:title="reduce_radial_coupling_terms">
+<polygon fill="#d9534f" stroke="#d9534f" points="1005,-753 833,-753 833,-729 1005,-729 1005,-753"/>
+<text text-anchor="middle" x="919" y="-738.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">reduce_radial_coupling_terms</text>
+</a>
+</g>
+</g>
+<!-- proc~reduce_radial_coupling_terms&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge12" class="edge">
+<title>proc~reduce_radial_coupling_terms&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M976.33,-728.99C986.01,-726.39 995.88,-723.39 1005,-720 1022.62,-713.46 1041.4,-704.12 1056.44,-696"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1058.2,-699.03 1065.27,-691.14 1054.82,-692.89 1058.2,-699.03"/>
+</g>
+<!-- proc~read_input_file -->
+<g id="proc~~write_message~~CalledByGraph_node14" class="node">
+<title>proc~read_input_file</title>
+<g id="a_proc~~write_message~~CalledByGraph_node14"><a xlink:href=".././proc/read_input_file.html" xlink:title="read_input_file">
+<polygon fill="#d9534f" stroke="#d9534f" points="510,-670 419,-670 419,-646 510,-646 510,-670"/>
+<text text-anchor="middle" x="464.5" y="-655.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_input_file</text>
+</a>
+</g>
+</g>
+<!-- proc~read_input_file&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge13" class="edge">
+<title>proc~read_input_file&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M510.12,-659.51C621.1,-663.27 909.32,-673.02 1030.76,-677.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1030.83,-680.63 1040.95,-677.48 1031.07,-673.64 1030.83,-680.63"/>
+</g>
+<!-- proc~read_input_file&#45;&gt;proc~input_summary -->
+<g id="proc~~write_message~~CalledByGraph_edge42" class="edge">
+<title>proc~read_input_file&#45;&gt;proc~input_summary</title>
+<path fill="none" stroke="#00a9ff" d="M510.15,-665.7C535.79,-669.88 568.63,-674.82 598,-678 689.76,-687.92 796.86,-693.8 860.96,-696.71"/>
+<polygon fill="#00a9ff" stroke="#00a9ff" points="861.11,-700.22 871.26,-697.17 861.42,-693.23 861.11,-700.22"/>
+</g>
+<!-- proc~check_namelist_input -->
+<g id="proc~~write_message~~CalledByGraph_node15" class="node">
+<title>proc~check_namelist_input</title>
+<g id="a_proc~~write_message~~CalledByGraph_node15"><a xlink:href=".././proc/check_namelist_input.html" xlink:title="check_namelist_input">
+<polygon fill="#d9534f" stroke="#d9534f" points="761,-636 634,-636 634,-612 761,-612 761,-636"/>
+<text text-anchor="middle" x="697.5" y="-621.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check_namelist_input</text>
+</a>
+</g>
+</g>
+<!-- proc~read_input_file&#45;&gt;proc~check_namelist_input -->
+<g id="proc~~write_message~~CalledByGraph_edge45" class="edge">
+<title>proc~read_input_file&#45;&gt;proc~check_namelist_input</title>
+<path fill="none" stroke="#5400ff" d="M510.04,-651.44C542.16,-646.72 586.22,-640.23 623.46,-634.75"/>
+<polygon fill="#5400ff" stroke="#5400ff" points="624.38,-638.15 633.76,-633.23 623.36,-631.23 624.38,-638.15"/>
+</g>
+<!-- proc~read_input_file&#45;&gt;proc~file_io_status -->
+<g id="proc~~write_message~~CalledByGraph_edge56" class="edge">
+<title>proc~read_input_file&#45;&gt;proc~file_io_status</title>
+<path fill="none" stroke="#00ffc4" d="M481.96,-645.72C503.39,-628.9 540.65,-596.67 562,-561 590.17,-513.96 557.6,-480.07 598,-443 611.14,-430.94 629.44,-425.16 646.71,-422.57"/>
+<polygon fill="#00ffc4" stroke="#00ffc4" points="647.19,-426.03 656.71,-421.38 646.37,-419.08 647.19,-426.03"/>
+</g>
+<!-- proc~check_namelist_input&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge14" class="edge">
+<title>proc~check_namelist_input&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M761.04,-622.33C823.62,-622.04 922.23,-625.36 1005,-645 1021.68,-648.96 1039.32,-655.99 1053.87,-662.64"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1052.41,-665.82 1062.94,-666.92 1055.39,-659.49 1052.41,-665.82"/>
+</g>
+<!-- proc~check_namelist_input&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge30" class="edge">
+<title>proc~check_namelist_input&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M761.06,-619.8C773.97,-616.55 786.75,-611.31 797,-603 827.6,-578.19 815.88,-557.48 833,-522 857.9,-470.38 889.69,-410.98 906.45,-380.11"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="909.63,-381.59 911.34,-371.14 903.48,-378.24 909.63,-381.59"/>
+</g>
+<!-- proc~no_open_channels_message -->
+<g id="proc~~write_message~~CalledByGraph_node16" class="node">
+<title>proc~no_open_channels_message</title>
+<g id="a_proc~~write_message~~CalledByGraph_node16"><a xlink:href=".././proc/no_open_channels_message.html" xlink:title="no_open_channels_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="1001.5,-555 836.5,-555 836.5,-531 1001.5,-531 1001.5,-555"/>
+<text text-anchor="middle" x="919" y="-540.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">no_open_channels_message</text>
+</a>
+</g>
+</g>
+<!-- proc~no_open_channels_message&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge15" class="edge">
+<title>proc~no_open_channels_message&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M977.68,-555.14C987.31,-558.67 996.82,-563.2 1005,-569 1037.8,-592.24 1062.67,-632.93 1075.74,-657.77"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1072.65,-659.42 1080.31,-666.75 1078.89,-656.25 1072.65,-659.42"/>
+</g>
+<!-- proc~print_channels -->
+<g id="proc~~write_message~~CalledByGraph_node17" class="node">
+<title>proc~print_channels</title>
+<g id="a_proc~~write_message~~CalledByGraph_node17"><a xlink:href=".././proc/print_channels.html" xlink:title="print_channels">
+<polygon fill="#d9534f" stroke="#d9534f" points="268.5,-188 177.5,-188 177.5,-164 268.5,-164 268.5,-188"/>
+<text text-anchor="middle" x="223" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_channels</text>
+</a>
+</g>
+</g>
+<!-- proc~print_channels&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge16" class="edge">
+<title>proc~print_channels&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M268.51,-170.39C366.75,-159.65 608.35,-142.28 797,-203 901.91,-236.77 941.49,-247.93 1005,-338 1077.16,-440.33 1085.65,-598.49 1086.2,-656.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1082.7,-656.84 1086.22,-666.84 1089.7,-656.83 1082.7,-656.84"/>
+</g>
+<!-- proc~wavevector_squared_from_energy -->
+<g id="proc~~write_message~~CalledByGraph_node27" class="node">
+<title>proc~wavevector_squared_from_energy</title>
+<g id="a_proc~~write_message~~CalledByGraph_node27"><a xlink:href=".././proc/wavevector_squared_from_energy.html" xlink:title="wavevector_squared_from_energy">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="562,-230 367,-230 367,-206 562,-206 562,-230"/>
+<text text-anchor="middle" x="464.5" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">wavevector_squared_from_energy</text>
+</a>
+</g>
+</g>
+<!-- proc~print_channels&#45;&gt;proc~wavevector_squared_from_energy -->
+<g id="proc~~write_message~~CalledByGraph_edge61" class="edge">
+<title>proc~print_channels&#45;&gt;proc~wavevector_squared_from_energy</title>
+<path fill="none" stroke="#00c4ff" d="M268.77,-183.85C301.33,-189.56 346.27,-197.44 384.77,-204.19"/>
+<polygon fill="#00c4ff" stroke="#00c4ff" points="384.47,-207.69 394.93,-205.97 385.68,-200.8 384.47,-207.69"/>
+</g>
+<!-- proc~print_final_cross_sections -->
+<g id="proc~~write_message~~CalledByGraph_node18" class="node">
+<title>proc~print_final_cross_sections</title>
+<g id="a_proc~~write_message~~CalledByGraph_node18"><a xlink:href=".././proc/print_final_cross_sections.html" xlink:title="print_final_cross_sections">
+<polygon fill="#d9534f" stroke="#d9534f" points="771,-476 624,-476 624,-452 771,-452 771,-476"/>
+<text text-anchor="middle" x="697.5" y="-461.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_final_cross_sections</text>
+</a>
+</g>
+</g>
+<!-- proc~print_final_cross_sections&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge17" class="edge">
+<title>proc~print_final_cross_sections&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M758.25,-451.97C824.93,-442.08 932.89,-437.02 1005,-489 1060.69,-529.14 1078.39,-615.51 1083.77,-656.51"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1080.31,-657.05 1084.96,-666.57 1087.26,-656.23 1080.31,-657.05"/>
+</g>
+<!-- program~scattering -->
+<g id="proc~~write_message~~CalledByGraph_node19" class="node">
+<title>program~scattering</title>
+<g id="a_proc~~write_message~~CalledByGraph_node19"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-630 0,-630 0,-606 79,-606 79,-630"/>
+<text text-anchor="middle" x="39.5" y="-615.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~write_message -->
+<g id="proc~~write_message~~CalledByGraph_edge18" class="edge">
+<title>program~scattering&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#ff0000" d="M40.36,-630.2C39.84,-699.78 41.06,-1045.76 115,-1113 229.77,-1217.36 308.38,-1132 463.5,-1132 463.5,-1132 463.5,-1132 698.5,-1132 843.38,-1132 908.61,-1129.16 1005,-1021 1048.07,-972.67 1075.39,-769.5 1083.48,-701.38"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1086.97,-701.64 1084.65,-691.3 1080.02,-700.83 1086.97,-701.64"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~time_count_summary -->
+<g id="proc~~write_message~~CalledByGraph_edge22" class="edge">
+<title>program~scattering&#45;&gt;proc~time_count_summary</title>
+<path fill="none" stroke="#ff0000" d="M41.01,-630.15C43.72,-688.85 58.61,-942.13 115,-991 154.74,-1025.44 300.78,-1021.91 390.72,-1016.07"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="391.12,-1019.55 400.86,-1015.39 390.65,-1012.57 391.12,-1019.55"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~print_final_unitarity_warning -->
+<g id="proc~~write_message~~CalledByGraph_edge23" class="edge">
+<title>program~scattering&#45;&gt;proc~print_final_unitarity_warning</title>
+<path fill="none" stroke="#ff5400" d="M39.86,-630.05C38.38,-671.49 39.53,-809.33 115,-876 218.56,-967.48 639.74,-962.48 827.23,-955.4"/>
+<polygon fill="#ff5400" stroke="#ff5400" points="827.48,-958.89 837.34,-955 827.21,-951.89 827.48,-958.89"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~write_header -->
+<g id="proc~~write_message~~CalledByGraph_edge24" class="edge">
+<title>program~scattering&#45;&gt;proc~write_header</title>
+<path fill="none" stroke="#ffaa00" d="M79.13,-616.79C165.66,-613.96 381.6,-606.19 562,-594 589.86,-592.12 620.9,-589.39 646.14,-587.01"/>
+<polygon fill="#ffaa00" stroke="#ffaa00" points="646.6,-590.48 656.22,-586.05 645.93,-583.51 646.6,-590.48"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~unitarity_check -->
+<g id="proc~~write_message~~CalledByGraph_edge34" class="edge">
+<title>program~scattering&#45;&gt;proc~unitarity_check</title>
+<path fill="none" stroke="#aaff00" d="M40.76,-630.16C42.26,-666.76 52.04,-776.66 115,-830 227.5,-925.31 697.93,-917.29 861.59,-911.43"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="862.05,-914.92 871.92,-911.05 861.79,-907.92 862.05,-914.92"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~print_short_block_summary -->
+<g id="proc~~write_message~~CalledByGraph_edge35" class="edge">
+<title>program~scattering&#45;&gt;proc~print_short_block_summary</title>
+<path fill="none" stroke="#54ff00" d="M42,-630.03C46.58,-661.2 63.34,-744.9 115,-785 224.46,-869.97 644,-872.59 829.23,-869.39"/>
+<polygon fill="#54ff00" stroke="#54ff00" points="829.54,-872.89 839.48,-869.2 829.42,-865.89 829.54,-872.89"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~print_cross_sections_for_jtot -->
+<g id="proc~~write_message~~CalledByGraph_edge36" class="edge">
+<title>program~scattering&#45;&gt;proc~print_cross_sections_for_jtot</title>
+<path fill="none" stroke="#00ff00" d="M44.19,-630.01C52.49,-654.91 75.1,-712.25 115,-741 227.11,-821.77 642.78,-827.95 827.97,-826.53"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="828.25,-830.03 838.22,-826.44 828.19,-823.03 828.25,-830.03"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~save_partial_xs_file_header -->
+<g id="proc~~write_message~~CalledByGraph_edge37" class="edge">
+<title>program~scattering&#45;&gt;proc~save_partial_xs_file_header</title>
+<path fill="none" stroke="#00ff55" d="M53.26,-605.81C67.2,-593.34 90.78,-574.62 115,-566 199.44,-535.95 302.49,-531.92 374.54,-533.89"/>
+<polygon fill="#00ff55" stroke="#00ff55" points="374.83,-537.4 384.94,-534.22 375.05,-530.41 374.83,-537.4"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~save_partial_xs_single_block -->
+<g id="proc~~write_message~~CalledByGraph_edge38" class="edge">
+<title>program~scattering&#45;&gt;proc~save_partial_xs_single_block</title>
+<path fill="none" stroke="#00ffa9" d="M48.77,-630.05C61.07,-646.94 85.9,-677.23 115,-692 349.74,-811.16 671.74,-804.53 827,-792.49"/>
+<polygon fill="#00ffa9" stroke="#00ffa9" points="827.29,-795.98 836.98,-791.69 826.73,-789 827.29,-795.98"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~reduce_radial_coupling_terms -->
+<g id="proc~~write_message~~CalledByGraph_edge43" class="edge">
+<title>program~scattering&#45;&gt;proc~reduce_radial_coupling_terms</title>
+<path fill="none" stroke="#0054ff" d="M59.95,-630.06C74.54,-638.5 95.31,-649.26 115,-655 363.02,-727.35 670.03,-740.1 822.61,-741.57"/>
+<polygon fill="#0054ff" stroke="#0054ff" points="822.85,-745.07 832.88,-741.65 822.91,-738.07 822.85,-745.07"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~read_input_file -->
+<g id="proc~~write_message~~CalledByGraph_edge44" class="edge">
+<title>program~scattering&#45;&gt;proc~read_input_file</title>
+<path fill="none" stroke="#0000ff" d="M79.04,-626.09C90.56,-628.28 103.26,-630.46 115,-632 218.28,-645.51 339.78,-652.6 408.6,-655.79"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="408.63,-659.3 418.78,-656.26 408.95,-652.31 408.63,-659.3"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~no_open_channels_message -->
+<g id="proc~~write_message~~CalledByGraph_edge46" class="edge">
+<title>program~scattering&#45;&gt;proc~no_open_channels_message</title>
+<path fill="none" stroke="#aa00ff" d="M79.02,-609.39C90.55,-607.04 103.25,-604.69 115,-603 328.29,-572.35 383.07,-576.39 598,-561 674.92,-555.49 762.34,-550.67 826.34,-547.41"/>
+<polygon fill="#aa00ff" stroke="#aa00ff" points="826.6,-550.9 836.41,-546.9 826.25,-543.91 826.6,-550.9"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~print_channels -->
+<g id="proc~~write_message~~CalledByGraph_edge47" class="edge">
+<title>program~scattering&#45;&gt;proc~print_channels</title>
+<path fill="none" stroke="#ff00ff" d="M40.87,-605.75C43,-542.9 55.86,-257.26 115,-197 128.54,-183.2 148.32,-177.07 167.19,-174.68"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="167.61,-178.16 177.23,-173.74 166.95,-171.19 167.61,-178.16"/>
+</g>
+<!-- program~scattering&#45;&gt;proc~print_final_cross_sections -->
+<g id="proc~~write_message~~CalledByGraph_edge48" class="edge">
+<title>program~scattering&#45;&gt;proc~print_final_cross_sections</title>
+<path fill="none" stroke="#ff00aa" d="M46.58,-605.97C57.35,-586.09 81.8,-546.82 115,-529 199.27,-483.77 474.14,-469.91 613.66,-465.74"/>
+<polygon fill="#ff00aa" stroke="#ff00aa" points="613.98,-469.24 623.88,-465.45 613.78,-462.24 613.98,-469.24"/>
+</g>
+<!-- proc~calculate_state_to_state_cross_section -->
+<g id="proc~~write_message~~CalledByGraph_node21" class="node">
+<title>proc~calculate_state_to_state_cross_section</title>
+<g id="a_proc~~write_message~~CalledByGraph_node21"><a xlink:href=".././proc/calculate_state_to_state_cross_section.html" xlink:title="calculate_state_to_state_cross_section">
+<polygon fill="#d9534f" stroke="#d9534f" points="331,-982 115,-982 115,-958 331,-958 331,-982"/>
+<text text-anchor="middle" x="223" y="-967.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_state_to_state_cross_section</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~calculate_state_to_state_cross_section -->
+<g id="proc~~write_message~~CalledByGraph_edge50" class="edge">
+<title>program~scattering&#45;&gt;proc~calculate_state_to_state_cross_section</title>
+<path fill="none" stroke="#ff7500" d="M41.59,-630.2C46.65,-683.79 69.44,-897.81 115,-944 118.3,-947.34 121.95,-950.29 125.85,-952.87"/>
+<polygon fill="#ff7500" stroke="#ff7500" points="124.36,-956.05 134.77,-957.98 127.84,-949.97 124.36,-956.05"/>
+</g>
+<!-- proc~prepare_wavevector_array -->
+<g id="proc~~write_message~~CalledByGraph_node23" class="node">
+<title>proc~prepare_wavevector_array</title>
+<g id="a_proc~~write_message~~CalledByGraph_node23"><a xlink:href=".././proc/prepare_wavevector_array.html" xlink:title="prepare_wavevector_array">
+<polygon fill="#d9534f" stroke="#d9534f" points="300,-314 146,-314 146,-290 300,-290 300,-314"/>
+<text text-anchor="middle" x="223" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">prepare_wavevector_array</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~prepare_wavevector_array -->
+<g id="proc~~write_message~~CalledByGraph_edge52" class="edge">
+<title>program~scattering&#45;&gt;proc~prepare_wavevector_array</title>
+<path fill="none" stroke="#9cff00" d="M41.84,-605.91C47.67,-555.56 72.44,-363.34 115,-323 121.17,-317.15 128.47,-312.71 136.32,-309.36"/>
+<polygon fill="#9cff00" stroke="#9cff00" points="137.55,-312.63 145.74,-305.91 135.14,-306.06 137.55,-312.63"/>
+</g>
+<!-- proc~initialize_pes_matrix -->
+<g id="proc~~write_message~~CalledByGraph_node24" class="node">
+<title>proc~initialize_pes_matrix</title>
+<g id="a_proc~~write_message~~CalledByGraph_node24"><a xlink:href=".././proc/initialize_pes_matrix.html" xlink:title="initialize_pes_matrix">
+<polygon fill="#d9534f" stroke="#d9534f" points="283.5,-1104 162.5,-1104 162.5,-1080 283.5,-1080 283.5,-1104"/>
+<text text-anchor="middle" x="223" y="-1089.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize_pes_matrix</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~initialize_pes_matrix -->
+<g id="proc~~write_message~~CalledByGraph_edge53" class="edge">
+<title>program~scattering&#45;&gt;proc~initialize_pes_matrix</title>
+<path fill="none" stroke="#27ff00" d="M40.7,-630.3C42.03,-696.05 51.61,-1005.63 115,-1071 124.92,-1081.23 138.24,-1087.25 152.12,-1090.67"/>
+<polygon fill="#27ff00" stroke="#27ff00" points="151.79,-1094.17 162.29,-1092.72 153.18,-1087.31 151.79,-1094.17"/>
+</g>
+<!-- proc~numerov -->
+<g id="proc~~write_message~~CalledByGraph_node25" class="node">
+<title>proc~numerov</title>
+<g id="a_proc~~write_message~~CalledByGraph_node25"><a xlink:href=".././proc/numerov.html" xlink:title="numerov">
+<polygon fill="#d9534f" stroke="#d9534f" points="253,-1062 193,-1062 193,-1038 253,-1038 253,-1062"/>
+<text text-anchor="middle" x="223" y="-1047.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">numerov</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~numerov -->
+<g id="proc~~write_message~~CalledByGraph_edge54" class="edge">
+<title>program~scattering&#45;&gt;proc~numerov</title>
+<path fill="none" stroke="#00ff4e" d="M41,-630.17C43.77,-691.38 59.14,-964.87 115,-1024 132.19,-1042.2 159.79,-1048.58 182.65,-1050.48"/>
+<polygon fill="#00ff4e" stroke="#00ff4e" points="182.58,-1053.98 192.77,-1051.06 182.99,-1046.99 182.58,-1053.98"/>
+</g>
+<!-- proc~set_space_fixed_channels -->
+<g id="proc~~write_message~~CalledByGraph_node29" class="node">
+<title>proc~set_space_fixed_channels</title>
+<g id="a_proc~~write_message~~CalledByGraph_node29"><a xlink:href=".././proc/set_space_fixed_channels.html" xlink:title="set_space_fixed_channels">
+<polygon fill="#d9534f" stroke="#d9534f" points="772,-392 623,-392 623,-368 772,-368 772,-392"/>
+<text text-anchor="middle" x="697.5" y="-377.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_space_fixed_channels</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~set_space_fixed_channels -->
+<g id="proc~~write_message~~CalledByGraph_edge64" class="edge">
+<title>program~scattering&#45;&gt;proc~set_space_fixed_channels</title>
+<path fill="none" stroke="#2700ff" d="M40.56,-605.98C41.47,-569.32 49.74,-458.51 115,-410 191.48,-353.15 470.7,-363.77 612.56,-373.31"/>
+<polygon fill="#2700ff" stroke="#2700ff" points="612.73,-376.83 622.94,-374.02 613.21,-369.84 612.73,-376.83"/>
+</g>
+<!-- proc~interpolate_radial_coupling_terms -->
+<g id="proc~~write_message~~CalledByGraph_node33" class="node">
+<title>proc~interpolate_radial_coupling_terms</title>
+<g id="a_proc~~write_message~~CalledByGraph_node33"><a xlink:href=".././proc/interpolate_radial_coupling_terms.html" xlink:title="interpolate_radial_coupling_terms">
+<polygon fill="#d9534f" stroke="#d9534f" points="320,-356 126,-356 126,-332 320,-332 320,-356"/>
+<text text-anchor="middle" x="223" y="-341.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolate_radial_coupling_terms</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~interpolate_radial_coupling_terms -->
+<g id="proc~~write_message~~CalledByGraph_edge68" class="edge">
+<title>program~scattering&#45;&gt;proc~interpolate_radial_coupling_terms</title>
+<path fill="none" stroke="#ff0000" d="M40.22,-605.79C40.01,-565.62 45.01,-436.34 115,-370 118.62,-366.56 122.62,-363.56 126.88,-360.93"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="128.81,-363.87 135.96,-356.05 125.49,-357.71 128.81,-363.87"/>
+</g>
+<!-- proc~calculate_k_matrix -->
+<g id="proc~~write_message~~CalledByGraph_node34" class="node">
+<title>proc~calculate_k_matrix</title>
+<g id="a_proc~~write_message~~CalledByGraph_node34"><a xlink:href=".././proc/calculate_k_matrix.html" xlink:title="calculate_k_matrix">
+<polygon fill="#d9534f" stroke="#d9534f" points="279,-146 167,-146 167,-122 279,-122 279,-146"/>
+<text text-anchor="middle" x="223" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_k_matrix</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~calculate_k_matrix -->
+<g id="proc~~write_message~~CalledByGraph_edge69" class="edge">
+<title>program~scattering&#45;&gt;proc~calculate_k_matrix</title>
+<path fill="none" stroke="#ffbf00" d="M40.65,-605.87C41.72,-539.63 50.22,-222.04 115,-155 126.01,-143.61 141.25,-137.42 156.78,-134.25"/>
+<polygon fill="#ffbf00" stroke="#ffbf00" points="157.69,-137.65 166.99,-132.58 156.56,-130.74 157.69,-137.65"/>
+</g>
+<!-- proc~read_radial_coupling_terms -->
+<g id="proc~~write_message~~CalledByGraph_node37" class="node">
+<title>proc~read_radial_coupling_terms</title>
+<g id="a_proc~~write_message~~CalledByGraph_node37"><a xlink:href=".././proc/read_radial_coupling_terms.html" xlink:title="read_radial_coupling_terms">
+<polygon fill="#d9534f" stroke="#d9534f" points="303,-474 143,-474 143,-450 303,-450 303,-474"/>
+<text text-anchor="middle" x="223" y="-459.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_radial_coupling_terms</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~read_radial_coupling_terms -->
+<g id="proc~~write_message~~CalledByGraph_edge71" class="edge">
+<title>program~scattering&#45;&gt;proc~read_radial_coupling_terms</title>
+<path fill="none" stroke="#00ffff" d="M43.9,-605.77C51.78,-579.79 73.82,-518.94 115,-488 120.6,-483.79 126.78,-480.26 133.27,-477.29"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="135.03,-480.35 142.96,-473.33 132.38,-473.87 135.03,-480.35"/>
+</g>
+<!-- proc~save_s_matrix_file_header -->
+<g id="proc~~write_message~~CalledByGraph_node38" class="node">
+<title>proc~save_s_matrix_file_header</title>
+<g id="a_proc~~write_message~~CalledByGraph_node38"><a xlink:href=".././proc/save_s_matrix_file_header.html" xlink:title="save_s_matrix_file_header">
+<polygon fill="#d9534f" stroke="#d9534f" points="541,-434 388,-434 388,-410 541,-410 541,-434"/>
+<text text-anchor="middle" x="464.5" y="-419.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_s_matrix_file_header</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~save_s_matrix_file_header -->
+<g id="proc~~write_message~~CalledByGraph_edge72" class="edge">
+<title>program~scattering&#45;&gt;proc~save_s_matrix_file_header</title>
+<path fill="none" stroke="#003fff" d="M41.39,-605.88C44.55,-572.82 58.3,-480.92 115,-441 155.79,-412.28 288.28,-412.65 377.63,-416.56"/>
+<polygon fill="#003fff" stroke="#003fff" points="377.61,-420.06 387.76,-417.03 377.93,-413.07 377.61,-420.06"/>
+</g>
+<!-- proc~save_open_basis_levels -->
+<g id="proc~~write_message~~CalledByGraph_node39" class="node">
+<title>proc~save_open_basis_levels</title>
+<g id="a_proc~~write_message~~CalledByGraph_node39"><a xlink:href=".././proc/save_open_basis_levels.html" xlink:title="save_open_basis_levels">
+<polygon fill="#d9534f" stroke="#d9534f" points="292,-230 154,-230 154,-206 292,-206 292,-230"/>
+<text text-anchor="middle" x="223" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_open_basis_levels</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~save_open_basis_levels -->
+<g id="proc~~write_message~~CalledByGraph_edge73" class="edge">
+<title>program~scattering&#45;&gt;proc~save_open_basis_levels</title>
+<path fill="none" stroke="#7f00ff" d="M41.12,-605.81C44.38,-546.93 61.41,-292.57 115,-239 123.08,-230.93 133.29,-225.49 144.18,-221.9"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="145.2,-225.25 153.89,-219.2 143.32,-218.51 145.2,-225.25"/>
+</g>
+<!-- proc~calculate_largest_wavevector -->
+<g id="proc~~write_message~~CalledByGraph_node40" class="node">
+<title>proc~calculate_largest_wavevector</title>
+<g id="a_proc~~write_message~~CalledByGraph_node40"><a xlink:href=".././proc/calculate_largest_wavevector.html" xlink:title="calculate_largest_wavevector">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="308,-272 138,-272 138,-248 308,-248 308,-272"/>
+<text text-anchor="middle" x="223" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_largest_wavevector</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;proc~calculate_largest_wavevector -->
+<g id="proc~~write_message~~CalledByGraph_edge74" class="edge">
+<title>program~scattering&#45;&gt;proc~calculate_largest_wavevector</title>
+<path fill="none" stroke="#ff00bf" d="M41.45,-605.72C45.96,-550.74 66.99,-327.89 115,-281 119.06,-277.03 123.64,-273.71 128.56,-270.93"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="130.27,-273.99 137.75,-266.49 127.22,-267.69 130.27,-273.99"/>
+</g>
+<!-- proc~spline -->
+<g id="proc~~write_message~~CalledByGraph_node20" class="node">
+<title>proc~spline</title>
+<g id="a_proc~~write_message~~CalledByGraph_node20"><a xlink:href=".././proc/spline.html" xlink:title="spline">
+<polygon fill="#d9534f" stroke="#d9534f" points="724.5,-350 670.5,-350 670.5,-326 724.5,-326 724.5,-350"/>
+<text text-anchor="middle" x="697.5" y="-335.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">spline</text>
+</a>
+</g>
+</g>
+<!-- proc~spline&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge25" class="edge">
+<title>proc~spline&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M724.54,-340.49C761.31,-344.01 828.94,-350.48 873.7,-354.76"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="873.42,-358.25 883.71,-355.72 874.09,-351.28 873.42,-358.25"/>
+</g>
+<!-- proc~calculate_state_to_state_cross_section&#45;&gt;proc~time_count_summary -->
+<g id="proc~~write_message~~CalledByGraph_edge20" class="edge">
+<title>proc~calculate_state_to_state_cross_section&#45;&gt;proc~time_count_summary</title>
+<path fill="none" stroke="#ff0000" d="M295.86,-982C325.82,-987 360.56,-992.81 390.63,-997.83"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="390.19,-1001.3 400.63,-999.5 391.34,-994.4 390.19,-1001.3"/>
+</g>
+<!-- proc~modified_bessel_temme_algorithm -->
+<g id="proc~~write_message~~CalledByGraph_node22" class="node">
+<title>proc~modified_bessel_temme_algorithm</title>
+<g id="a_proc~~write_message~~CalledByGraph_node22"><a xlink:href=".././proc/modified_bessel_temme_algorithm.html" xlink:title="modified_bessel_temme_algorithm">
+<polygon fill="#d9534f" stroke="#d9534f" points="797,-150 598,-150 598,-126 797,-126 797,-150"/>
+<text text-anchor="middle" x="697.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">modified_bessel_temme_algorithm</text>
+</a>
+</g>
+</g>
+<!-- proc~modified_bessel_temme_algorithm&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge26" class="edge">
+<title>proc~modified_bessel_temme_algorithm&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M720.68,-150.1C741.65,-162.15 773.33,-181.99 797,-204 842.5,-246.32 884.47,-306.82 904.93,-338.26"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="901.99,-340.15 910.34,-346.67 907.87,-336.37 901.99,-340.15"/>
+</g>
+<!-- proc~prepare_wavevector_array&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge28" class="edge">
+<title>proc~prepare_wavevector_array&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M300.09,-291.97C434.1,-275.37 706.59,-246.69 797,-275 837.43,-287.66 876.2,-319.11 898.53,-339.73"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="896.32,-342.45 905.99,-346.78 901.13,-337.37 896.32,-342.45"/>
+</g>
+<!-- proc~prepare_wavevector_array&#45;&gt;proc~wavevector_squared_from_energy -->
+<g id="proc~~write_message~~CalledByGraph_edge60" class="edge">
+<title>proc~prepare_wavevector_array&#45;&gt;proc~wavevector_squared_from_energy</title>
+<path fill="none" stroke="#00c4ff" d="M300.25,-292.98C310.94,-290.03 321.51,-286.14 331,-281 351.17,-270.07 347.22,-255.62 367,-244 374.15,-239.8 382,-236.26 390.02,-233.28"/>
+<polygon fill="#00c4ff" stroke="#00c4ff" points="391.18,-236.59 399.51,-230.04 388.91,-229.97 391.18,-236.59"/>
+</g>
+<!-- proc~initialize_pes_matrix&#45;&gt;proc~time_count_summary -->
+<g id="proc~~write_message~~CalledByGraph_edge19" class="edge">
+<title>proc~initialize_pes_matrix&#45;&gt;proc~time_count_summary</title>
+<path fill="none" stroke="#ff0000" d="M283.51,-1082.92C299.15,-1079.83 315.87,-1075.89 331,-1071 367.05,-1059.35 406.23,-1040.48 432.56,-1026.81"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="434.42,-1029.78 441.64,-1022.03 431.16,-1023.58 434.42,-1029.78"/>
+</g>
+<!-- proc~numerov&#45;&gt;proc~time_count_summary -->
+<g id="proc~~write_message~~CalledByGraph_edge21" class="edge">
+<title>proc~numerov&#45;&gt;proc~time_count_summary</title>
+<path fill="none" stroke="#ff0000" d="M253.37,-1045.1C287.35,-1039.42 344.54,-1029.87 390.69,-1022.16"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="391.37,-1025.6 400.65,-1020.5 390.21,-1018.69 391.37,-1025.6"/>
+</g>
+<!-- proc~file_io_status&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge29" class="edge">
+<title>proc~file_io_status&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M738.08,-414.73C756.17,-411.11 777.8,-406.36 797,-401 824.08,-393.44 853.93,-383.11 877.2,-374.58"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="878.58,-377.8 886.75,-371.05 876.15,-371.23 878.58,-377.8"/>
+</g>
+<!-- proc~wavevector_squared_from_energy&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge31" class="edge">
+<title>proc~wavevector_squared_from_energy&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M562.22,-208.02C630.69,-204.93 723.12,-208.97 797,-242 844.22,-263.11 883.98,-310.96 904.03,-338.48"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="901.41,-340.84 910.06,-346.96 907.12,-336.78 901.41,-340.84"/>
+</g>
+<!-- proc~alloc_status -->
+<g id="proc~~write_message~~CalledByGraph_node28" class="node">
+<title>proc~alloc_status</title>
+<g id="a_proc~~write_message~~CalledByGraph_node28"><a xlink:href=".././proc/alloc_status.html" xlink:title="alloc_status">
+<polygon fill="#d9534f" stroke="#d9534f" points="735,-308 660,-308 660,-284 735,-284 735,-308"/>
+<text text-anchor="middle" x="697.5" y="-293.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">alloc_status</text>
+</a>
+</g>
+</g>
+<!-- proc~alloc_status&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge32" class="edge">
+<title>proc~alloc_status&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M735.25,-302.71C753.88,-306.39 776.79,-311.36 797,-317 824.08,-324.56 853.93,-334.89 877.2,-343.42"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="876.15,-346.77 886.75,-346.95 878.58,-340.2 876.15,-346.77"/>
+</g>
+<!-- proc~set_space_fixed_channels&#45;&gt;proc~write_error -->
+<g id="proc~~write_message~~CalledByGraph_edge33" class="edge">
+<title>proc~set_space_fixed_channels&#45;&gt;proc~write_error</title>
+<path fill="none" stroke="#ffff00" d="M772.2,-372.95C805.81,-369.73 844.49,-366.03 873.57,-363.25"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="874.19,-366.71 883.82,-362.27 873.53,-359.74 874.19,-366.71"/>
+</g>
+<!-- proc~ispline -->
+<g id="proc~~write_message~~CalledByGraph_node30" class="node">
+<title>proc~ispline</title>
+<g id="a_proc~~write_message~~CalledByGraph_node30"><a xlink:href=".././proc/ispline.html" xlink:title="ispline">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="491.5,-24 437.5,-24 437.5,0 491.5,0 491.5,-24"/>
+<text text-anchor="middle" x="464.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ispline</text>
+</a>
+</g>
+</g>
+<!-- proc~ispline&#45;&gt;proc~write_warning -->
+<g id="proc~~write_message~~CalledByGraph_edge39" class="edge">
+<title>proc~ispline&#45;&gt;proc~write_warning</title>
+<path fill="none" stroke="#00ffff" d="M491.86,-17.08C511.35,-21 538.46,-26.78 562,-33 592.09,-40.96 625.5,-51.38 651.49,-59.85"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="650.47,-63.2 661.07,-62.99 652.66,-56.55 650.47,-63.2"/>
+</g>
+<!-- proc~riccati_bessel_y -->
+<g id="proc~~write_message~~CalledByGraph_node31" class="node">
+<title>proc~riccati_bessel_y</title>
+<g id="a_proc~~write_message~~CalledByGraph_node31"><a xlink:href=".././proc/riccati_bessel_y.html" xlink:title="riccati_bessel_y">
+<polygon fill="#d9534f" stroke="#d9534f" points="512.5,-108 416.5,-108 416.5,-84 512.5,-84 512.5,-108"/>
+<text text-anchor="middle" x="464.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">riccati_bessel_y</text>
+</a>
+</g>
+</g>
+<!-- proc~riccati_bessel_y&#45;&gt;proc~write_warning -->
+<g id="proc~~write_message~~CalledByGraph_edge40" class="edge">
+<title>proc~riccati_bessel_y&#45;&gt;proc~write_warning</title>
+<path fill="none" stroke="#00ffff" d="M512.52,-91.73C550.63,-88.26 604.3,-83.38 643.84,-79.79"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="644.18,-83.27 653.82,-78.88 643.55,-76.3 644.18,-83.27"/>
+</g>
+<!-- proc~riccati_bessel_j -->
+<g id="proc~~write_message~~CalledByGraph_node32" class="node">
+<title>proc~riccati_bessel_j</title>
+<g id="a_proc~~write_message~~CalledByGraph_node32"><a xlink:href=".././proc/riccati_bessel_j.html" xlink:title="riccati_bessel_j">
+<polygon fill="#d9534f" stroke="#d9534f" points="511,-66 418,-66 418,-42 511,-42 511,-66"/>
+<text text-anchor="middle" x="464.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">riccati_bessel_j</text>
+</a>
+</g>
+</g>
+<!-- proc~riccati_bessel_j&#45;&gt;proc~write_warning -->
+<g id="proc~~write_message~~CalledByGraph_edge41" class="edge">
+<title>proc~riccati_bessel_j&#45;&gt;proc~write_warning</title>
+<path fill="none" stroke="#00ffff" d="M511.14,-58.15C549.24,-61.61 603.59,-66.55 643.59,-70.19"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="643.41,-73.69 653.69,-71.11 644.04,-66.72 643.41,-73.69"/>
+</g>
+<!-- proc~interpolate_radial_coupling_terms&#45;&gt;proc~spline -->
+<g id="proc~~write_message~~CalledByGraph_edge49" class="edge">
+<title>proc~interpolate_radial_coupling_terms&#45;&gt;proc~spline</title>
+<path fill="none" stroke="#ff0000" d="M320.19,-342.78C425.16,-341.45 587.87,-339.38 659.97,-338.46"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="660.38,-341.96 670.34,-338.33 660.29,-334.96 660.38,-341.96"/>
+</g>
+<!-- proc~calculate_k_matrix&#45;&gt;proc~wavevector_squared_from_energy -->
+<g id="proc~~write_message~~CalledByGraph_edge59" class="edge">
+<title>proc~calculate_k_matrix&#45;&gt;proc~wavevector_squared_from_energy</title>
+<path fill="none" stroke="#00c4ff" d="M279.11,-142.09C295.99,-145.29 314.46,-149.54 331,-155 367.41,-167.02 406.81,-186.68 433.09,-200.85"/>
+<polygon fill="#00c4ff" stroke="#00c4ff" points="431.7,-204.07 442.16,-205.79 435.05,-197.93 431.7,-204.07"/>
+</g>
+<!-- proc~calculate_k_matrix&#45;&gt;proc~riccati_bessel_y -->
+<g id="proc~~write_message~~CalledByGraph_edge66" class="edge">
+<title>proc~calculate_k_matrix&#45;&gt;proc~riccati_bessel_y</title>
+<path fill="none" stroke="#ff00eb" d="M279.25,-125.23C317.29,-119.2 367.71,-111.2 406.19,-105.09"/>
+<polygon fill="#ff00eb" stroke="#ff00eb" points="406.88,-108.53 416.21,-103.5 405.78,-101.61 406.88,-108.53"/>
+</g>
+<!-- proc~calculate_k_matrix&#45;&gt;proc~riccati_bessel_j -->
+<g id="proc~~write_message~~CalledByGraph_edge67" class="edge">
+<title>proc~calculate_k_matrix&#45;&gt;proc~riccati_bessel_j</title>
+<path fill="none" stroke="#ff0075" d="M249.33,-121.94C277.52,-108.9 324.7,-88.21 367,-75 380.04,-70.93 394.31,-67.35 407.79,-64.36"/>
+<polygon fill="#ff0075" stroke="#ff0075" points="408.86,-67.71 417.9,-62.19 407.39,-60.87 408.86,-67.71"/>
+</g>
+<!-- proc~modified_bessel_k_ratio -->
+<g id="proc~~write_message~~CalledByGraph_node36" class="node">
+<title>proc~modified_bessel_k_ratio</title>
+<g id="a_proc~~write_message~~CalledByGraph_node36"><a xlink:href=".././proc/modified_bessel_k_ratio.html" xlink:title="modified_bessel_k_ratio">
+<polygon fill="#d9534f" stroke="#d9534f" points="534.5,-150 394.5,-150 394.5,-126 534.5,-126 534.5,-150"/>
+<text text-anchor="middle" x="464.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">modified_bessel_k_ratio</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_k_matrix&#45;&gt;proc~modified_bessel_k_ratio -->
+<g id="proc~~write_message~~CalledByGraph_edge70" class="edge">
+<title>proc~calculate_k_matrix&#45;&gt;proc~modified_bessel_k_ratio</title>
+<path fill="none" stroke="#00ff3f" d="M279.25,-134.92C310.43,-135.44 349.93,-136.1 384.35,-136.68"/>
+<polygon fill="#00ff3f" stroke="#00ff3f" points="384.33,-140.18 394.38,-136.85 384.44,-133.18 384.33,-140.18"/>
+</g>
+<!-- proc~get_radial_coupling_term_value -->
+<g id="proc~~write_message~~CalledByGraph_node35" class="node">
+<title>proc~get_radial_coupling_term_value</title>
+<g id="a_proc~~write_message~~CalledByGraph_node35"><a xlink:href=".././proc/get_radial_coupling_term_value.html" xlink:title="get_radial_coupling_term_value">
+<polygon fill="#d9534f" stroke="#d9534f" points="314,-24 132,-24 132,0 314,0 314,-24"/>
+<text text-anchor="middle" x="223" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_radial_coupling_term_value</text>
+</a>
+</g>
+</g>
+<!-- proc~get_radial_coupling_term_value&#45;&gt;proc~ispline -->
+<g id="proc~~write_message~~CalledByGraph_edge65" class="edge">
+<title>proc~get_radial_coupling_term_value&#45;&gt;proc~ispline</title>
+<path fill="none" stroke="#9c00ff" d="M314.2,-12C353.41,-12 397.13,-12 427.07,-12"/>
+<polygon fill="#9c00ff" stroke="#9c00ff" points="427.44,-15.5 437.44,-12 427.44,-8.5 427.44,-15.5"/>
+</g>
+<!-- proc~modified_bessel_k_ratio&#45;&gt;proc~modified_bessel_temme_algorithm -->
+<g id="proc~~write_message~~CalledByGraph_edge51" class="edge">
+<title>proc~modified_bessel_k_ratio&#45;&gt;proc~modified_bessel_temme_algorithm</title>
+<path fill="none" stroke="#ffeb00" d="M534.81,-138C551.44,-138 569.6,-138 587.55,-138"/>
+<polygon fill="#ffeb00" stroke="#ffeb00" points="587.78,-141.5 597.78,-138 587.78,-134.5 587.78,-141.5"/>
+</g>
+<!-- proc~read_radial_coupling_terms&#45;&gt;proc~file_io_status -->
+<g id="proc~~write_message~~CalledByGraph_edge55" class="edge">
+<title>proc~read_radial_coupling_terms&#45;&gt;proc~file_io_status</title>
+<path fill="none" stroke="#00ffc4" d="M303.06,-459.76C371.67,-457.29 473.6,-452.36 562,-443 590.2,-440.01 621.5,-435.21 646.81,-430.96"/>
+<polygon fill="#00ffc4" stroke="#00ffc4" points="647.64,-434.37 656.91,-429.23 646.46,-427.47 647.64,-434.37"/>
+</g>
+<!-- proc~save_s_matrix_file_header&#45;&gt;proc~file_io_status -->
+<g id="proc~~write_message~~CalledByGraph_edge58" class="edge">
+<title>proc~save_s_matrix_file_header&#45;&gt;proc~file_io_status</title>
+<path fill="none" stroke="#00ffc4" d="M541.14,-422C575.78,-422 615.86,-422 646.64,-422"/>
+<polygon fill="#00ffc4" stroke="#00ffc4" points="646.7,-425.5 656.7,-422 646.7,-418.5 646.7,-425.5"/>
+</g>
+<!-- proc~save_open_basis_levels&#45;&gt;proc~wavevector_squared_from_energy -->
+<g id="proc~~write_message~~CalledByGraph_edge62" class="edge">
+<title>proc~save_open_basis_levels&#45;&gt;proc~wavevector_squared_from_energy</title>
+<path fill="none" stroke="#00c4ff" d="M292.31,-218C312.45,-218 334.99,-218 356.94,-218"/>
+<polygon fill="#00c4ff" stroke="#00c4ff" points="356.97,-221.5 366.97,-218 356.97,-214.5 356.97,-221.5"/>
+</g>
+<!-- proc~calculate_largest_wavevector&#45;&gt;proc~wavevector_squared_from_energy -->
+<g id="proc~~write_message~~CalledByGraph_edge63" class="edge">
+<title>proc~calculate_largest_wavevector&#45;&gt;proc~wavevector_squared_from_energy</title>
+<path fill="none" stroke="#00c4ff" d="M292.63,-247.96C321.44,-242.91 355.11,-237.01 384.91,-231.78"/>
+<polygon fill="#00c4ff" stroke="#00c4ff" points="385.61,-235.21 394.86,-230.04 384.4,-228.32 385.61,-235.21"/>
+</g>
+</g>
+</svg>
+</div><script>var panprocwrite_messageCalledByGraph = svgPanZoom('#procwrite_messageCalledByGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="594pt" height="32pt"
+ viewBox="0.00 0.00 594.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 590,-28 590,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node4" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="388,-24 244,-24 244,0 388,0 388,-24"/>
+<text text-anchor="middle" x="316" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="463.5,-24 406.5,-24 406.5,0 463.5,0 463.5,-24"/>
+<text text-anchor="middle" x="435" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="586,-24 482,-24 482,0 586,0 586,-24"/>
+<text text-anchor="middle" x="534" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a procedure to one which it calls. Dashed 
+    arrows point from an interface to procedures which implement that interface.
+    This could include the module procedures in a generic interface or the
+    implementation in a submodule of an interface in a parent module. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
+      </div>
+    </div>
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+        <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="panel panel-primary">
+      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/write_message.html#src">write_message</a>
+      </div>
+    </div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+
+    
+    
+
+    
+    
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="w">      </span><span class="k">subroutine </span><span class="n">write_message</span><span class="p">(</span><span class="n">message_</span><span class="p">,</span><span class="w"> </span><span class="n">unit_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">!! writes a message on a chosen unit</span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">message_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! a message to be written</span>
+<span class="w">         </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">unit_</span><span class="w"></span>
+<span class="w">            </span><span class="c">!! optional, unit where the message will be written</span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">unit_</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            write</span><span class="p">(</span><span class="n">unit_</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">message_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">else</span>
+<span class="k">            write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">message_</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">endif</span><span class="w"></span>
+<span class="w">         </span><span class="c">!---------------------------------------------------------------------!</span>
+<span class="w">      </span><span class="k">end subroutine </span><span class="n">write_message</span><span class="w"></span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2024 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-01-19 11:45            </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+  </body>
+</html>
