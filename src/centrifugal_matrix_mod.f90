@@ -4,7 +4,7 @@ module centrifugal_matrix_mod
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use array_operations_mod, only: invert_symmetric_matrix, fill_symmetric_matrix
-   use data_mod
+   use global_variables_mod
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
@@ -12,9 +12,11 @@ module centrifugal_matrix_mod
    public :: calculate_centrifugal_matrix
    !---------------------------------------------------------------------------!
    contains
-   !---------------------------------------------------------------------------!
-   !                           Centrifugal matrix
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !                           Centrifugal matrix
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine calculate_centrifugal_matrix(total_angular_momentum_,         &
          channel_indices_, channels_omega_values_, centrifugal_matrix_)    
          !! calculates the (R**2)*centrifugal matrix from the second term
@@ -37,13 +39,13 @@ module centrifugal_matrix_mod
          centrifugal_matrix_  = 0
 
          do channel_index_1_ = 1, size(channel_indices_)
-            v_ = v1array(channel_indices_(channel_index_1_))
-            j_ = j1array(channel_indices_(channel_index_1_))
+            v_ = vib_levels(channel_indices_(channel_index_1_))
+            j_ = rot_levels(channel_indices_(channel_index_1_))
             omega_ = channels_omega_values_(channel_index_1_)
             delta_1_ = delta_for_zero_omega(omega_)
             do channel_index_2_ = 1, channel_index_1_
-               v_prime_ = v1array(channel_indices_(channel_index_2_))
-               j_prime_ = j1array(channel_indices_(channel_index_2_))
+               v_prime_ = vib_levels(channel_indices_(channel_index_2_))
+               j_prime_ = rot_levels(channel_indices_(channel_index_2_))
                omega_prime_ = channels_omega_values_(channel_index_2_)
                delta_2_ = delta_for_zero_omega(omega_prime_)
                !---------------------------------------------------------------!
@@ -75,8 +77,8 @@ module centrifugal_matrix_mod
          call fill_symmetric_matrix(centrifugal_matrix_, 'u')
          !---------------------------------------------------------------------!
       end subroutine calculate_centrifugal_matrix
-   !---------------------------------------------------------------------------!
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       function delta_for_zero_omega(omega_) result(delta_)
          !! Checks if the input value equals 0; used in the calculation
          !! of off-diagonal elements of the centrifugal matrix; see
@@ -94,8 +96,8 @@ module centrifugal_matrix_mod
          endif
          !---------------------------------------------------------------------!
       end function delta_for_zero_omega
-   !---------------------------------------------------------------------------!
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       function calculate_diagonal_centrifugal_element(total_angular_momentum_, &
          j_, omega_) result(diagonal_element_)
          !! calculates diagonal element of the centrifgual matrix, see
@@ -115,8 +117,8 @@ module centrifugal_matrix_mod
             + j_ * (j_ + 1) - 2 * omega_ **2, dp)
          !---------------------------------------------------------------------!
       end function calculate_diagonal_centrifugal_element
-   !---------------------------------------------------------------------------!
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       function calculate_offdiagonal_centrifugal_element(                      &
          total_angular_momentum_, j_, omega_, omega_prime_, delta_1_, delta_2_)&
          result(offdiagonal_element_)

@@ -13,7 +13,7 @@ WIGXJPF_PATH = $(PWD)/libs/wigxjpf-1.11
 OBJS = src/utility_functions_mod.o src/array_operations_mod.o src/array_operations_allocate_submod.o \
        src/array_operations_append_submod.o src/array_operations_invert_symmetric_matrix_submod.o \
        src/array_operations_fill_symmetric_matrix_submod.o src/array_operations_add_scalar_to_diagonal_submod.o \
-       src/special_functions_mod.o src/math_functions_mod.o src/data_mod.o src/physics_utilities_mod.o \
+       src/special_functions_mod.o src/math_utilities_mod.o src/global_variables_mod.o src/physics_utilities_mod.o \
        src/input_validation_mod.o src/input_reader_mod.o \
        src/radial_coupling_terms_mod.o src/channels_mod.o src/pes_matrix_mod.o src/centrifugal_matrix_mod.o \
        src/propagator_mod.o src/boundary_conditions_mod.o src/unitarity_check_mod.o src/state_to_state_cross_sections_mod.o \

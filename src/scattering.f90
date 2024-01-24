@@ -2,13 +2,13 @@ program SCATTERING
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_header,                              &
-      write_message, float_to_character, integer_to_character, time_count_summary, &
-      no_open_channels_message
-   use array_operations_mod, only: append
-   use data_mod
+      write_message, float_to_character, integer_to_character,                 &
+      time_count_summary, no_open_channels_message
+   use array_operations_mod, only: append, allocate_1d, allocate_2d
+   use global_variables_mod
    use physics_utilities_mod, only: count_open_basis_levels,                   &
       save_open_basis_levels, units_conversion
-   use input_reader_mod
+   use input_reader_mod, only: read_input_file
    use radial_coupling_terms_mod, only: read_radial_coupling_terms,            &
       reduce_radial_coupling_terms, interpolate_radial_coupling_terms
    use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
@@ -39,15 +39,15 @@ program SCATTERING
    integer(int32) :: consecutive_blocks_thresholddiag = 0
    integer(int32) :: consecutive_blocks_thresholdoff = 0
    !---------------------------------------------------------------------------!
-   real(dp) :: largest_wavevector, wavvdepth, max_elastic_cross_section,       &
-      max_inelastic_cross_section, time_total_start, time_total_stop,          &
-      time_total, time_init_stop, time_init, time_jtot_start,                  &
+   real(dp) :: largest_wavevector, wavpotential_depth,                         &
+      max_elastic_cross_section, max_inelastic_cross_section, time_total_start,&
+      time_total_stop, time_total, time_init_stop, time_init, time_jtot_start, &
       time_jtot_stop, time_jtot, time_parity_start,time_parity_stop,           &
       time_parity
    logical :: unitarity_block_check
    logical :: terminate = .false.
    integer, allocatable :: channel_indices(:), channels_omega_values(:),&
-      channel_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:),&
+      channel_l_values(:), open_basis_levels(:), nonzero_terms_per_element(:), &
       nonzero_legendre_indices(:), smatcheckarr(:)
    real(dp), allocatable :: basis_wavevectors(:), block_wavevectors(:),        &
       nonzero_algebraic_coefficients(:), accumulated_cross_sections(:),        &
@@ -115,14 +115,14 @@ program SCATTERING
    ! Initialization is finished                                                
    !---------------------------------------------------------------------------!
    call cpu_time(time_init_stop)
-   if (prntlvl.ge.2) call time_count_summary(time_total_start, time_init_stop, &
-      time_init, "Initialization completed in ")
+   if (print_level.ge.2) call time_count_summary(time_total_start,             &
+      time_init_stop, time_init, "Initialization completed in ")
    !---------------------------------------------------------------------------!
    ! Loop over total angular momentum
    !---------------------------------------------------------------------------!
    call write_header("jtot_loop")
    !---------------------------------------------------------------------------!
-   do jtot_ = jtotmin,jtotmax,jtotstep
+   do jtot_ = jtot_min,jtot_max,jtot_step
       !------------------------------------------------------------------------!
       call write_header("block", opt_integer_ = jtot_)
       !------------------------------------------------------------------------!
@@ -147,16 +147,16 @@ program SCATTERING
          ! Summary of the current block
          !---------------------------------------------------------------------!
          count_blocks = count_blocks+1
-         if (prntlvl.ge.1) then
-            call print_short_block_summary(jtot_, parity_exponent, count_blocks,&
-               number_of_channels)
+         if (print_level.ge.1) then
+            call print_short_block_summary(jtot_, parity_exponent,             &
+               count_blocks, number_of_channels)
          endif
          !---------------------------------------------------------------------!
          ! Prepare of the basis for each J/p block:
          ! channels_omega_values holds all values of omega (BF_)
          ! channel_l_values holds all values of l (SF_)
          ! channel_indices holds the indices which refer to the basis arrays:
-         !   --   v1level/j1level/elevel
+         !   --   v1level/j1level/internal_energies
          !---------------------------------------------------------------------!
          call allocate_1d(channels_omega_values,number_of_channels)
          call allocate_1d(channel_l_values,number_of_channels)
@@ -170,7 +170,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          ! Print the BF quantum numbers on screen
          !---------------------------------------------------------------------!
-         if (prntlvl.ge.1) call print_channels(parity_exponent,                &
+         if (print_level.ge.1) call print_channels(parity_exponent,            &
             channel_indices, channels_omega_values)
          !---------------------------------------------------------------------!
          ! Determine the number of open (energetically accessible) channels
@@ -194,14 +194,14 @@ program SCATTERING
          largest_wavevector = calculate_largest_wavevector(channel_indices)
          !---------------------------------------------------------------------!
          ! Determine the number of steps on the intermolecular (R) grid
-         ! This is done either directly (if dr > 0)
+         ! This is done either directly (if r_step> 0)
          ! or through the number of steps per half de Broglie wavelength
          !---------------------------------------------------------------------!
-         wavvdepth = dsqrt(2*reduced_mass*vdepth)
-         if (dr <= 0) then
-            nsteps = nint((Rmax-Rmin)/PI*((largest_wavevector+wavvdepth)*steps))
+         wavpotential_depth = dsqrt(2*reduced_mass*potential_depth)
+         if (r_step<= 0) then
+            nsteps = nint((r_max-r_min)/PI*((largest_wavevector+wavpotential_depth)*steps))
          else
-            nsteps = nint((Rmax-Rmin)/dr)+1
+            nsteps = nint((r_max-r_min)/r_step)+1
          endif
          !---------------------------------------------------------------------!
          ! Prepare the PES matrix
@@ -224,7 +224,7 @@ program SCATTERING
          !---------------------------------------------------------------------!
          call allocate_2d(SF_log_der_matrix, number_of_channels, number_of_channels)
          call calculate_sf_matrix_from_bf_matrix(number_of_channels, jtot_,    &
-            channel_indices, channels_omega_values, channel_l_values,  &
+            channel_indices, channels_omega_values, channel_l_values,          &
             BF_log_der_matrix, SF_log_der_matrix)
          !---------------------------------------------------------------------!
          ! Get the K-matrix from log-derivative matrix
@@ -232,8 +232,8 @@ program SCATTERING
          !---------------------------------------------------------------------!
          call allocate_2d(k_matrix, number_of_open_channels, number_of_open_channels)
          call calculate_k_matrix(number_of_channels, SF_log_der_matrix,        &
-            number_of_open_channels, channel_indices, channel_l_values,&
-            rmax, k_matrix)
+            number_of_open_channels, channel_indices, channel_l_values,        &
+            r_max, k_matrix)
          !---------------------------------------------------------------------!
          ! Get the S-matrix from the K-matrix
          ! (Eq. 12 in "Solution of the coupled equations")
@@ -278,7 +278,7 @@ program SCATTERING
          ! Check the time after each parity block:
          !---------------------------------------------------------------------!
          call cpu_time(time_parity_stop)
-         if (prntlvl.ge.2) call time_count_summary(time_parity_start,          &
+         if (print_level.ge.2) call time_count_summary(time_parity_start,      &
             time_parity_stop, time_parity, "Parity block completed in ")
          !---------------------------------------------------------------------!
          ! ... end of the loop over parity                                      
@@ -303,7 +303,7 @@ program SCATTERING
          max_elastic_index, max_inelastic_index_1, max_inelastic_index_2,      &
          open_basis_levels)
       !------------------------------------------------------------------------!
-      if (jtotmax == 999999) then
+      if (jtot_max == 999999) then
          call check_cross_section_thresholds(max_elastic_cross_section,        &
             max_inelastic_cross_section, consecutive_blocks_thresholddiag,     &
             consecutive_blocks_thresholdoff, terminate)
@@ -315,12 +315,12 @@ program SCATTERING
       !------------------------------------------------------------------------!
       ! Print all the XS after current JTOT block                              
       !------------------------------------------------------------------------!
-      if (prntlvl.ge.3) then
+      if (print_level.ge.3) then
          call print_cross_sections_for_jtot(jtot_, open_basis_levels,          &
             accumulated_cross_sections)
       endif
       !------------------------------------------------------------------------!
-      if (prntlvl.ge.2) call time_count_summary(time_jtot_start,               &
+      if (print_level.ge.2) call time_count_summary(time_jtot_start,           &
          time_jtot_stop, time_jtot, "Total angular momentum block completed in ")
       !------------------------------------------------------------------------!
       ! terminate the loop if elastic_xs_threshold/inelastic_xs_threshold

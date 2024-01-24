@@ -1,20 +1,22 @@
 module radial_coupling_terms_mod
    !! This module provides all functions that handle radial coupling terms
    !! of the PES. It covers:
-   !! 1. reading radial coupling terms from external file ("read_radial_coupling_terms",
-   !!    "skip_header_lines", "read_and_validate_lambda", "read_potential_data",
-   !!    "validate_r_range")
+   !! 1. reading radial coupling terms from external file
+   !!    ("read_radial_coupling_terms", "skip_header_lines",
+   !!    "read_and_validate_lambda", "read_potential_data", "validate_r_range")
    !! 2. reducing the number of read coupling terms to retain only necessary
    !!    couplings ("reduce_radial_coupling_terms", "print_pes_quantum_numbers",
    !!    "reduce_coupling_terms", "find_reduced_term")
-   !! 3. interpolation of radial coupling terms ("interpolate_radial_coupling_terms")
-   !! 4. providing value of the interpolated radial coupling term ("get_radial_coupling_term_value")
+   !! 3. interpolation of radial coupling terms
+   !!    ("interpolate_radial_coupling_terms")
+   !! 4. providing value of the interpolated radial coupling term
+   !!    ("get_radial_coupling_term_value")
    !!--------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: file_io_status, write_error, write_message,&
       integer_to_character, float_to_character
-   use math_functions_mod, only: spline, ispline
-   use data_mod
+   use math_utilities_mod, only: spline, ispline
+   use global_variables_mod
    !---------------------------------------------------------------------------!
    implicit none
    !---------------------------------------------------------------------------!
@@ -23,51 +25,59 @@ module radial_coupling_terms_mod
       interpolate_radial_coupling_terms, get_radial_coupling_term_value
    !---------------------------------------------------------------------------!
    contains
-   !---------------------------------------------------------------------------!
-   !                            Reading procedures
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !                            Reading procedures
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine read_radial_coupling_terms
          !! Reads the radial coupling terms from the external file.
          !! The file is assumed to be formatted as described in
          !! "Supplying radial terms" section.
-         !! The read radial coupling terms are kept in vmat/read_vmat3D
+         !! The read radial coupling terms are kept in
+         !! "tabulated_coupling_terms"
          !---------------------------------------------------------------------!
          character(len = 200) :: err_message
-         integer(int32) :: nrtmp, l1, iskip_, lambda_index_, ir, icol, io_status
+         integer(int32) :: lambda_index_, io_status
          !---------------------------------------------------------------------!
-         open (pes_file_unit, file=trim(potentialfile), form='formatted',      &
-            status='old', iostat = io_status, iomsg = err_message)
-         call file_io_status(io_status, err_message, pes_file_unit, 'o')
+         open (coupling_terms_file_unit, file=trim(coupling_terms_file_name),  &
+            form='formatted', status='old', iostat = io_status,                &
+            iomsg = err_message)
+         call file_io_status(io_status, err_message, coupling_terms_file_unit, 'o')
          !---------------------------------------------------------------------!
          ! Skip the informative lines at the beginning                         
          !---------------------------------------------------------------------!
          call skip_header_lines
          !---------------------------------------------------------------------!
-         do lambda_index_ = 1, nterms
+         do lambda_index_ = 1, number_of_legendre_indices
             call read_and_validate_lambda(lambda_index_)
             call read_potential_data(lambda_index_)
          enddo
          !---------------------------------------------------------------------!
-         close(pes_file_unit, iostat = io_status, iomsg = err_message)
-         call file_io_status(io_status, err_message, pes_file_unit, 'c')
+         close(coupling_terms_file_unit, iostat = io_status,                   &
+            iomsg = err_message)
+         call file_io_status(io_status, err_message, coupling_terms_file_unit, 'c')
          !---------------------------------------------------------------------!
          ! Check if supplied radial terms cover a sufficient range of R
          !---------------------------------------------------------------------!
          call validate_r_range
          !---------------------------------------------------------------------!
       end subroutine read_radial_coupling_terms
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine skip_header_lines
-         !! Skips the first n_skip_lines (read on input) lines in the pes_file
+         !! Skips the first n_skip_lines (read on input) lines
+         !! in the coupling_terms_file
          !---------------------------------------------------------------------!
          integer(int32) :: line_index_
          !---------------------------------------------------------------------!
          do line_index_ = 1, n_skip_lines
-            read(pes_file_unit, *) 
+            read(coupling_terms_file_unit, *) 
          enddo
          !---------------------------------------------------------------------!
       end subroutine skip_header_lines
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine read_and_validate_lambda(lambda_index_)
          !! Reads the value of lambda and compares with expected value.
          !---------------------------------------------------------------------!
@@ -75,20 +85,21 @@ module radial_coupling_terms_mod
          !---------------------------------------------------------------------!
          integer(int32) :: lambda_
          !---------------------------------------------------------------------!
-         read (pes_file_unit, *) lambda_
-         if (lambda_.ne.l1tab(lambda_index_)) then
-            close(pes_file_unit)
+         read (coupling_terms_file_unit, *) lambda_
+         if (lambda_.ne.legendre_indices(lambda_index_)) then
+            close(coupling_terms_file_unit)
             close(s_matrix_unit)
             if (print_partial_cross_sections) close(partial_file_unit)
-            call write_error("read_radial_coupling_terms: lambda = " //                    &
+            call write_error("read_radial_coupling_terms: lambda = " //        &
                trim(adjustl(integer_to_character(lambda_))) //                 &
-               " differs from expected value in l1tab (" //                    &
+               " differs from expected value in legendre_indices (" //         &
                trim(adjustl(integer_to_character(lambda_index_))) // ") = " // &
-               trim(adjustl(integer_to_character(l1tab(lambda_index_)))))
+               trim(adjustl(integer_to_character(legendre_indices(lambda_index_)))))
          endif
          !---------------------------------------------------------------------!
       end subroutine read_and_validate_lambda
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine read_potential_data(lambda_index_)
          !! Reads the intermolecular distance and radial coupling terms formatted
          !! in columns by iterating over number of tabulated ]](R\\) points.
@@ -99,85 +110,99 @@ module radial_coupling_terms_mod
          integer(int32) :: r_index_, column_index_
          real(dp) :: read_line(total_number_of_coupling_terms + 1)
          !---------------------------------------------------------------------!
-         do r_index_ = 1, nr
-            read(pes_file_unit, *) (read_line(column_index_),                  &
+         do r_index_ = 1, number_of_r_points
+            read(coupling_terms_file_unit, *) (read_line(column_index_),       &
                column_index_ = 1, total_number_of_coupling_terms + 1)
-            rmat(r_index_) = read_line(1) * radial_term_distance_converter
+            r_grid(r_index_) = read_line(1) * radial_term_distance_converter
             do column_index_ = 1, total_number_of_coupling_terms
-               read_vmat3D(r_index_, lambda_index_, column_index_)             &
+               tabulated_coupling_terms(r_index_, lambda_index_, column_index_)&
                   = read_line(column_index_ + 1) * radial_term_energy_converter
             enddo
          enddo
          !---------------------------------------------------------------------!
       end subroutine read_potential_data
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine validate_r_range
-         !! Checks if read R values are consistent with rmin and rmax.
+         !! Checks if read R values are consistent with r_min and r_max.
          !---------------------------------------------------------------------!
-         if (rmin < rmat(1)) then
+         if (r_min < r_grid(1)) then
             close(s_matrix_unit)
             if (print_partial_cross_sections) close(partial_file_unit)
-            call write_error("rmin value provided by the user (" //            &
-               trim(adjustl(float_to_character(rmin, "(F10.4)"))) //           &
-               ") is smaller than rmin supplied in " //                        &
-               trim(adjustl(potentialfile)) // " ( "//                         &
-               trim(adjustl(float_to_character(rmat(1), "(F10.4)"))) // ")")
+            call write_error("r_min value provided by the user (" //           &
+               trim(adjustl(float_to_character(r_min, "(F10.4)"))) //          &
+               ") is smaller than r_min supplied in " //                       &
+               trim(adjustl(coupling_terms_file_name)) // " ( "//              &
+               trim(adjustl(float_to_character(r_grid(1), "(F10.4)"))) // ")")
          endif
          !---------------------------------------------------------------------!
-         if (rmax > rmat(nr)) then
+         if (r_max > r_grid(number_of_r_points)) then
             close(s_matrix_unit)
             if (print_partial_cross_sections) close(partial_file_unit)
-            call write_error("rmax value provided by the user (" //            &
-               trim(adjustl(float_to_character(rmax, "(F10.4)"))) //           &
-               ") is larger than rmax supplied in " //                         &
-               trim(adjustl(potentialfile)) // " ( "//  &
-               trim(adjustl(float_to_character(rmat(nr), "(F10.4)"))) // ")")
+            call write_error("r_max value provided by the user (" //           &
+               trim(adjustl(float_to_character(r_max, "(F10.4)"))) //          &
+               ") is larger than r_max supplied in " //                        &
+               trim(adjustl(coupling_terms_file_name)) // " ( "//  &
+               trim(adjustl(float_to_character(r_grid(number_of_r_points),     &
+               "(F10.4)"))) // ")")
          endif
          !---------------------------------------------------------------------!
       end subroutine validate_r_range
-   !---------------------------------------------------------------------------!
-   !                            Reducing procedures
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !                            Reducing procedures
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine reduce_radial_coupling_terms
-         !! Reduces the read_vmat3D matrix to retain only the necessary coupling terms.
+         !! Reduces the tabulated_coupling_terms matrix to retain
+         !! only the necessary coupling terms.
          !---------------------------------------------------------------------!
          integer(int32) :: lambda_index_, radial_index_, coupling_index_
          !---------------------------------------------------------------------!
-         if (total_number_of_coupling_terms /= minimal_number_of_coupling_terms) then
-            call write_message("-- Reducing the number of the radial coupling terms...")
-            call print_pes_quantum_numbers("Original", total_number_of_coupling_terms)
+         if (total_number_of_coupling_terms                                    &
+            /= minimal_number_of_coupling_terms) then
+            call write_message("-- Reducing the number of the radial " //      &
+               "coupling terms...")
+            call print_pes_quantum_numbers("Original",                         &
+               total_number_of_coupling_terms)
             call reduce_coupling_terms()
-            call print_pes_quantum_numbers("Reduced", minimal_number_of_coupling_terms)
+            call print_pes_quantum_numbers("Reduced",                          &
+               minimal_number_of_coupling_terms)
             call write_message("-- Reduced "//                                 &
-               trim(adjustl(integer_to_character(total_number_of_coupling_terms))) //                &
-               " radial terms to "// trim(adjustl(integer_to_character(minimal_number_of_coupling_terms))))
+               trim(adjustl(integer_to_character(                              &
+               total_number_of_coupling_terms))) // " radial terms to "//      &
+               trim(adjustl(integer_to_character(                              &
+               minimal_number_of_coupling_terms))))
          else
             !------------------------------------------------------------------!
-            ! if there is nothing to be reduced, copy read_vmat3d to vmat3d
+            ! if there is nothing to be reduced,
+            ! copy tabulated_coupling_terms to coupling_terms
             !------------------------------------------------------------------!
-            vmat3D = read_vmat3D
+            coupling_terms = tabulated_coupling_terms
          endif
          !---------------------------------------------------------------------!
-         deallocate(read_vmat3D)
+         deallocate(tabulated_coupling_terms)
          !---------------------------------------------------------------------!
       end subroutine reduce_radial_coupling_terms
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine reduce_coupling_terms
          !! Reduces the coupling terms based on the existence of couplings.
          !---------------------------------------------------------------------!
          integer(int32) :: lambda_index_, r_index_, coupling_index_
          !---------------------------------------------------------------------!
-         do lambda_index_ = 1, nterms
-            do r_index_ = 1, nr
+         do lambda_index_ = 1, number_of_legendre_indices
+            do r_index_ = 1, number_of_r_points
                do coupling_index_ = 1, minimal_number_of_coupling_terms
-                  vmat3D(r_index_, lambda_index_, coupling_index_) =           &
+                  coupling_terms(r_index_, lambda_index_, coupling_index_) =   &
                      find_reduced_term(r_index_, lambda_index_, coupling_index_)
                enddo
             enddo
          enddo
          !---------------------------------------------------------------------!
       end subroutine reduce_coupling_terms
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       function find_reduced_term(r_index_, lambda_index_, coupling_index_)     &
          result(reduced_term)
          !! Finds and returns the reduced term for the given indices.
@@ -197,19 +222,20 @@ module radial_coupling_terms_mod
          do column_index_ = 1, total_number_of_coupling_terms
          !---------------------------------------------------------------------!
          ! iterate over quantum numbers describing all couplings
-         ! (v1/j1/v1p/j1ppes) until necessary couplings are found
+         ! (v1/j1/v1p/rot_prime_couplings) until necessary couplings are found
          !---------------------------------------------------------------------!
-            if ((reduced_j1pes(coupling_index_) == j1pes(column_index_)).and.  &
-               (reduced_j1ppes(coupling_index_) == j1ppes(column_index_)).and. &
-               (reduced_v1pes(coupling_index_) == v1pes(column_index_)).and.   &
-               (reduced_v1ppes(coupling_index_) == v1ppes(column_index_))) then
-               reduced_term = read_vmat3D(r_index_, lambda_index_, column_index_)
+            if ((reduced_rot_couplings(coupling_index_) == rot_couplings(column_index_)).and.  &
+               (reduced_rot_prime_couplings(coupling_index_) == rot_prime_couplings(column_index_)).and. &
+               (reduced_vib_couplings(coupling_index_) == vib_couplings(column_index_)).and.   &
+               (reduced_vib_prime_couplings(coupling_index_) == vib_prime_couplings(column_index_))) then
+               reduced_term = tabulated_coupling_terms(r_index_, lambda_index_, column_index_)
                exit
             endif
          enddo
          !---------------------------------------------------------------------!
       end function find_reduced_term
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine print_pes_quantum_numbers(set_type, col_count)
          !! Prints quantum numbers describing radial coupling terms of the PES
          !! based on the provided set type and column count.
@@ -221,7 +247,7 @@ module radial_coupling_terms_mod
          !---------------------------------------------------------------------!
          integer(int32) :: column_index_
          !---------------------------------------------------------------------!
-         if (prntlvl >= 3) then
+         if (print_level >= 3) then
             call write_message("*** " // trim(set_type) //                     &
                " number of quantum numbers describing radial coupling terms: " &
                // trim(adjustl(integer_to_character(col_count))) // " ***")
@@ -230,52 +256,62 @@ module radial_coupling_terms_mod
             select case(set_type)
                case("Original")
                   do column_index_ = 1, col_count
-                     write(*,"(5X,2(2X,I2),2(2X,I2))") v1pes(column_index_),   &
-                        j1pes(column_index_), v1ppes(column_index_),           &
-                        j1ppes(column_index_)
+                     write(*,"(5X,2(2X,I2),2(2X,I2))") vib_couplings(column_index_),   &
+                        rot_couplings(column_index_), vib_prime_couplings(column_index_),           &
+                        rot_prime_couplings(column_index_)
                   enddo
                case("Reduced")
                   do column_index_ = 1, col_count
                      write(*,"(5X,2(2X,I2),2(2X,I2))")                         &
-                        reduced_v1pes(column_index_),                          &
-                        reduced_j1pes(column_index_),                          &
-                        reduced_v1ppes(column_index_),                         &
-                        reduced_j1ppes(column_index_)
+                        reduced_vib_couplings(column_index_),                          &
+                        reduced_rot_couplings(column_index_),                          &
+                        reduced_vib_prime_couplings(column_index_),                         &
+                        reduced_rot_prime_couplings(column_index_)
                   enddo
             end select
          endif
       end subroutine print_pes_quantum_numbers
-   !---------------------------------------------------------------------------!
-   !                        Interpolation procedure
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!      
+      !                        Interpolation procedure
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!      
       subroutine interpolate_radial_coupling_terms
          !! Interpolates the radial coupling terms using cubic spline functions.
          !! The resulting spline coefficients for each coupling term
-         !! are stored in bmat3D, cmat3D, and dmat3D matrices.
+         !! are stored in coupling_terms_b_coeffs, coupling_terms_c_coeffs,
+         !! and coupling_terms_d_coeffs matrices.
          !---------------------------------------------------------------------!
          integer(int32) :: lambda_index_, coupling_index_
-         real(dp) :: spline_coeff_b(nr), spline_coeff_c(nr), spline_coeff_d(nr)
+         real(dp) :: spline_coeff_b(number_of_r_points),                       &
+            spline_coeff_c(number_of_r_points), spline_coeff_d(number_of_r_points)
          !---------------------------------------------------------------------!
-         do lambda_index_ = 1, nterms
+         do lambda_index_ = 1, number_of_legendre_indices
             do coupling_index_ = 1, minimal_number_of_coupling_terms
                !---------------------------------------------------------------!
                ! Compute spline coefficients for each coupling term
                !---------------------------------------------------------------!
-               call SPLINE(nr,rmat,vmat3D(:,lambda_index_,coupling_index_),    &
-                  spline_coeff_b, spline_coeff_c, spline_coeff_d)
+               call SPLINE(number_of_r_points,r_grid,coupling_terms(           &
+                  :,lambda_index_,coupling_index_), spline_coeff_b,            &
+                  spline_coeff_c, spline_coeff_d)
                !---------------------------------------------------------------!
                ! Store coefficients in the respective matrices
                !---------------------------------------------------------------!
-               bmat3D(:,lambda_index_,coupling_index_) = spline_coeff_b
-               cmat3D(:,lambda_index_,coupling_index_) = spline_coeff_c
-               dmat3D(:,lambda_index_,coupling_index_) = spline_coeff_d
+               coupling_terms_b_coeffs(:,lambda_index_,coupling_index_)        &
+                  = spline_coeff_b
+               coupling_terms_c_coeffs(:,lambda_index_,coupling_index_)        &
+                  = spline_coeff_c
+               coupling_terms_d_coeffs(:,lambda_index_,coupling_index_)        &
+                  = spline_coeff_d
             enddo
          enddo
          !---------------------------------------------------------------------!
       end subroutine interpolate_radial_coupling_terms
-   !---------------------------------------------------------------------------!
-   !                     Radial coupling term value
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!      
+      !                     Radial coupling term value
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!      
       subroutine get_radial_coupling_term_value(intermolecular_distance,       &
          lambda_, v_, j_, v_prime_, j_prime_, radial_term_value_)
          !! Returns the interpolated value of a specific radial coupling term
@@ -312,45 +348,50 @@ module radial_coupling_terms_mod
             return
          endif
          !---------------------------------------------------------------------!
-         radial_term_value_ = ISPLINE(intermolecular_distance, nr, rmat,       &
-            vmat3D(:, lambda_index, coupling_index),                           &
-            bmat3D(:, lambda_index, coupling_index),                           &
-            cmat3D(:, lambda_index, coupling_index),                           &
-            dmat3D(:, lambda_index, coupling_index))
+         radial_term_value_ = ISPLINE(intermolecular_distance,                 &
+            number_of_r_points, r_grid, coupling_terms(:, lambda_index,        &
+            coupling_index), coupling_terms_b_coeffs(:, lambda_index,          &
+            coupling_index), coupling_terms_c_coeffs(:, lambda_index,          &
+            coupling_index), coupling_terms_d_coeffs(:, lambda_index,          &
+            coupling_index))
          !---------------------------------------------------------------------!
       end subroutine get_radial_coupling_term_value
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!      
       function find_lambda_index(lambda_) result(result_index_)
-         !! Locates given \\(\lambda\\) value in l1tab.
+         !! Locates given \\(\lambda\\) value in legendre_indices.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: lambda_
             !! Legendre expansion index, \\(\lambda\\)
          integer(int32) :: result_index_
-            !! Index pointing to  \\(\lambda\\) in l1tab
+            !! Index pointing to  \\(\lambda\\) in legendre_indices
          !---------------------------------------------------------------------!
          integer(int32) :: lambda_index_
          !---------------------------------------------------------------------!
          result_index_ = 0
-         do lambda_index_ = 1, nterms
-            if (l1tab(lambda_index_) == lambda_) then
+         do lambda_index_ = 1, number_of_legendre_indices
+            if (legendre_indices(lambda_index_) == lambda_) then
                result_index_ = lambda_index_
                exit
             endif
          enddo
          !---------------------------------------------------------------------!
       end function find_lambda_index
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!      
       subroutine handle_lambda_index_error(lambda_)
-         !! Handles error when \\(\lambda\\) is not found in l1tab.
+         !! Handles error when \\(\lambda\\) is not found in legendre_indices.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: lambda_
             !! Legendre expansion index, \\(\lambda\\)
          !---------------------------------------------------------------------!
          call write_error("Radial coupling terms with lambda = " //            &
-            trim(adjustl(integer_to_character(lambda_))) // " not found in l1tab")
+            trim(adjustl(integer_to_character(lambda_))) //                    &
+            " not found in legendre_indices")
          !---------------------------------------------------------------------!
       end subroutine handle_lambda_index_error
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!      
       function find_coupling_index(v_, j_, v_prime_, j_prime_) result(result_index_)
          !! Locates the correct quantum number that describes the v/j coupling.
          !! Note that coupling terms are symmetric with respect to the change
@@ -365,28 +406,30 @@ module radial_coupling_terms_mod
          integer(int32), intent(in) :: j_prime_
             !! post-collisional rotational quantum number
          integer(int32) :: result_index_
-            !! Index pointing to  \\(v, j, v^{\prime}, j^{\prime}\\) in reduced_* arrays
+            !! Index pointing to  \\(v, j, v^{\prime}, j^{\prime}\\)
+            !! in reduced_* arrays
          !---------------------------------------------------------------------!
          integer(int32) :: coupling_index_
          !---------------------------------------------------------------------!
          result_index_ = 0
          do coupling_index_ = 1, minimal_number_of_coupling_terms
-            if ((((reduced_v1pes(coupling_index_) == v_).and.                  &
-               (reduced_j1pes(coupling_index_).eq.j_).and.                     &
-               (reduced_v1ppes(coupling_index_).eq.v_prime_).and.              &
-               (reduced_j1ppes(coupling_index_).eq.j_prime_))                  &
+            if ((((reduced_vib_couplings(coupling_index_) == v_).and.          &
+               (reduced_rot_couplings(coupling_index_).eq.j_).and.             &
+               (reduced_vib_prime_couplings(coupling_index_).eq.v_prime_).and. &
+               (reduced_rot_prime_couplings(coupling_index_).eq.j_prime_))     &
                .or.                                                            &
-               ((reduced_v1pes(coupling_index_).eq.v_prime_).and.              &
-               (reduced_j1pes(coupling_index_).eq.j_prime_).and.               &
-               (reduced_v1ppes(coupling_index_).eq.v_).and.                    &
-               (reduced_j1ppes(coupling_index_).eq.j_))) ) then
+               ((reduced_vib_couplings(coupling_index_).eq.v_prime_).and.      &
+               (reduced_rot_couplings(coupling_index_).eq.j_prime_).and.       &
+               (reduced_vib_prime_couplings(coupling_index_).eq.v_).and.       &
+               (reduced_rot_prime_couplings(coupling_index_).eq.j_))) ) then
                result_index_ = coupling_index_
                exit
             endif
          enddo
          !---------------------------------------------------------------------!
       end function find_coupling_index
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!      
       subroutine handle_coupling_index_error(v_, j_, v_prime_, j_prime_)
          !! Handles error when the appropriate coupling term is not found.
          !---------------------------------------------------------------------!
@@ -406,5 +449,5 @@ module radial_coupling_terms_mod
             trim(adjustl(integer_to_character(j_prime_))) // " not found")
          !---------------------------------------------------------------------!
       end subroutine handle_coupling_index_error
-!------------------------------------------------------------------------------!
+   !---------------------------------------------------------------------------!
 end module radial_coupling_terms_mod

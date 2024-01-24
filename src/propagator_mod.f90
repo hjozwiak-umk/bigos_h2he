@@ -7,7 +7,7 @@ module propagator_mod
       time_count_summary, write_message
    use array_operations_mod, only: invert_symmetric_matrix,                    &
       fill_symmetric_matrix, add_scalar_to_diagonal
-   use data_mod
+   use global_variables_mod
    use physics_utilities_mod, only: total_energy
    use pes_matrix_mod, only: calculate_pes_matrix
    use centrifugal_matrix_mod, only: calculate_centrifugal_matrix
@@ -42,27 +42,29 @@ module propagator_mod
          real(dp), intent(in) :: nonzero_algebraic_coefficients_(:)
             !! holds the values of the non-zero algebraic coefficients
          integer(int32), intent(in) :: number_of_steps_
-            !! number of steps from rmin to rmax
+            !! number of steps from r_min to r_max
          integer(int32), intent(in) :: total_angular_momentum_
             !! total angular momentum
          real(dp), intent(inout) :: log_der_matrix_(number_of_channels_,number_of_channels_)
-            !! resulting log-derivative matrix at RMAX  
+            !! resulting log-derivative matrix at r_max  
          !---------------------------------------------------------------------!
          integer(int32) :: i, channel_index_1_, channel_index_2_
-         real(dp) :: start, finish, intermolecular_distance_, step_numerov_, calculation_time_
+         real(dp) :: start, finish, intermolecular_distance_, step_numerov_,   &
+            calculation_time_
          real(dp), dimension(number_of_channels_,number_of_channels_) ::       &
             centrifugal_matrix_,  &
             t_matrix_minus_, t_matrix_, t_matrix_plus_, r_matrix_,             &
-            r_matrix_rmax_, r_matrix_plus_
+            r_matrix_r_max_, r_matrix_plus_
          !---------------------------------------------------------------------!
          CALL CPU_TIME(start)
-         step_numerov_ = (rmax - rmin)/dble(number_of_steps_ - 1)
-         intermolecular_distance_ = rmin
+         step_numerov_ = (r_max - r_min)/dble(number_of_steps_ - 1)
+         intermolecular_distance_ = r_min
          !---------------------------------------------------------------------!
-         ! Initial setup: calculate centrifugal matrix and R_matrix at Rmin + 1
+         ! Initial setup: calculate centrifugal matrix and R_matrix at r_min + 1
          !---------------------------------------------------------------------!
-         call initial_setup(number_of_channels_, step_numerov_, total_angular_momentum_,      &
-            intermolecular_distance_, channel_indices_, channels_omega_values_,&
+         call initial_setup(number_of_channels_, step_numerov_,                &
+            total_angular_momentum_, intermolecular_distance_,                 &
+            channel_indices_, channels_omega_values_,                          &
             nonzero_terms_per_element_, nonzero_legendre_indices_,             &
             nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_)
          !---------------------------------------------------------------------!
@@ -70,31 +72,33 @@ module propagator_mod
          !---------------------------------------------------------------------!
          do i=2, number_of_steps_ - 2
             !------------------------------------------------------------------!
-            intermolecular_distance_ = rmin + (i-1)*step_numerov_
+            intermolecular_distance_ = r_min + (i-1)*step_numerov_
             !------------------------------------------------------------------!
-            call general_propagation_step(number_of_channels_, step_numerov_, &
-                  total_angular_momentum_, intermolecular_distance_, channel_indices_,    &
-                  channels_omega_values_, nonzero_terms_per_element_, nonzero_legendre_indices_, &
-                  nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_)
+            call general_propagation_step(number_of_channels_, step_numerov_,  &
+               total_angular_momentum_, intermolecular_distance_,              &
+               channel_indices_, channels_omega_values_,                       &
+               nonzero_terms_per_element_, nonzero_legendre_indices_,          &
+               nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_)
             !------------------------------------------------------------------!
          end do
          !---------------------------------------------------------------------!
-         call handle_final_propagation_steps(number_of_channels_, step_numerov_, &
-                  total_angular_momentum_, channel_indices_,    &
-                  channels_omega_values_, nonzero_terms_per_element_, nonzero_legendre_indices_, &
-                  nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_, &
-                  t_matrix_minus_, t_matrix_, t_matrix_plus_, r_matrix_rmax_, r_matrix_plus_)
+         call handle_final_propagation_steps(number_of_channels_,              &
+            step_numerov_, total_angular_momentum_, channel_indices_,          &
+            channels_omega_values_, nonzero_terms_per_element_,                &
+            nonzero_legendre_indices_, nonzero_algebraic_coefficients_,        &
+            centrifugal_matrix_, r_matrix_, t_matrix_minus_, t_matrix_,        &
+            t_matrix_plus_, r_matrix_r_max_, r_matrix_plus_)
          !---------------------------------------------------------------------!
          CALL CPU_TIME(finish)
          !---------------------------------------------------------------------!
          ! Eq. (6.29)
          !---------------------------------------------------------------------!
-         call calculate_log_der_matrix(step_numerov_,number_of_channels_,        &
-            t_matrix_minus_,t_matrix_,t_matrix_plus_,r_matrix_rmax_,r_matrix_plus_,log_der_matrix_)
+         call calculate_log_der_matrix(step_numerov_,number_of_channels_,       &
+            t_matrix_minus_,t_matrix_,t_matrix_plus_,r_matrix_r_max_,r_matrix_plus_,log_der_matrix_)
          !---------------------------------------------------------------------!
-         call propagator_summary(rmin, rmax, number_of_steps_)
+         call propagator_summary(r_min, r_max, number_of_steps_)
          !---------------------------------------------------------------------!
-         if (prntlvl.ge.2) then
+         if (print_level.ge.2) then
             call time_count_summary(start, finish, calculation_time_,          &
                "Propagation completed in ")
          endif
@@ -102,10 +106,11 @@ module propagator_mod
       end subroutine numerov
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
-      subroutine initial_setup(number_of_channels_, step_numerov_, total_angular_momentum_,   &
-         intermolecular_distance_, channel_indices_, channels_omega_values_,   &
-         nonzero_terms_per_element_, nonzero_legendre_indices_,                &
-         nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_)
+      subroutine initial_setup(number_of_channels_, step_numerov_,             &
+         total_angular_momentum_, intermolecular_distance_, channel_indices_,  &
+         channels_omega_values_, nonzero_terms_per_element_,                   &
+         nonzero_legendre_indices_, nonzero_algebraic_coefficients_,           &
+         centrifugal_matrix_, r_matrix_)
          !! ...
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_channels_
@@ -124,7 +129,7 @@ module propagator_mod
             !! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)
             !! for each non-zero element of the coupling matrix
          integer(int32), intent(in) :: nonzero_legendre_indices_(:)
-            !! holds indices pointing to l1tab, which correspond to
+            !! holds indices pointing to legendre_indices, which correspond to
             !! the non-vanishing elements of the sum over \\(\lambda\\)
             !! for each non-zero element of the coupling matrix;
          real(dp), intent(in) :: nonzero_algebraic_coefficients_(:)
@@ -132,7 +137,7 @@ module propagator_mod
          real(dp), intent(inout) :: centrifugal_matrix_(number_of_channels_,number_of_channels_)
             !! (R**2)*centrifugal matrix - calculated once, will be used throughout the propagation
          real(dp), intent(inout) :: r_matrix_(number_of_channels_,number_of_channels_)
-            !! R-matrix at Rmin
+            !! R-matrix at r_min
          !---------------------------------------------------------------------!   
          real(dp), dimension(number_of_channels_,number_of_channels_) ::       &
             pes_matrix_, coupling_matrix_, t_matrix_, u_matrix_
@@ -142,7 +147,7 @@ module propagator_mod
          call calculate_centrifugal_matrix(total_angular_momentum_,            &
             channel_indices_, channels_omega_values_, centrifugal_matrix_)
          !---------------------------------------------------------------------!   
-         ! Calculate PES matrix at rmin
+         ! Calculate PES matrix at r_min
          !---------------------------------------------------------------------!   
          call calculate_pes_matrix(total_angular_momentum_,                    &
             intermolecular_distance_, channel_indices_,                        &
@@ -159,17 +164,18 @@ module propagator_mod
          call calculate_t_matrix(step_numerov_, coupling_matrix_, t_matrix_)
          call calculate_u_matrix(t_matrix_, u_matrix_)
          !---------------------------------------------------------------------!
-         ! Initialize R-matrix: R-matrix at rmin + 1 = U-matrix at rmin
+         ! Initialize R-matrix: R-matrix at r_min + 1 = U-matrix at r_min
          !---------------------------------------------------------------------!
          r_matrix_ = u_matrix_
          !---------------------------------------------------------------------!
       end subroutine initial_setup
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
-      subroutine general_propagation_step(number_of_channels_, step_numerov_, total_angular_momentum_,   &
-         intermolecular_distance_, channel_indices_, channels_omega_values_,   &
-         nonzero_terms_per_element_, nonzero_legendre_indices_,                &
-         nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_, is_t_matrix_required_, t_matrix_returned_)
+      subroutine general_propagation_step(number_of_channels_, step_numerov_,  &
+         total_angular_momentum_, intermolecular_distance_, channel_indices_,  &
+         channels_omega_values_, nonzero_terms_per_element_,                   &
+         nonzero_legendre_indices_, nonzero_algebraic_coefficients_,           &
+         centrifugal_matrix_, r_matrix_, is_t_matrix_required_, t_matrix_returned_)
          !! ...
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_channels_
@@ -188,7 +194,7 @@ module propagator_mod
             !! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)
             !! for each non-zero element of the PES matrix
          integer(int32), intent(in) :: nonzero_legendre_indices_(:)
-            !! holds indices pointing to l1tab, which correspond to
+            !! holds indices pointing to legendre_indices, which correspond to
             !! the non-vanishing elements of the sum over \\(\lambda\\)
             !! for each non-zero element of the PES matrix;
          real(dp), intent(in) :: nonzero_algebraic_coefficients_(:)
@@ -228,19 +234,19 @@ module propagator_mod
          !---------------------------------------------------------------------!
          call invert_symmetric_matrix(r_matrix_)
          call fill_symmetric_matrix(r_matrix_, 'u')
-         !------------------------------------------------------------------!
+         !---------------------------------------------------------------------!
          ! R_{n+1} = U_{n} - R_{n}^{-1}
-         !------------------------------------------------------------------!
+         !---------------------------------------------------------------------!
          r_matrix_plus_ = u_matrix_ - r_matrix_
-         !------------------------------------------------------------------!
+         !---------------------------------------------------------------------!
          ! Move R_{n+1} to R_{n}
-         !------------------------------------------------------------------!
+         !---------------------------------------------------------------------!
          r_matrix_ = r_matrix_plus_
-         !------------------------------------------------------------------!
+         !---------------------------------------------------------------------!
          if (present(is_t_matrix_required_) .and. is_t_matrix_required_) then
             t_matrix_returned_ = t_matrix_
          endif
-      !---------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       end subroutine general_propagation_step
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
@@ -249,7 +255,7 @@ module propagator_mod
          channel_indices_, channels_omega_values_,   &
          nonzero_terms_per_element_, nonzero_legendre_indices_,                &
          nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,      &
-         t_matrix_minus_, t_matrix_, t_matrix_plus_, r_matrix_rmax_, r_matrix_plus_)
+         t_matrix_minus_, t_matrix_, t_matrix_plus_, r_matrix_r_max_, r_matrix_plus_)
          !! Handles propagation at the last two grid points:
          !! R_{N-1} and R_{N}: provides T-matrix at N-1, N and N+1 points
          !! and the Ratio matrix at N and N+1 points
@@ -268,7 +274,7 @@ module propagator_mod
             !! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)
             !! for each non-zero element of the PES matrix
          integer(int32), intent(in) :: nonzero_legendre_indices_(:)
-            !! holds indices pointing to l1tab, which correspond to
+            !! holds indices pointing to legendre_indices, which correspond to
             !! the non-vanishing elements of the sum over \\(\lambda\\)
             !! for each non-zero element of the PES matrix;
          real(dp), intent(in) :: nonzero_algebraic_coefficients_(:)
@@ -283,7 +289,7 @@ module propagator_mod
             !! T-matrix at N step
          real(dp), intent(out) :: t_matrix_plus_(number_of_channels_,number_of_channels_)
             !! T-matrix at N+1 step
-         real(dp), intent(out) :: r_matrix_rmax_(number_of_channels_,number_of_channels_)
+         real(dp), intent(out) :: r_matrix_r_max_(number_of_channels_,number_of_channels_)
             !! Ratio matrix at N step
          real(dp), intent(out) :: r_matrix_plus_(number_of_channels_,number_of_channels_)
             !! Ratio matrix at N+1 step
@@ -297,14 +303,14 @@ module propagator_mod
          !---------------------------------------------------------------------!
          ! N - 1 step
          !---------------------------------------------------------------------!
-         intermolecular_distance_ = rmax - step_numerov_
+         intermolecular_distance_ = r_max - step_numerov_
          call general_propagation_step(number_of_channels_, step_numerov_,     &
             total_angular_momentum_, intermolecular_distance_,                 &
             channel_indices_, channels_omega_values_,                          &
             nonzero_terms_per_element_, nonzero_legendre_indices_,             &
             nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,   &
             is_t_matrix_required_, t_matrix_minus_)
-         r_matrix_rmax_ = r_matrix_
+         r_matrix_r_max_ = r_matrix_
          !---------------------------------------------------------------------!
          ! N  step
          !---------------------------------------------------------------------!
@@ -518,8 +524,8 @@ module propagator_mod
             // trim(adjustl(float_to_character(r_max_, "(F10.4)")))//          &
             " a.u. in "// trim(adjustl(integer_to_character(number_of_steps_)))&
             // " steps ")
-         call write_message("   (constant dr = " //                            &
-            trim(adjustl(float_to_character((rmax - rmin) /                    &
+         call write_message("   (constant r_step= " //                         &
+            trim(adjustl(float_to_character((r_max - r_min) /                  &
             real(number_of_steps_ - 1, dp), "(E14.8)"))) // " a.u.)")
          !---------------------------------------------------------------------!
       end subroutine propagator_summary

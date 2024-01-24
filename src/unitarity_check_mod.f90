@@ -3,7 +3,7 @@ module unitarity_check_mod
    !! of the S-matrix (see Eq. (13) in "Solution of coupled equations")
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
-   use data_mod, only: unitary_tolerance
+   use global_variables_mod, only: unitary_tolerance
    use utility_functions_mod, only: integer_to_character, float_to_character,  &
       write_warning, write_message
    !---------------------------------------------------------------------------!
@@ -14,6 +14,7 @@ module unitarity_check_mod
    !---------------------------------------------------------------------------!
    contains
       !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine unitarity_check(number_of_open_channels, s_matrix_real,       &
          s_matrix_imag,is_unitary)
          !! checks the unitarity of the S-matrix
@@ -21,9 +22,11 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_open_channels
             !! number of open channels
-         real(dp), intent(in) :: s_matrix_real(number_of_open_channels,number_of_open_channels)
+         real(dp), intent(in) :: s_matrix_real(number_of_open_channels,        &
+            number_of_open_channels)
             !! real part of the S-matrix
-         real(dp), intent(in) :: s_matrix_imag(number_of_open_channels,number_of_open_channels)
+         real(dp), intent(in) :: s_matrix_imag(number_of_open_channels,        &
+            number_of_open_channels)
             !! imaginary part of the S-matrix
          logical, intent(inout) :: is_unitary
             !! (output) if .true. unitarity is fulfilled, .false. otherwise
@@ -50,7 +53,8 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
       end subroutine unitarity_check
       !------------------------------------------------------------------------!
-      subroutine calculate_sum_of_squares_for_each_channel(s_matrix_real,        &
+      !------------------------------------------------------------------------!
+      subroutine calculate_sum_of_squares_for_each_channel(s_matrix_real,      &
          s_matrix_imag, sum_of_squares_)
          !! calculates the sum
          !! \\( \sum\_{\gamma'} \Bigl|{S}^{Jp}\_{\gamma, \gamma'}\Bigr|^{2} \\)
@@ -73,6 +77,7 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
       end subroutine calculate_sum_of_squares_for_each_channel
       !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       function check_unitarity_for_each_channel(sum_of_squares)                &
          result(is_unitary_)
          !! checks if the calculated sum of squares equals 1 for each channel
@@ -94,6 +99,7 @@ module unitarity_check_mod
          !---------------------------------------------------------------------!
       end function check_unitarity_for_each_channel
       !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine handle_unitarity_output_message(is_unitary, sum_of_squares)
          !! handle printing messages depending on the outcome of unitarity check
          !---------------------------------------------------------------------!
@@ -107,14 +113,15 @@ module unitarity_check_mod
          if (is_unitary) then
             call write_message("-- S-matrix unitary condition fulfilled")
          else
-            call write_warning("Unitary condition is not fulfilled for one or more channels")
+            call write_warning("Unitary condition is not fulfilled for one or" &
+               // " more channels")
             call write_message("Consider increasing the STEPS parameter")
             call print_sum_of_squares(sum_of_squares)
          endif
          !---------------------------------------------------------------------!
       end subroutine handle_unitarity_output_message
-   !---------------------------------------------------------------------------!
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine print_sum_of_squares(sum_of_squares)
          !! print S-matrix on screen
          !---------------------------------------------------------------------!
@@ -137,8 +144,8 @@ module unitarity_check_mod
          enddo
          !---------------------------------------------------------------------!
       end subroutine print_sum_of_squares
-   !---------------------------------------------------------------------------!
-   !---------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       subroutine print_final_unitarity_warning(list_of_blocks)
          !! print the final warning that the unitarity check failed in
          !! given blocks
