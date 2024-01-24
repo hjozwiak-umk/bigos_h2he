@@ -357,20 +357,20 @@ for each non-zero element of W/V</p>
 <polygon fill="none" stroke="black" points="60,-200 0,-200 0,-176 60,-176 60,-200"/>
 <text text-anchor="middle" x="30" y="-185.6" font-family="Helvetica,sans-Serif" font-size="10.50">numerov</text>
 </g>
-<!-- proc~calculate_log_der_matrix -->
+<!-- proc~initial_setup -->
 <g id="proc~~numerov~~CallsGraph_node2" class="node">
-<title>proc~calculate_log_der_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node2"><a xlink:href=".././proc/calculate_log_der_matrix.html" xlink:title="calculate_log_der_matrix">
-<polygon fill="#d9534f" stroke="#d9534f" points="655,-373 509,-373 509,-349 655,-349 655,-373"/>
-<text text-anchor="middle" x="582" y="-358.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_log_der_matrix</text>
+<title>proc~initial_setup</title>
+<g id="a_proc~~numerov~~CallsGraph_node2"><a xlink:href=".././proc/initial_setup.html" xlink:title="initial_setup">
+<polygon fill="#d9534f" stroke="#d9534f" points="426.5,-181 350.5,-181 350.5,-157 426.5,-157 426.5,-181"/>
+<text text-anchor="middle" x="388.5" y="-166.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initial_setup</text>
 </a>
 </g>
 </g>
-<!-- proc~numerov&#45;&gt;proc~calculate_log_der_matrix -->
+<!-- proc~numerov&#45;&gt;proc~initial_setup -->
 <g id="proc~~numerov~~CallsGraph_edge1" class="edge">
-<title>proc~numerov&#45;&gt;proc~calculate_log_der_matrix</title>
-<path fill="none" stroke="#ff0000" d="M40.17,-200.04C51.65,-214.22 72.65,-237.44 96,-250 226,-319.91 398.55,-345.95 498.92,-355.53"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="498.72,-359.03 509,-356.46 499.36,-352.06 498.72,-359.03"/>
+<title>proc~numerov&#45;&gt;proc~initial_setup</title>
+<path fill="none" stroke="#ff0000" d="M60.17,-186.45C121.72,-183.17 265.32,-175.51 340.19,-171.52"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="340.48,-175.01 350.28,-170.98 340.11,-168.02 340.48,-175.01"/>
 </g>
 <!-- proc~handle_final_propagation_steps -->
 <g id="proc~~numerov~~CallsGraph_node3" class="node">
@@ -412,160 +412,85 @@ for each non-zero element of W/V</p>
 </g>
 </g>
 <!-- proc~numerov&#45;&gt;proc~general_propagation_step -->
-<g id="proc~~numerov~~CallsGraph_edge5" class="edge">
+<g id="proc~~numerov~~CallsGraph_edge4" class="edge">
 <title>proc~numerov&#45;&gt;proc~general_propagation_step</title>
 <path fill="none" stroke="#ff0000" d="M44.82,-200.01C57.26,-209.97 76.52,-223.37 96,-229 169.56,-250.26 257.95,-243.61 317.97,-234.6"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="318.76,-238.02 328.1,-233.02 317.68,-231.11 318.76,-238.02"/>
 </g>
-<!-- proc~initial_setup -->
-<g id="proc~~numerov~~CallsGraph_node6" class="node">
-<title>proc~initial_setup</title>
-<g id="a_proc~~numerov~~CallsGraph_node6"><a xlink:href=".././proc/initial_setup.html" xlink:title="initial_setup">
-<polygon fill="#d9534f" stroke="#d9534f" points="426.5,-181 350.5,-181 350.5,-157 426.5,-157 426.5,-181"/>
-<text text-anchor="middle" x="388.5" y="-166.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initial_setup</text>
-</a>
-</g>
-</g>
-<!-- proc~numerov&#45;&gt;proc~initial_setup -->
-<g id="proc~~numerov~~CallsGraph_edge4" class="edge">
-<title>proc~numerov&#45;&gt;proc~initial_setup</title>
-<path fill="none" stroke="#ff0000" d="M60.17,-186.45C121.72,-183.17 265.32,-175.51 340.19,-171.52"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="340.48,-175.01 350.28,-170.98 340.11,-168.02 340.48,-175.01"/>
-</g>
 <!-- proc~propagator_summary -->
-<g id="proc~~numerov~~CallsGraph_node7" class="node">
+<g id="proc~~numerov~~CallsGraph_node6" class="node">
 <title>proc~propagator_summary</title>
-<g id="a_proc~~numerov~~CallsGraph_node7"><a xlink:href=".././proc/propagator_summary.html" xlink:title="propagator_summary">
+<g id="a_proc~~numerov~~CallsGraph_node6"><a xlink:href=".././proc/propagator_summary.html" xlink:title="propagator_summary">
 <polygon fill="#d9534f" stroke="#d9534f" points="250,-98 123,-98 123,-74 250,-74 250,-98"/>
 <text text-anchor="middle" x="186.5" y="-83.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">propagator_summary</text>
 </a>
 </g>
 </g>
 <!-- proc~numerov&#45;&gt;proc~propagator_summary -->
-<g id="proc~~numerov~~CallsGraph_edge6" class="edge">
+<g id="proc~~numerov~~CallsGraph_edge5" class="edge">
 <title>proc~numerov&#45;&gt;proc~propagator_summary</title>
 <path fill="none" stroke="#ff0000" d="M37.2,-176C47.1,-158.06 68.24,-124.5 96,-107 101.32,-103.65 107.11,-100.83 113.12,-98.46"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="114.42,-101.72 122.69,-95.1 112.1,-95.11 114.42,-101.72"/>
 </g>
-<!-- interface~add_scalar_to_diagonal -->
+<!-- proc~calculate_log_der_matrix -->
+<g id="proc~~numerov~~CallsGraph_node7" class="node">
+<title>proc~calculate_log_der_matrix</title>
+<g id="a_proc~~numerov~~CallsGraph_node7"><a xlink:href=".././proc/calculate_log_der_matrix.html" xlink:title="calculate_log_der_matrix">
+<polygon fill="#d9534f" stroke="#d9534f" points="655,-373 509,-373 509,-349 655,-349 655,-373"/>
+<text text-anchor="middle" x="582" y="-358.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_log_der_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~numerov&#45;&gt;proc~calculate_log_der_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge6" class="edge">
+<title>proc~numerov&#45;&gt;proc~calculate_log_der_matrix</title>
+<path fill="none" stroke="#ff0000" d="M40.17,-200.04C51.65,-214.22 72.65,-237.44 96,-250 226,-319.91 398.55,-345.95 498.92,-355.53"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="498.72,-359.03 509,-356.46 499.36,-352.06 498.72,-359.03"/>
+</g>
+<!-- proc~calculate_centrifugal_matrix -->
 <g id="proc~~numerov~~CallsGraph_node8" class="node">
-<title>interface~add_scalar_to_diagonal</title>
-<g id="a_proc~~numerov~~CallsGraph_node8"><a xlink:href=".././interface/add_scalar_to_diagonal.html" xlink:title="add_scalar_to_diagonal">
-<polygon fill="#a7506f" stroke="#a7506f" points="889,-355 751,-355 751,-331 889,-331 889,-355"/>
-<text text-anchor="middle" x="820" y="-340.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">add_scalar_to_diagonal</text>
+<title>proc~calculate_centrifugal_matrix</title>
+<g id="a_proc~~numerov~~CallsGraph_node8"><a xlink:href=".././proc/calculate_centrifugal_matrix.html" xlink:title="calculate_centrifugal_matrix">
+<polygon fill="#d9534f" stroke="#d9534f" points="664,-87 500,-87 500,-63 664,-63 664,-87"/>
+<text text-anchor="middle" x="582" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_centrifugal_matrix</text>
 </a>
 </g>
 </g>
-<!-- proc~calculate_log_der_matrix&#45;&gt;interface~add_scalar_to_diagonal -->
+<!-- proc~initial_setup&#45;&gt;proc~calculate_centrifugal_matrix -->
 <g id="proc~~numerov~~CallsGraph_edge7" class="edge">
-<title>proc~calculate_log_der_matrix&#45;&gt;interface~add_scalar_to_diagonal</title>
-<path fill="none" stroke="#ff0000" d="M655.09,-355.5C682.25,-353.43 713.26,-351.06 740.95,-348.95"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="741.28,-352.44 750.98,-348.19 740.74,-345.46 741.28,-352.44"/>
-</g>
-<!-- dgemm -->
-<g id="proc~~numerov~~CallsGraph_node9" class="node">
-<title>dgemm</title>
-<polygon fill="#777777" stroke="#777777" points="847,-397 793,-397 793,-373 847,-373 847,-397"/>
-<text text-anchor="middle" x="820" y="-382.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgemm</text>
-</g>
-<!-- proc~calculate_log_der_matrix&#45;&gt;dgemm -->
-<g id="proc~~numerov~~CallsGraph_edge8" class="edge">
-<title>proc~calculate_log_der_matrix&#45;&gt;dgemm</title>
-<path fill="none" stroke="#ff0000" d="M655.09,-368.33C697.29,-372.62 748.77,-377.86 782.64,-381.3"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="782.68,-384.82 792.99,-382.35 783.39,-377.86 782.68,-384.82"/>
-</g>
-<!-- interface~invert_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_node11" class="node">
-<title>interface~invert_symmetric_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node11"><a xlink:href=".././interface/invert_symmetric_matrix.html" xlink:title="invert_symmetric_matrix">
-<polygon fill="#a7506f" stroke="#a7506f" points="892.5,-313 747.5,-313 747.5,-289 892.5,-289 892.5,-313"/>
-<text text-anchor="middle" x="820" y="-298.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">invert_symmetric_matrix</text>
-</a>
-</g>
-</g>
-<!-- proc~calculate_log_der_matrix&#45;&gt;interface~invert_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge9" class="edge">
-<title>proc~calculate_log_der_matrix&#45;&gt;interface~invert_symmetric_matrix</title>
-<path fill="none" stroke="#ff0000" d="M621.41,-348.98C634.91,-344.68 650.16,-339.72 664,-335 680.1,-329.51 683.56,-326.38 700,-322 712,-318.8 724.81,-315.96 737.41,-313.48"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="738.29,-316.88 747.46,-311.57 736.98,-310 738.29,-316.88"/>
-</g>
-<!-- interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_node12" class="node">
-<title>interface~fill_symmetric_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node12"><a xlink:href=".././interface/fill_symmetric_matrix.html" xlink:title="fill_symmetric_matrix">
-<polygon fill="#a7506f" stroke="#a7506f" points="883.5,-253 756.5,-253 756.5,-229 883.5,-229 883.5,-253"/>
-<text text-anchor="middle" x="820" y="-238.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fill_symmetric_matrix</text>
-</a>
-</g>
-</g>
-<!-- proc~calculate_log_der_matrix&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge10" class="edge">
-<title>proc~calculate_log_der_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#ff0000" d="M599.41,-348.76C626.42,-328.76 679.31,-290.28 700,-280 719.49,-270.31 741.94,-262.24 762.05,-256"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="763.15,-259.32 771.71,-253.08 761.12,-252.62 763.15,-259.32"/>
-</g>
-<!-- proc~handle_final_propagation_steps&#45;&gt;proc~general_propagation_step -->
-<g id="proc~~numerov~~CallsGraph_edge11" class="edge">
-<title>proc~handle_final_propagation_steps&#45;&gt;proc~general_propagation_step</title>
-<path fill="none" stroke="#ffff00" d="M277.26,-213.83C285.75,-214.39 294.34,-214.94 302.78,-215.49"/>
-<polygon fill="#ffff00" stroke="#ffff00" points="302.78,-219 312.99,-216.16 303.24,-212.02 302.78,-219"/>
-</g>
-<!-- proc~write_message -->
-<g id="proc~~numerov~~CallsGraph_node10" class="node">
-<title>proc~write_message</title>
-<g id="a_proc~~numerov~~CallsGraph_node10"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
-<polygon fill="#d9534f" stroke="#d9534f" points="434.5,-139 342.5,-139 342.5,-115 434.5,-115 434.5,-139"/>
-<text text-anchor="middle" x="388.5" y="-124.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
-</a>
-</g>
-</g>
-<!-- proc~time_count_summary&#45;&gt;proc~write_message -->
-<g id="proc~~numerov~~CallsGraph_edge12" class="edge">
-<title>proc~time_count_summary&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#00ff00" d="M250.23,-127.69C276.51,-127.55 306.8,-127.4 332.22,-127.28"/>
-<polygon fill="#00ff00" stroke="#00ff00" points="332.45,-130.78 342.43,-127.23 332.42,-123.78 332.45,-130.78"/>
-</g>
-<!-- proc~general_propagation_step&#45;&gt;interface~invert_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge14" class="edge">
-<title>proc~general_propagation_step&#45;&gt;interface~invert_symmetric_matrix</title>
-<path fill="none" stroke="#00ffff" d="M400.63,-233.08C419.1,-252.11 458.18,-288.31 500,-302 579.69,-328.08 676.7,-322.96 742.66,-314.43"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="743.54,-317.84 752.98,-313.03 742.6,-310.9 743.54,-317.84"/>
-</g>
-<!-- proc~general_propagation_step&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge18" class="edge">
-<title>proc~general_propagation_step&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#00ffff" d="M464.31,-224.48C543.44,-228.17 667.45,-233.94 745.92,-237.6"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="746.05,-241.11 756.2,-238.08 746.38,-234.11 746.05,-241.11"/>
+<title>proc~initial_setup&#45;&gt;proc~calculate_centrifugal_matrix</title>
+<path fill="none" stroke="#ff0000" d="M426.59,-163.81C439.3,-160.72 453.06,-155.81 464,-148 486.88,-131.67 476.95,-112.09 500,-96 502.27,-94.42 504.64,-92.95 507.1,-91.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="508.82,-94.66 516.31,-87.17 505.78,-88.35 508.82,-94.66"/>
 </g>
 <!-- proc~calculate_pes_matrix -->
-<g id="proc~~numerov~~CallsGraph_node13" class="node">
+<g id="proc~~numerov~~CallsGraph_node9" class="node">
 <title>proc~calculate_pes_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node13"><a xlink:href=".././proc/calculate_pes_matrix.html" xlink:title="calculate_pes_matrix">
+<g id="a_proc~~numerov~~CallsGraph_node9"><a xlink:href=".././proc/calculate_pes_matrix.html" xlink:title="calculate_pes_matrix">
 <polygon fill="#d9534f" stroke="#d9534f" points="644.5,-129 519.5,-129 519.5,-105 644.5,-105 644.5,-129"/>
 <text text-anchor="middle" x="582" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_pes_matrix</text>
 </a>
 </g>
 </g>
-<!-- proc~general_propagation_step&#45;&gt;proc~calculate_pes_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge13" class="edge">
-<title>proc~general_propagation_step&#45;&gt;proc~calculate_pes_matrix</title>
-<path fill="none" stroke="#00ffff" d="M430.1,-208.95C441.81,-204.25 454.09,-198.01 464,-190 485.86,-172.33 476.95,-154.09 500,-138 503.1,-135.84 506.41,-133.89 509.85,-132.15"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="511.5,-135.25 519.22,-127.99 508.66,-128.85 511.5,-135.25"/>
+<!-- proc~initial_setup&#45;&gt;proc~calculate_pes_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge8" class="edge">
+<title>proc~initial_setup&#45;&gt;proc~calculate_pes_matrix</title>
+<path fill="none" stroke="#ff0000" d="M426.64,-158.54C455.84,-150.32 492.76,-139.95 500,-138 507.78,-135.9 515.99,-133.73 524.07,-131.61"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="525.05,-134.97 533.84,-129.06 523.28,-128.2 525.05,-134.97"/>
 </g>
 <!-- proc~calculate_t_matrix -->
-<g id="proc~~numerov~~CallsGraph_node14" class="node">
+<g id="proc~~numerov~~CallsGraph_node10" class="node">
 <title>proc~calculate_t_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node14"><a xlink:href=".././proc/calculate_t_matrix.html" xlink:title="calculate_t_matrix">
+<g id="a_proc~~numerov~~CallsGraph_node10"><a xlink:href=".././proc/calculate_t_matrix.html" xlink:title="calculate_t_matrix">
 <polygon fill="#d9534f" stroke="#d9534f" points="637,-171 527,-171 527,-147 637,-147 637,-171"/>
 <text text-anchor="middle" x="582" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_t_matrix</text>
 </a>
 </g>
 </g>
-<!-- proc~general_propagation_step&#45;&gt;proc~calculate_t_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge15" class="edge">
-<title>proc~general_propagation_step&#45;&gt;proc~calculate_t_matrix</title>
-<path fill="none" stroke="#00ffff" d="M419.7,-208.85C441.75,-200.21 472.48,-188.65 500,-180 506.86,-177.84 514.1,-175.74 521.31,-173.74"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="522.35,-177.08 531.08,-171.09 520.52,-170.33 522.35,-177.08"/>
+<!-- proc~initial_setup&#45;&gt;proc~calculate_t_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge9" class="edge">
+<title>proc~initial_setup&#45;&gt;proc~calculate_t_matrix</title>
+<path fill="none" stroke="#ff0000" d="M426.88,-167.05C452.29,-165.72 486.57,-163.93 516.36,-162.38"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="516.88,-165.85 526.68,-161.84 516.51,-158.86 516.88,-165.85"/>
 </g>
 <!-- proc~calculate_u_matrix -->
 <g id="proc~~numerov~~CallsGraph_node15" class="node">
@@ -576,11 +501,11 @@ for each non-zero element of W/V</p>
 </a>
 </g>
 </g>
-<!-- proc~general_propagation_step&#45;&gt;proc~calculate_u_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge16" class="edge">
-<title>proc~general_propagation_step&#45;&gt;proc~calculate_u_matrix</title>
-<path fill="none" stroke="#00ffff" d="M428.25,-233.14C458.46,-242.61 500.57,-255.8 532.93,-265.94"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="532.04,-269.33 542.63,-268.98 534.14,-262.65 532.04,-269.33"/>
+<!-- proc~initial_setup&#45;&gt;proc~calculate_u_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge10" class="edge">
+<title>proc~initial_setup&#45;&gt;proc~calculate_u_matrix</title>
+<path fill="none" stroke="#ff0000" d="M422.84,-181.13C435.95,-186.34 450.97,-192.88 464,-200 482.37,-210.03 527.69,-242.28 556.23,-262.93"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="554.35,-265.89 564.5,-268.93 558.46,-260.23 554.35,-265.89"/>
 </g>
 <!-- proc~calculate_coupling_matrix -->
 <g id="proc~~numerov~~CallsGraph_node16" class="node">
@@ -591,176 +516,251 @@ for each non-zero element of W/V</p>
 </a>
 </g>
 </g>
-<!-- proc~general_propagation_step&#45;&gt;proc~calculate_coupling_matrix -->
+<!-- proc~initial_setup&#45;&gt;proc~calculate_coupling_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge11" class="edge">
+<title>proc~initial_setup&#45;&gt;proc~calculate_coupling_matrix</title>
+<path fill="none" stroke="#ff0000" d="M426.88,-175.25C447.44,-178.68 473.81,-183.09 498.91,-187.28"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="498.38,-190.74 508.82,-188.94 499.53,-183.84 498.38,-190.74"/>
+</g>
+<!-- proc~handle_final_propagation_steps&#45;&gt;proc~general_propagation_step -->
+<g id="proc~~numerov~~CallsGraph_edge12" class="edge">
+<title>proc~handle_final_propagation_steps&#45;&gt;proc~general_propagation_step</title>
+<path fill="none" stroke="#ffff00" d="M277.26,-213.83C285.75,-214.39 294.34,-214.94 302.78,-215.49"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="302.78,-219 312.99,-216.16 303.24,-212.02 302.78,-219"/>
+</g>
+<!-- proc~write_message -->
+<g id="proc~~numerov~~CallsGraph_node17" class="node">
+<title>proc~write_message</title>
+<g id="a_proc~~numerov~~CallsGraph_node17"><a xlink:href=".././proc/write_message.html" xlink:title="write_message">
+<polygon fill="#d9534f" stroke="#d9534f" points="434.5,-139 342.5,-139 342.5,-115 434.5,-115 434.5,-139"/>
+<text text-anchor="middle" x="388.5" y="-124.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_message</text>
+</a>
+</g>
+</g>
+<!-- proc~time_count_summary&#45;&gt;proc~write_message -->
+<g id="proc~~numerov~~CallsGraph_edge13" class="edge">
+<title>proc~time_count_summary&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#00ff00" d="M250.23,-127.69C276.51,-127.55 306.8,-127.4 332.22,-127.28"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="332.45,-130.78 342.43,-127.23 332.42,-123.78 332.45,-130.78"/>
+</g>
+<!-- proc~general_propagation_step&#45;&gt;proc~calculate_pes_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge14" class="edge">
+<title>proc~general_propagation_step&#45;&gt;proc~calculate_pes_matrix</title>
+<path fill="none" stroke="#00ffff" d="M430.1,-208.95C441.81,-204.25 454.09,-198.01 464,-190 485.86,-172.33 476.95,-154.09 500,-138 503.1,-135.84 506.41,-133.89 509.85,-132.15"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="511.5,-135.25 519.22,-127.99 508.66,-128.85 511.5,-135.25"/>
+</g>
+<!-- proc~general_propagation_step&#45;&gt;proc~calculate_t_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge16" class="edge">
+<title>proc~general_propagation_step&#45;&gt;proc~calculate_t_matrix</title>
+<path fill="none" stroke="#00ffff" d="M419.7,-208.85C441.75,-200.21 472.48,-188.65 500,-180 506.86,-177.84 514.1,-175.74 521.31,-173.74"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="522.35,-177.08 531.08,-171.09 520.52,-170.33 522.35,-177.08"/>
+</g>
+<!-- interface~invert_symmetric_matrix -->
+<g id="proc~~numerov~~CallsGraph_node11" class="node">
+<title>interface~invert_symmetric_matrix</title>
+<g id="a_proc~~numerov~~CallsGraph_node11"><a xlink:href=".././interface/invert_symmetric_matrix.html" xlink:title="invert_symmetric_matrix">
+<polygon fill="#a7506f" stroke="#a7506f" points="892.5,-313 747.5,-313 747.5,-289 892.5,-289 892.5,-313"/>
+<text text-anchor="middle" x="820" y="-298.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">invert_symmetric_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~general_propagation_step&#45;&gt;interface~invert_symmetric_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge15" class="edge">
+<title>proc~general_propagation_step&#45;&gt;interface~invert_symmetric_matrix</title>
+<path fill="none" stroke="#00ffff" d="M400.63,-233.08C419.1,-252.11 458.18,-288.31 500,-302 579.69,-328.08 676.7,-322.96 742.66,-314.43"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="743.54,-317.84 752.98,-313.03 742.6,-310.9 743.54,-317.84"/>
+</g>
+<!-- proc~general_propagation_step&#45;&gt;proc~calculate_u_matrix -->
 <g id="proc~~numerov~~CallsGraph_edge17" class="edge">
+<title>proc~general_propagation_step&#45;&gt;proc~calculate_u_matrix</title>
+<path fill="none" stroke="#00ffff" d="M428.25,-233.14C458.46,-242.61 500.57,-255.8 532.93,-265.94"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="532.04,-269.33 542.63,-268.98 534.14,-262.65 532.04,-269.33"/>
+</g>
+<!-- proc~general_propagation_step&#45;&gt;proc~calculate_coupling_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge18" class="edge">
 <title>proc~general_propagation_step&#45;&gt;proc~calculate_coupling_matrix</title>
 <path fill="none" stroke="#00ffff" d="M464.09,-213.21C474.51,-212.12 485.29,-211 495.89,-209.89"/>
 <polygon fill="#00ffff" stroke="#00ffff" points="496.4,-213.35 505.99,-208.83 495.68,-206.39 496.4,-213.35"/>
 </g>
-<!-- proc~initial_setup&#45;&gt;proc~calculate_pes_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge20" class="edge">
-<title>proc~initial_setup&#45;&gt;proc~calculate_pes_matrix</title>
-<path fill="none" stroke="#0000ff" d="M426.64,-158.54C455.84,-150.32 492.76,-139.95 500,-138 507.78,-135.9 515.99,-133.73 524.07,-131.61"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="525.05,-134.97 533.84,-129.06 523.28,-128.2 525.05,-134.97"/>
-</g>
-<!-- proc~initial_setup&#45;&gt;proc~calculate_t_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge21" class="edge">
-<title>proc~initial_setup&#45;&gt;proc~calculate_t_matrix</title>
-<path fill="none" stroke="#0000ff" d="M426.88,-167.05C452.29,-165.72 486.57,-163.93 516.36,-162.38"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="516.88,-165.85 526.68,-161.84 516.51,-158.86 516.88,-165.85"/>
-</g>
-<!-- proc~initial_setup&#45;&gt;proc~calculate_u_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge22" class="edge">
-<title>proc~initial_setup&#45;&gt;proc~calculate_u_matrix</title>
-<path fill="none" stroke="#0000ff" d="M422.84,-181.13C435.95,-186.34 450.97,-192.88 464,-200 482.37,-210.03 527.69,-242.28 556.23,-262.93"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="554.35,-265.89 564.5,-268.93 558.46,-260.23 554.35,-265.89"/>
-</g>
-<!-- proc~initial_setup&#45;&gt;proc~calculate_coupling_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge23" class="edge">
-<title>proc~initial_setup&#45;&gt;proc~calculate_coupling_matrix</title>
-<path fill="none" stroke="#0000ff" d="M426.88,-175.25C447.44,-178.68 473.81,-183.09 498.91,-187.28"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="498.38,-190.74 508.82,-188.94 499.53,-183.84 498.38,-190.74"/>
-</g>
-<!-- proc~calculate_centrifugal_matrix -->
-<g id="proc~~numerov~~CallsGraph_node17" class="node">
-<title>proc~calculate_centrifugal_matrix</title>
-<g id="a_proc~~numerov~~CallsGraph_node17"><a xlink:href=".././proc/calculate_centrifugal_matrix.html" xlink:title="calculate_centrifugal_matrix">
-<polygon fill="#d9534f" stroke="#d9534f" points="664,-87 500,-87 500,-63 664,-63 664,-87"/>
-<text text-anchor="middle" x="582" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_centrifugal_matrix</text>
-</a>
-</g>
-</g>
-<!-- proc~initial_setup&#45;&gt;proc~calculate_centrifugal_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge19" class="edge">
-<title>proc~initial_setup&#45;&gt;proc~calculate_centrifugal_matrix</title>
-<path fill="none" stroke="#0000ff" d="M426.59,-163.81C439.3,-160.72 453.06,-155.81 464,-148 486.88,-131.67 476.95,-112.09 500,-96 502.27,-94.42 504.64,-92.95 507.1,-91.6"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="508.82,-94.66 516.31,-87.17 505.78,-88.35 508.82,-94.66"/>
-</g>
-<!-- proc~propagator_summary&#45;&gt;proc~write_message -->
-<g id="proc~~numerov~~CallsGraph_edge25" class="edge">
-<title>proc~propagator_summary&#45;&gt;proc~write_message</title>
-<path fill="none" stroke="#ff00ff" d="M246.16,-98.02C273.34,-103.6 305.48,-110.19 332.23,-115.67"/>
-<polygon fill="#ff00ff" stroke="#ff00ff" points="331.7,-119.13 342.2,-117.71 333.11,-112.28 331.7,-119.13"/>
-</g>
-<!-- proc~float_to_character -->
+<!-- interface~fill_symmetric_matrix -->
 <g id="proc~~numerov~~CallsGraph_node18" class="node">
-<title>proc~float_to_character</title>
-<g id="a_proc~~numerov~~CallsGraph_node18"><a xlink:href=".././proc/float_to_character.html" xlink:title="float_to_character">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="443,-97 334,-97 334,-73 443,-73 443,-97"/>
-<text text-anchor="middle" x="388.5" y="-82.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">float_to_character</text>
+<title>interface~fill_symmetric_matrix</title>
+<g id="a_proc~~numerov~~CallsGraph_node18"><a xlink:href=".././interface/fill_symmetric_matrix.html" xlink:title="fill_symmetric_matrix">
+<polygon fill="#a7506f" stroke="#a7506f" points="883.5,-253 756.5,-253 756.5,-229 883.5,-229 883.5,-253"/>
+<text text-anchor="middle" x="820" y="-238.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fill_symmetric_matrix</text>
 </a>
 </g>
 </g>
-<!-- proc~propagator_summary&#45;&gt;proc~float_to_character -->
-<g id="proc~~numerov~~CallsGraph_edge24" class="edge">
-<title>proc~propagator_summary&#45;&gt;proc~float_to_character</title>
-<path fill="none" stroke="#ff00ff" d="M250.23,-85.69C273.58,-85.57 300.1,-85.44 323.56,-85.32"/>
-<polygon fill="#ff00ff" stroke="#ff00ff" points="323.77,-88.82 333.75,-85.27 323.73,-81.82 323.77,-88.82"/>
+<!-- proc~general_propagation_step&#45;&gt;interface~fill_symmetric_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge19" class="edge">
+<title>proc~general_propagation_step&#45;&gt;interface~fill_symmetric_matrix</title>
+<path fill="none" stroke="#00ffff" d="M464.31,-224.48C543.44,-228.17 667.45,-233.94 745.92,-237.6"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="746.05,-241.11 756.2,-238.08 746.38,-234.11 746.05,-241.11"/>
 </g>
 <!-- proc~integer_to_character -->
-<g id="proc~~numerov~~CallsGraph_node19" class="node">
+<g id="proc~~numerov~~CallsGraph_node12" class="node">
 <title>proc~integer_to_character</title>
-<g id="a_proc~~numerov~~CallsGraph_node19"><a xlink:href=".././proc/integer_to_character.html" xlink:title="integer_to_character">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="450.5,-55 326.5,-55 326.5,-31 450.5,-31 450.5,-55"/>
-<text text-anchor="middle" x="388.5" y="-40.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integer_to_character</text>
+<g id="a_proc~~numerov~~CallsGraph_node12"><a xlink:href=".././proc/integer_to_character.html" xlink:title="integer_to_character">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="450.5,-97 326.5,-97 326.5,-73 450.5,-73 450.5,-97"/>
+<text text-anchor="middle" x="388.5" y="-82.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integer_to_character</text>
 </a>
 </g>
 </g>
 <!-- proc~propagator_summary&#45;&gt;proc~integer_to_character -->
-<g id="proc~~numerov~~CallsGraph_edge26" class="edge">
+<g id="proc~~numerov~~CallsGraph_edge21" class="edge">
 <title>proc~propagator_summary&#45;&gt;proc~integer_to_character</title>
-<path fill="none" stroke="#ff00ff" d="M243.48,-73.96C267.76,-68.74 296.36,-62.59 321.66,-57.16"/>
-<polygon fill="#ff00ff" stroke="#ff00ff" points="322.5,-60.56 331.54,-55.03 321.02,-53.71 322.5,-60.56"/>
+<path fill="none" stroke="#0000ff" d="M250.23,-85.69C271.2,-85.58 294.71,-85.46 316.28,-85.36"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="316.38,-88.86 326.36,-85.31 316.34,-81.86 316.38,-88.86"/>
+</g>
+<!-- proc~propagator_summary&#45;&gt;proc~write_message -->
+<g id="proc~~numerov~~CallsGraph_edge22" class="edge">
+<title>proc~propagator_summary&#45;&gt;proc~write_message</title>
+<path fill="none" stroke="#0000ff" d="M246.16,-98.02C273.34,-103.6 305.48,-110.19 332.23,-115.67"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="331.7,-119.13 342.2,-117.71 333.11,-112.28 331.7,-119.13"/>
+</g>
+<!-- proc~float_to_character -->
+<g id="proc~~numerov~~CallsGraph_node19" class="node">
+<title>proc~float_to_character</title>
+<g id="a_proc~~numerov~~CallsGraph_node19"><a xlink:href=".././proc/float_to_character.html" xlink:title="float_to_character">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="443,-55 334,-55 334,-31 443,-31 443,-55"/>
+<text text-anchor="middle" x="388.5" y="-40.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">float_to_character</text>
+</a>
+</g>
+</g>
+<!-- proc~propagator_summary&#45;&gt;proc~float_to_character -->
+<g id="proc~~numerov~~CallsGraph_edge20" class="edge">
+<title>proc~propagator_summary&#45;&gt;proc~float_to_character</title>
+<path fill="none" stroke="#0000ff" d="M243.48,-73.96C268.47,-68.59 298.05,-62.23 323.88,-56.68"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="324.91,-60.04 333.95,-54.51 323.44,-53.19 324.91,-60.04"/>
+</g>
+<!-- proc~calculate_log_der_matrix&#45;&gt;interface~invert_symmetric_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge25" class="edge">
+<title>proc~calculate_log_der_matrix&#45;&gt;interface~invert_symmetric_matrix</title>
+<path fill="none" stroke="#ff00ff" d="M621.41,-348.98C634.91,-344.68 650.16,-339.72 664,-335 680.1,-329.51 683.56,-326.38 700,-322 712,-318.8 724.81,-315.96 737.41,-313.48"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="738.29,-316.88 747.46,-311.57 736.98,-310 738.29,-316.88"/>
+</g>
+<!-- interface~add_scalar_to_diagonal -->
+<g id="proc~~numerov~~CallsGraph_node13" class="node">
+<title>interface~add_scalar_to_diagonal</title>
+<g id="a_proc~~numerov~~CallsGraph_node13"><a xlink:href=".././interface/add_scalar_to_diagonal.html" xlink:title="add_scalar_to_diagonal">
+<polygon fill="#a7506f" stroke="#a7506f" points="889,-355 751,-355 751,-331 889,-331 889,-355"/>
+<text text-anchor="middle" x="820" y="-340.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">add_scalar_to_diagonal</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_log_der_matrix&#45;&gt;interface~add_scalar_to_diagonal -->
+<g id="proc~~numerov~~CallsGraph_edge23" class="edge">
+<title>proc~calculate_log_der_matrix&#45;&gt;interface~add_scalar_to_diagonal</title>
+<path fill="none" stroke="#ff00ff" d="M655.09,-355.5C682.25,-353.43 713.26,-351.06 740.95,-348.95"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="741.28,-352.44 750.98,-348.19 740.74,-345.46 741.28,-352.44"/>
+</g>
+<!-- dgemm -->
+<g id="proc~~numerov~~CallsGraph_node14" class="node">
+<title>dgemm</title>
+<polygon fill="#777777" stroke="#777777" points="847,-397 793,-397 793,-373 847,-373 847,-397"/>
+<text text-anchor="middle" x="820" y="-382.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgemm</text>
+</g>
+<!-- proc~calculate_log_der_matrix&#45;&gt;dgemm -->
+<g id="proc~~numerov~~CallsGraph_edge24" class="edge">
+<title>proc~calculate_log_der_matrix&#45;&gt;dgemm</title>
+<path fill="none" stroke="#ff00ff" d="M655.09,-368.33C697.29,-372.62 748.77,-377.86 782.64,-381.3"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="782.68,-384.82 792.99,-382.35 783.39,-377.86 782.68,-384.82"/>
+</g>
+<!-- proc~calculate_log_der_matrix&#45;&gt;interface~fill_symmetric_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge26" class="edge">
+<title>proc~calculate_log_der_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
+<path fill="none" stroke="#ff00ff" d="M599.41,-348.76C626.42,-328.76 679.31,-290.28 700,-280 719.49,-270.31 741.94,-262.24 762.05,-256"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="763.15,-259.32 771.71,-253.08 761.12,-252.62 763.15,-259.32"/>
+</g>
+<!-- proc~calculate_centrifugal_matrix&#45;&gt;interface~fill_symmetric_matrix -->
+<g id="proc~~numerov~~CallsGraph_edge28" class="edge">
+<title>proc~calculate_centrifugal_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
+<path fill="none" stroke="#ff0000" d="M648.83,-87.09C654.23,-89.53 659.38,-92.47 664,-96 689.62,-115.58 678.18,-135.26 700,-159 724.95,-186.15 760.47,-209.15 786.2,-223.82"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="784.76,-227.02 795.2,-228.84 788.17,-220.91 784.76,-227.02"/>
+</g>
+<!-- proc~delta_for_zero_omega -->
+<g id="proc~~numerov~~CallsGraph_node20" class="node">
+<title>proc~delta_for_zero_omega</title>
+<g id="a_proc~~numerov~~CallsGraph_node20"><a xlink:href=".././proc/delta_for_zero_omega.html" xlink:title="delta_for_zero_omega">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="885,-108 755,-108 755,-84 885,-84 885,-108"/>
+<text text-anchor="middle" x="820" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">delta_for_zero_omega</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_centrifugal_matrix&#45;&gt;proc~delta_for_zero_omega -->
+<g id="proc~~numerov~~CallsGraph_edge27" class="edge">
+<title>proc~calculate_centrifugal_matrix&#45;&gt;proc~delta_for_zero_omega</title>
+<path fill="none" stroke="#ff0000" d="M664.22,-82.23C690.35,-84.55 719.15,-87.12 744.76,-89.39"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="744.5,-92.88 754.77,-90.28 745.12,-85.91 744.5,-92.88"/>
+</g>
+<!-- proc~calculate_offdiagonal_centrifugal_element -->
+<g id="proc~~numerov~~CallsGraph_node21" class="node">
+<title>proc~calculate_offdiagonal_centrifugal_element</title>
+<g id="a_proc~~numerov~~CallsGraph_node21"><a xlink:href=".././proc/calculate_offdiagonal_centrifugal_element.html" xlink:title="calculate_offdiagonal_centrifugal_element">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="940,-66 700,-66 700,-42 940,-42 940,-66"/>
+<text text-anchor="middle" x="820" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_offdiagonal_centrifugal_element</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element -->
+<g id="proc~~numerov~~CallsGraph_edge29" class="edge">
+<title>proc~calculate_centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element</title>
+<path fill="none" stroke="#ff0000" d="M664.22,-67.77C672.46,-67.04 680.97,-66.28 689.56,-65.52"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="690.02,-68.99 699.67,-64.62 689.39,-62.02 690.02,-68.99"/>
+</g>
+<!-- proc~calculate_diagonal_centrifugal_element -->
+<g id="proc~~numerov~~CallsGraph_node22" class="node">
+<title>proc~calculate_diagonal_centrifugal_element</title>
+<g id="a_proc~~numerov~~CallsGraph_node22"><a xlink:href=".././proc/calculate_diagonal_centrifugal_element.html" xlink:title="calculate_diagonal_centrifugal_element">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="933,-24 707,-24 707,0 933,0 933,-24"/>
+<text text-anchor="middle" x="820" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_diagonal_centrifugal_element</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element -->
+<g id="proc~~numerov~~CallsGraph_edge30" class="edge">
+<title>proc~calculate_centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element</title>
+<path fill="none" stroke="#ff0000" d="M612.37,-62.88C635.77,-53.61 669.55,-41.09 700,-33 709.58,-30.45 719.68,-28.13 729.78,-26.04"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="730.74,-29.42 739.85,-24.02 729.36,-22.55 730.74,-29.42"/>
 </g>
 <!-- proc~calculate_pes_matrix&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge28" class="edge">
+<g id="proc~~numerov~~CallsGraph_edge32" class="edge">
 <title>proc~calculate_pes_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#00ff7f" d="M639.6,-129.09C647.94,-131.61 656.31,-134.56 664,-138 677.67,-144.11 752.84,-195.39 793.25,-223.21"/>
-<polygon fill="#00ff7f" stroke="#00ff7f" points="791.33,-226.14 801.55,-228.93 795.3,-220.37 791.33,-226.14"/>
+<path fill="none" stroke="#ff7f00" d="M639.6,-129.09C647.94,-131.61 656.31,-134.56 664,-138 677.67,-144.11 752.84,-195.39 793.25,-223.21"/>
+<polygon fill="#ff7f00" stroke="#ff7f00" points="791.33,-226.14 801.55,-228.93 795.3,-220.37 791.33,-226.14"/>
 </g>
 <!-- proc~calculate_single_pes_matrix_element -->
-<g id="proc~~numerov~~CallsGraph_node20" class="node">
+<g id="proc~~numerov~~CallsGraph_node23" class="node">
 <title>proc~calculate_single_pes_matrix_element</title>
-<g id="a_proc~~numerov~~CallsGraph_node20"><a xlink:href=".././proc/calculate_single_pes_matrix_element.html" xlink:title="calculate_single_pes_matrix_element">
+<g id="a_proc~~numerov~~CallsGraph_node23"><a xlink:href=".././proc/calculate_single_pes_matrix_element.html" xlink:title="calculate_single_pes_matrix_element">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="925.5,-150 714.5,-150 714.5,-126 925.5,-126 925.5,-150"/>
 <text text-anchor="middle" x="820" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_single_pes_matrix_element</text>
 </a>
 </g>
 </g>
 <!-- proc~calculate_pes_matrix&#45;&gt;proc~calculate_single_pes_matrix_element -->
-<g id="proc~~numerov~~CallsGraph_edge27" class="edge">
+<g id="proc~~numerov~~CallsGraph_edge31" class="edge">
 <title>proc~calculate_pes_matrix&#45;&gt;proc~calculate_single_pes_matrix_element</title>
-<path fill="none" stroke="#00ff7f" d="M644.7,-122.49C663.01,-124.12 683.68,-125.96 704.22,-127.79"/>
-<polygon fill="#00ff7f" stroke="#00ff7f" points="704.01,-131.28 714.28,-128.68 704.63,-124.31 704.01,-131.28"/>
-</g>
-<!-- proc~calculate_u_matrix&#45;&gt;interface~add_scalar_to_diagonal -->
-<g id="proc~~numerov~~CallsGraph_edge29" class="edge">
-<title>proc~calculate_u_matrix&#45;&gt;interface~add_scalar_to_diagonal</title>
-<path fill="none" stroke="#007fff" d="M613.37,-293.17C636.74,-302.16 670.02,-314.16 700,-322 713.15,-325.44 727.26,-328.48 741.01,-331.11"/>
-<polygon fill="#007fff" stroke="#007fff" points="740.47,-334.57 750.94,-332.95 741.74,-327.69 740.47,-334.57"/>
+<path fill="none" stroke="#ff7f00" d="M644.7,-122.49C663.01,-124.12 683.68,-125.96 704.22,-127.79"/>
+<polygon fill="#ff7f00" stroke="#ff7f00" points="704.01,-131.28 714.28,-128.68 704.63,-124.31 704.01,-131.28"/>
 </g>
 <!-- proc~calculate_u_matrix&#45;&gt;interface~invert_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge30" class="edge">
+<g id="proc~~numerov~~CallsGraph_edge34" class="edge">
 <title>proc~calculate_u_matrix&#45;&gt;interface~invert_symmetric_matrix</title>
 <path fill="none" stroke="#007fff" d="M638.63,-285.71C667.9,-288.19 704.34,-291.28 736.8,-294.03"/>
 <polygon fill="#007fff" stroke="#007fff" points="736.92,-297.56 747.18,-294.91 737.52,-290.58 736.92,-297.56"/>
 </g>
+<!-- proc~calculate_u_matrix&#45;&gt;interface~add_scalar_to_diagonal -->
+<g id="proc~~numerov~~CallsGraph_edge33" class="edge">
+<title>proc~calculate_u_matrix&#45;&gt;interface~add_scalar_to_diagonal</title>
+<path fill="none" stroke="#007fff" d="M613.37,-293.17C636.74,-302.16 670.02,-314.16 700,-322 713.15,-325.44 727.26,-328.48 741.01,-331.11"/>
+<polygon fill="#007fff" stroke="#007fff" points="740.47,-334.57 750.94,-332.95 741.74,-327.69 740.47,-334.57"/>
+</g>
 <!-- proc~calculate_u_matrix&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge31" class="edge">
+<g id="proc~~numerov~~CallsGraph_edge35" class="edge">
 <title>proc~calculate_u_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
 <path fill="none" stroke="#007fff" d="M638.63,-271.57C670.75,-266.13 711.53,-259.21 746.19,-253.34"/>
 <polygon fill="#007fff" stroke="#007fff" points="746.98,-256.76 756.25,-251.63 745.81,-249.86 746.98,-256.76"/>
-</g>
-<!-- proc~calculate_centrifugal_matrix&#45;&gt;interface~fill_symmetric_matrix -->
-<g id="proc~~numerov~~CallsGraph_edge35" class="edge">
-<title>proc~calculate_centrifugal_matrix&#45;&gt;interface~fill_symmetric_matrix</title>
-<path fill="none" stroke="#7f00ff" d="M648.83,-87.09C654.23,-89.53 659.38,-92.47 664,-96 689.62,-115.58 678.18,-135.26 700,-159 724.95,-186.15 760.47,-209.15 786.2,-223.82"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="784.76,-227.02 795.2,-228.84 788.17,-220.91 784.76,-227.02"/>
-</g>
-<!-- proc~calculate_offdiagonal_centrifugal_element -->
-<g id="proc~~numerov~~CallsGraph_node21" class="node">
-<title>proc~calculate_offdiagonal_centrifugal_element</title>
-<g id="a_proc~~numerov~~CallsGraph_node21"><a xlink:href=".././proc/calculate_offdiagonal_centrifugal_element.html" xlink:title="calculate_offdiagonal_centrifugal_element">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="940,-108 700,-108 700,-84 940,-84 940,-108"/>
-<text text-anchor="middle" x="820" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_offdiagonal_centrifugal_element</text>
-</a>
-</g>
-</g>
-<!-- proc~calculate_centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element -->
-<g id="proc~~numerov~~CallsGraph_edge33" class="edge">
-<title>proc~calculate_centrifugal_matrix&#45;&gt;proc~calculate_offdiagonal_centrifugal_element</title>
-<path fill="none" stroke="#7f00ff" d="M664.22,-82.23C672.46,-82.96 680.97,-83.72 689.56,-84.48"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="689.39,-87.98 699.67,-85.38 690.02,-81.01 689.39,-87.98"/>
-</g>
-<!-- proc~calculate_diagonal_centrifugal_element -->
-<g id="proc~~numerov~~CallsGraph_node22" class="node">
-<title>proc~calculate_diagonal_centrifugal_element</title>
-<g id="a_proc~~numerov~~CallsGraph_node22"><a xlink:href=".././proc/calculate_diagonal_centrifugal_element.html" xlink:title="calculate_diagonal_centrifugal_element">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="933,-66 707,-66 707,-42 933,-42 933,-66"/>
-<text text-anchor="middle" x="820" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calculate_diagonal_centrifugal_element</text>
-</a>
-</g>
-</g>
-<!-- proc~calculate_centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element -->
-<g id="proc~~numerov~~CallsGraph_edge34" class="edge">
-<title>proc~calculate_centrifugal_matrix&#45;&gt;proc~calculate_diagonal_centrifugal_element</title>
-<path fill="none" stroke="#7f00ff" d="M664.22,-67.77C674.73,-66.84 685.68,-65.86 696.68,-64.88"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="697.13,-68.36 706.78,-63.99 696.51,-61.39 697.13,-68.36"/>
-</g>
-<!-- proc~delta_for_zero_omega -->
-<g id="proc~~numerov~~CallsGraph_node23" class="node">
-<title>proc~delta_for_zero_omega</title>
-<g id="a_proc~~numerov~~CallsGraph_node23"><a xlink:href=".././proc/delta_for_zero_omega.html" xlink:title="delta_for_zero_omega">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="885,-24 755,-24 755,0 885,0 885,-24"/>
-<text text-anchor="middle" x="820" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">delta_for_zero_omega</text>
-</a>
-</g>
-</g>
-<!-- proc~calculate_centrifugal_matrix&#45;&gt;proc~delta_for_zero_omega -->
-<g id="proc~~numerov~~CallsGraph_edge32" class="edge">
-<title>proc~calculate_centrifugal_matrix&#45;&gt;proc~delta_for_zero_omega</title>
-<path fill="none" stroke="#7f00ff" d="M612.37,-62.88C635.77,-53.61 669.55,-41.09 700,-33 714.33,-29.19 729.82,-25.89 744.74,-23.1"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="745.74,-26.47 754.95,-21.25 744.49,-19.58 745.74,-26.47"/>
 </g>
 <!-- proc~get_radial_coupling_term_value -->
 <g id="proc~~numerov~~CallsGraph_node24" class="node">
@@ -774,8 +774,8 @@ for each non-zero element of W/V</p>
 <!-- proc~calculate_single_pes_matrix_element&#45;&gt;proc~get_radial_coupling_term_value -->
 <g id="proc~~numerov~~CallsGraph_edge36" class="edge">
 <title>proc~calculate_single_pes_matrix_element&#45;&gt;proc~get_radial_coupling_term_value</title>
-<path fill="none" stroke="#ff0000" d="M893.07,-150.04C923.46,-155.11 958.99,-161.04 990.38,-166.29"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="989.98,-169.77 1000.42,-167.96 991.13,-162.86 989.98,-169.77"/>
+<path fill="none" stroke="#7f00ff" d="M893.07,-150.04C923.46,-155.11 958.99,-161.04 990.38,-166.29"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="989.98,-169.77 1000.42,-167.96 991.13,-162.86 989.98,-169.77"/>
 </g>
 <!-- proc~wavevector_squared_from_energy -->
 <g id="proc~~numerov~~CallsGraph_node25" class="node">
@@ -789,8 +789,8 @@ for each non-zero element of W/V</p>
 <!-- proc~calculate_single_pes_matrix_element&#45;&gt;proc~wavevector_squared_from_energy -->
 <g id="proc~~numerov~~CallsGraph_edge37" class="edge">
 <title>proc~calculate_single_pes_matrix_element&#45;&gt;proc~wavevector_squared_from_energy</title>
-<path fill="none" stroke="#ff0000" d="M897.81,-125.98C911.91,-123.34 926.45,-120.33 940,-117 970.1,-109.61 1003.35,-99.06 1029.02,-90.38"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="1030.48,-93.58 1038.81,-87.04 1028.22,-86.96 1030.48,-93.58"/>
+<path fill="none" stroke="#7f00ff" d="M897.81,-125.98C911.91,-123.34 926.45,-120.33 940,-117 970.1,-109.61 1003.35,-99.06 1029.02,-90.38"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="1030.48,-93.58 1038.81,-87.04 1028.22,-86.96 1030.48,-93.58"/>
 </g>
 <!-- proc~find_lambda_index -->
 <g id="proc~~numerov~~CallsGraph_node26" class="node">
@@ -807,35 +807,35 @@ for each non-zero element of W/V</p>
 <path fill="none" stroke="#ff0000" d="M1110.61,-192.04C1137.16,-200.74 1174.18,-212.58 1207,-222 1214.5,-224.15 1222.43,-226.32 1230.27,-228.41"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="1229.55,-231.84 1240.11,-231 1231.33,-225.07 1229.55,-231.84"/>
 </g>
-<!-- proc~handle_lambda_index_error -->
-<g id="proc~~numerov~~CallsGraph_node27" class="node">
-<title>proc~handle_lambda_index_error</title>
-<g id="a_proc~~numerov~~CallsGraph_node27"><a xlink:href=".././proc/handle_lambda_index_error.html" xlink:title="handle_lambda_index_error">
-<polygon fill="#d9534f" stroke="#d9534f" points="1369.5,-213 1209.5,-213 1209.5,-189 1369.5,-189 1369.5,-213"/>
-<text text-anchor="middle" x="1289.5" y="-198.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">handle_lambda_index_error</text>
-</a>
-</g>
-</g>
-<!-- proc~get_radial_coupling_term_value&#45;&gt;proc~handle_lambda_index_error -->
-<g id="proc~~numerov~~CallsGraph_edge39" class="edge">
-<title>proc~get_radial_coupling_term_value&#45;&gt;proc~handle_lambda_index_error</title>
-<path fill="none" stroke="#ff0000" d="M1164.64,-188.85C1176.12,-189.97 1187.87,-191.13 1199.34,-192.25"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="1199.04,-195.74 1209.33,-193.23 1199.72,-188.77 1199.04,-195.74"/>
-</g>
 <!-- proc~find_coupling_index -->
-<g id="proc~~numerov~~CallsGraph_node28" class="node">
+<g id="proc~~numerov~~CallsGraph_node27" class="node">
 <title>proc~find_coupling_index</title>
-<g id="a_proc~~numerov~~CallsGraph_node28"><a xlink:href=".././proc/find_coupling_index.html" xlink:title="find_coupling_index">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="1348.5,-171 1230.5,-171 1230.5,-147 1348.5,-147 1348.5,-171"/>
-<text text-anchor="middle" x="1289.5" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">find_coupling_index</text>
+<g id="a_proc~~numerov~~CallsGraph_node27"><a xlink:href=".././proc/find_coupling_index.html" xlink:title="find_coupling_index">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1348.5,-213 1230.5,-213 1230.5,-189 1348.5,-189 1348.5,-213"/>
+<text text-anchor="middle" x="1289.5" y="-198.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">find_coupling_index</text>
 </a>
 </g>
 </g>
 <!-- proc~get_radial_coupling_term_value&#45;&gt;proc~find_coupling_index -->
-<g id="proc~~numerov~~CallsGraph_edge40" class="edge">
+<g id="proc~~numerov~~CallsGraph_edge39" class="edge">
 <title>proc~get_radial_coupling_term_value&#45;&gt;proc~find_coupling_index</title>
-<path fill="none" stroke="#ff0000" d="M1164.64,-171.15C1183.26,-169.33 1202.57,-167.43 1220.26,-165.7"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="1220.86,-169.15 1230.47,-164.69 1220.17,-162.19 1220.86,-169.15"/>
+<path fill="none" stroke="#ff0000" d="M1164.64,-188.85C1183.26,-190.67 1202.57,-192.57 1220.26,-194.3"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1220.17,-197.81 1230.47,-195.31 1220.86,-190.85 1220.17,-197.81"/>
+</g>
+<!-- proc~ispline -->
+<g id="proc~~numerov~~CallsGraph_node28" class="node">
+<title>proc~ispline</title>
+<g id="a_proc~~numerov~~CallsGraph_node28"><a xlink:href=".././proc/ispline.html" xlink:title="ispline">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1316.5,-171 1262.5,-171 1262.5,-147 1316.5,-147 1316.5,-171"/>
+<text text-anchor="middle" x="1289.5" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ispline</text>
+</a>
+</g>
+</g>
+<!-- proc~get_radial_coupling_term_value&#45;&gt;proc~ispline -->
+<g id="proc~~numerov~~CallsGraph_edge40" class="edge">
+<title>proc~get_radial_coupling_term_value&#45;&gt;proc~ispline</title>
+<path fill="none" stroke="#ff0000" d="M1164.64,-171.15C1195.48,-168.13 1228.25,-164.91 1252.32,-162.55"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1252.8,-166.02 1262.41,-161.56 1252.11,-159.05 1252.8,-166.02"/>
 </g>
 <!-- proc~handle_coupling_index_error -->
 <g id="proc~~numerov~~CallsGraph_node29" class="node">
@@ -852,25 +852,25 @@ for each non-zero element of W/V</p>
 <path fill="none" stroke="#ff0000" d="M1110.61,-167.96C1137.16,-159.26 1174.18,-147.42 1207,-138 1214.5,-135.85 1222.43,-133.68 1230.27,-131.59"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="1231.33,-134.93 1240.11,-129 1229.55,-128.16 1231.33,-134.93"/>
 </g>
-<!-- proc~ispline -->
-<g id="proc~~numerov~~CallsGraph_node32" class="node">
-<title>proc~ispline</title>
-<g id="a_proc~~numerov~~CallsGraph_node32"><a xlink:href=".././proc/ispline.html" xlink:title="ispline">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="1316.5,-297 1262.5,-297 1262.5,-273 1316.5,-273 1316.5,-297"/>
-<text text-anchor="middle" x="1289.5" y="-282.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ispline</text>
+<!-- proc~handle_lambda_index_error -->
+<g id="proc~~numerov~~CallsGraph_node30" class="node">
+<title>proc~handle_lambda_index_error</title>
+<g id="a_proc~~numerov~~CallsGraph_node30"><a xlink:href=".././proc/handle_lambda_index_error.html" xlink:title="handle_lambda_index_error">
+<polygon fill="#d9534f" stroke="#d9534f" points="1369.5,-297 1209.5,-297 1209.5,-273 1369.5,-273 1369.5,-297"/>
+<text text-anchor="middle" x="1289.5" y="-282.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">handle_lambda_index_error</text>
 </a>
 </g>
 </g>
-<!-- proc~get_radial_coupling_term_value&#45;&gt;proc~ispline -->
+<!-- proc~get_radial_coupling_term_value&#45;&gt;proc~handle_lambda_index_error -->
 <g id="proc~~numerov~~CallsGraph_edge42" class="edge">
-<title>proc~get_radial_coupling_term_value&#45;&gt;proc~ispline</title>
-<path fill="none" stroke="#ff0000" d="M1089.91,-192.06C1113.73,-210.16 1161.51,-244.3 1207,-264 1221.35,-270.21 1237.95,-274.9 1252.4,-278.25"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="1251.97,-281.74 1262.49,-280.46 1253.47,-274.9 1251.97,-281.74"/>
+<title>proc~get_radial_coupling_term_value&#45;&gt;proc~handle_lambda_index_error</title>
+<path fill="none" stroke="#ff0000" d="M1089.91,-192.06C1113.73,-210.16 1161.51,-244.3 1207,-264 1211.94,-266.14 1217.16,-268.1 1222.45,-269.89"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1221.46,-273.24 1232.05,-272.92 1223.56,-266.57 1221.46,-273.24"/>
 </g>
 <!-- proc~total_energy -->
-<g id="proc~~numerov~~CallsGraph_node30" class="node">
+<g id="proc~~numerov~~CallsGraph_node31" class="node">
 <title>proc~total_energy</title>
-<g id="a_proc~~numerov~~CallsGraph_node30"><a xlink:href=".././proc/total_energy.html" xlink:title="total_energy">
+<g id="a_proc~~numerov~~CallsGraph_node31"><a xlink:href=".././proc/total_energy.html" xlink:title="total_energy">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="1329,-45 1250,-45 1250,-21 1329,-21 1329,-45"/>
 <text text-anchor="middle" x="1289.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">total_energy</text>
 </a>
@@ -883,9 +883,9 @@ for each non-zero element of W/V</p>
 <polygon fill="#00ffff" stroke="#00ffff" points="1240.61,-45.97 1249.75,-40.61 1239.26,-39.1 1240.61,-45.97"/>
 </g>
 <!-- proc~write_error -->
-<g id="proc~~numerov~~CallsGraph_node31" class="node">
+<g id="proc~~numerov~~CallsGraph_node32" class="node">
 <title>proc~write_error</title>
-<g id="a_proc~~numerov~~CallsGraph_node31"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
+<g id="a_proc~~numerov~~CallsGraph_node32"><a xlink:href=".././proc/write_error.html" xlink:title="write_error">
 <polygon fill="#d9534f" stroke="#d9534f" points="1324.5,-87 1254.5,-87 1254.5,-63 1324.5,-63 1324.5,-87"/>
 <text text-anchor="middle" x="1289.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_error</text>
 </a>
@@ -1508,7 +1508,7 @@ for each non-zero element of W/V</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-24 12:30            </p>
+ on 2024-01-24 12:40            </p>
         </div>
       </div>
       <br>

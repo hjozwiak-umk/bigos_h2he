@@ -25,81 +25,6 @@
     <script src="./js/jquery-2.1.3.min.js"></script>
     <script src="./js/svg-pan-zoom.min.js"></script>
 
-    <style>
-      .header-box {
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         text-align: center;
-         border: 1px solid #d3d3d3;
-         border-radius: 10px;
-         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-         background-color: #e8f4fc;
-         padding: 30px;
-         margin: 20px 0;
-         font-family: Arial, sans-serif;
-         color: #333;
-         font-size: 18px;
-      }
-
-      .header-buttons {
-         display: flex; /* Align buttons in a row */
-         justify-content: center; /* Center the buttons container */
-         gap: 20px; /* Adjust the space between the buttons */
-         margin-top: 20px; /* Add some space between the title and the buttons */
-      }
-      
-    .developer-info {
-        border: 1px solid #d3d3d3;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        background-color: #e8f4fc; /* Lighter shade for a fresh look */
-        padding: 20px;
-        margin: 20px 0;
-        text-align: center; /* Center the text and content */
-        font-family: Arial, sans-serif;
-        color: #333;
-    }
-
-   .social-links {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px; /* Adjust spacing between items */
-   }
-
-   .button-links {
-      display: flex; /* This will place the GitHub and ORCID buttons in a row */
-      gap: 10px; /* Adjust spacing between buttons */
-   }
-
-    .social-btn {
-        display: inline-block;
-        width: 40px; /* Adjust based on your logo size */
-        height: 40px; /* Adjust based on your logo size */
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .social-btn.github {
-        background-image: url('media/logos/github-mark.png');
-    }
-
-    .social-btn.orcid img,
-
-    .profile-link {
-        color: #0173B2; /* A pleasant blue, adjust as needed */
-        text-decoration: none;
-        font-weight: bold;
-        margin-top: 5px; /* Space above links */
-    }
-
-    .profile-link:hover {
-        text-decoration: underline; /* Style for hover state */
-    }
-    </style>
-
   </head>
 
   <body>
@@ -151,14 +76,15 @@
     </nav>
 
     <div class="container">
-           <!-- Improved Header Box -->
-           <div class="header-box">
-             <h3>BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01</h3>
-               <div class="header-buttons"> <!-- Container for buttons -->
-                        <a class="btn btn-lg btn-primary" href="https://github.com/hjozwiak-umk/bigos_h2he" role="button">GitHub</a>
-                        <a class="btn btn-lg btn-danger" href="https://github.com/hjozwiak-umk/bigos_h2he.git" role="button">Download the Source</a>
-               </div>
-           </div>
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <p>BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01</p>
+	<p> Find us on&hellip;</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="https://github.com/hjozwiak-umk/bigos_h2he" role="button">GitHub</a>
+          <a class="btn btn-lg btn-danger" style="float:right" href="https://github.com/hjozwiak-umk/bigos_h2he.git" role="button">Download the Source</a>
+        </p>
+      </div>
 
       <div class="row" id='text'>
         <div class="col-md-8">
@@ -181,28 +107,14 @@ Rovibrational (de-)excitation of H<sub>2</sub> by He revisited <br>
 </div>
         </div>
         <div class="col-md-4">
-           <div class="developer-info">
-             <h3>Hubert Jóźwiak</h3>
-             <p> Institute of Physics,<br>
-                    Faculty of Physics, Astronomy and Informatics,<br>
-                    Nicolaus Copernicus University in Toruń,<br>
-                    Grudziadzka 5, 87-100 Toruń,
-                    Poland </p>
-             <p>Contact: <a href="mailto:hubert.jozwiak@doktorant.umk.pl">hubert.jozwiak@doktorant.umk.pl</a></p>
-             <div class="social-links">
-                <div class="button-links">
-                  <a href="https://github.com/hjozwiak-umk" class="social-btn github"></a>
-                  <a href="https://orcid.org/0000-0001-6503-674X" class="social-btn orcid"><img src="media/logos/ORCID_iD.svg" alt="ORCID"></a>
-                </div>
-                <div class="text-link"> <!-- Individual div for Google Scholar link -->
-                  <a href="https://scholar.google.pl/citations?user=ALjTWUAAAAAJ&hl=pl" class="profile-link">Google Scholar Profile</a>
-                </div>
-                <div class="text-link"> <!-- Individual div for ResearchGate link -->
-                  <a href="https://www.researchgate.net/profile/Hubert-Jozwiak" class="profile-link">ResearchGate Profile</a>
-                </div>
-             </div>
-           </div>
-       
+	  <div class="well">
+          <h2>Developer Info</h2>
+          <h4>Hubert Jóźwiak</h4>
+          
+            <div class="text-center"><div class="btn-group" role="group">
+              <a class="btn btn-lg btn-primary" href="https://github.com/hjozwiak-umk"><i class="fa fa-github fa-lg"></i></a>
+            </div></div>
+       </div>
        </div>
       </div>
       <div class="row">
@@ -261,7 +173,7 @@ Rovibrational (de-)excitation of H<sub>2</sub> by He revisited <br>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-24 12:30            </p>
+ on 2024-01-24 12:40            </p>
         </div>
       </div>
       <br>
