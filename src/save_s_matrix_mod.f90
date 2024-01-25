@@ -1,6 +1,6 @@
 module save_s_matrix_mod
    !! This module provides procedures that save selective information
-   !! to the S-matrix file
+   !! to the S-matrix file.
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use global_variables_mod

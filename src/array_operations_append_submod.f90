@@ -1,9 +1,10 @@
 submodule (array_operations_mod) array_operations_append_submod
    !! a submodule for append subroutines
-implicit none
-
-contains
-
+   implicit none
+   !---------------------------------------------------------------------------!
+   contains
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       pure module subroutine append_int32(array_, element_)
          !! append element to an array (intger version)
          integer(int32), allocatable, intent(inout) :: array_(:)
@@ -22,8 +23,9 @@ contains
             allocate(array_(1))
             array_(1) = element_
          endif
-         
       end subroutine append_int32
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       pure module subroutine append_sp(array_, element_)
          !! append element to an array (single precision version)
          real(sp), allocatable, intent(inout)  :: array_(:)
@@ -42,7 +44,8 @@ contains
             allocate(array_(1))
             array_(1) = element_
          endif
-         
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
       end subroutine append_sp
       pure module subroutine append_dp(array_, element_)
          !! append element to an array (double precision version)
@@ -62,7 +65,6 @@ contains
             allocate(array_(1))
             array_(1) = element_
          endif
-
       end subroutine append_dp
-
+   !---------------------------------------------------------------------------!
 end submodule array_operations_append_submod

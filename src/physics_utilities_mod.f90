@@ -1,7 +1,7 @@
 module physics_utilities_mod
-   !! This module provides helper functions: "units_conversion", "total_energy()"
+   !! This module provides helper functions: "units_conversion", "total_energy"
    !! "wavevector_squared_from_energy", and functions that count and save
-   !! open levels in the rovibrational basis
+   !! open levels in the rovibrational basis.
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_error
@@ -62,8 +62,8 @@ module physics_utilities_mod
          if (units_converted) then
             k_ = 2*reduced_mass*(total_energy() - energy_)
          else
-            call write_error("wavevector_squared_from_energy called but units are not " //&
-               "converted yet")
+            call write_error("wavevector_squared_from_energy called " //       &
+               "but units are not converted yet")
          endif
          !---------------------------------------------------------------------!
       end function wavevector_squared_from_energy

@@ -23,8 +23,7 @@ module propagator_mod
          channels_omega_values_, nonzero_terms_per_element_,                   &
          nonzero_legendre_indices_, nonzero_algebraic_coefficients_,           &
          number_of_steps_, total_angular_momentum_, log_der_matrix_)
-         !! renormalized Numerov propagator
-         !! ...
+         !! Renormalized Numerov propagator
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_channels_
             !! size of the basis
@@ -93,8 +92,9 @@ module propagator_mod
          !---------------------------------------------------------------------!
          ! Eq. (6.29)
          !---------------------------------------------------------------------!
-         call calculate_log_der_matrix(step_numerov_,number_of_channels_,       &
-            t_matrix_minus_,t_matrix_,t_matrix_plus_,r_matrix_r_max_,r_matrix_plus_,log_der_matrix_)
+         call calculate_log_der_matrix(step_numerov_,number_of_channels_,      &
+            t_matrix_minus_,t_matrix_,t_matrix_plus_,r_matrix_r_max_,          &
+            r_matrix_plus_,log_der_matrix_)
          !---------------------------------------------------------------------!
          call propagator_summary(r_min, r_max, number_of_steps_)
          !---------------------------------------------------------------------!
@@ -111,7 +111,9 @@ module propagator_mod
          channels_omega_values_, nonzero_terms_per_element_,                   &
          nonzero_legendre_indices_, nonzero_algebraic_coefficients_,           &
          centrifugal_matrix_, r_matrix_)
-         !! ...
+         !! Initial setup of the propagator: call centrifugal matrix
+         !! (kept throughotu the propagation) and other matrices
+         !! at \\(R_{\mathrm{min}}\\)
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: number_of_channels_
             !! size of the basis
@@ -126,16 +128,17 @@ module propagator_mod
          integer(int32), intent(in) :: channels_omega_values_(number_of_channels_)
             !! holds all values of \bar{\Omega}
          integer(int32), intent(in) :: nonzero_terms_per_element_(:)
-            !! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)
-            !! for each non-zero element of the coupling matrix
+            !! keeps the number of non-vanishing elements of the
+            !! sum over \\(\lambda\\) for each non-zero element of the pes matrix
          integer(int32), intent(in) :: nonzero_legendre_indices_(:)
             !! holds indices pointing to legendre_indices, which correspond to
             !! the non-vanishing elements of the sum over \\(\lambda\\)
-            !! for each non-zero element of the coupling matrix;
+            !! for each non-zero element of the pes matrix;
          real(dp), intent(in) :: nonzero_algebraic_coefficients_(:)
             !! holds the values of the non-zero algebraic coefficients
          real(dp), intent(inout) :: centrifugal_matrix_(number_of_channels_,number_of_channels_)
-            !! (R**2)*centrifugal matrix - calculated once, will be used throughout the propagation
+            !! (R**2)*centrifugal matrix - calculated once,
+            !! will be used throughout the propagation
          real(dp), intent(inout) :: r_matrix_(number_of_channels_,number_of_channels_)
             !! R-matrix at r_min
          !---------------------------------------------------------------------!   
@@ -218,7 +221,8 @@ module propagator_mod
          call calculate_pes_matrix(total_angular_momentum_,                    &
             intermolecular_distance_, channel_indices_,                        &
             channels_omega_values_, nonzero_terms_per_element_,                &
-            nonzero_legendre_indices_, nonzero_algebraic_coefficients_, pes_matrix_) 
+            nonzero_legendre_indices_, nonzero_algebraic_coefficients_,        &
+            pes_matrix_) 
          !---------------------------------------------------------------------!   
          ! Merge centrifugal and PES matrix into Coupling matrix
          !---------------------------------------------------------------------! 
@@ -250,12 +254,12 @@ module propagator_mod
       end subroutine general_propagation_step
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
-      subroutine handle_final_propagation_steps(number_of_channels_,          &
-         step_numerov_, total_angular_momentum_,   &
-         channel_indices_, channels_omega_values_,   &
-         nonzero_terms_per_element_, nonzero_legendre_indices_,                &
-         nonzero_algebraic_coefficients_, centrifugal_matrix_, r_matrix_,      &
-         t_matrix_minus_, t_matrix_, t_matrix_plus_, r_matrix_r_max_, r_matrix_plus_)
+      subroutine handle_final_propagation_steps(number_of_channels_,           &
+         step_numerov_, total_angular_momentum_, channel_indices_,             &
+         channels_omega_values_, nonzero_terms_per_element_,                   &
+         nonzero_legendre_indices_, nonzero_algebraic_coefficients_,           &
+         centrifugal_matrix_, r_matrix_, t_matrix_minus_, t_matrix_,           &
+         t_matrix_plus_, r_matrix_r_max_, r_matrix_plus_)
          !! Handles propagation at the last two grid points:
          !! R_{N-1} and R_{N}: provides T-matrix at N-1, N and N+1 points
          !! and the Ratio matrix at N and N+1 points
@@ -493,7 +497,8 @@ module propagator_mod
             number_of_channels_,0.0_dp,matrix_cd_,number_of_channels_)
          CALL DGEMM('N','N',number_of_channels_,number_of_channels_,           &
             number_of_channels_,1.0_dp,matrix_cd_,number_of_channels_,         &
-            working_r_matrix_,number_of_channels_,0.0_dp,right_matrix_,number_of_channels_)
+            working_r_matrix_,number_of_channels_,0.0_dp,right_matrix_,        &
+            number_of_channels_)
          !---------------------------------------------------------------------!
          ! Substract the two terms in the large bracket
          !---------------------------------------------------------------------!

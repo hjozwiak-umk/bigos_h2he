@@ -1,6 +1,6 @@
 module unitarity_check_mod
    !! This module contains subroutines that check the unitarity condition
-   !! of the S-matrix (see Eq. (13) in "Solution of coupled equations")
+   !! of the S-matrix (see Eq. (13) in "Solution of coupled equations").
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use global_variables_mod, only: unitary_tolerance
@@ -83,7 +83,7 @@ module unitarity_check_mod
          !! checks if the calculated sum of squares equals 1 for each channel
          !---------------------------------------------------------------------!
          real(dp), intent(in) :: sum_of_squares(:)
-            !! \\( \sum\_{\gamma'} \Bigl|{S}^{Jp}\_{\gamma, \gamma'}\Bigr|^{2} \\)
+            !! \\(\sum\_{\gamma'} \Bigl|{S}^{Jp}\_{\gamma, \gamma'}\Bigr|^{2}\\)
          logical :: is_unitary_
             !! (output) if .true. unitarity is fulfilled, .false. otherwise
          !---------------------------------------------------------------------!

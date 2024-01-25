@@ -1,12 +1,16 @@
 module math_utilities_mod
    !! This module holds 4 types of functions:
-   !! -- algebraic functions: percival_seaton_coefficient
-   !! -- geometric functions: triangle_inequality_holds, is_sum_even,
-   !!    zero_projections_3j_condition
-   !! -- bessel functions: groups functions: riccati_bessel_j, bessely and 
-   !!    modified_bessel_k_ratio that call functions from
-   !!    special_functions.f90 library
-   !! -- interpolation procedures: spline and ispline functions
+   !---------------------------------------------------------------------------!
+   !! (1) algebraic functions: "percival_seaton_coefficient",
+   !---------------------------------------------------------------------------!
+   !! (2) geometric functions: "triangle_inequality_holds", "is_sum_even",
+   !!     "zero_projections_3j_condition"
+   !---------------------------------------------------------------------------!
+   !! (3) bessel functions: "riccati_bessel_j", "riccati_bessel_y" and 
+   !!     "modified_bessel_k_ratio" that call functions from
+   !!     special_functions.f90 library
+   !---------------------------------------------------------------------------!
+   !! (4) interpolation procedures: "spline" and "ispline" functions
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_error, write_warning,                &

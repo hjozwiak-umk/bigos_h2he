@@ -1,5 +1,15 @@
 program SCATTERING
    !---------------------------------------------------------------------------!
+   !!                      the SCATTERING code - version 0.01
+   !!                    optimized for diatom-atom calculations
+   !!                                 25-01-2024
+   !!                                 H. Jozwiak
+   !---------------------------------------------------------------------------!
+   !! Please, refer to this version of the code by citing the following paper
+   !! H. Jozwiak, F. Thibault, A. Viel, P. Wcislo, F. Lique,
+   !! Rovibrational (de-)excitation of H2 by He revisited
+   !! https://doi.org/10.48550/arXiv.2311.09890
+   !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_header,                              &
       write_message, float_to_character, integer_to_character,                 &
@@ -13,8 +23,8 @@ program SCATTERING
       reduce_radial_coupling_terms, interpolate_radial_coupling_terms
    use channels_mod, only: set_number_of_channels, set_body_fixed_channels,    &
       set_space_fixed_channels, count_open_channels_in_block,                  &
-      calculate_largest_wavevector, prepare_wavevector_array,                  &
-      print_short_block_summary, print_channels
+      calculate_largest_wavevector, calculate_number_of_steps,                 &
+      prepare_wavevector_array, print_short_block_summary, print_channels
    use pes_matrix_mod, only: initialize_pes_matrix
    use propagator_mod, only: numerov
    use boundary_conditions_mod, only: calculate_sf_matrix_from_bf_matrix,      &
@@ -31,15 +41,15 @@ program SCATTERING
    implicit none
    !---------------------------------------------------------------------------!
    integer(int32) :: number_of_channels, size_even, size_odd,                  &
-      number_of_open_basis_levels, jtot_, parity_exponent, nsteps,             &
+      number_of_open_basis_levels, jtot_, parity_exponent, number_of_steps,    &
       number_of_open_channels, max_elastic_index, max_inelastic_index_1,       &
-      max_inelastic_index_2, iopen, iopen2
+      max_inelastic_index_2
    !---------------------------------------------------------------------------!
    integer(int32) :: count_blocks = 0
    integer(int32) :: consecutive_blocks_thresholddiag = 0
    integer(int32) :: consecutive_blocks_thresholdoff = 0
    !---------------------------------------------------------------------------!
-   real(dp) :: largest_wavevector, wavpotential_depth,                         &
+   real(dp) :: largest_wavevector, k_potential_depth,                          &
       max_elastic_cross_section, max_inelastic_cross_section, time_total_start,&
       time_total_stop, time_total, time_init_stop, time_init, time_jtot_start, &
       time_jtot_stop, time_jtot, time_parity_start,time_parity_stop,           &
@@ -194,15 +204,10 @@ program SCATTERING
          largest_wavevector = calculate_largest_wavevector(channel_indices)
          !---------------------------------------------------------------------!
          ! Determine the number of steps on the intermolecular (R) grid
-         ! This is done either directly (if r_step> 0)
-         ! or through the number of steps per half de Broglie wavelength
          !---------------------------------------------------------------------!
-         wavpotential_depth = dsqrt(2*reduced_mass*potential_depth)
-         if (r_step<= 0) then
-            nsteps = nint((r_max-r_min)/PI*((largest_wavevector+wavpotential_depth)*steps))
-         else
-            nsteps = nint((r_max-r_min)/r_step)+1
-         endif
+         k_potential_depth = dsqrt(2*reduced_mass*potential_depth)
+         number_of_steps = calculate_number_of_steps(largest_wavevector,       &
+            k_potential_depth)
          !---------------------------------------------------------------------!
          ! Prepare the PES matrix
          !---------------------------------------------------------------------!
@@ -213,11 +218,12 @@ program SCATTERING
          ! Allocate asymptotic body-fixed (BF) log-derivative matrix
          ! and call the propagator
          !---------------------------------------------------------------------!
-         call allocate_2d(BF_log_der_matrix, number_of_channels, number_of_channels)
+         call allocate_2d(BF_log_der_matrix, number_of_channels,               &
+            number_of_channels)
          call numerov(number_of_channels, channel_indices,                     &
             channels_omega_values, nonzero_terms_per_element,                  &
-            nonzero_legendre_indices, nonzero_algebraic_coefficients, nsteps,  &
-            jtot_, BF_log_der_matrix)
+            nonzero_legendre_indices, nonzero_algebraic_coefficients,          &
+            number_of_steps, jtot_, BF_log_der_matrix)
          !---------------------------------------------------------------------!
          ! Allocate asymptotic space-fixed (SF) log-derivative matrix and
          ! transform the BF result to the SF frame

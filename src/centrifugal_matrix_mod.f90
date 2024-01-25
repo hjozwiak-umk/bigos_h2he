@@ -110,7 +110,7 @@ module centrifugal_matrix_mod
          integer(int32), intent(in) :: omega_
             !! \\(\bar{\Omega}\\)
          real(dp) :: diagonal_element_
-            !! (output) value of the diagonal element of the coupling matrix
+            !! (output) value of the diagonal element of the centrifgual matrix
          !---------------------------------------------------------------------!
          diagonal_element_ = real(                                             &
             total_angular_momentum_ * (total_angular_momentum_ + 1)            &
@@ -136,7 +136,8 @@ module centrifugal_matrix_mod
          real(dp), intent(in) :: delta_1_, delta_2_
             !! Kronecker delta functions determined earlier
          real(dp) :: offdiagonal_element_
-            !! (output) value of the off-diagonal element of the coupling matrix
+            !! (output) value of the off-diagonal element of
+            !! the centrifgual matrix
          !---------------------------------------------------------------------!
          offdiagonal_element_ = - sqrt(real(                                   &
             (total_angular_momentum_ * (total_angular_momentum_ + 1)           &

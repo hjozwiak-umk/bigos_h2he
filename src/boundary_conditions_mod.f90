@@ -1,7 +1,7 @@
 module boundary_conditions_mod
    !! This module contains subroutines that transform the asymptotic
    !! log-derivative matrix into the scattering S-matrix
-   !! (see "Solution of coupled equations" section)
+   !! (see "Solution of coupled equations" section).
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use fwigxjpf, only: fwig3jj
@@ -240,7 +240,7 @@ module boundary_conditions_mod
             diag_np_matrix(number_of_open_channels+closed_channel_index_,      &
                number_of_open_channels+closed_channel_index_) = wavevector*ratio
          enddo
-         !---------------------------------------------------------------------! -----------------------> consider a separate function
+         !---------------------------------------------------------------------!
          call DGEMM('N','N',number_of_channels,number_of_channels,             &
             number_of_channels,1.0_dp,log_der_matrix,number_of_channels,       &
             diag_n_matrix,number_of_channels,-1.0_dp,diag_np_matrix,           &

@@ -1,18 +1,19 @@
 module state_to_state_cross_sections_mod
    !! This module provides functions and subroutines for calculating and
-   !! analyzing state-to-state cross-sections. It is divided into three main
+   !! analyzing state-to-state cross-sections. It is divided into three
    !! parts:
-   !! 1. Calculating cross-sections: Functions for computing state-to-state
+   !---------------------------------------------------------------------------!
+   !! (1) Calculating cross-sections: Functions for computing state-to-state
    !!    cross-sections based on quantum states, S-matrix, and scattering
    !!    parameters ("calculate_state_to_state_cross_section",
    !!    "compute_individual_cross_section", "get_block_indices",
    !!    "sum_cross_section_contributions", "compute_real_component",
    !!    "compute_imag_component")
-   !! 2. Printing cross-sections: Subroutines to output the largest partial
+   !! (2) Printing cross-sections: Subroutines to output the largest partial
    !!    cross-sections, providing both basic and detailed information.
    !!    ("print_largest_partial_cross_sections",
    !!    "print_basic_cross_section_info", "print_detailed_cross_section_info")
-   !! 3. Threshold checking: Subroutine to check if the computed cross-sections
+   !! (3) Threshold checking: Subroutine to check if the computed cross-sections
    !!    meet specified convergence conditions
    !!    ("check_cross_section_thresholds")
    !---------------------------------------------------------------------------!
@@ -141,7 +142,7 @@ module state_to_state_cross_sections_mod
          integer(int32) :: initial_index_, final_index_, v_initial_,           &
             j_initial_, v_final_, j_final_
          real(dp) :: wavevector_initial_, sum_contributions_
-         integer(int32), allocatable :: init_block_indices_(:),                 &
+         integer(int32), allocatable :: init_block_indices_(:),                &
             final_block_indices_(:)
          !---------------------------------------------------------------------!
          initial_index_ = open_basis_levels_(initial_state_)
@@ -188,7 +189,7 @@ module state_to_state_cross_sections_mod
          ! Count the number of matches to preallocate the array
          !---------------------------------------------------------------------!
          do index_ = 1, number_of_channels_
-            if (vib_levels(channel_indices_(index_)) == v_ .and.                   &
+            if (vib_levels(channel_indices_(index_)) == v_ .and.               &
                rot_levels(channel_indices_(index_)) == j_) then
                match_count_ = match_count_ + 1
             endif
@@ -202,7 +203,7 @@ module state_to_state_cross_sections_mod
          ! Fill the array with matching indices.
          !---------------------------------------------------------------------!
          do index_ = 1, number_of_channels_
-            if (vib_levels(channel_indices_(index_)) == v_ .and.                  &
+            if (vib_levels(channel_indices_(index_)) == v_ .and.               &
                rot_levels(channel_indices_(index_)) == j_) then
                match_count_ = match_count_ + 1
                block_indices_(match_count_) = index_
@@ -251,9 +252,10 @@ module state_to_state_cross_sections_mod
       end function sum_cross_section_contributions
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
-      function compute_real_component(initial_index_, final_index_, l_initial_,         &
+      function compute_real_component(initial_index_, final_index_, l_initial_,&
          l_final_, s_matrix_real_) result(real_contribution_)
-         !! Computes the real part of the cross-section contribution for given indices.
+         !! Computes the real part of the cross-section contribution
+         !! for given indices.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: initial_index_
             !! index pointing to the basis element involving initial state
@@ -266,7 +268,8 @@ module state_to_state_cross_sections_mod
          real(dp), intent(in) :: s_matrix_real_(:,:)
             !! real part of the S-matrix
          real(dp) :: real_contribution_
-            !! (output) contribution to the cross-section from real part of the S-matrix
+            !! (output) contribution to the cross-section from real part
+            !! of the S-matrix
          !---------------------------------------------------------------------!
          if (l_initial_ == l_final_) then
            if (initial_index_ == final_index_) then
@@ -280,8 +283,10 @@ module state_to_state_cross_sections_mod
       end function compute_real_component
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
-      function compute_imag_component(initial_index_, final_index_, s_matrix_imag_) result(imag_contribution_)
-         !! Computes the imaginary part of the cross-section contribution for given indices.
+      function compute_imag_component(initial_index_, final_index_,            &
+         s_matrix_imag_) result(imag_contribution_)
+         !! Computes the imaginary part of the cross-section contribution
+         !! for given indices.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: initial_index_
             !! index pointing to the basis element involving initial state
@@ -290,7 +295,8 @@ module state_to_state_cross_sections_mod
          real(dp), intent(in) :: s_matrix_imag_(:,:)
             !! imaginary part of the S-matrix
          real(dp) :: imag_contribution_
-            !! (output) contribution to the cross-section from imaginary part of the S-matrix
+            !! (output) contribution to the cross-section from imaginary
+            !! part of the S-matrix
          !---------------------------------------------------------------------!
          imag_contribution_ = -s_matrix_imag_(initial_index_, final_index_)
          !---------------------------------------------------------------------!
@@ -377,7 +383,7 @@ module state_to_state_cross_sections_mod
          character(len=*), intent(in) :: type_label_
             !! "elastic" or "inelastic"
          !---------------------------------------------------------------------!
-         call write_message(" - Largest partial " // trim(type_label_) //     &
+         call write_message(" - Largest partial " // trim(type_label_) //      &
             " state-to-state for JTOT = " //                                   &
             trim(adjustl(integer_to_character(total_angular_momentum_))) //    &
             ": " // trim(adjustl(float_to_character(cross_section_value_))))
@@ -413,9 +419,9 @@ module state_to_state_cross_sections_mod
          call write_message(header_line_)
          !---------------------------------------------------------------------!
          write(line_, "(2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8)")                    &
-           vib_levels(open_basis_levels_(index_1_)),                              &
-           rot_levels(open_basis_levels_(index_1_)),                              &
-           vib_levels(open_basis_levels_(index_2_)),                              &
+           vib_levels(open_basis_levels_(index_1_)),                           &
+           rot_levels(open_basis_levels_(index_1_)),                           &
+           vib_levels(open_basis_levels_(index_2_)),                           &
            rot_levels(open_basis_levels_(index_2_)), cross_section_value_
          call write_message(line_)
          !---------------------------------------------------------------------!
@@ -437,7 +443,7 @@ module state_to_state_cross_sections_mod
          call write_message("Cross sections for J: "//                         &
             trim(adjustl(integer_to_character(total_angular_momentum_))) //    &
             " and energy: " //                                                 &
-            trim(adjustl(float_to_character(total_energy()*hartree_to_cm,        &
+            trim(adjustl(float_to_character(total_energy()*hartree_to_cm,      &
             "(F10.4)"))) // " cm-1")
          !---------------------------------------------------------------------!
          call print_all_cross_sections(open_basis_levels_, cross_sections_)
@@ -484,11 +490,11 @@ module state_to_state_cross_sections_mod
                cross_section_index_ = (index_1_ - 1)                           &
                   * number_of_open_basis_levels_ + index_2_
                write(line_, "(2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")     &
-                  vib_levels(open_basis_levels_(index_2_)),                       &
-                  rot_levels(open_basis_levels_(index_2_)),                       &
-                  vib_levels(open_basis_levels_(index_1_)),                       &
-                  rot_levels(open_basis_levels_(index_1_)),                       &
-                  (total_energy()-internal_energies(open_basis_levels_(index_1_)))        &
+                  vib_levels(open_basis_levels_(index_2_)),                    &
+                  rot_levels(open_basis_levels_(index_2_)),                    &
+                  vib_levels(open_basis_levels_(index_1_)),                    &
+                  rot_levels(open_basis_levels_(index_1_)),                    &
+                  (total_energy()-internal_energies(open_basis_levels_(index_1_)))&
                      * hartree_to_cm, cross_sections_(cross_section_index_)
                call write_message(line_)
             enddo
@@ -510,8 +516,9 @@ module state_to_state_cross_sections_mod
          character(len=200) :: err_message
          integer(int32) :: io_status
          !---------------------------------------------------------------------!
-         open(partial_file_unit, file=trim(partial_xs_file_name),form='formatted',      &
-            status='unknown', iostat = io_status, iomsg = err_message)
+         open(partial_file_unit, file=trim(partial_xs_file_name),              &
+            form='formatted', status='unknown', iostat = io_status,            &
+            iomsg = err_message)
          call file_io_status(io_status, err_message, partial_file_unit, "o")
          !---------------------------------------------------------------------!
          call write_message( "  jtot  iblock  v1_f  j1_f  <-  v1_i  j1_i'" //  &
@@ -531,21 +538,22 @@ module state_to_state_cross_sections_mod
          real(dp), intent(in) :: xs_block(:)
          !---------------------------------------------------------------------!
          character(len=200) :: partial_line
-         integer(int32) :: number_of_open_basis_levels_, index_1_,       &
-            index_2_, cross_section_index_
+         integer(int32) :: number_of_open_basis_levels_, index_1_, index_2_,   &
+            cross_section_index_
          !---------------------------------------------------------------------!
          number_of_open_basis_levels_ = size(open_basis_levels_)
          do index_1_ = 1, number_of_open_basis_levels_
             do index_2_ = 1, number_of_open_basis_levels_
-               cross_section_index_ = (index_1_-1)                       &
+               cross_section_index_ = (index_1_-1)                             &
                   * number_of_open_basis_levels_ + index_2_
                write(partial_line,                                             &
                   "(I6,2X,I6,2X,I4,2X,I4,6X,I4,2X,I4,2X,E16.8,2X,E16.8)")      &
-                  jtot_, block_number_, vib_levels(open_basis_levels_(index_1_)), &
-                  rot_levels(open_basis_levels_(index_1_)),                       &
-                  vib_levels(open_basis_levels_(index_1_)),                       &
-                  rot_levels(open_basis_levels_(index_1_)),                       &
-                  (total_energy()-internal_energies(open_basis_levels_(index_1_)))        &
+                  jtot_, block_number_,                                        &
+                  vib_levels(open_basis_levels_(index_1_)),                    &
+                  rot_levels(open_basis_levels_(index_1_)),                    &
+                  vib_levels(open_basis_levels_(index_1_)),                    &
+                  rot_levels(open_basis_levels_(index_1_)),                    &
+                  (total_energy()-internal_energies(open_basis_levels_(index_1_)))&
                      * hartree_to_cm, xs_block(cross_section_index_)
                call write_message(partial_line, unit_ = 12)
             enddo
@@ -629,8 +637,9 @@ module state_to_state_cross_sections_mod
       subroutine check_cross_section_thresholds(largest_elastic_xs_,           &
          largest_inelastic_xs_, consecutive_elastic_, consecutive_inelastic_,  &
          terminate_)
-         !! Checks if the elastic_xs_threshold (threshold for elastic XS) and inelastic_xs_threshold
-         !! (threshold for inelastic XS) conditions are already fulfilled.
+         !! Checks if the elastic_xs_threshold (threshold for elastic XS)
+         !! and inelastic_xs_threshold (threshold for inelastic XS) conditions
+         !! are already fulfilled.
          !---------------------------------------------------------------------!
          real(dp), intent(in) :: largest_elastic_xs_
             !! largest elastic XS in the block
@@ -647,8 +656,10 @@ module state_to_state_cross_sections_mod
          !---------------------------------------------------------------------!
          terminate_ = .false.
 
-         is_elastic_xs_within_threshold = (largest_elastic_xs_ <= elastic_xs_threshold)
-         is_inelastic_xs_within_threshold = (largest_inelastic_xs_ <= inelastic_xs_threshold)
+         is_elastic_xs_within_threshold                                        &
+            = (largest_elastic_xs_ <= elastic_xs_threshold)
+         is_inelastic_xs_within_threshold                                      &
+            = (largest_inelastic_xs_ <= inelastic_xs_threshold)
 
          if (is_elastic_xs_within_threshold) then
             consecutive_elastic_ = consecutive_elastic_ + 1

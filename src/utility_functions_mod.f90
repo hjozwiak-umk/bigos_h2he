@@ -1,5 +1,5 @@
 module utility_functions_mod
-   !! utility_functions_mod contains functions which handle writing 
+   !! This module contains functions which handle writing 
    !! messages/errors/warnings on screen, formatting headers, summary of the 
    !! calculations and a few other supporting functions.
    !---------------------------------------------------------------------------!
@@ -259,7 +259,8 @@ module utility_functions_mod
                        ('Incorrect op_ argument in file_io_status subroutine ('&
                           //trim(op_)//')')
             end select
-            call write_error(trim(add_prefix_) // " with message: " // iomsg_, unit_)
+            call write_error(trim(add_prefix_) // " with message: " //         &
+               iomsg_, unit_)
          endif
          !---------------------------------------------------------------------!
       end subroutine file_io_status

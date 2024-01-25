@@ -1,15 +1,19 @@
 module radial_coupling_terms_mod
    !! This module provides all functions that handle radial coupling terms
    !! of the PES. It covers:
-   !! 1. reading radial coupling terms from external file
+   !---------------------------------------------------------------------------!
+   !! (1) reading radial coupling terms from external file
    !!    ("read_radial_coupling_terms", "skip_header_lines",
    !!    "read_and_validate_lambda", "read_potential_data", "validate_r_range")
-   !! 2. reducing the number of read coupling terms to retain only necessary
+   !---------------------------------------------------------------------------!
+   !! (2) reducing the number of read coupling terms to retain only necessary
    !!    couplings ("reduce_radial_coupling_terms", "print_pes_quantum_numbers",
    !!    "reduce_coupling_terms", "find_reduced_term")
-   !! 3. interpolation of radial coupling terms
+   !---------------------------------------------------------------------------!
+   !! (3) interpolation of radial coupling terms
    !!    ("interpolate_radial_coupling_terms")
-   !! 4. providing value of the interpolated radial coupling term
+   !---------------------------------------------------------------------------!
+   !! (4) providing value of the interpolated radial coupling term
    !!    ("get_radial_coupling_term_value")
    !!--------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
@@ -43,7 +47,8 @@ module radial_coupling_terms_mod
          open (coupling_terms_file_unit, file=trim(coupling_terms_file_name),  &
             form='formatted', status='old', iostat = io_status,                &
             iomsg = err_message)
-         call file_io_status(io_status, err_message, coupling_terms_file_unit, 'o')
+         call file_io_status(io_status, err_message, coupling_terms_file_unit, &
+            'o')
          !---------------------------------------------------------------------!
          ! Skip the informative lines at the beginning                         
          !---------------------------------------------------------------------!
@@ -56,7 +61,8 @@ module radial_coupling_terms_mod
          !---------------------------------------------------------------------!
          close(coupling_terms_file_unit, iostat = io_status,                   &
             iomsg = err_message)
-         call file_io_status(io_status, err_message, coupling_terms_file_unit, 'c')
+         call file_io_status(io_status, err_message, coupling_terms_file_unit, &
+            'c')
          !---------------------------------------------------------------------!
          ! Check if supplied radial terms cover a sufficient range of R
          !---------------------------------------------------------------------!
@@ -224,11 +230,16 @@ module radial_coupling_terms_mod
          ! iterate over quantum numbers describing all couplings
          ! (v1/j1/v1p/rot_prime_couplings) until necessary couplings are found
          !---------------------------------------------------------------------!
-            if ((reduced_rot_couplings(coupling_index_) == rot_couplings(column_index_)).and.  &
-               (reduced_rot_prime_couplings(coupling_index_) == rot_prime_couplings(column_index_)).and. &
-               (reduced_vib_couplings(coupling_index_) == vib_couplings(column_index_)).and.   &
-               (reduced_vib_prime_couplings(coupling_index_) == vib_prime_couplings(column_index_))) then
-               reduced_term = tabulated_coupling_terms(r_index_, lambda_index_, column_index_)
+            if ((reduced_rot_couplings(coupling_index_)                        &
+                  == rot_couplings(column_index_)).and.                        &
+               (reduced_rot_prime_couplings(coupling_index_)                   &
+                  == rot_prime_couplings(column_index_)).and.                  &
+               (reduced_vib_couplings(coupling_index_)                         &
+                  == vib_couplings(column_index_)).and.                        &
+               (reduced_vib_prime_couplings(coupling_index_)                   &
+                  == vib_prime_couplings(column_index_))) then
+               reduced_term = tabulated_coupling_terms(r_index_, lambda_index_,&
+                  column_index_)
                exit
             endif
          enddo
@@ -256,16 +267,18 @@ module radial_coupling_terms_mod
             select case(set_type)
                case("Original")
                   do column_index_ = 1, col_count
-                     write(*,"(5X,2(2X,I2),2(2X,I2))") vib_couplings(column_index_),   &
-                        rot_couplings(column_index_), vib_prime_couplings(column_index_),           &
+                     write(*,"(5X,2(2X,I2),2(2X,I2))")                         &
+                        vib_couplings(column_index_),                          &
+                        rot_couplings(column_index_),                          &
+                        vib_prime_couplings(column_index_),                    &
                         rot_prime_couplings(column_index_)
                   enddo
                case("Reduced")
                   do column_index_ = 1, col_count
                      write(*,"(5X,2(2X,I2),2(2X,I2))")                         &
-                        reduced_vib_couplings(column_index_),                          &
-                        reduced_rot_couplings(column_index_),                          &
-                        reduced_vib_prime_couplings(column_index_),                         &
+                        reduced_vib_couplings(column_index_),                  &
+                        reduced_rot_couplings(column_index_),                  &
+                        reduced_vib_prime_couplings(column_index_),            &
                         reduced_rot_prime_couplings(column_index_)
                   enddo
             end select

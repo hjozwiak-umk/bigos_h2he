@@ -1,5 +1,5 @@
 module global_variables_mod
-   !! This module defines global variables used throughout the code
+   !! This module defines global variables used throughout the code.
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    !---------------------------------------------------------------------------!
@@ -8,10 +8,16 @@ module global_variables_mod
    ! mathematical constants, converters and tolerance control variables
    !---------------------------------------------------------------------------!
    real(dp), parameter :: pi                  = dacos(-1.0_dp)
+      !! \\(\Pi\\) value
    real(dp), parameter :: amu_to_au           = 1822.8884862_dp
+      !! converter from atomic mass units to atomic units of mass
    real(dp), parameter :: bohr_to_angstrom    = 0.5291772109_dp
+      !! converter from atomic units of length to angstrom
    real(dp), parameter :: hartree_to_cm       = 219474.631363_dp
+      !! converter from atomic units of energy to cm\\(^{-1}\\)
    real(dp), parameter :: unitary_tolerance   = 1e-4_dp
+      !! tolerance on the unitarity check, see Eq. (13) in
+      !! "Solution of the coupled equations" section
    !---------------------------------------------------------------------------!
    ! variables read on input (namelist "input")
    !---------------------------------------------------------------------------!
@@ -36,9 +42,9 @@ module global_variables_mod
       !! number of steps per half-de Broglie wavelength of the scattering
       !! system; if provided on input, the number of \\(R\\)-grid points is
       !! determined as
-      !! \\(N = \frac{R\_{max}-R\_{min}}{\pi(k\_{max}+k\_{potential_depth})}\mathrm{steps}\\),
+      !! \\(N = \frac{R\_{max}-R\_{min}}{\pi(k\_{max}+k\_{potential\_depth})}\mathrm{steps}\\),
       !! where \\(k\_{max}\\) is the largest wavevector in a given block,
-      !! and \\(k\_{potential_depth}\\) is the correction due to the
+      !! and \\(k\_{potential\_depth}\\) is the correction due to the
       !! depth of the potential, see "potential_depth"
    integer(int32) :: consecutive_blocks_threshold = 1
       !! number of consecutive blocks for which the threshold condition
@@ -77,7 +83,7 @@ module global_variables_mod
    real(dp) :: potential_depth = 0.0_dp
       !! the absolute value of the depth of the potential, included
       !! in the determination of the step size of the propagator through
-      !! \\(k\_{potential_depth} = \sqrt{2\mu(\mathrm{potential_depth})}\\)
+      !! \\(k\_{potential\_depth} = \sqrt{2\mu(\mathrm{potential\_depth})}\\)
    real(dp) :: elastic_xs_threshold = 0.1_dp
       !! threshold condition on elastic cross-sections used in "jtot_max"=-1
    real(dp) :: inelastic_xs_threshold = 0.1_dp
@@ -112,9 +118,13 @@ module global_variables_mod
    ! input/output units
    !---------------------------------------------------------------------------!
    integer(int32), parameter :: input_unit                = 5
+      !! unit number for reading the input file
    integer(int32), parameter :: coupling_terms_file_unit  = 8
+      !! unit number for reading the coupling terms file
    integer(int32), parameter :: s_matrix_unit             = 11
+      !! unit number for writing S-matrix to an external file
    integer(int32), parameter :: partial_file_unit         = 12
+      !! unit number for writing partial cross-sections to an external file
    !---------------------------------------------------------------------------!
    ! additional global variables
    !---------------------------------------------------------------------------!
@@ -122,8 +132,10 @@ module global_variables_mod
       !! minimal number of coupling terms based on levels provided in the basis
    logical :: units_converted = .false.
       !! if .true. mass and energy units are converted
-   real(dp) :: radial_term_distance_converter, radial_term_energy_converter
-      !! ...
+   real(dp) :: radial_term_distance_converter
+      !! converter for the units of length used during coupling terms read
+   real(dp) :: radial_term_energy_converter
+      !! converter for the units of energy used during coupling terms read
    integer(int32), allocatable :: reduced_vib_couplings(:),                    &
       reduced_rot_couplings(:), reduced_vib_prime_couplings(:),                &
       reduced_rot_prime_couplings(:)

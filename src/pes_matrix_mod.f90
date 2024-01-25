@@ -7,25 +7,32 @@ module pes_matrix_mod
    !! of non-zero terms of the PES matrix are called only once,
    !! before Numerov propagator is initialized
    !---------------------------------------------------------------------------!
-   !! Subroutines calculating the full PES matrix at desired R are called
+   !! Subroutines calculating the full PES matrix at desired \\(R\\) are called
    !! within the propagator loop
    !---------------------------------------------------------------------------!
    !! The data is organized as follows:
+   !---------------------------------------------------------------------------!
    !! - number of non-zero terms of the PES matrix due to
    !!   \\(\bar{\Omega} = \bar{\Omega}'\\) condition is saved as
    !!   "number_of_nonzero_pes_matrix_elements"
+   !---------------------------------------------------------------------------!
    !! - number of non-vanishing terms in the sum over \\(\lambda\\)
    !!   in Eq. 1 in the "Coupling Matrix" section is saved in a
    !!   "nonzero_terms_per_element" array which is of
    !!   "number_of_nonzero_pes_matrix_elements" size
-   !! - a _total_ number of non-vanishing  \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\)
-   !!   coefficients is saved in "number_of_nonzero_algebraic_coefficients"
+   !---------------------------------------------------------------------------!
+   !! - a _total_ number of non-vanishing
+   !!   \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\) coefficients is saved
+   !!   in "number_of_nonzero_algebraic_coefficients"
+   !---------------------------------------------------------------------------!
    !! - _all_ non-vanishing  \\( g\_{{\lambda},\gamma,\gamma'}^{Jp} \\)
    !!   coefficients are saved in "nonzero_algebraic_coefficients" array,
    !!   which is of "number_of_nonzero_algebraic_coefficients" size
+   !---------------------------------------------------------------------------!
    !! - corresponding \\(\lambda\\) value for each non-vanishing coefficient
-   !!   is saved as an index to "legendre_indices" in the "nonzero_legendre_indices"
-   !!   array (which is of "number_of_nonzero_algebraic_coefficients" size)
+   !!   is saved as an index to "legendre_indices" in
+   !!   the "nonzero_legendre_indices" array (which is of
+   !!   "number_of_nonzero_algebraic_coefficients" size)
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_message, integer_to_character,       &
@@ -82,9 +89,12 @@ module pes_matrix_mod
             channels_omega_values, number_of_nonzero_pes_matrix_elements,      &
             number_of_nonzero_algebraic_coefficients)
          !---------------------------------------------------------------------!
-         call allocate_1d(nonzero_terms_per_element,number_of_nonzero_pes_matrix_elements)
-         call allocate_1d(nonzero_algebraic_coefficients,number_of_nonzero_algebraic_coefficients)
-         call allocate_1d(nonzero_legendre_indices,number_of_nonzero_algebraic_coefficients)
+         call allocate_1d(nonzero_terms_per_element,                           &
+            number_of_nonzero_pes_matrix_elements)
+         call allocate_1d(nonzero_algebraic_coefficients,                      &
+            number_of_nonzero_algebraic_coefficients)
+         call allocate_1d(nonzero_legendre_indices,                            &
+            number_of_nonzero_algebraic_coefficients)
          !---------------------------------------------------------------------!
          call prepare_pes_matrix_elements(channel_indices,                     &
             channels_omega_values, nonzero_terms_per_element,                  &
@@ -122,9 +132,11 @@ module pes_matrix_mod
          integer(int32), intent(in) :: channels_omega_values(:)
             !! holds all values of \bar{\Omega}
          integer(int32), intent(out) :: number_of_nonzero_pes_matrix_elements
-            !! number of non-zero terms in the sum () for each non-zero element of the PES matrix
+            !! number of non-zero terms in the sum ()
+            !! for each non-zero element of the PES matrix
          integer(int32), intent(out) :: number_of_nonzero_algebraic_coefficients
-            !! number of all non-zero algberaix coefficients in the whole PES matrix
+            !! number of all non-zero algberaix coefficients in
+            !! the whole PES matrix
          !---------------------------------------------------------------------!
          integer(int32) :: count_nonzero_pes_matrix_elements,                  &
             count_nonzero_algebraic_coefficients, j_, j_prime_, omega_,        &
@@ -153,8 +165,10 @@ module pes_matrix_mod
             enddo
          enddo
          !---------------------------------------------------------------------!
-         number_of_nonzero_algebraic_coefficients = count_nonzero_algebraic_coefficients
-         number_of_nonzero_pes_matrix_elements = count_nonzero_pes_matrix_elements
+         number_of_nonzero_algebraic_coefficients                              &
+            = count_nonzero_algebraic_coefficients
+         number_of_nonzero_pes_matrix_elements                                 &
+            = count_nonzero_pes_matrix_elements
          !---------------------------------------------------------------------!
       end subroutine check_nonzero_pes_matrix_elements
       !------------------------------------------------------------------------!
@@ -340,16 +354,17 @@ module pes_matrix_mod
          integer(int32), intent(in) :: channels_omega_values_(:)
             !! holds all values of \bar{\Omega}
          integer(int32), intent(in) :: nonzero_terms_per_element_(:)
-            !! keeps the number of non-vanishing elements of the sum over \\(\lambda\\)
-            !! for each non-zero element of the coupling matrix
+            !! keeps the number of non-vanishing elements of the sum
+            !! over \\(\lambda\\) for each non-zero element of the pes matrix
          integer(int32), intent(in) :: nonzero_legendre_indices_(:)
             !! holds indices pointing to legendre_indices, which correspond to
             !! the non-vanishing elements of the sum over \\(\lambda\\)
-            !! for each non-zero element of the coupling matrix;
+            !! for each non-zero element of the pes matrix;
          real(dp), intent(in) :: nonzero_algebraic_coefficients_(:)
             !! holds the values of the non-zero algebraic coefficients
          real(dp), intent(out) :: vmatrix(:,:)
-            !! (output) - the interaction potential contribution to the coupling matrix
+            !! (output) - the interaction potential contribution
+            !! to the pes matrix
          !---------------------------------------------------------------------!
          integer(int32) :: count_nonzero_algebraic_coefficients_,              &
             count_nonzero_coupling_matrix_elements,                            &
@@ -398,7 +413,8 @@ module pes_matrix_mod
       function calculate_single_pes_matrix_element(intermolecular_distance_,   &
          channel_index_1_, channel_index_2_, channel_indices_,                 &
          count_nonzero_legendre_terms, count_nonzero_algebraic_coefficients_,  &
-         nonzero_legendre_indices_, nonzero_algebraic_coefficients_) result(matrix_element_)
+         nonzero_legendre_indices_, nonzero_algebraic_coefficients_)           &
+         result(matrix_element_)
          !! Implementation of Eq. 1 in "Coupling Matrix" section;
          !! diagonal contribution from wavevectors (see the last term in
          !! Eq. 3 of "What are coupled equations" section) is added
@@ -415,7 +431,7 @@ module pes_matrix_mod
          integer(int32), intent(in) :: nonzero_legendre_indices_(:)
             !! holds indices pointing to legendre_indices, which correspond to
             !! the non-vanishing elements of the sum over \\(\lambda\\)
-            !! for each non-zero element of the coupling matrix;
+            !! for each non-zero element of the pes matrix;
          real(dp), intent(in) :: nonzero_algebraic_coefficients_(:)
             !! holds the values of the non-zero algebraic coefficients
          integer(int32), intent(inout) :: count_nonzero_algebraic_coefficients_

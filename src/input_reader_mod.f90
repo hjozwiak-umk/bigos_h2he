@@ -1,7 +1,9 @@
 module input_reader_mod
    !! This module provides following functions and subroutines:
-   !! -- input_file - reads the input file prepared by the user
-   !! -- input_summary - interprets and prints the input parameters
+   !---------------------------------------------------------------------------!
+   !! "input_file" - reads the input file prepared by the user,
+   !---------------------------------------------------------------------------!
+   !! "input_summary" - interprets and prints the input parameters.
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: file_io_status, write_message,             &

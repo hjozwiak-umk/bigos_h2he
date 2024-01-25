@@ -1,5 +1,5 @@
 module input_validation
-   !! This module provides subroutines validating read variables' values
+   !! This module provides subroutines validating read variables' values.
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_error, write_message,&

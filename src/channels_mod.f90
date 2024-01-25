@@ -1,7 +1,7 @@
 module channels_mod
    !! This module provides subroutines that set the number of channels in the
    !! block, save quantum numbers for each channel (both in body- and
-   !! space-fixed cases) and print quantum numbers on screen
+   !! space-fixed cases) and print quantum numbers on screen.
    !---------------------------------------------------------------------------!
    use, intrinsic :: iso_fortran_env, only: int32, sp => real32, dp => real64
    use utility_functions_mod, only: write_error, write_message, write_warning, &
@@ -15,7 +15,7 @@ module channels_mod
    public :: set_number_of_channels, set_body_fixed_channels,                  &
       set_space_fixed_channels, count_open_channels_in_block,                  &
       prepare_wavevector_array, calculate_largest_wavevector,                  &
-      print_short_block_summary, print_channels
+      calculate_number_of_steps, print_short_block_summary, print_channels
    !---------------------------------------------------------------------------!
    contains
       !------------------------------------------------------------------------!
@@ -81,8 +81,9 @@ module channels_mod
          do level_index_ = 1, number_of_basis_levels
             omega_max_ = min(rot_levels(level_index_), total_angular_momentum_)
 
-            call update_channel_counts_body_fixed(omega_max_, total_angular_momentum_,   &
-               number_of_channels_even_parity_block, number_of_channels_odd_parity_block)
+            call update_channel_counts_body_fixed(omega_max_,                  &
+               total_angular_momentum_, number_of_channels_even_parity_block,  &
+               number_of_channels_odd_parity_block)
 
          end do
          !---------------------------------------------------------------------!
@@ -157,8 +158,9 @@ module channels_mod
       end subroutine calculate_number_of_channels_space_fixed
    !---------------------------------------------------------------------------!
    !---------------------------------------------------------------------------!
-      subroutine update_channel_counts_space_fixed(l_min_, l_max_, level_index_, &
-         number_of_channels_even_parity_block, number_of_channels_odd_parity_block)
+      subroutine update_channel_counts_space_fixed(l_min_, l_max_,             &
+         level_index_, number_of_channels_even_parity_block,                   &
+         number_of_channels_odd_parity_block)
          !! updates number_of_channels_even and number_of_channels_odd
          !! in the space-fixed frame for given
          !! range of orbital angular momentum
@@ -178,10 +180,10 @@ module channels_mod
          !---------------------------------------------------------------------!
          do l_ = l_min_, l_max_
             if (mod(rot_levels(level_index_) + l_, 2) == 0) then
-               number_of_channels_even_parity_block =                       &
+               number_of_channels_even_parity_block =                          &
                   number_of_channels_even_parity_block + 1
             else
-               number_of_channels_odd_parity_block =                        &
+               number_of_channels_odd_parity_block =                           &
                   number_of_channels_odd_parity_block + 1
             endif
          end do
@@ -293,8 +295,8 @@ module channels_mod
       !------------------------------------------------------------------------!
       subroutine set_space_fixed_channels(total_angular_momentum_,             &
          parity_exponent_, channel_l_values)
-         !! Prepares the channel_l_values array which holds values of
-         !! orbital angular momentum, \\(l\\), a space-fixed-frame quantum number.
+         !! Prepares the channel_l_values array which holds values of orbital
+         !! angular momentum, \\(l\\), a space-fixed-frame quantum number.
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: total_angular_momentum_
             !! total angular momentum
@@ -380,13 +382,13 @@ module channels_mod
       !------------------------------------------------------------------------!
       function calculate_largest_wavevector(channel_indices)                   &
          result(largest_wavevector_)
-         !! Calculates the largest wave number in the block;
+         !! Calculates the largest wavevector in the block;
          !! called only if there are any open channels
          !---------------------------------------------------------------------!
          integer(int32), intent(in) :: channel_indices(:)
             !! holds the indices pointing to the basis arrays
          real(dp) :: largest_wavevector_
-            !! (output) the largest wave number (wavmax) in the block
+            !! (output) the largest wavevector in the block
          !---------------------------------------------------------------------!
          integer(int32) :: channel_index_
          real(dp) :: wavevector_
@@ -402,6 +404,30 @@ module channels_mod
          enddo
          !---------------------------------------------------------------------!
       end function calculate_largest_wavevector
+      !------------------------------------------------------------------------!
+      !------------------------------------------------------------------------!
+      function calculate_number_of_steps(largest_wavevector_,                  &
+         k_potential_depth_) result(number_of_steps_)
+         !! Calculates the number of steps on the intermolecular (R) grid in
+         !! current block. This is done either directly (if r_step > 0)
+         !! or through the number of steps per half de Broglie wavelength
+         !---------------------------------------------------------------------!
+         real(dp), intent(in) :: largest_wavevector_
+            !! the largest wavevector in the block
+         real(dp), intent(in) :: k_potential_depth_
+            !! correction from the depth of the potential well converted
+            !! to wavevector units
+         integer(int32) :: number_of_steps_
+            !! number of steps on the \\(R\\) grid
+         !---------------------------------------------------------------------!
+         if (r_step <= 0) then
+            number_of_steps_ = nint( (r_max-r_min) / PI                        &
+               * ((largest_wavevector_+k_potential_depth_)*steps))
+         else
+            number_of_steps_ = nint((r_max-r_min)/r_step)+1
+         endif
+         !---------------------------------------------------------------------!
+      end function calculate_number_of_steps
       !------------------------------------------------------------------------!
       !------------------------------------------------------------------------!
       subroutine print_short_block_summary(jtot_, parity_exponent_,            &
