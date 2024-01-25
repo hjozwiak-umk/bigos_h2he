@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01">
+    <meta name="author" content="Hubert Jóźwiak" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>All Modules &ndash; the SCATTERING code
+</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">the SCATTERING code </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href='../page/index.html'>Program Description</a></li>
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="../lists/files.html">Source Files</a></li>
+            <li><a href="../lists/modules.html">Modules</a></li>
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+                   <li><a href="../program/scattering.html">Program</a></li>
+       
+            </ul>
+        
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../program/scattering.html">Program</a></li>
+          </ul>
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" id='text'>
+			 <h1>Modules</h1>
+			 <table class="table">
+			 <thead><tr><th>Module</th><th>Source File</th><th>Description</th></tr></thead>
+			 <tbody>
+			   <tr class="active"><td><a href='../module/array_operations_mod.html'>array_operations_mod</a></td><td><a href='../sourcefile/array_operations_mod.f90.html'>array_operations_mod.f90</a></td><td><p>This module provides supplementary functions and subroutines to handle
+matrix allocation, invertion, appending etc.</p></td></tr>
+                  			   <tr class="active submod"><td>&nbsp;&nbsp;&nbsp;<a href='../module/array_operations_add_scalar_to_diagonal_submod.html'>array_operations_add_scalar_to_diagonal_submod</a></td><td><a href='../sourcefile/array_operations_add_scalar_to_diagonal_submod.f90.html'>array_operations_add_scalar_to_diagonal_submod.f90</a></td><td><p>a submodule for add_scalar_to_diagonal subroutines</p></td></tr>
+			   <tr class="active submod"><td>&nbsp;&nbsp;&nbsp;<a href='../module/array_operations_allocate_submod.html'>array_operations_allocate_submod</a></td><td><a href='../sourcefile/array_operations_allocate_submod.f90.html'>array_operations_allocate_submod.f90</a></td><td><p>a submodule for allocate subroutines</p></td></tr>
+			   <tr class="active submod"><td>&nbsp;&nbsp;&nbsp;<a href='../module/array_operations_append_submod.html'>array_operations_append_submod</a></td><td><a href='../sourcefile/array_operations_append_submod.f90.html'>array_operations_append_submod.f90</a></td><td><p>a submodule for append subroutines</p></td></tr>
+			   <tr class="active submod"><td>&nbsp;&nbsp;&nbsp;<a href='../module/array_operations_fill_symmetric_matrix_submod.html'>array_operations_fill_symmetric_matrix_submod</a></td><td><a href='../sourcefile/array_operations_fill_symmetric_matrix_submod.f90.html'>array_operations_fill_symmetric_matrix_submod.f90</a></td><td><p>a submodule for append subroutines</p></td></tr>
+			   <tr class="active submod"><td>&nbsp;&nbsp;&nbsp;<a href='../module/array_operations_invert_symmetric_matrix_submod.html'>array_operations_invert_symmetric_matrix_submod</a></td><td><a href='../sourcefile/array_operations_invert_symmetric_matrix_submod.f90.html'>array_operations_invert_symmetric_matrix_submod.f90</a></td><td><p>a submodule for append subroutines</p></td></tr>
+
+<!--active-->			   <tr class=""><td><a href='../module/boundary_conditions_mod.html'>boundary_conditions_mod</a></td><td><a href='../sourcefile/boundary_conditions_mod.f90.html'>boundary_conditions_mod.f90</a></td><td><p>This module contains subroutines that transform the asymptotic
+log-derivative matrix into the scattering S-matrix
+(see "Solution of coupled equations" section).</p></td></tr>
+<!---->			   <tr class="active"><td><a href='../module/centrifugal_matrix_mod.html'>centrifugal_matrix_mod</a></td><td><a href='../sourcefile/centrifugal_matrix_mod.f90.html'>centrifugal_matrix_mod.f90</a></td><td><p>This module calculates the centrifugal matrix - see the second term
+in Eq. 3 in "What are coupled equations?" section.</p></td></tr>
+<!--active-->			   <tr class=""><td><a href='../module/channels_mod.html'>channels_mod</a></td><td><a href='../sourcefile/channels_mod.f90.html'>channels_mod.f90</a></td><td><p>This module provides subroutines that set the number of channels in the
+block, save quantum numbers for each channel (both in body- and
+space-fixed cases) and print quantum numbers on screen.</p></td></tr>
+<!---->			   <tr class="active"><td><a href='../module/global_variables_mod.html'>global_variables_mod</a></td><td><a href='../sourcefile/global_variables_mod.f90.html'>global_variables_mod.f90</a></td><td><p>This module defines global variables used throughout the code.</p></td></tr>
+<!--active-->			   <tr class=""><td><a href='../module/input_reader_mod.html'>input_reader_mod</a></td><td><a href='../sourcefile/input_reader_mod.f90.html'>input_reader_mod.f90</a></td><td><p>This module provides following functions and subroutines:</p><a href="../module/input_reader_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+<!---->			   <tr class="active"><td><a href='../module/input_validation.html'>input_validation</a></td><td><a href='../sourcefile/input_validation_mod.f90.html'>input_validation_mod.f90</a></td><td><p>This module provides subroutines validating read variables' values.</p></td></tr>
+<!--active-->			   <tr class=""><td><a href='../module/math_utilities_mod.html'>math_utilities_mod</a></td><td><a href='../sourcefile/math_utilities_mod.f90.html'>math_utilities_mod.f90</a></td><td><p>This module holds 4 types of functions:</p><a href="../module/math_utilities_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+<!---->			   <tr class="active"><td><a href='../module/pes_matrix_mod.html'>pes_matrix_mod</a></td><td><a href='../sourcefile/pes_matrix_mod.f90.html'>pes_matrix_mod.f90</a></td><td><p>This module provides functions calculating the algebraic coefficients
+\( g_{{\lambda},\gamma,\gamma'}^{Jp} \) entering the PES matrix,
+and the full PES matrix (see Eq. 1 in the "Coupling Matrix" section).</p><a href="../module/pes_matrix_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+<!--active-->			   <tr class=""><td><a href='../module/physics_utilities_mod.html'>physics_utilities_mod</a></td><td><a href='../sourcefile/physics_utilities_mod.f90.html'>physics_utilities_mod.f90</a></td><td><p>This module provides helper functions: "units_conversion", "total_energy"
+"wavevector_squared_from_energy", and functions that count and save
+open levels in the rovibrational basis.</p></td></tr>
+<!---->			   <tr class="active"><td><a href='../module/propagator_mod.html'>propagator_mod</a></td><td><a href='../sourcefile/propagator_mod.f90.html'>propagator_mod.f90</a></td><td><p>This modules contains the subroutines used by the renormalized
+Numerov propagator.                                   </p></td></tr>
+<!--active-->			   <tr class=""><td><a href='../module/radial_coupling_terms_mod.html'>radial_coupling_terms_mod</a></td><td><a href='../sourcefile/radial_coupling_terms_mod.f90.html'>radial_coupling_terms_mod.f90</a></td><td><p>This module provides all functions that handle radial coupling terms
+ of the PES. It covers:</p><a href="../module/radial_coupling_terms_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+<!---->			   <tr class="active"><td><a href='../module/save_s_matrix_mod.html'>save_s_matrix_mod</a></td><td><a href='../sourcefile/save_s_matrix_mod.f90.html'>save_s_matrix_mod.f90</a></td><td><p>This module provides procedures that save selective information
+to the S-matrix file.</p></td></tr>
+<!--active-->			   <tr class=""><td><a href='../module/special_functions_mod.html'>special_functions_mod</a></td><td><a href='../sourcefile/special_functions_mod.f90.html'>special_functions_mod.f90</a></td><td><p>This module holds rctj, rcty, envj, msta1, msta2, from
+special_functions library, donwloaded from:
+https://people.sc.fsu.edu/~jburkardt/f_src/special_functions/special_functions.html</p><a href="../module/special_functions_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+<!---->			   <tr class="active"><td><a href='../module/state_to_state_cross_sections_mod.html'>state_to_state_cross_sections_mod</a></td><td><a href='../sourcefile/state_to_state_cross_sections_mod.f90.html'>state_to_state_cross_sections_mod.f90</a></td><td><p>This module provides functions and subroutines for calculating and
+analyzing state-to-state cross-sections. It is divided into three
+parts:</p><a href="../module/state_to_state_cross_sections_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+<!--active-->			   <tr class=""><td><a href='../module/unitarity_check_mod.html'>unitarity_check_mod</a></td><td><a href='../sourcefile/unitarity_check_mod.f90.html'>unitarity_check_mod.f90</a></td><td><p>This module contains subroutines that check the unitarity condition
+of the S-matrix (see Eq. (13) in "Solution of coupled equations").</p></td></tr>
+<!---->			   <tr class="active"><td><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></td><td><a href='../sourcefile/utility_functions_mod.f90.html'>utility_functions_mod.f90</a></td><td><p>This module contains functions which handle writing 
+messages/errors/warnings on screen, formatting headers, summary of the 
+calculations and a few other supporting functions.</p></td></tr>
+<!--active-->			 </tbody></table>
+             <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~graph~~ModuleGraph Pages: 1 -->
+<svg id="modulegraphModuleGraph" width="855pt" height="779pt"
+ viewBox="0.00 0.00 855.00 778.83" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~graph~~ModuleGraph" class="graph" transform="scale(1.42 1.42) rotate(0) translate(4 1103.66)">
+<title>module~~graph~~ModuleGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1103.66 1212,-1103.66 1212,4 -4,4"/>
+<!-- module~math_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_node1" class="node">
+<title>module~math_utilities_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node1"><a xlink:href=".././module/math_utilities_mod.html" xlink:title="math_utilities_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="500,-589.6 387,-589.6 387,-565.6 500,-565.6 500,-589.6"/>
+<text text-anchor="middle" x="443.5" y="-575.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">math_utilities_mod</text>
+</a>
+</g>
+</g>
+<!-- module~special_functions_mod -->
+<g id="module~~graph~~ModuleGraph_node5" class="node">
+<title>module~special_functions_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node5"><a xlink:href=".././module/special_functions_mod.html" xlink:title="special_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-589.6 130,-589.6 130,-565.6 263,-565.6 263,-589.6"/>
+<text text-anchor="middle" x="196.5" y="-575.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">special_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~math_utilities_mod&#45;&gt;module~special_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge1" class="edge">
+<title>module~math_utilities_mod&#45;&gt;module~special_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M386.91,-577.6C353.35,-577.6 310.14,-577.6 273.46,-577.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="273.31,-574.1 263.31,-577.6 273.31,-581.1 273.31,-574.1"/>
+</g>
+<!-- module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_node6" class="node">
+<title>module~utility_functions_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node6"><a xlink:href=".././module/utility_functions_mod.html" xlink:title="utility_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="259,-749.6 134,-749.6 134,-725.6 259,-725.6 259,-749.6"/>
+<text text-anchor="middle" x="196.5" y="-735.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">utility_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~math_utilities_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge2" class="edge">
+<title>module~math_utilities_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M386.66,-574.79C357.41,-576.24 322.82,-582.95 299,-603.6 260.77,-636.74 297.76,-674.83 263,-711.6 259.71,-715.08 255.89,-718.11 251.78,-720.74"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="250.07,-717.68 243.02,-725.59 253.46,-723.81 250.07,-717.68"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_node25" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~graph~~ModuleGraph_node25"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="94,-709.6 0,-709.6 0,-685.6 94,-685.6 94,-709.6"/>
+<text text-anchor="middle" x="47" y="-695.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~math_utilities_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge3" class="edge">
+<title>module~math_utilities_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M386.94,-579.46C358.79,-578.02 325.14,-572.49 299,-556.6 233.02,-516.5 269.11,-386.73 197.5,-415.6"/>
+</g>
+<!-- module~state_to_state_cross_sections_mod -->
+<g id="module~~graph~~ModuleGraph_node2" class="node">
+<title>module~state_to_state_cross_sections_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node2"><a xlink:href=".././module/state_to_state_cross_sections_mod.html" xlink:title="state_to_state_cross_sections_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="820,-749.6 624,-749.6 624,-725.6 820,-725.6 820,-749.6"/>
+<text text-anchor="middle" x="722" y="-735.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">state_to_state_cross_sections_mod</text>
+</a>
+</g>
+</g>
+<!-- module~state_to_state_cross_sections_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge7" class="edge">
+<title>module~state_to_state_cross_sections_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff3f00" stroke-dasharray="5,2" d="M660.88,-749.62C592.41,-762.56 484.83,-780.44 444.5,-773.6"/>
+<path fill="none" stroke="#ff3f00" stroke-dasharray="5,2" d="M442.5,-773.6C384.33,-763.73 318.12,-754.09 269.2,-747.28"/>
+<polygon fill="#ff3f00" stroke="#ff3f00" points="269.42,-743.78 259.04,-745.87 268.46,-750.71 269.42,-743.78"/>
+</g>
+<!-- module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_node9" class="node">
+<title>module~global_variables_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node9"><a xlink:href=".././module/global_variables_mod.html" xlink:title="global_variables_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="261,-861.6 132,-861.6 132,-837.6 261,-837.6 261,-861.6"/>
+<text text-anchor="middle" x="196.5" y="-847.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">global_variables_mod</text>
+</a>
+</g>
+</g>
+<!-- module~state_to_state_cross_sections_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge4" class="edge">
+<title>module~state_to_state_cross_sections_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#ff3f00" stroke-dasharray="5,2" d="M693.75,-749.63C667.21,-760.91 625.52,-777.51 588,-787.6 525.55,-804.39 508.54,-802.65 444.5,-811.6"/>
+<path fill="none" stroke="#ff3f00" stroke-dasharray="5,2" d="M442.5,-811.6C384.89,-819.65 319.83,-829.79 271.24,-837.57"/>
+<polygon fill="#ff3f00" stroke="#ff3f00" points="270.45,-834.15 261.13,-839.19 271.56,-841.06 270.45,-834.15"/>
+</g>
+<!-- module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_node12" class="node">
+<title>module~array_operations_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node12"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-309.6 130,-309.6 130,-285.6 263,-285.6 263,-309.6"/>
+<text text-anchor="middle" x="196.5" y="-295.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_mod</text>
+</a>
+</g>
+</g>
+<!-- module~state_to_state_cross_sections_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge6" class="edge">
+<title>module~state_to_state_cross_sections_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ff3f00" stroke-dasharray="5,2" d="M634.57,-725.47C630.71,-722.96 627.15,-720.02 624,-716.6 539.98,-625.21 662.75,-538.72 588,-439.6 546.17,-384.13 506.88,-408.19 444.5,-377.6"/>
+</g>
+<!-- module~physics_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_node21" class="node">
+<title>module~physics_utilities_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node21"><a xlink:href=".././module/physics_utilities_mod.html" xlink:title="physics_utilities_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="505.5,-669.6 381.5,-669.6 381.5,-645.6 505.5,-645.6 505.5,-669.6"/>
+<text text-anchor="middle" x="443.5" y="-655.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">physics_utilities_mod</text>
+</a>
+</g>
+</g>
+<!-- module~state_to_state_cross_sections_mod&#45;&gt;module~physics_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge5" class="edge">
+<title>module~state_to_state_cross_sections_mod&#45;&gt;module~physics_utilities_mod</title>
+<path fill="none" stroke="#ff3f00" stroke-dasharray="5,2" d="M645.97,-725.58C638.35,-723.12 630.89,-720.16 624,-716.6 604.72,-706.62 607.44,-693.25 588,-683.6 565.77,-672.57 539.53,-666.18 515.61,-662.48"/>
+<polygon fill="#ff3f00" stroke="#ff3f00" points="515.91,-658.99 505.52,-661.06 514.93,-665.92 515.91,-658.99"/>
+</g>
+<!-- module~state_to_state_cross_sections_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge8" class="edge">
+<title>module~state_to_state_cross_sections_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff3f00" stroke-dasharray="5,2" d="M714.41,-750.04C697.67,-781.98 652.78,-869.81 624,-946.6 603.86,-1000.34 631.52,-1033.19 588,-1070.6 539.21,-1112.53 507.96,-1079.05 444.5,-1089.6"/>
+<path fill="none" stroke="#ff3f00" stroke-dasharray="5,2" d="M442.5,-1089.6C333.66,-1107.68 293.13,-1104.63 197.5,-1049.6"/>
+</g>
+<!-- module~channels_mod -->
+<g id="module~~graph~~ModuleGraph_node3" class="node">
+<title>module~channels_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node3"><a xlink:href=".././module/channels_mod.html" xlink:title="channels_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="767,-707.6 677,-707.6 677,-683.6 767,-683.6 767,-707.6"/>
+<text text-anchor="middle" x="722" y="-693.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">channels_mod</text>
+</a>
+</g>
+</g>
+<!-- module~channels_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge11" class="edge">
+<title>module~channels_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff7f00" stroke-dasharray="5,2" d="M442.5,-697.6C379.46,-700.37 308.39,-713.06 259.09,-723.41"/>
+<polygon fill="#ff7f00" stroke="#ff7f00" points="258.28,-720.01 249.23,-725.51 259.74,-726.85 258.28,-720.01"/>
+</g>
+<!-- module~channels_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge9" class="edge">
+<title>module~channels_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#ff7f00" stroke-dasharray="5,2" d="M676.75,-701.15C601.2,-710.74 454.5,-729.95 444.5,-735.6"/>
+</g>
+<!-- module~channels_mod&#45;&gt;module~physics_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge10" class="edge">
+<title>module~channels_mod&#45;&gt;module~physics_utilities_mod</title>
+<path fill="none" stroke="#ff7f00" stroke-dasharray="5,2" d="M676.88,-689.54C633.5,-683.57 566.57,-674.37 515.66,-667.38"/>
+<polygon fill="#ff7f00" stroke="#ff7f00" points="516.09,-663.9 505.7,-666.01 515.13,-670.84 516.09,-663.9"/>
+</g>
+<!-- module~channels_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge12" class="edge">
+<title>module~channels_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff7f00" stroke-dasharray="5,2" d="M676.92,-694.92C622.33,-694.31 526.51,-693.99 444.5,-697.6"/>
+<path fill="none" stroke="#ff7f00" stroke-dasharray="5,2" d="M442.5,-697.6C333.72,-702.39 306.3,-693.2 197.5,-697.6"/>
+</g>
+<!-- module~array_operations_add_scalar_to_diagonal_submod -->
+<g id="module~~graph~~ModuleGraph_node4" class="node">
+<title>module~array_operations_add_scalar_to_diagonal_submod</title>
+<g id="a_module~~graph~~ModuleGraph_node4"><a xlink:href=".././module/array_operations_add_scalar_to_diagonal_submod.html" xlink:title="array_operations_add_scalar_to_diagonal_submod">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="584.5,-269.6 302.5,-269.6 302.5,-245.6 584.5,-245.6 584.5,-269.6"/>
+<text text-anchor="middle" x="443.5" y="-255.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_add_scalar_to_diagonal_submod</text>
+</a>
+</g>
+</g>
+<!-- module~array_operations_add_scalar_to_diagonal_submod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge13" class="edge">
+<title>module~array_operations_add_scalar_to_diagonal_submod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ffbf00" d="M368.99,-269.6C338.73,-274.54 303.68,-280.26 273.19,-285.24"/>
+<polygon fill="#ffbf00" stroke="#ffbf00" points="272.35,-281.83 263.04,-286.9 273.48,-288.74 272.35,-281.83"/>
+</g>
+<!-- module~utility_functions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge14" class="edge">
+<title>module~utility_functions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#bfff00" stroke-dasharray="5,2" d="M151.25,-725.6C135.86,-721.42 118.41,-716.69 102.31,-712.33"/>
+<polygon fill="#bfff00" stroke="#bfff00" points="103.05,-708.9 92.48,-709.66 101.21,-715.66 103.05,-708.9"/>
+</g>
+<!-- module~boundary_conditions_mod -->
+<g id="module~~graph~~ModuleGraph_node7" class="node">
+<title>module~boundary_conditions_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node7"><a xlink:href=".././module/boundary_conditions_mod.html" xlink:title="boundary_conditions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="798.5,-409.6 645.5,-409.6 645.5,-385.6 798.5,-385.6 798.5,-409.6"/>
+<text text-anchor="middle" x="722" y="-395.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">boundary_conditions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~math_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge15" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~math_utilities_mod</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M645.16,-409.27C637.33,-412.89 630.05,-417.57 624,-423.6 580.64,-466.85 633.8,-515.95 588,-556.6 567.13,-575.12 537.43,-581.54 510.46,-582.87"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="510.18,-579.37 500.28,-583.14 510.37,-586.37 510.18,-579.37"/>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge16" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M714.57,-409.91C698.21,-441.53 654.13,-528.37 624,-603.6 605.19,-650.57 626.46,-678.72 588,-711.6 538.85,-753.62 500.8,-703.79 444.5,-735.6"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M442.5,-735.6C382.01,-769.78 361.84,-767.97 299,-797.6 275.35,-808.75 249.08,-822.24 229.2,-832.68"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="227.48,-829.63 220.26,-837.39 230.74,-835.82 227.48,-829.63"/>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge17" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M645.47,-398.41C575.96,-398.04 478.64,-394.34 444.5,-377.6"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M442.5,-377.6C384.74,-349.27 359.73,-379.83 299,-358.6 270.26,-348.55 240.81,-329.71 221.08,-315.62"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="223.14,-312.79 213,-309.72 219.01,-318.44 223.14,-312.79"/>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;module~physics_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge18" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;module~physics_utilities_mod</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M718.02,-409.76C707.71,-449.11 669.58,-573.77 588,-631.6 567.12,-646.4 540.36,-653.56 515.62,-656.82"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="515.07,-653.36 505.52,-657.95 515.85,-660.31 515.07,-653.36"/>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge19" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M645.48,-397.35C510.43,-397.33 237.85,-399.33 197.5,-415.6"/>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M195.5,-415.6C89.95,-459.86 58.64,-617.13 50.53,-675.55"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="47.05,-675.19 49.24,-685.55 53.99,-676.08 47.05,-675.19"/>
+</g>
+<!-- fwigxjpf -->
+<g id="module~~graph~~ModuleGraph_node26" class="node">
+<title>fwigxjpf</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="470.5,-349.6 416.5,-349.6 416.5,-325.6 470.5,-325.6 470.5,-349.6"/>
+<text text-anchor="middle" x="443.5" y="-335.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fwigxjpf</text>
+</g>
+<!-- module~boundary_conditions_mod&#45;&gt;fwigxjpf -->
+<g id="module~~graph~~ModuleGraph_edge20" class="edge">
+<title>module~boundary_conditions_mod&#45;&gt;fwigxjpf</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M677.16,-385.56C651.32,-378.67 617.92,-370.13 588,-363.6 551.65,-355.67 509.74,-348.28 480.64,-343.42"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="480.97,-339.92 470.53,-341.74 479.83,-346.83 480.97,-339.92"/>
+</g>
+<!-- module~unitarity_check_mod -->
+<g id="module~~graph~~ModuleGraph_node8" class="node">
+<title>module~unitarity_check_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node8"><a xlink:href=".././module/unitarity_check_mod.html" xlink:title="unitarity_check_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="505,-1061.6 382,-1061.6 382,-1037.6 505,-1037.6 505,-1061.6"/>
+<text text-anchor="middle" x="443.5" y="-1047.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">unitarity_check_mod</text>
+</a>
+</g>
+</g>
+<!-- module~unitarity_check_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge22" class="edge">
+<title>module~unitarity_check_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#3fff00" stroke-dasharray="5,2" d="M381.69,-1055.9C353.05,-1055.44 320.53,-1049.44 299,-1028.6 234.1,-965.79 298.25,-911.75 263,-828.6 251.57,-801.65 230.97,-774.96 215.91,-757.52"/>
+<polygon fill="#3fff00" stroke="#3fff00" points="218.28,-754.91 209.03,-749.75 213.04,-759.55 218.28,-754.91"/>
+</g>
+<!-- module~unitarity_check_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge21" class="edge">
+<title>module~unitarity_check_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#3fff00" stroke-dasharray="5,2" d="M381.96,-1052.41C354.55,-1050.9 323,-1045.02 299,-1028.6 242.95,-990.24 214.17,-910.13 203.07,-871.44"/>
+<polygon fill="#3fff00" stroke="#3fff00" points="206.42,-870.41 200.4,-861.69 199.67,-872.26 206.42,-870.41"/>
+</g>
+<!-- module~unitarity_check_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge23" class="edge">
+<title>module~unitarity_check_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#3fff00" stroke-dasharray="5,2" d="M399.8,-1061.7C348.16,-1073.76 260.36,-1085.77 197.5,-1049.6"/>
+</g>
+<!-- module~global_variables_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge24" class="edge">
+<title>module~global_variables_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M183.68,-837.42C158.22,-811.18 98.01,-749.13 67.07,-717.25"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="69.35,-714.58 59.88,-709.84 64.33,-719.45 69.35,-714.58"/>
+</g>
+<!-- module~array_operations_allocate_submod -->
+<g id="module~~graph~~ModuleGraph_node10" class="node">
+<title>module~array_operations_allocate_submod</title>
+<g id="a_module~~graph~~ModuleGraph_node10"><a xlink:href=".././module/array_operations_allocate_submod.html" xlink:title="array_operations_allocate_submod">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="543,-147.6 344,-147.6 344,-123.6 543,-123.6 543,-147.6"/>
+<text text-anchor="middle" x="443.5" y="-133.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_allocate_submod</text>
+</a>
+</g>
+</g>
+<!-- module~array_operations_allocate_submod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge25" class="edge">
+<title>module~array_operations_allocate_submod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#00ff3f" d="M343.91,-139.36C328.13,-142.91 312.56,-148.36 299,-156.6 252.25,-185.01 220.8,-243.94 206.43,-275.88"/>
+<polygon fill="#00ff3f" stroke="#00ff3f" points="203.14,-274.66 202.37,-285.23 209.56,-277.45 203.14,-274.66"/>
+</g>
+<!-- module~save_s_matrix_mod -->
+<g id="module~~graph~~ModuleGraph_node11" class="node">
+<title>module~save_s_matrix_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node11"><a xlink:href=".././module/save_s_matrix_mod.html" xlink:title="save_s_matrix_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="502,-1019.6 385,-1019.6 385,-995.6 502,-995.6 502,-1019.6"/>
+<text text-anchor="middle" x="443.5" y="-1005.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_s_matrix_mod</text>
+</a>
+</g>
+</g>
+<!-- module~save_s_matrix_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge27" class="edge">
+<title>module~save_s_matrix_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#00ff7f" stroke-dasharray="5,2" d="M384.92,-996.36C355.52,-987.85 321.34,-973.25 299,-948.6 261.62,-907.33 287.6,-878.55 263,-828.6 249.99,-802.19 229.49,-775.22 214.89,-757.57"/>
+<polygon fill="#00ff7f" stroke="#00ff7f" points="217.38,-755.09 208.26,-749.7 212.03,-759.6 217.38,-755.09"/>
+</g>
+<!-- module~save_s_matrix_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge26" class="edge">
+<title>module~save_s_matrix_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#00ff7f" stroke-dasharray="5,2" d="M384.95,-1006.67C357.27,-1003.94 324.62,-997.21 299,-981.6 254.86,-954.7 222.87,-900.99 207.58,-871.04"/>
+<polygon fill="#00ff7f" stroke="#00ff7f" points="210.62,-869.28 203.05,-861.86 204.34,-872.38 210.62,-869.28"/>
+</g>
+<!-- module~save_s_matrix_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge28" class="edge">
+<title>module~save_s_matrix_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ff7f" stroke-dasharray="5,2" d="M384.77,-1015.26C358.54,-1018.94 327.14,-1023.63 299,-1028.6 253.63,-1036.6 237.43,-1072.57 197.5,-1049.6"/>
+</g>
+<!-- module~array_operations_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge29" class="edge">
+<title>module~array_operations_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ffbf" stroke-dasharray="5,2" d="M186.18,-309.74C172.18,-328.5 145.7,-366.08 130,-401.6 86.91,-499.09 61.12,-624.79 51.88,-675.22"/>
+<polygon fill="#00ffbf" stroke="#00ffbf" points="48.39,-674.86 50.07,-685.32 55.28,-676.1 48.39,-674.86"/>
+</g>
+<!-- module~radial_coupling_terms_mod -->
+<g id="module~~graph~~ModuleGraph_node13" class="node">
+<title>module~radial_coupling_terms_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node13"><a xlink:href=".././module/radial_coupling_terms_mod.html" xlink:title="radial_coupling_terms_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="802,-1021.6 642,-1021.6 642,-997.6 802,-997.6 802,-1021.6"/>
+<text text-anchor="middle" x="722" y="-1007.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">radial_coupling_terms_mod</text>
+</a>
+</g>
+</g>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~math_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge30" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~math_utilities_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M641.96,-1001.92C635.2,-998.61 629.03,-994.27 624,-988.6 566.99,-924.3 646.09,-666.92 588,-603.6 568.56,-582.41 538.13,-574.91 510.29,-573.11"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="510.31,-569.61 500.17,-572.7 510.02,-576.6 510.31,-569.61"/>
+</g>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge32" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M641.76,-999.29C635.37,-996.47 629.34,-992.96 624,-988.6 593.18,-963.41 616.47,-934.42 588,-906.6 488.65,-809.52 425.6,-844.77 299,-787.6 275.77,-777.11 250.01,-764.41 230.25,-754.43"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="231.58,-751.18 221.08,-749.77 228.41,-757.42 231.58,-751.18"/>
+</g>
+<!-- module~radial_coupling_terms_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge31" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M654.45,-997.56C633.24,-993.86 609.66,-989.9 588,-986.6 524.4,-976.89 506.03,-986.4 444.5,-967.6"/>
+</g>
+<!-- module~radial_coupling_terms_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge33" class="edge">
+<title>module~radial_coupling_terms_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M657.32,-1021.67C645.81,-1025.23 634.23,-1029.79 624,-1035.6 604.6,-1046.62 608.08,-1060.86 588,-1070.6 530.11,-1098.67 507.96,-1079.05 444.5,-1089.6"/>
+</g>
+<!-- module~centrifugal_matrix_mod -->
+<g id="module~~graph~~ModuleGraph_node14" class="node">
+<title>module~centrifugal_matrix_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node14"><a xlink:href=".././module/centrifugal_matrix_mod.html" xlink:title="centrifugal_matrix_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="513,-189.6 374,-189.6 374,-165.6 513,-165.6 513,-189.6"/>
+<text text-anchor="middle" x="443.5" y="-175.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">centrifugal_matrix_mod</text>
+</a>
+</g>
+</g>
+<!-- module~centrifugal_matrix_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge35" class="edge">
+<title>module~centrifugal_matrix_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#00bfff" stroke-dasharray="5,2" d="M373.75,-189.49C346.05,-197.91 316.57,-212.24 299,-236.6 230.99,-330.91 302.47,-649.23 263,-758.6 253.12,-785.98 232.43,-812.42 216.94,-829.68"/>
+<polygon fill="#00bfff" stroke="#00bfff" points="214.04,-827.66 209.82,-837.38 219.18,-832.41 214.04,-827.66"/>
+</g>
+<!-- module~centrifugal_matrix_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge34" class="edge">
+<title>module~centrifugal_matrix_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#00bfff" stroke-dasharray="5,2" d="M373.91,-182.03C349.31,-185.65 321.99,-192.12 299,-203.6 263.34,-221.41 231.25,-255.63 213.1,-277.51"/>
+<polygon fill="#00bfff" stroke="#00bfff" points="210.2,-275.52 206.63,-285.5 215.64,-279.93 210.2,-275.52"/>
+</g>
+<!-- module~centrifugal_matrix_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge36" class="edge">
+<title>module~centrifugal_matrix_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00bfff" stroke-dasharray="5,2" d="M373.7,-176.51C349.07,-173.84 321.8,-168.15 299,-156.6 241.67,-127.55 252.35,-20.09 197.5,-53.6"/>
+</g>
+<!-- module~input_reader_mod -->
+<g id="module~~graph~~ModuleGraph_node15" class="node">
+<title>module~input_reader_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node15"><a xlink:href=".././module/input_reader_mod.html" xlink:title="input_reader_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="776.5,-979.6 667.5,-979.6 667.5,-955.6 776.5,-955.6 776.5,-979.6"/>
+<text text-anchor="middle" x="722" y="-965.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">input_reader_mod</text>
+</a>
+</g>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge39" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#007fff" stroke-dasharray="5,2" d="M715.36,-955.19C700.04,-923.09 654.36,-837.04 588,-797.6 532.42,-764.56 508.25,-784.42 444.5,-773.6"/>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge37" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#007fff" stroke-dasharray="5,2" d="M667.41,-976.69C610.68,-984.23 519.22,-990.43 444.5,-967.6"/>
+<path fill="none" stroke="#007fff" stroke-dasharray="5,2" d="M442.5,-967.6C380.97,-948.8 356.87,-976.71 299,-948.6 261.7,-930.47 229.53,-893.33 211.9,-870.05"/>
+<polygon fill="#007fff" stroke="#007fff" points="214.62,-867.84 205.87,-861.87 208.99,-872 214.62,-867.84"/>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge40" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#007fff" stroke-dasharray="5,2" d="M713.68,-955.4C695.23,-924.02 646.65,-837.41 624,-758.6 606.31,-697.03 629.82,-521.12 588,-472.6 500.91,-371.56 415.41,-456.74 299,-391.6 264.4,-372.24 232.22,-338.76 213.72,-317.42"/>
+<polygon fill="#007fff" stroke="#007fff" points="216.24,-314.98 207.1,-309.62 210.91,-319.51 216.24,-314.98"/>
+</g>
+<!-- module~input_validation -->
+<g id="module~~graph~~ModuleGraph_node19" class="node">
+<title>module~input_validation</title>
+<g id="a_module~~graph~~ModuleGraph_node19"><a xlink:href=".././module/input_validation.html" xlink:title="input_validation">
+<polygon fill="#337ab7" stroke="#337ab7" points="492,-939.6 395,-939.6 395,-915.6 492,-915.6 492,-939.6"/>
+<text text-anchor="middle" x="443.5" y="-925.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">input_validation</text>
+</a>
+</g>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~input_validation -->
+<g id="module~~graph~~ModuleGraph_edge38" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~input_validation</title>
+<path fill="none" stroke="#007fff" stroke-dasharray="5,2" d="M667.36,-959.84C620,-952.99 551.12,-943.02 502.5,-935.99"/>
+<polygon fill="#007fff" stroke="#007fff" points="502.85,-932.5 492.45,-934.54 501.84,-939.43 502.85,-932.5"/>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~physics_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge42" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~physics_utilities_mod</title>
+<path fill="none" stroke="#007fff" stroke-dasharray="5,2" d="M715.36,-955.45C690.21,-901.33 589.51,-684.76 588,-683.6 567.63,-667.92 540.85,-660.59 515.95,-657.45"/>
+<polygon fill="#007fff" stroke="#007fff" points="516.1,-653.94 505.79,-656.38 515.37,-660.91 516.1,-653.94"/>
+</g>
+<!-- module~input_reader_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge41" class="edge">
+<title>module~input_reader_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#007fff" stroke-dasharray="5,2" d="M667.44,-970.11C652.08,-973.09 636.21,-978.62 624,-988.6 593.18,-1013.79 619.82,-1046.69 588,-1070.6 536.57,-1109.24 507.96,-1079.05 444.5,-1089.6"/>
+</g>
+<!-- module~array_operations_append_submod -->
+<g id="module~~graph~~ModuleGraph_node16" class="node">
+<title>module~array_operations_append_submod</title>
+<g id="a_module~~graph~~ModuleGraph_node16"><a xlink:href=".././module/array_operations_append_submod.html" xlink:title="array_operations_append_submod">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="542,-105.6 345,-105.6 345,-81.6 542,-81.6 542,-105.6"/>
+<text text-anchor="middle" x="443.5" y="-91.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_append_submod</text>
+</a>
+</g>
+</g>
+<!-- module~array_operations_append_submod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge43" class="edge">
+<title>module~array_operations_append_submod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#003fff" d="M344.91,-95.6C328.58,-99.27 312.57,-105.22 299,-114.6 242.06,-153.96 213.65,-236.1 202.85,-275.54"/>
+<polygon fill="#003fff" stroke="#003fff" points="199.45,-274.68 200.31,-285.24 206.23,-276.45 199.45,-274.68"/>
+</g>
+<!-- module~array_operations_invert_symmetric_matrix_submod -->
+<g id="module~~graph~~ModuleGraph_node17" class="node">
+<title>module~array_operations_invert_symmetric_matrix_submod</title>
+<g id="a_module~~graph~~ModuleGraph_node17"><a xlink:href=".././module/array_operations_invert_symmetric_matrix_submod.html" xlink:title="array_operations_invert_symmetric_matrix_submod">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="588,-505.6 299,-505.6 299,-481.6 588,-481.6 588,-505.6"/>
+<text text-anchor="middle" x="443.5" y="-491.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_invert_symmetric_matrix_submod</text>
+</a>
+</g>
+</g>
+<!-- module~array_operations_invert_symmetric_matrix_submod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge44" class="edge">
+<title>module~array_operations_invert_symmetric_matrix_submod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M310.1,-505.73C306.16,-508.33 302.44,-511.28 299,-514.6 234.96,-576.41 319.44,-642.77 263,-711.6 260.29,-714.9 257.11,-717.78 253.63,-720.3"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="251.76,-717.34 245.05,-725.54 255.41,-723.31 251.76,-717.34"/>
+</g>
+<!-- module~array_operations_invert_symmetric_matrix_submod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge45" class="edge">
+<title>module~array_operations_invert_symmetric_matrix_submod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#0000ff" d="M324.87,-481.54C315.67,-477.88 306.9,-473.3 299,-467.6 271.91,-448.04 279.91,-430.42 263,-401.6 245.77,-372.23 224.57,-339.07 211.05,-318.25"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="213.81,-316.08 205.41,-309.62 207.94,-319.9 213.81,-316.08"/>
+</g>
+<!-- module~pes_matrix_mod -->
+<g id="module~~graph~~ModuleGraph_node18" class="node">
+<title>module~pes_matrix_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node18"><a xlink:href=".././module/pes_matrix_mod.html" xlink:title="pes_matrix_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="956,-307.6 856,-307.6 856,-283.6 956,-283.6 956,-307.6"/>
+<text text-anchor="middle" x="906" y="-293.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pes_matrix_mod</text>
+</a>
+</g>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~math_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge47" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~math_utilities_mod</title>
+<path fill="none" stroke="#3f00ff" stroke-dasharray="5,2" d="M898.93,-307.7C886.64,-331.31 856.8,-384.22 820,-418.6 732.33,-500.5 701.07,-516.48 588,-556.6 563.39,-565.33 535.17,-570.43 510.3,-573.42"/>
+<polygon fill="#3f00ff" stroke="#3f00ff" points="509.79,-569.95 500.23,-574.53 510.56,-576.91 509.79,-569.95"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge49" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#3f00ff" stroke-dasharray="5,2" d="M902.46,-307.77C891.48,-356.96 843.11,-542.02 723,-617.6"/>
+<path fill="none" stroke="#3f00ff" stroke-dasharray="5,2" d="M721,-617.6C616.99,-683.05 559.9,-575.35 444.5,-617.6"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge48" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#3f00ff" stroke-dasharray="5,2" d="M903.6,-307.95C895.5,-378.26 853.91,-726.06 820,-758.6 698.38,-875.29 611.42,-788.27 444.5,-811.6"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge51" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#3f00ff" stroke-dasharray="5,2" d="M855.81,-295.74C734.24,-296.08 418.96,-296.97 273.31,-297.38"/>
+<polygon fill="#3f00ff" stroke="#3f00ff" points="273.11,-293.89 263.12,-297.41 273.13,-300.88 273.11,-293.89"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~radial_coupling_terms_mod -->
+<g id="module~~graph~~ModuleGraph_edge46" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~radial_coupling_terms_mod</title>
+<path fill="none" stroke="#3f00ff" stroke-dasharray="5,2" d="M903.43,-307.6C897.25,-355.04 874.01,-534.08 856,-681.6 847.67,-749.78 866.17,-937.74 820,-988.6 817.35,-991.51 814.41,-994.07 811.24,-996.32"/>
+<polygon fill="#3f00ff" stroke="#3f00ff" points="809.19,-993.47 802.37,-1001.57 812.75,-999.49 809.19,-993.47"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;module~physics_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge52" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;module~physics_utilities_mod</title>
+<path fill="none" stroke="#3f00ff" stroke-dasharray="5,2" d="M721,-617.6C703.89,-628.37 591.74,-642.08 515.63,-650.33"/>
+<polygon fill="#3f00ff" stroke="#3f00ff" points="515.18,-646.86 505.61,-651.41 515.93,-653.82 515.18,-646.86"/>
+</g>
+<!-- module~pes_matrix_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge50" class="edge">
+<title>module~pes_matrix_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#3f00ff" stroke-dasharray="5,2" d="M875.64,-283.59C868.66,-279.81 861.62,-275.15 856,-269.6 832.24,-246.11 846.46,-224.01 820,-203.6 784.83,-176.48 764.48,-195.46 723,-179.6"/>
+</g>
+<!-- module~input_validation&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge54" class="edge">
+<title>module~input_validation&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M402.64,-915.55C372.22,-905.06 330.34,-887.73 299,-863.6 278.54,-847.85 235.12,-789.73 212.27,-758.23"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="214.83,-755.8 206.14,-749.74 209.16,-759.9 214.83,-755.8"/>
+</g>
+<!-- module~input_validation&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge53" class="edge">
+<title>module~input_validation&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M394.76,-922.53C366.41,-918.64 330.06,-912.11 299,-901.6 273.1,-892.83 245.6,-878.39 225.76,-866.94"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="227.35,-863.82 216.96,-861.77 223.8,-869.85 227.35,-863.82"/>
+</g>
+<!-- module~input_validation&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge55" class="edge">
+<title>module~input_validation&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M408.74,-939.67C379.21,-950.65 335.45,-967.95 299,-986.6 251.73,-1010.78 243.52,-1076.08 197.5,-1049.6"/>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M195.5,-1049.6C74.16,-979.78 52.64,-785.45 48.82,-719.68"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="52.31,-719.42 48.32,-709.61 45.32,-719.77 52.31,-719.42"/>
+</g>
+<!-- module~array_operations_fill_symmetric_matrix_submod -->
+<g id="module~~graph~~ModuleGraph_node20" class="node">
+<title>module~array_operations_fill_symmetric_matrix_submod</title>
+<g id="a_module~~graph~~ModuleGraph_node20"><a xlink:href=".././module/array_operations_fill_symmetric_matrix_submod.html" xlink:title="array_operations_fill_symmetric_matrix_submod">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="579,-547.6 308,-547.6 308,-523.6 579,-523.6 579,-547.6"/>
+<text text-anchor="middle" x="443.5" y="-533.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_fill_symmetric_matrix_submod</text>
+</a>
+</g>
+</g>
+<!-- module~array_operations_fill_symmetric_matrix_submod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge56" class="edge">
+<title>module~array_operations_fill_symmetric_matrix_submod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#bf00ff" stroke-dasharray="5,2" d="M310.62,-547.74C306.51,-550.33 302.61,-553.27 299,-556.6 246.96,-604.49 309.13,-657.99 263,-711.6 260.17,-714.89 256.87,-717.76 253.28,-720.27"/>
+<polygon fill="#bf00ff" stroke="#bf00ff" points="251.29,-717.39 244.48,-725.51 254.86,-723.41 251.29,-717.39"/>
+</g>
+<!-- module~array_operations_fill_symmetric_matrix_submod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge57" class="edge">
+<title>module~array_operations_fill_symmetric_matrix_submod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#bf00ff" d="M311.6,-523.46C307.16,-520.88 302.93,-517.94 299,-514.6 258.82,-480.49 285.22,-449.39 263,-401.6 248.74,-370.92 227.02,-338.36 212.55,-318"/>
+<polygon fill="#bf00ff" stroke="#bf00ff" points="215.34,-315.88 206.65,-309.82 209.66,-319.98 215.34,-315.88"/>
+</g>
+<!-- module~physics_utilities_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge60" class="edge">
+<title>module~physics_utilities_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M381.24,-662.14C355.05,-665.73 324.66,-672.14 299,-683.6 280.49,-691.87 280.6,-701.54 263,-711.6 256.65,-715.23 249.69,-718.59 242.75,-721.59"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="241.27,-718.42 233.37,-725.47 243.95,-724.89 241.27,-718.42"/>
+</g>
+<!-- module~physics_utilities_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge59" class="edge">
+<title>module~physics_utilities_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M381.29,-656.48C353.74,-658.85 322.26,-665.87 299,-683.6 269.59,-706.01 281.87,-726.8 263,-758.6 247.89,-784.06 227.61,-811.39 213.64,-829.38"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="210.76,-827.39 207.34,-837.41 216.26,-831.71 210.76,-827.39"/>
+</g>
+<!-- module~physics_utilities_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge58" class="edge">
+<title>module~physics_utilities_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M381.26,-646.6C352.15,-638.25 319.34,-623.72 299,-598.6 242.98,-529.43 295.3,-484.54 263,-401.6 250.79,-370.25 228.77,-338.07 213.66,-317.97"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="216.32,-315.69 207.46,-309.88 210.77,-319.95 216.32,-315.69"/>
+</g>
+<!-- module~physics_utilities_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge61" class="edge">
+<title>module~physics_utilities_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M381.37,-668.37C314.85,-679.97 215.53,-696.87 197.5,-697.6"/>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M195.5,-697.6C165.44,-698.81 131.9,-698.91 104.41,-698.67"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="104.23,-695.16 94.19,-698.56 104.15,-702.16 104.23,-695.16"/>
+</g>
+<!-- module~propagator_mod -->
+<g id="module~~graph~~ModuleGraph_node22" class="node">
+<title>module~propagator_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node22"><a xlink:href=".././module/propagator_mod.html" xlink:title="propagator_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="1093,-307.6 992,-307.6 992,-283.6 1093,-283.6 1093,-307.6"/>
+<text text-anchor="middle" x="1042.5" y="-293.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">propagator_mod</text>
+</a>
+</g>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge65" class="edge">
+<title>module~propagator_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M905,-255.6C881.73,-257.63 871.45,-257.08 856,-274.6 812.36,-324.07 856.04,-363.34 820,-418.6 748.7,-527.91 708.42,-548.29 588,-598.6 528.64,-623.4 504.91,-595.48 444.5,-617.6"/>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M442.5,-617.6C381.65,-638.48 351.08,-598.83 299,-636.6 269.07,-658.31 290.04,-686.38 263,-711.6 259.24,-715.11 254.94,-718.17 250.4,-720.82"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="248.69,-717.77 241.41,-725.46 251.9,-723.99 248.69,-717.77"/>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge62" class="edge">
+<title>module~propagator_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M1040.23,-307.66C1033.64,-368.35 1001.99,-640.14 956,-709.6 915.44,-770.86 889.03,-778.43 820,-803.6 631.79,-872.23 390.8,-865.73 271.39,-856.82"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="271.51,-853.31 261.27,-856.03 270.97,-860.29 271.51,-853.31"/>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge64" class="edge">
+<title>module~propagator_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M721,-217.6C628.02,-204.72 388.87,-209.48 299,-236.6 269.51,-245.5 239.77,-264.87 220.18,-279.42"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="218.02,-276.66 212.18,-285.51 222.26,-282.23 218.02,-276.66"/>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~centrifugal_matrix_mod -->
+<g id="module~~graph~~ModuleGraph_edge63" class="edge">
+<title>module~propagator_mod&#45;&gt;module~centrifugal_matrix_mod</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M1019.2,-283.41C992.96,-270.38 947.77,-252.04 907,-255.6"/>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M905,-255.6C822.68,-262.79 804.85,-228.94 723,-217.6"/>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M721,-217.6C654.29,-208.36 578.6,-197.37 523.3,-189.25"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="523.62,-185.76 513.21,-187.77 522.6,-192.69 523.62,-185.76"/>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~pes_matrix_mod -->
+<g id="module~~graph~~ModuleGraph_edge67" class="edge">
+<title>module~propagator_mod&#45;&gt;module~pes_matrix_mod</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M991.8,-295.6C983.5,-295.6 974.82,-295.6 966.31,-295.6"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="966.05,-292.1 956.05,-295.6 966.05,-299.1 966.05,-292.1"/>
+</g>
+<!-- module~propagator_mod&#45;&gt;module~physics_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge68" class="edge">
+<title>module~propagator_mod&#45;&gt;module~physics_utilities_mod</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M1037.72,-307.92C1017.21,-372.15 913.02,-665.21 723,-655.6"/>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M721,-655.6C651.48,-662.13 571.71,-661.88 515.77,-660.45"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="515.7,-656.95 505.61,-660.18 515.51,-663.95 515.7,-656.95"/>
+</g>
+<!-- module~propagator_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge66" class="edge">
+<title>module~propagator_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M1025.59,-283.55C1008.99,-271.47 981.83,-253.07 956,-241.6 898.64,-216.13 880.69,-219.58 820,-203.6 777.05,-192.29 764.48,-195.46 723,-179.6"/>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M721,-179.6C651.79,-148.52 658.92,-99.54 588,-72.6 425.57,-10.89 345.78,36.98 197.5,-53.6"/>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M195.5,-53.6C86.1,-122.61 54.98,-569.86 49.12,-675.34"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="45.62,-675.3 48.58,-685.47 52.61,-675.67 45.62,-675.3"/>
+</g>
+<!-- program~scattering -->
+<g id="module~~graph~~ModuleGraph_node23" class="node">
+<title>program~scattering</title>
+<g id="a_module~~graph~~ModuleGraph_node23"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1208,-307.6 1129,-307.6 1129,-283.6 1208,-283.6 1208,-307.6"/>
+<text text-anchor="middle" x="1168.5" y="-293.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;module~state_to_state_cross_sections_mod -->
+<g id="module~~graph~~ModuleGraph_edge74" class="edge">
+<title>program~scattering&#45;&gt;module~state_to_state_cross_sections_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M905,-695.6C866.09,-695.67 857.91,-707.81 820,-716.6 810.31,-718.85 800.05,-721.15 789.98,-723.36"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="789.02,-719.99 780,-725.55 790.51,-726.83 789.02,-719.99"/>
+</g>
+<!-- program~scattering&#45;&gt;module~channels_mod -->
+<g id="module~~graph~~ModuleGraph_edge71" class="edge">
+<title>program~scattering&#45;&gt;module~channels_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M905,-695.6C862.15,-695.68 813.63,-695.67 777.46,-695.65"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="777.13,-692.15 767.13,-695.64 777.13,-699.15 777.13,-692.15"/>
+</g>
+<!-- program~scattering&#45;&gt;module~utility_functions_mod -->
+<g id="module~~graph~~ModuleGraph_edge78" class="edge">
+<title>program~scattering&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M1041.5,-695.6C916.1,-764.93 1034.95,-924.1 907,-988.6"/>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M905,-988.6C886.64,-997.85 607.29,-804.73 588,-797.6 527.35,-775.18 508.25,-784.42 444.5,-773.6"/>
+</g>
+<!-- program~scattering&#45;&gt;module~boundary_conditions_mod -->
+<g id="module~~graph~~ModuleGraph_edge81" class="edge">
+<title>program~scattering&#45;&gt;module~boundary_conditions_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M1041.5,-217.6C969.05,-176.83 919.56,-188.01 856,-241.6 814.4,-276.67 856.83,-318.55 820,-358.6 810.85,-368.55 798.8,-376.02 786.33,-381.6"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="784.69,-378.49 776.75,-385.51 787.33,-384.97 784.69,-378.49"/>
+</g>
+<!-- program~scattering&#45;&gt;module~unitarity_check_mod -->
+<g id="module~~graph~~ModuleGraph_edge75" class="edge">
+<title>program~scattering&#45;&gt;module~unitarity_check_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M721,-1049.6C651.48,-1058.15 571.38,-1056.96 515.35,-1054.34"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="515.33,-1050.84 505.17,-1053.84 514.99,-1057.83 515.33,-1050.84"/>
+</g>
+<!-- program~scattering&#45;&gt;module~global_variables_mod -->
+<g id="module~~graph~~ModuleGraph_edge70" class="edge">
+<title>program~scattering&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M905,-988.6C831.66,-1032.18 807.67,-1039.18 723,-1049.6"/>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M721,-1049.6C677.4,-1054.96 661.7,-1053.16 624,-1030.6 602.32,-1017.62 610.07,-998.9 588,-986.6 531.8,-955.28 506.03,-986.4 444.5,-967.6"/>
+</g>
+<!-- program~scattering&#45;&gt;module~save_s_matrix_mod -->
+<g id="module~~graph~~ModuleGraph_edge73" class="edge">
+<title>program~scattering&#45;&gt;module~save_s_matrix_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M721,-1049.6C661.6,-1056.91 647.16,-1037.6 588,-1028.6 563.28,-1024.84 536.14,-1020.84 512.18,-1017.34"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="512.53,-1013.86 502.13,-1015.88 511.52,-1020.78 512.53,-1013.86"/>
+</g>
+<!-- program~scattering&#45;&gt;module~array_operations_mod -->
+<g id="module~~graph~~ModuleGraph_edge79" class="edge">
+<title>program~scattering&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M1149.35,-283.4C1125.49,-267.54 1082.06,-239.3 1043.5,-217.6"/>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M1041.5,-217.6C1002.74,-195.78 997.02,-182.79 956,-165.6 684.02,-51.58 546.73,87.41 299,-72.6 227.68,-118.66 205.96,-228.19 199.78,-275.36"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="196.29,-275.09 198.58,-285.44 203.24,-275.92 196.29,-275.09"/>
+</g>
+<!-- program~scattering&#45;&gt;module~radial_coupling_terms_mod -->
+<g id="module~~graph~~ModuleGraph_edge69" class="edge">
+<title>program~scattering&#45;&gt;module~radial_coupling_terms_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M905,-988.6C876.8,-1002.81 843.1,-1009.16 812.41,-1011.6"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="811.88,-1008.13 802.13,-1012.29 812.34,-1015.12 811.88,-1008.13"/>
+</g>
+<!-- program~scattering&#45;&gt;module~input_reader_mod -->
+<g id="module~~graph~~ModuleGraph_edge77" class="edge">
+<title>program~scattering&#45;&gt;module~input_reader_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M905,-988.6C884.27,-999.05 828.02,-990.75 783.48,-981.69"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="784.1,-978.25 773.6,-979.63 782.67,-985.1 784.1,-978.25"/>
+</g>
+<!-- program~scattering&#45;&gt;module~pes_matrix_mod -->
+<g id="module~~graph~~ModuleGraph_edge80" class="edge">
+<title>program~scattering&#45;&gt;module~pes_matrix_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M1165.92,-307.88C1157.54,-370.79 1115.88,-655.59 1043.5,-695.6"/>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M1041.5,-695.6C970.56,-734.82 921.77,-407.41 909.84,-317.85"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="913.31,-317.39 908.54,-307.93 906.37,-318.3 913.31,-317.39"/>
+</g>
+<!-- program~scattering&#45;&gt;module~physics_utilities_mod -->
+<g id="module~~graph~~ModuleGraph_edge82" class="edge">
+<title>program~scattering&#45;&gt;module~physics_utilities_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M1041.5,-695.6C989.18,-724.52 966.78,-695.49 907,-695.6"/>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M905,-695.6C866.09,-695.67 857.99,-683.01 820,-674.6 777.11,-665.11 766.74,-651.49 723,-655.6"/>
+</g>
+<!-- program~scattering&#45;&gt;module~propagator_mod -->
+<g id="module~~graph~~ModuleGraph_edge72" class="edge">
+<title>program~scattering&#45;&gt;module~propagator_mod</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M1128.95,-295.6C1120.87,-295.6 1112.18,-295.6 1103.53,-295.6"/>
+<polygon fill="#ff007f" stroke="#ff007f" points="1103.45,-292.1 1093.45,-295.6 1103.45,-299.1 1103.45,-292.1"/>
+</g>
+<!-- program~scattering&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge76" class="edge">
+<title>program~scattering&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff007f" stroke-dasharray="5,2" d="M721,-1049.6C661.6,-1056.91 647.22,-1062 588,-1070.6 524.33,-1079.84 507.96,-1079.05 444.5,-1089.6"/>
+</g>
+<!-- proc~percival_seaton_coefficient -->
+<g id="module~~graph~~ModuleGraph_node24" class="node">
+<title>proc~percival_seaton_coefficient</title>
+<g id="a_module~~graph~~ModuleGraph_node24"><a xlink:href=".././proc/percival_seaton_coefficient.html" xlink:title="percival_seaton_coefficient">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="801,-349.6 643,-349.6 643,-325.6 801,-325.6 801,-349.6"/>
+<text text-anchor="middle" x="722" y="-335.2" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">percival_seaton_coefficient</text>
+</a>
+</g>
+</g>
+<!-- proc~percival_seaton_coefficient&#45;&gt;fwigxjpf -->
+<g id="module~~graph~~ModuleGraph_edge83" class="edge">
+<title>proc~percival_seaton_coefficient&#45;&gt;fwigxjpf</title>
+<path fill="none" stroke="#ff003f" stroke-dasharray="5,2" d="M642.87,-337.6C589.69,-337.6 521.77,-337.6 480.78,-337.6"/>
+<polygon fill="#ff003f" stroke="#ff003f" points="480.72,-334.1 470.72,-337.6 480.72,-341.1 480.72,-334.1"/>
+</g>
+</g>
+</svg>
+</div><script>var panmodulegraphModuleGraph = svgPanZoom('#modulegraphModuleGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="516pt" height="32pt"
+ viewBox="0.00 0.00 516.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 512,-28 512,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="385.5,-24 328.5,-24 328.5,0 385.5,0 385.5,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="508,-24 404,-24 404,0 508,0 508,-24"/>
+<text text-anchor="middle" x="456" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
+        </div>
+      </div>
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2024 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-01-25 09:48            </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+  </body>
+</html>

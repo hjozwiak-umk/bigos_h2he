@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="BIGOS – Binary Inelastic scattering and Generalized Optical cross Section package, vs. 0.01">
+    <meta name="author" content="Hubert Jóźwiak" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>input_reader_mod &ndash; the SCATTERING code</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">the SCATTERING code </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href='../page/index.html'>Program Description</a></li>
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="../lists/files.html">Source Files</a></li>
+            <li><a href="../lists/modules.html">Modules</a></li>
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+                   <li><a href="../program/scattering.html">Program</a></li>
+       
+            </ul>
+        
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../program/scattering.html">Program</a></li>
+          </ul>
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+  <div class="row">
+    <h1>input_reader_mod 
+    <small>Module</small>
+    
+    </h1>
+      <div class="row" id="info-bar">
+    <div class="col-lg-12">
+      <div class="well well-sm">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+          <li id="statements"><i class="fa fa-list-ol"></i>
+            <a data-toggle="tooltip"
+               data-placement="bottom" data-html="true"
+               title=" 3.5% of total for modules and submodules.">100 statements</a>
+          </li>
+
+            <li id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/input_reader_mod.f90"> Source File</a>
+            </li>
+        </ul>
+        <ol class="breadcrumb in-well text-right">
+              <li><a href='../sourcefile/input_reader_mod.f90.html'>input_reader_mod.f90</a></li>
+          <li class="active">input_reader_mod</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#subs-0">Subroutines</a>
+        </h3>
+      </div>
+      <div id="subs-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/input_reader_mod.html#proc-read_input_file">read_input_file</a>
+            <a class="list-group-item" href="../module/input_reader_mod.html#proc-input_summary">input_summary</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <p>This module provides following functions and subroutines:</p>
+<p>"input_file" - reads the input file prepared by the user,</p>
+<p>"input_summary" - interprets and prints the input parameters.</p>
+<br>        <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+            <ul class="list-inline">
+                <li><a href='../module/global_variables_mod.html'>global_variables_mod</a></li>
+                <li><a href='../module/input_validation.html'>input_validation</a></li>
+                <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+                <li><a href='../module/utility_functions_mod.html'>utility_functions_mod</a></li>
+                <li><a href='../module/array_operations_mod.html'>array_operations_mod</a></li>
+                <li><a href='../module/physics_utilities_mod.html'>physics_utilities_mod</a></li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~input_reader_mod~~UsesGraph Pages: 1 -->
+<svg id="moduleinput_reader_modUsesGraph" width="576pt" height="223pt"
+ viewBox="0.00 0.00 576.00 222.65" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~input_reader_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 218.65)">
+<title>module~~input_reader_mod~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-218.65 572,-218.65 572,4 -4,4"/>
+<!-- module~input_reader_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_node1" class="node">
+<title>module~input_reader_mod</title>
+<polygon fill="none" stroke="black" points="568,-149.8 459,-149.8 459,-125.8 568,-125.8 568,-149.8"/>
+<text text-anchor="middle" x="513.5" y="-135.4" font-family="Helvetica,sans-Serif" font-size="10.50">input_reader_mod</text>
+</g>
+<!-- module~global_variables_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_node2" class="node">
+<title>module~global_variables_mod</title>
+<g id="a_module~~input_reader_mod~~UsesGraph_node2"><a xlink:href=".././module/global_variables_mod.html" xlink:title="global_variables_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="261,-191.8 132,-191.8 132,-167.8 261,-167.8 261,-191.8"/>
+<text text-anchor="middle" x="196.5" y="-177.4" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">global_variables_mod</text>
+</a>
+</g>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge1" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M500.18,-149.86C484.03,-164.73 454.09,-189.22 423,-198.8 364.24,-216.92 293.04,-205.79 246.57,-194.39"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="247.31,-190.97 236.76,-191.89 245.59,-197.75 247.31,-190.97"/>
+</g>
+<!-- module~input_validation -->
+<g id="module~~input_reader_mod~~UsesGraph_node3" class="node">
+<title>module~input_validation</title>
+<g id="a_module~~input_reader_mod~~UsesGraph_node3"><a xlink:href=".././module/input_validation.html" xlink:title="input_validation">
+<polygon fill="#337ab7" stroke="#337ab7" points="409.5,-189.8 312.5,-189.8 312.5,-165.8 409.5,-165.8 409.5,-189.8"/>
+<text text-anchor="middle" x="361" y="-175.4" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">input_validation</text>
+</a>
+</g>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~input_validation -->
+<g id="module~~input_reader_mod~~UsesGraph_edge2" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~input_validation</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M467.35,-149.81C451.64,-153.98 433.85,-158.71 417.41,-163.08"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="416.15,-159.79 407.38,-165.74 417.95,-166.56 416.15,-159.79"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~input_reader_mod~~UsesGraph_node4" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~input_reader_mod~~UsesGraph_node4"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="94,-129.8 0,-129.8 0,-105.8 94,-105.8 94,-129.8"/>
+<text text-anchor="middle" x="47" y="-115.4" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~input_reader_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~input_reader_mod~~UsesGraph_edge5" class="edge">
+<title>module~input_reader_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M503.29,-125.67C482.02,-98.93 426.36,-35.81 362,-17.8"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M360,-17.8C261.22,9.84 223.2,6.03 130,-36.8 101.15,-50.07 76.55,-78.01 62.03,-97.34"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="59.13,-95.38 56.08,-105.53 64.79,-99.49 59.13,-95.38"/>
+</g>
+<!-- module~array_operations_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_node5" class="node">
+<title>module~array_operations_mod</title>
+<g id="a_module~~input_reader_mod~~UsesGraph_node5"><a xlink:href=".././module/array_operations_mod.html" xlink:title="array_operations_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="263,-69.8 130,-69.8 130,-45.8 263,-45.8 263,-69.8"/>
+<text text-anchor="middle" x="196.5" y="-55.4" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">array_operations_mod</text>
+</a>
+</g>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge4" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M360,-17.8C337.64,-11.55 279.86,-28.69 239.61,-42.46"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="238.34,-39.2 230.04,-45.78 240.63,-45.81 238.34,-39.2"/>
+</g>
+<!-- module~utility_functions_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_node6" class="node">
+<title>module~utility_functions_mod</title>
+<g id="a_module~~input_reader_mod~~UsesGraph_node6"><a xlink:href=".././module/utility_functions_mod.html" xlink:title="utility_functions_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="259,-149.8 134,-149.8 134,-125.8 259,-125.8 259,-149.8"/>
+<text text-anchor="middle" x="196.5" y="-135.4" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">utility_functions_mod</text>
+</a>
+</g>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge3" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M458.71,-137.8C406.49,-137.8 326.9,-137.8 269.3,-137.8"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="269.17,-134.3 259.17,-137.8 269.17,-141.3 269.17,-134.3"/>
+</g>
+<!-- module~physics_utilities_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_node7" class="node">
+<title>module~physics_utilities_mod</title>
+<g id="a_module~~input_reader_mod~~UsesGraph_node7"><a xlink:href=".././module/physics_utilities_mod.html" xlink:title="physics_utilities_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="423,-109.8 299,-109.8 299,-85.8 423,-85.8 423,-109.8"/>
+<text text-anchor="middle" x="361" y="-95.4" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">physics_utilities_mod</text>
+</a>
+</g>
+</g>
+<!-- module~input_reader_mod&#45;&gt;module~physics_utilities_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge6" class="edge">
+<title>module~input_reader_mod&#45;&gt;module~physics_utilities_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M467.35,-125.8C451.64,-121.63 433.85,-116.9 417.41,-112.53"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="417.95,-109.05 407.38,-109.87 416.15,-115.82 417.95,-109.05"/>
+</g>
+<!-- module~global_variables_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~input_reader_mod~~UsesGraph_edge7" class="edge">
+<title>module~global_variables_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M154.62,-167.77C146.39,-165.04 137.85,-162 130,-158.8 112.67,-151.74 93.96,-142.52 78.79,-134.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="80.33,-131.46 69.85,-129.88 77.05,-137.65 80.33,-131.46"/>
+</g>
+<!-- module~input_validation&#45;&gt;module~global_variables_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge8" class="edge">
+<title>module~input_validation&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#ffff00" stroke-dasharray="5,2" d="M312.12,-178.39C299.24,-178.55 285,-178.73 271.07,-178.9"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="270.96,-175.4 261,-179.02 271.05,-182.4 270.96,-175.4"/>
+</g>
+<!-- module~input_validation&#45;&gt;iso_fortran_env -->
+<g id="module~~input_reader_mod~~UsesGraph_edge10" class="edge">
+<title>module~input_validation&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ffff00" stroke-dasharray="5,2" d="M329.22,-189.91C283.76,-205.84 196.84,-228.73 130,-200.8 100.01,-188.28 75.41,-158.85 61.21,-138.63"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="63.94,-136.41 55.44,-130.08 58.14,-140.33 63.94,-136.41"/>
+</g>
+<!-- module~input_validation&#45;&gt;module~utility_functions_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge9" class="edge">
+<title>module~input_validation&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ffff00" stroke-dasharray="5,2" d="M312.12,-166.02C294.59,-161.7 274.54,-156.77 256.16,-152.24"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="256.99,-148.84 246.44,-149.85 255.31,-155.64 256.99,-148.84"/>
+</g>
+<!-- module~array_operations_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~input_reader_mod~~UsesGraph_edge11" class="edge">
+<title>module~array_operations_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M164.8,-69.88C153.81,-74.23 141.34,-79.2 130,-83.8 115.75,-89.59 100.15,-96.03 86.42,-101.73"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="84.68,-98.66 76.8,-105.74 87.37,-105.13 84.68,-98.66"/>
+</g>
+<!-- module~utility_functions_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~input_reader_mod~~UsesGraph_edge12" class="edge">
+<title>module~utility_functions_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M133.8,-129.44C123.96,-128.1 113.82,-126.73 104.12,-125.41"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="104.57,-121.94 94.19,-124.07 103.63,-128.88 104.57,-121.94"/>
+</g>
+<!-- module~physics_utilities_mod&#45;&gt;module~global_variables_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge14" class="edge">
+<title>module~physics_utilities_mod&#45;&gt;module~global_variables_mod</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M343.56,-109.95C324.83,-123.35 292.94,-144.86 263,-158.8 258.87,-160.73 254.52,-162.54 250.1,-164.24"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="248.58,-161.07 240.38,-167.77 250.97,-167.65 248.58,-161.07"/>
+</g>
+<!-- module~physics_utilities_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~input_reader_mod~~UsesGraph_edge16" class="edge">
+<title>module~physics_utilities_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M298.73,-101.73C242.38,-105.34 159.49,-110.66 104.65,-114.17"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="104.16,-110.7 94.41,-114.83 104.61,-117.68 104.16,-110.7"/>
+</g>
+<!-- module~physics_utilities_mod&#45;&gt;module~array_operations_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge13" class="edge">
+<title>module~physics_utilities_mod&#45;&gt;module~array_operations_mod</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M311.24,-85.8C293.97,-81.55 274.35,-76.72 256.33,-72.28"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="257.05,-68.86 246.5,-69.87 255.38,-75.65 257.05,-68.86"/>
+</g>
+<!-- module~physics_utilities_mod&#45;&gt;module~utility_functions_mod -->
+<g id="module~~input_reader_mod~~UsesGraph_edge15" class="edge">
+<title>module~physics_utilities_mod&#45;&gt;module~utility_functions_mod</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M311.24,-109.81C293.97,-114.06 274.35,-118.89 256.33,-123.32"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="255.38,-119.95 246.5,-125.74 257.05,-126.75 255.38,-119.95"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="516pt" height="32pt"
+ viewBox="0.00 0.00 516.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 512,-28 512,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="385.5,-24 328.5,-24 328.5,0 385.5,0 385.5,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="508,-24 404,-24 404,0 508,0 508,-24"/>
+<text text-anchor="middle" x="456" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
+          </li>
+      </ul>
+    </div>
+
+        <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Used by</h3>
+      </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~input_reader_mod~~UsedByGraph Pages: 1 -->
+<svg id="moduleinput_reader_modUsedByGraph" width="232pt" height="32pt"
+ viewBox="0.00 0.00 232.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~input_reader_mod~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>module~~input_reader_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 228,-28 228,4 -4,4"/>
+<!-- module~input_reader_mod -->
+<g id="module~~input_reader_mod~~UsedByGraph_node1" class="node">
+<title>module~input_reader_mod</title>
+<polygon fill="none" stroke="black" points="109,-24 0,-24 0,0 109,0 109,-24"/>
+<text text-anchor="middle" x="54.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">input_reader_mod</text>
+</g>
+<!-- program~scattering -->
+<g id="module~~input_reader_mod~~UsedByGraph_node2" class="node">
+<title>program~scattering</title>
+<g id="a_module~~input_reader_mod~~UsedByGraph_node2"><a xlink:href=".././program/scattering.html" xlink:title="SCATTERING">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="224,-24 145,-24 145,0 224,0 224,-24"/>
+<text text-anchor="middle" x="184.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SCATTERING</text>
+</a>
+</g>
+</g>
+<!-- program~scattering&#45;&gt;module~input_reader_mod -->
+<g id="module~~input_reader_mod~~UsedByGraph_edge1" class="edge">
+<title>program~scattering&#45;&gt;module~input_reader_mod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M144.75,-12C136.71,-12 128.04,-12 119.37,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="119.23,-8.5 109.23,-12 119.23,-15.5 119.23,-8.5"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="516pt" height="32pt"
+ viewBox="0.00 0.00 516.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 512,-28 512,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="385.5,-24 328.5,-24 328.5,0 385.5,0 385.5,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="508,-24 404,-24 404,0 508,0 508,-24"/>
+<text text-anchor="middle" x="456" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
+          </li>
+      </ul>
+    </div>
+
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+        <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#subs-1">Subroutines</a>
+        </h3>
+      </div>
+      <div id="subs-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../module/input_reader_mod.html#proc-read_input_file">read_input_file</a>
+            <a class="list-group-item" href="../module/input_reader_mod.html#proc-input_summary">input_summary</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+
+    
+    
+
+    
+    
+
+    <section>
+    <h2>Subroutines</h2>
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-read_input_file"></span><h3>public  subroutine <a href='../proc/read_input_file.html'>read_input_file</a>()  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>reads the input file prepared by the user using NAMELIST feature
+the code uses 3 namelists: "input", "basis" and "potential"</p>
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+    </div>
+  </div>
+
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-input_summary"></span><h3>private  subroutine <a href='../proc/input_summary.html'>input_summary</a>()  
+</h3></div>
+    <div class="panel-body">
+          
+  <p>summarize the input parameters for the current run</p>
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+    </div>
+  </div>
+
+    </section>
+    <br>
+
+
+
+    </div>
+  </div>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>the SCATTERING code was developed by Hubert Jóźwiak<br>&copy; 2024 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-01-25 09:48            </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+  </body>
+</html>
