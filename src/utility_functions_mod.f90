@@ -99,7 +99,7 @@ module utility_functions_mod
                call write_message(header_star)
                call write_message(header_star)
                write(header_str, fmt = '(a,25x,a43,20x,a)')                    &
-                       '|','BIGOS quantum scattering package, vs. 0.01.','|'
+                       '|','BIGOS quantum scattering package, vs. 0.0.1','|'
                call write_message(header_str)
                write(header_str, fmt = '(a,36x,a19,33x,a)')                    &
                        '|', 'the SCATTERING code','|'

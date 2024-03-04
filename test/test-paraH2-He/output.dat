@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
-|                         BIGOS quantum scattering package, vs. 0.01.                    |
+|                         BIGOS quantum scattering package, vs. 0.0.1                    |
 |                                    the SCATTERING code                                 |
 |                             adjusted for H2-He calculations                            |
 |                                     by Hubert Jozwiak                                  |
@@ -54,7 +54,7 @@
  - S-matrix elements will be saved into smatrixH2He.dat
 -- Reducing the number of the radial coupling terms...
 -- Reduced 780 radial terms to 703
--- Initialization completed in 4.0475E+00 s
+-- Initialization completed in 4.5456E+00 s
 ------------------------------------------------------------------------------------------
                     -- Start the loop over total angular momentum --
 ==========================================================================================
@@ -105,18 +105,18 @@
  - Size of the PES matrix: 37
  - Number of non-zero elements of the potential matrix: 703
  - Number of non-zero elements  of the PES matrix: 1018
--- -- PES matrix initialization completed in 5.8000E-04 s
+-- -- PES matrix initialization completed in 7.8300E-04 s
 -- Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 23661 steps
    (constant r_step= 0.41842773E-02 a.u.)
--- Propagation completed in 1.1720E+01 s
+-- Propagation completed in 1.3947E+01 s
 -- Check of the unitarity of the S-matrix...
 -- S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.9900E-04 s
--- Parity block completed in 1.1732E+01 s
+-- Cross-sections calculations completed in 5.3500E-04 s
+-- Parity block completed in 1.3965E+01 s
 ------------------------------------------------------------------------------------------
  - Largest partial elastic state-to-state for JTOT = 0: .027063
  - Largest partial inelastic state-to-state for JTOT = 0: .009722
--- Total angular momentum block completed in 1.1732E+01 s
+-- Total angular momentum block completed in 1.3965E+01 s
 ==========================================================================================
 ||                             JTOT =          1                                        ||
 ==========================================================================================
@@ -160,14 +160,14 @@
  - Size of the PES matrix: 32
  - Number of non-zero elements of the potential matrix: 528
  - Number of non-zero elements  of the PES matrix: 928
--- -- PES matrix initialization completed in 3.0120E-03 s
+-- -- PES matrix initialization completed in 4.8050E-03 s
 -- Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 23229 steps
    (constant r_step= 0.42620975E-02 a.u.)
--- Propagation completed in 1.1571E+01 s
+-- Propagation completed in 2.4166E+01 s
 -- Check of the unitarity of the S-matrix...
 -- S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 1.5400E-04 s
--- Parity block completed in 1.1580E+01 s
+-- Cross-sections calculations completed in 2.0000E-04 s
+-- Parity block completed in 2.4180E+01 s
 ------------------------------------------------------------------------------------------
  - Block number: 3
  - Total angular momentum: 1
@@ -246,18 +246,18 @@
  - Size of the PES matrix: 69
  - Number of non-zero elements of the potential matrix: 1231
  - Number of non-zero elements  of the PES matrix: 1946
--- -- PES matrix initialization completed in 4.7330E-03 s
+-- -- PES matrix initialization completed in 6.1500E-03 s
 -- Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 23661 steps
    (constant r_step= 0.41842773E-02 a.u.)
--- Propagation completed in 2.6482E+01 s
+-- Propagation completed in 2.6941E+01 s
 -- Check of the unitarity of the S-matrix...
 -- S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.5400E-04 s
--- Parity block completed in 2.6515E+01 s
+-- Cross-sections calculations completed in 3.0400E-04 s
+-- Parity block completed in 2.6980E+01 s
 ------------------------------------------------------------------------------------------
  - Largest partial elastic state-to-state for JTOT = 1: .261205
  - Largest partial inelastic state-to-state for JTOT = 1: .029049
--- Total angular momentum block completed in 3.8096E+01 s
+-- Total angular momentum block completed in 5.1160E+01 s
 ==========================================================================================
 ||                             JTOT =          2                                        ||
 ==========================================================================================
@@ -370,14 +370,14 @@
  - Size of the PES matrix: 101
  - Number of non-zero elements of the potential matrix: 1759
  - Number of non-zero elements  of the PES matrix: 2874
--- -- PES matrix initialization completed in 7.1700E-03 s
+-- -- PES matrix initialization completed in 8.1760E-03 s
 -- Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 23661 steps
    (constant r_step= 0.41842773E-02 a.u.)
--- Propagation completed in 1.9853E+02 s
+-- Propagation completed in 1.8170E+02 s
 -- Check of the unitarity of the S-matrix...
 -- S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 3.9500E-04 s
--- Parity block completed in 1.9869E+02 s
+-- Cross-sections calculations completed in 4.1500E-04 s
+-- Parity block completed in 1.8186E+02 s
 ------------------------------------------------------------------------------------------
  - Block number: 5
  - Total angular momentum: 2
@@ -451,18 +451,18 @@
  - Size of the PES matrix: 64
  - Number of non-zero elements of the potential matrix: 1056
  - Number of non-zero elements  of the PES matrix: 1856
--- -- PES matrix initialization completed in 6.4250E-03 s
+-- -- PES matrix initialization completed in 6.3600E-03 s
 -- Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 23229 steps
    (constant r_step= 0.42620975E-02 a.u.)
--- Propagation completed in 2.3216E+01 s
+-- Propagation completed in 2.5544E+01 s
 -- Check of the unitarity of the S-matrix...
 -- S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 2.3600E-04 s
--- Parity block completed in 2.3255E+01 s
+-- Cross-sections calculations completed in 3.9000E-04 s
+-- Parity block completed in 2.5598E+01 s
 ------------------------------------------------------------------------------------------
  - Largest partial elastic state-to-state for JTOT = 2: .586380
  - Largest partial inelastic state-to-state for JTOT = 2: .048022
--- Total angular momentum block completed in 2.2195E+02 s
+-- Total angular momentum block completed in 2.0746E+02 s
 ==========================================================================================
 ||                             JTOT =          3                                        ||
 ==========================================================================================
@@ -565,14 +565,14 @@
  - Size of the PES matrix: 91
  - Number of non-zero elements of the potential matrix: 1434
  - Number of non-zero elements  of the PES matrix: 2594
--- -- PES matrix initialization completed in 8.0720E-03 s
+-- -- PES matrix initialization completed in 1.1250E-02 s
 -- Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 23229 steps
    (constant r_step= 0.42620975E-02 a.u.)
--- Propagation completed in 4.0325E+01 s
+-- Propagation completed in 3.4477E+01 s
 -- Check of the unitarity of the S-matrix...
 -- S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.3500E-04 s
--- Parity block completed in 4.0465E+01 s
+-- Cross-sections calculations completed in 4.8600E-04 s
+-- Parity block completed in 3.4656E+01 s
 ------------------------------------------------------------------------------------------
  - Block number: 7
  - Total angular momentum: 3
@@ -710,18 +710,18 @@
  - Size of the PES matrix: 128
  - Number of non-zero elements of the potential matrix: 2137
  - Number of non-zero elements  of the PES matrix: 3612
--- -- PES matrix initialization completed in 1.1096E-02 s
+-- -- PES matrix initialization completed in 1.4312E-02 s
 -- Coupled equations were solved from 1.0000 a.u. to 100.0000 a.u. in 23661 steps
    (constant r_step= 0.41842773E-02 a.u.)
--- Propagation completed in 3.0038E+02 s
+-- Propagation completed in 3.0764E+02 s
 -- Check of the unitarity of the S-matrix...
 -- S-matrix unitary condition fulfilled
--- Cross-sections calculations completed in 5.9500E-04 s
--- Parity block completed in 3.0089E+02 s
+-- Cross-sections calculations completed in 1.0050E-03 s
+-- Parity block completed in 3.0848E+02 s
 ------------------------------------------------------------------------------------------
  - Largest partial elastic state-to-state for JTOT = 3: 1.358259
  - Largest partial inelastic state-to-state for JTOT = 3: .066401
--- Total angular momentum block completed in 3.4136E+02 s
+-- Total angular momentum block completed in 3.4313E+02 s
 ==========================================================================================
                     -- Finished the loop over total angular momentum --
 ------------------------------------------------------------------------------------------
@@ -954,4 +954,4 @@ Final state-to-state XS
      0    12         2     4    0.36010240E+03    0.61655572E-09
      2     2         2     4    0.36010240E+03    0.71725138E-02
      2     4         2     4    0.36010240E+03    0.21760723E+01
--- Total CPU time: 6.1719E+02 s
+-- Total CPU time: 6.2027E+02 s

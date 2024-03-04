@@ -1,6 +1,6 @@
 program SCATTERING
    !---------------------------------------------------------------------------!
-   !!                      the SCATTERING code - version 0.01
+   !!                      the SCATTERING code - version 0.0.1
    !!                    optimized for diatom-atom calculations
    !!                                 25-01-2024
    !!                                 H. Jozwiak
