@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/735427260.svg)](https://zenodo.org/doi/10.5281/zenodo.10776727)
+
 **BIGOS** – **B**inary **I**nelastic scattering and **G**eneralized **O**ptical cross **S**ection package is a set of FORTRAN 90 codes that
 allow the user to obtain various physical quantities related to the scattering problem involving diatomic molecules and
 atoms. The package is being developed at the Nicolaus Copernicus University in Toruń.
@@ -13,7 +15,7 @@ scattering S-matrix elements and calculate the state-to-state cross-sections.
 This version of the code is adjusted for diatom - atom collision systems,<br>
 in particular the H<sub>2</sub> - He system. <br>
 **Please, refer to this version of the code by citing the following paper** <br>
-H. Jozwiak, F. Thibault, A. Viel, P. Wcislo, F. Lique, <br>
+H. Jóźwiak, F. Thibault, A. Viel, P. Wcisło, F. Lique, <br>
 Rovibrational (de-)excitation of H<sub>2</sub> by He revisited <br>
 https://doi.org/10.48550/arXiv.2311.09890
 
